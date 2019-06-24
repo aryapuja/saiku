@@ -47,12 +47,11 @@
 
 		<!-- view tabel agenda -->
 		<div class="agendaview">
-			<div style="background-color: #FFF; padding: 15px;">
+			<div style="background-color: #FFF; padding: 5px;">
 				<div class="boddy card">
 					<center><h4 class="namatitel card-header">AGENDA KEGIATAN</h4></center>
 					<div class="card-body">
 						<div class="pull-right"><a href="javascript:void(0);" class="btn btn-success" data-toggle="modal" data-target="#Modal_Add"><span class="fa fa-plus"></span> Add Schedule</a></div>
-
 						<table class="table table-striped table-bordered table-responsive-md tblcus" style="table-layout:all; width: 100%" id="agendaall">
 							<thead>
 								<tr style="background-color: #E8E8E8;">
@@ -74,9 +73,40 @@
 				</div>	
 			</div>
 		</div>
+		
 
-	</div>  <!-- end container  -->	
+	</div>  <!-- end container  -->
+	<div class="container-fluid">	
+	<div class="activityview">
+			<div style="background-color: #FFF; padding: 5px;">
+				<div class="boddy card" style="width: 100%">
+					<center><h4 class="namatitel card-header">AGENDA KEGIATAN</h4></center>
+					<div class="card-body">
+						<div class="pull-right"><a href="javascript:void(0);" class="btn btn-success" data-toggle="modal" data-target="#Modal_Add"><span class="fa fa-plus"></span> Add Activity</a></div>
 
+						<table class="table table-striped table-bordered table-responsive-md tblcus" style="table-layout:all; width: 100%" id="agendaall">
+							<thead>
+								<tr style="background-color: #E8E8E8;">
+									<!-- <th style="width: 5%;">No</th> -->
+									<th style="text-align: center;" hidden>Id</th>
+									<th style="text-align: center; width: 25% ">Activity</th>
+									<!-- <th style="text-align: center; width: 5%">Rev</th> -->
+									<th style="text-align: center; width: 15%">Plan Date</th>
+									<th style="text-align: center; width: 15%">Actual Date</th>
+									<th style="text-align: center; width: 10%">Divisi</th>
+									<th style="text-align: center; width: 10%">Nor-No</th>
+									<th style="text-align: center; width: 20%">Action</th>
+								</tr>
+							</thead>
+							<tbody id="tbl_agendaactivity" style="text-align: center;">
+
+							</tbody> 
+						</table>
+					</div>
+				</div>	
+			</div>
+		</div>
+</div>
 
 	<!--MODAL Baru-->
 	<form id="formbaru">

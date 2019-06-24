@@ -48,35 +48,6 @@ class Dc_Model extends CI_Model {
     }
 
 
-    // public function generate_dropdown()
-    // {
-    //     $this->db->select('level.id, level.nama');
-    //     $this->db->order_by('nama');
-
-    //     $result = $this->db->get('level');
-
-    //     $dropdown[''] = 'Pilih Agenda';
-
-    //     if($result->num_row()>0){
-    //         foreach ($$result->result_array() as $row) {
-    //             $dropdown[$row['id']] = $row['nama'];
-    //         }
-    //     }
-    //     return $dropdown;
-    // }
-
-    // public function get_all_level()
-    // {
-    //     $query = $this->db->get('level');
-    //     return $query->result();
-    // }
-
-    // public function get_level_by_id($id)
-    // {
-    //     $query = $this->db->get_where('level', array('id' => $id));
-    //     return $query->row();
-    // }
-
     public function get_dc()
     {
         $query = $this->db->query("SELECT * FROM nor WHERE month(date_plan)=month(curdate()) and year(date_plan)=year(curdate()) order by date_plan ASC");
@@ -86,6 +57,61 @@ class Dc_Model extends CI_Model {
     public function get_dc_sched($month,$years)
     {
         $query = $this->db->query("SELECT * FROM nor WHERE month(date_plan)=".$month." AND year(date_plan)=".$years." order by date_plan ASC");
+        return $query->result();
+    }
+
+    //activity
+    public function newactivity($nama_act,$plan_date,$plan_actual,$nama_dvs,$nor,$no)
+    {
+        $data = array(
+            'nama_act'                  =>$nama_act,
+            'plan_date'                 =>$plan_date,
+            'plan_actual'               =>$plan_actual,
+            'nama_dvs'                  =>$nama_dvs,
+            'nor'                       =>$nor,
+            'no'                        =>$no,
+        );
+
+        return $this->db->insert('activity', $data);
+    }
+
+
+    public function updateactivity($id$nama_act,$plan_date,$plan_actual,$nama_dvs,$nor,$no)
+    {
+
+        $data = array(
+            'nama_act'                  =>$nama_act,
+            'plan_date'                 =>$plan_date,
+            'plan_actual'               =>$plan_actual,
+            'nama_dvs'                  =>$nama_dvs,
+            'nor'                       =>$nor,
+            'no'                        =>$no,
+        );
+
+        $this->db->where('id', $id);
+        $result=$this->db->update('activity', $data);
+        return $result;
+    }
+
+
+    public function deleteactivity()
+    {
+        $id = $this->input->post('id');
+        $this->db->where('id', $id);
+        $result = $this->db->delete('activity');
+        return $result;
+    }
+
+
+    public function get_activity()
+    {
+        $query = $this->db->query("SELECT * FROM activity WHERE month(plan_date)=month(curdate()) and year(plan_date)=year(curdate()) order by plan_date ASC");
+        return $query->result();
+    }
+
+    public function get_activity_sched($month,$years)
+    {
+        $query = $this->db->query("SELECT * FROM activity WHERE month(plan_date)=".$month." AND year(plan_date)=".$years." order by plan_date ASC");
         return $query->result();
     }
 

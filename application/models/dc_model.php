@@ -22,8 +22,9 @@ class Dc_Model extends CI_Model {
     }
 
 
-    public function updateDc($id,$nor,$no,$item_changes,$line,$date_plan)
+    public function updateDc($id,$nor,$no,$line,$item_changes,$date_plan)
     {
+
         $data = array(
             'nor'               =>$nor,
             'no'                =>$no,
@@ -33,7 +34,8 @@ class Dc_Model extends CI_Model {
         );
 
         $this->db->where('id', $id);
-        return $this->db->update('nor', $data);
+        $result=$this->db->update('nor', $data);
+        return $result;
     }
 
 

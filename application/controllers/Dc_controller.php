@@ -78,24 +78,25 @@ class Dc_Controller extends CI_Controller {
 	public function updateDc()
 	{	 
 		date_default_timezone_set("Asia/Jakarta");
-		
+
 		$id = $this->input->post('u_id');
-		$nor = $this->input->post('u_nor');
-		$no = $this->input->post('u_no');
-		$line = $this->input->post('u_line');
-		$item_changes = $this->input->post('u_item_changes');
-		// $carline = $this->input->post('carline');
-		$date_plan = date( 'Y-m-d H:i:s', strtotime( $this->input->post('u_date_plan') ) );
+        $nor = $this->input->post('u_nor');
+        $no = $this->input->post('u_no');
+        $line = $this->input->post('u_line');
+        $item_changes = $this->input->post('u_item_changes');
+        $date_plan = date( 'Y-m-d H:i:s', strtotime( $this->input->post('u_date_plan') ) );
+		
 		// $end = $start;
 
-		$result = $this->dc_model->updateDc($id,$nor,$no,$item_changes,$line,$date_plan);
+		$result = $this->dc_model->updateDc($id,$nor,$no,$line,$item_changes,$date_plan);
+
 		echo json_encode($result);
 
-		if ($result) {
-			echo json_encode("suc ");
-		}else{
-			echo json_encode("Gagal");
-		}
+		// if ($result) {
+		// 	echo json_encode("suc ");
+		// }else{
+		// 	echo json_encode("Gagal");
+		// }
 		
 	}
 

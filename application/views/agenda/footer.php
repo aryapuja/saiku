@@ -106,9 +106,9 @@
 	        					a=i+1;   
 	                    	// mengkonversi tanggal yang akan ditampilkan
 	                    	const tgl_a = new Date(data[i].date_plan);
-	                    	var tgl_awal = ('0'+tgl_a.getDate()).slice(-2)+"/"+(parseInt(tgl_a.getMonth(), 10)+1)+"/"+tgl_a.getFullYear();
-	                    	const tgl_b = new Date(data[i].end);
-	                    	var tgl_ahir = tgl_b.getDate()+"/"+(parseInt(tgl_b.getMonth(), 10)+1)+"/"+tgl_b.getFullYear();
+	                    	var tgl_awal = (parseInt(tgl_a.getMonth(), 10)+1)+"/"+('0'+tgl_a.getDate()).slice(-2)+"/"+tgl_a.getFullYear();
+	                    	const tgl_b = new Date(data[i].date_plan);
+	                    	var tgl_awal2 = ('0'+tgl_a.getDate()).slice(-2)+"/"+(parseInt(tgl_a.getMonth(), 10)+1)+"/"+tgl_a.getFullYear();
 
 	                    	var ag = {
 	                    		tanggal_a:tgl_a,
@@ -125,7 +125,7 @@
 		                            // '<td>'+data[i].rev+'</td>'+
 		                            '<td>'+data[i].item_changes+'</td>'+
 		                            '<td>'+data[i].line+'</td>'+
-		                            '<td>'+tgl_awal+'</td>'+
+		                            '<td>'+tgl_awal2+'</td>'+
 		                            '<td>'+
 		                            '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit" data-id="'+data[i].id+'" data-nor="'+data[i].nor+'" data-no="'+data[i].no+'" data-item_changes="'+data[i].item_changes+'" data-line="'+data[i].line+'" data-date_plan="'+tgl_awal+'">Edit</a>   '+
 
@@ -333,27 +333,36 @@
             $('#formupdate').submit(function(e){
             	e.preventDefault(); 
         		// memasukkan data dari form update ke variabel untuk update db
-        		var upid 			= $('#u_id').val();
-        		var upnor 			= $('#u_nor').val();
-        		var upno 			= $('#u_no').val();
-        		var upline 			= $('#u_line').val();
-        		var upitem_changes 	= $('#u_item_changes').val();
-        		var update_plan 	= $('#u_date_plan').val();
+        		var up_id 			= $('#u_id').val();
+        		var up_nor 			= $('#u_nor').val();
+        		var up_no 			= $('#u_no').val();
+        		var up_line 			= $('#u_line').val();
+        		var up_item_changes 	= $('#u_item_changes').val();
+        		var up_date_plan 	= $('#u_date_plan').val();
 
+        		// alert(up_date_plan);
+
+				// alert("id:"+up_id+"|nor:"+up_nor+"|no:"+up_no+"|lin:"+up_line+"|item:"+up_item_changes+"|date:"+up_date_plan);        		
         		$.ajax({
         			type : "POST",
         			url  : "<?php echo site_url(); ?>/Dc_controller/updateDc",
         			dataType : "JSON",
         			data : { 
-        				id:upid,
-        				nor:upnor,
-        				no:upno,
-        				item_changes:upitem_changes,
-        				line:upline,
-        				date_plan:update_plan,
+        				u_id:up_id,
+        				u_nor:up_nor,
+        				u_no:up_no,
+        				u_item_changes:up_item_changes,
+        				u_line:up_line,
+        				u_date_plan:up_date_plan
         			},
 
         			success: function(data){
+        				 // $('[name="u_id"]').val("");
+             //    $('[name="u_nor"]').val("");
+             //    $('[name="u_no"]').val("");
+             //    $('[name="u_item_changes"]').val("");
+             //    $('[name="u_line"]').val("");
+             //    $('[name="u_date_plan"]').val("");
         				$('#Modal_Update').modal('hide'); 
         				refresh();
         			}

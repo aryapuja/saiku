@@ -112,7 +112,7 @@
 									</div>
 									<div class="col-6">
 										<label for="#">Implemented Plan </label>
-										<div class="input-daterange input-group" id="datepickerss">
+										<div class="input-daterange input-group" id="datepickers">
 											<input  class="form-control" name="date_plan" id="date_plan" placeholder="Date (Plan)" required/>
 										</div>
 									</div>
@@ -134,12 +134,17 @@
 	<!--END MODAL baru-->
 
 	<script type="text/javascript">
-		$(function(){
-			$(".datepicker").datepicker({
-			   autoclose: true,
-			   todayHighlight: true,
-			});
-		});
+		$(document).ready(function () {
+    var date = new Date();
+    var currentMonth = date.getMonth();
+    var currentDate = date.getDate();
+    var currentYear = date.getFullYear();
+
+    $('.datepicker').datepicker({
+        minDate: new Date(currentDate, currentMonth, currentYear),
+        dateFormat: 'dd-mm-yy'
+    });
+});
 	</script>
 
 	<!--MODAL START UPDATEEE UPDATEEE-->
@@ -177,7 +182,7 @@
 									<div class="col-6">
 										<label for="#">Implemented Plan: </label>
 										<div class="input-daterange input-group" id="datepickerss">
-											<input  class="form-control datepicker" name="u_date_plan" id="u_date_plan" placeholder="Date (Plan)" required/>
+											<input  class="form-control" name="u_date_plan" id="u_date_plan" placeholder="Date (Plan)" required/>
 										</div>
 									</div>
 
@@ -187,7 +192,7 @@
 									<!-- inputan button simpan dan batal -->
 									<input type="hidden" id="u_id" name="u_id" value="">
 									<button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-									<button type="submit" id="btn_push" class="btn btn-primary">Tambah</button>
+									<button type="submit" id="btn_update" class="btn btn-primary">Tambah</button>
 								</div>
 							</div>
 						</div>

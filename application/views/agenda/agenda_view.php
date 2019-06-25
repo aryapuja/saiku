@@ -346,50 +346,71 @@
 						<h4 class="modal-title">New Activity</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>			           
 					</div>
+
+					<div class="modal-body" id="mdl_bdy" style="max-height: calc(100vh - 200px);overflow-y: auto;">
 						<div class="container-fluid scroll">  
                           <div class="table-responsive">  
                                <table class="table table-bordered" id="dynamic_field">  
-                                    <tr>  
-                                         <td><input type="text" name="name[]" placeholder="Enter your Name" class="form-control name_list" /></td>  
-                                         <td><select class="form-control" id="slct_nor" name="nor[]" required="">
+                                    <tr>
+                                         <td>
+                                         	<label>Nor</label>
+                                         	<select class="form-control" id="slct_nor" name="nor_act[]" required="">
 											<option disabled selected hidden> Pilih Nomor Nor</option>
-											<?php foreach ($nor as $key) { ?>
-											<option value="<?php  echo $key->nor ?>"> <?php  echo $key->nor ?> </option>
-											<?php }  ?>
-											</select></td>
-										<td><select class="form-control" id="slct_no" name="no[]" required="">
-											<option disabled selected hidden> Pilih Nomor No</option>
-											<?php foreach ($no as $key) { ?>
-											<option value="<?php  echo $key->no ?>"> <?php  echo $key->no ?> </option>
-											<?php }  ?>
-										</select></td>
-										<td><select class="form-control" name="nama_dvs[]">
-							                  <option disabled selected hidden>Pilih Divisi</option>
-							                  <option value="de">de</option>
-							                  <option value="pp">pp</option>
-							                  <option value="qp">qp</option>
-							                  <option value="qmp">qmp</option>
-							                  <option value="eng">eng</option>
-							                  <option value="nys">nys</option>
-							                  <option value="prod">prod</option>
-							                  <option value="ppc">ppc</option>
-							                </select></td>
-							                <td><input  class="form-control datepickers" name="date_plan[]" id="date_plan" placeholder="Date (Plan)" required/></td>
-
-							            <td>
-										<input type="text" id="activity" name="activity[]" class="form-control" placeholder="Masukkan Activity" required></input></td>
-										<td><input  class="form-control datepickers" name="date_actual[]" id="date_actual" placeholder="Date (Actual)" required/></td>
-                                         <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>  
+												<?php foreach ($nor as $key) { ?>
+													<option value="<?php  echo $key->nor ?>"> <?php  echo $key->nor ?> </option>
+												<?php }  ?>
+											</select>
+										</td>
+										<td>
+											<label>No</label>
+												<select class="form-control" id="slct_no" name="no_act[]" required="">
+												<option disabled selected hidden> Pilih Nomor No</option>
+												<?php foreach ($no as $key) { ?>
+												<option value="<?php  echo $key->no ?>"> <?php  echo $key->no ?> </option>
+												<?php }  ?>
+												</select>
+										</td>
+										<td> <label>Divisi</label>
+											<select class="form-control" name="nama_dvs[]" id="nama_dvs">
+								                 <option disabled selected hidden>Pilih Divisi</option>
+								                 <option value="de">de</option>
+								                 <option value="pp">pp</option>
+								                 <option value="qp">qp</option>
+								                 <option value="qmp">qmp</option>
+								                 <option value="eng">eng</option>
+								                 <option value="nys">nys</option>
+								                 <option value="prod">prod</option>
+								                 <option value="ppc">ppc</option>
+							               </select>
+							           </td>
+							            <td> <label>Activity</label>
+											<input type="text" id="nama_act" name="nama_act[]" class="form-control" placeholder="Masukkan Activity" required />
+										</td>
+							            <td> <label>Date Plan</label>
+							            	<input class="form-control datepicker" name="date_plan_act[]" id="date_plan_act" placeholder="Date (Plan)" required/>
+							            </td>
+										<td> <label>Date Actual</label>
+											<input  class="form-control datepicker" name="date_actual[]" id="date_actual" placeholder="Date (Actual)" required/>
+										</td>
+                                         <td>
+                                         	<!-- <button type="button" name="add" id="add" class="btn btn-success">Add More</button> -->
+                                         </td>  
                                     </tr>  
                                </table>  
-                               <input type="button" name="submit" id="submit" class="btn btn-info" value="Submit" />  
+                               <!-- <input type="button" name="submit" id="submit" class="btn btn-info" value="Submit" />   -->
                           </div>
                       </div>
 					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary " data-dismiss="modal">Batal</button>
+						<button type="button" class="btn btn-primary"  name="add" id="add">Tambah Data Form</button>
+						<button type="submit" id="submit" class="btn btn-success ">Input Data</button>
+					</div>
 				</div>
-			</div>
-                     </form>  
-                </div>
+				</div>
+				</div>
+    		</form>  
+    	</div>
 	<!--END MODAL Activity baru-->
 
 	<script type="text/javascript">
@@ -406,24 +427,52 @@
       var i=1;  
       $('#add').click(function(){  
            i++;  
-           $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="name[]" placeholder="Enter your Name" class="form-control name_list" /></td> <td><select class="form-control" id="slct_nor" name="nor[]" required="">    <option disabled selected hidden> Pilih Nomor Nor</option>    <?php foreach($nor as $key) { ?>    <option value="<?php  echo $key->nor ?>">    <?php echo $key->nor ?> </option><?php }  ?> </select>    </td> <td>        <select class="form-control" id="slct_no" name="no[]" required="">        <option disabled selected hidden> Pilih Nomor No</option>        <?php foreach($no as $key) { ?>        <option value="<?php  echo $key->no ?>">        <?php echo $key->no ?> </option><?php }  ?> </select>        </td> <td><select class="form-control" name="nama_dvs[]">            <option disabled selected hidden>Pilih Divisi</option>            <option value="de"> de </option> <option value="pp">pp</option>            <option value="qp"> qp </option> <option value="qmp">qmp</option>            <option value="eng"> eng </option> <option value="nys">nys</option>            <option value="prod"> prod </option> <option value="ppc">ppc</option>            </select> </td>            <td>            <input class="form-control datepickers" name="date_plan[]" id="date_plan" placeholder="Date (Plan)" required />            </td> <td><input class="form-control datepickers" name="date_actual[]" id="date_actual" placeholder="Date (Actual)" required/ > </td> <td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button>                </td> </tr>');  
+           $('#dynamic_field').append(
+           		'<tr id="row'+i+'">'+
+           			'<td><select class="form-control" id="slct_nor" name="nor[]" required="">'+ 
+           				'<option disabled selected hidden> Pilih Nomor Nor</option>'+
+           				'<?php foreach($nor as $key) { ?><option value="<?php  echo $key->nor ?>">'+
+           				'<?php echo $key->nor ?> </option><?php }  ?>'+
+           				'</select></td>'+
+           				'<td><select class="form-control" id="slct_no" name="no[]" required="">'+
+           					'<option disabled selected hidden> Pilih Nomor No</option>'+
+           					'<?php foreach($no as $key) { ?>'+
+           					'<option value="<?php  echo $key->no ?>"><?php echo $key->no ?> </option><?php }  ?>'+
+           				'</select></td> '+
+           				'<td><select class="form-control" name="nama_dvs[]">'+
+           					'<option disabled selected hidden>Pilih Divisi</option>'+
+           					'<option value="de">de</option> '+
+           					'<option value="pp">pp</option>'+
+           					'<option value="qp">qp</option>'+
+           					'<option value="qmp">qmp</option>'+
+           					'<option value="eng">eng</option>'+
+           					'<option value="nys">nys</option>'+
+           					'<option value="prod">prod</option>'+
+           					'<option value="ppc">ppc</option>'+
+           					'</select> </td>'+
+						'<td><input type="text" id="activity" name="activity[]" class="form-control" placeholder="Masukkan Activity" required /></td>'+
+           				'<td><input class="form-control datepicker" name="date_plan[]" id="date_plan" placeholder="Date (Plan)" required/></td>'+
+           				'<td><input class="form-control datepicker" name="date_actual[]" id="date_actual" placeholder="Date (Actual)" required/ > </td>'+
+           				'<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td>'+
+           			'</tr>'
+           	);  
       });  
       $(document).on('click', '.btn_remove', function(){  
            var button_id = $(this).attr("id");   
            $('#row'+button_id+'').remove();  
       });  
-      $('#submit').click(function(){            
-           $.ajax({  
-                url:"name.php",  
-                method:"POST",  
-                data:$('#add_activity').serialize(),  
-                success:function(data)  
-                {  
-                     alert(data);  
-                     $('#add_activity')[0].reset();  
-                }  
-           });  
-      });  
+      // $('#submit').click(function(){            
+      //      $.ajax({  
+      //           url:"name.php",  
+      //           method:"POST",  
+      //           data:$('#add_activity').serialize(),  
+      //           success:function(data)  
+      //           {  
+      //                alert(data);  
+      //                $('#add_activity')[0].reset();  
+      //           }  
+      //      });  
+      // });  
  	});
 
 	//  $(document).ready(function(){ // Ketika halaman sudah diload dan siap

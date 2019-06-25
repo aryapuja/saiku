@@ -463,25 +463,27 @@
 //   ============================= ACTIVITY ========================================
 //   ========================= Start ADD RECORD ====================================
 	        //Save kegiatan baru
-	        $('#formbaru2').submit(function(e){
+	        $('#add_activity').submit(function(e){
 	        	e.preventDefault();
         		// memasukkan data inputan ke variabel
-        		var nor 				= $('#nor').val();
-        		var no 					= $('#no').val();
-        		var line 				= $('#line').val();
-        		var item_changes 		= $('#item_changes').val();
+        		var nor 				= $('#slct_nor').val();
+        		var no 					= $('#slct_no').val();
+        		var nama_dvs 			= $('#nama_dvs').val();
+        		var nama_act 			= $('#nama_act').val();
         		var date_plan 			= $('#date_plan').val();
+        		var date_actual 		= $('#date_actual').val();
 
         		$.ajax({
         			type : "POST",
-        			url  : "<?php echo site_url(); ?>/Dc_controller/newDc",
+        			url  : "<?php echo site_url(); ?>/Dc_controller/newActivity",
         			dataType : "JSON",
         			data : {
-        				nor:nor,
-        				no:no,
-        				line:line,
-        				item_changes:item_changes,
-        				date_plan:date_plan
+        				nor_act:nor,
+        				no_act:no,
+        				nama_dvs:nama_dvs,
+        				nama_act:nama_act,
+        				date_plan_act:date_plan,
+        				date_actual:date_actual
         			},
 
         			success: function(){ 

@@ -61,18 +61,9 @@ class Dc_Model extends CI_Model {
     }
 
     //activity
-    public function newactivity($nama_act,$plan_date,$plan_actual,$nama_dvs,$nor,$no)
+    public function newactivity($data)
     {
-        $data = array(
-            'nama_act'                  =>$nama_act,
-            'plan_date'                 =>$plan_date,
-            'plan_actual'               =>$plan_actual,
-            'nama_dvs'                  =>$nama_dvs,
-            'nor'                       =>$nor,
-            'no'                        =>$no,
-        );
-
-        return $this->db->insert('activity', $data);
+        return $this->db->insert_batch('activity', $data);
     }
 
 

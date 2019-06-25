@@ -64,7 +64,8 @@
 	        let currentYear = today.getFullYear();
 
 			//call function show all agenda berdasarkan bulan dan tahun 
-			showAgendaandCalendar(currentMonth,currentYear); 
+			showAgendaandCalendar(currentMonth,currentYear);
+            showAct(currentMonth,currentYear); 
 
 			// event click previous and next button month
 			document.getElementById("previous").addEventListener("click",previous);
@@ -84,7 +85,7 @@
 				showAgendaandCalendar(currentMonth, currentYear);
 			}
 
-	        //function show agenda berdasarkan bulan dan tahun
+	        //function show NOR berdasarkan bulan dan tahun
 	        function showAgendaandCalendar(month,year){
 	        	var agenda=null;
 	        	var mm =(month+1);
@@ -144,7 +145,7 @@
 	                    $("#agendaall").DataTable({
 	                    	destroy:true,
 	                    	"lengthMenu": [[5], [5]]
-	                    }); 
+	                    });
 	                }
 	            });
 
@@ -269,6 +270,71 @@
    				} 
    				$('#calendarbody').html(html);  
 
+   			}
+
+   			//function show Activity berdasarkan bulan dan tahun
+	        function showAct(month,year){
+	        	var agenda=null;
+	        	var mm =(month+1);
+
+	        	$.ajax({
+	        		async: false,
+	        		type : "POST",
+	        		url   : '<?php echo base_url();?>index.php/Dc_controller/getActSched',
+	        		dataType : 'json',
+	        		data : { 
+	        			month_p:mm,
+	        			year_p:year},
+
+	        			success : function(data){ 
+	        				var agend=[];
+	        				var html='';
+
+	        				for(i=0; i<data.length; i++){ 
+	        					a=i+1;   
+	                    	// mengkonversi tanggal yang akan ditampilkan
+	                    	const tgl_a = new Date(data[i].date_plan);
+	                    	var tgl_awal = (parseInt(tgl_a.getMonth(), 10)+1)+"/"+('0'+tgl_a.getDate()).slice(-2)+"/"+tgl_a.getFullYear();
+	                    	const tgl_b = new Date(data[i].actual_plan);
+	                    	var tgl_awal2 = ('0'+tgl_a.getDate()).slice(-2)+"/"+(parseInt(tgl_a.getMonth(), 10)+1)+"/"+tgl_a.getFullYear();
+
+	                    	var ag = {
+	                    		tanggal_a:tgl_a,
+	                    		tanggal_b:tgl_b
+	                        			// level:data[i].level
+	                        		}
+	                        // memasukkan data agenda kedalam array yang nantinya akan diolah untuk coloring calendar
+	                        agend.push(ag);
+
+	                        html += '<tr>';
+	                        html +=	
+	                        '<td hidden>'+data[i].id+'</td>'+
+	                        '<td >'+data[i].nor+'-'+data[i].no+'</td>'+
+		                            '<td>'+data[i].nama_dvs+'</td>'+
+		                            '<td>'+data[i].nama_act+'</td>'+
+		                            '<td>'+tgl_awal+'</td>'+
+		                            '<td>'+tgl_awal2+'</td>'+
+		                            '<td>'+
+		                            '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit" data-id="'+data[i].id+'" data-nor="'+data[i].nor+'" data-no="'+data[i].no+'" data-item_changes="'+data[i].item_changes+'" data-line="'+data[i].line+'" data-date_plan="'+tgl_awal+'">Edit</a>   '+
+
+
+		                            '<a href="javascript:void(0);" class="btn btn-danger btn-sm item_delete" data-id="'+data[i].id+'" data-nor="'+data[i].nor+'" data-no="'+data[i].no+'">Hapus</a>'+
+		                            '</td>'+
+		                            '</tr>';
+		                        } 
+	                    // memasukkan data agenda lokal ke variabel agenda global
+	                    agenda=agend;
+
+	                    $("#agendaall2").DataTable().destroy();
+	                    $('tbody').empty();
+	                    // memasukkan hatml activity ke id tblagendakegiatan & set datatables
+	                    $('#tbl_agendaactivity').html(html);
+	                    $("#agendaall2").DataTable({
+	                    	destroy:true,
+	                    	"lengthMenu": [[5], [5]]
+	                    }); 
+	                }
+	            });
    			}
 
 //   ========================  Start ADD RECORD ====================================
@@ -411,11 +477,15 @@
  		function refresh() {
  			$("#agendaall").DataTable().destroy();
  			$('tbody').empty();
+ 			$("#agendaall2").DataTable().destroy();
+ 			$('tbody').empty();
  			document.getElementById('formbaru').reset();
  			document.getElementById('formupdate').reset();
  			document.getElementById('formdelete').reset();
 
-            showAgendaandCalendar(currentMonth,currentYear); //call function show all agenda 
+            showAgendaandCalendar(currentMonth,currentYear);
+            showAct(currentMonth,currentYear); //call function show all agenda 
+             //call function show all agenda 
         }
 
 

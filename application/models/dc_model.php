@@ -76,7 +76,7 @@ class Dc_Model extends CI_Model {
     }
 
 
-    public function updateactivity($id$nama_act,$plan_date,$plan_actual,$nama_dvs,$nor,$no)
+    public function updateactivity($id,$nama_act,$plan_date,$plan_actual,$nama_dvs,$nor,$no)
     {
 
         $data = array(

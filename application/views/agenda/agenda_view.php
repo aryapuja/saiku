@@ -59,10 +59,10 @@
 									<th style="text-align: center;" hidden>Id</th>
 									<th style="text-align: center; width: 15% ">Nor-No</th>
 									<!-- <th style="text-align: center; width: 5%">Rev</th> -->
-									<th style="text-align: center; width: 45%">Item Changes</th>
+									<th style="text-align: center; width: 50%">Item Changes</th>
 									<th style="text-align: center; width: 10%">Line</th>
 									<th style="text-align: center; width: 10%">Date Plan</th>
-									<th style="text-align: center; width: 20%">Action</th>
+									<th style="text-align: center; width: 15%">Action</th>
 								</tr>
 							</thead>
 							<tbody id="tbl_agendakegiatan" style="text-align: center;">
@@ -75,38 +75,34 @@
 		</div>
 		
 
-	</div>  <!-- end container  -->
-	<div class="container-fluid">	
-	<div class="activityview">
-			<div style="background-color: #FFF; padding: 5px;">
-				<div class="boddy card" style="width: 100%">
-					<center><h4 class="namatitel card-header">AGENDA KEGIATAN</h4></center>
-					<div class="card-body">
-						<div class="pull-right"><a href="javascript:void(0);" class="btn btn-success" data-toggle="modal" data-target="#Modal_Add"><span class="fa fa-plus"></span> Add Activity</a></div>
+	<div class="minipengumuman" style="border: 2px; padding-top: 20px; width: 100%">
+		<div class="boddy card" style="width: 100%">
+			<div class="card-body">
+			<center><h4 class="namatitel card-header">AGENDA KEGIATAN</h4></center>
+				<div class="pull-right"><a href="javascript:void(0);" class="btn btn-success" data-toggle="modal" data-target="#Modal_Add"><span class="fa fa-plus"></span> Add Activity</a></div>
+				<table class="table table-striped table-bordered table-responsive-md tblcus" style="table-layout:all; width: 100%" id="agendaall2">
+					<thead>
+						<tr style="background-color: #E8E8E8;">
+							<!-- <th style="width: 5%;">No</th> -->
+							<th style="text-align: center;" hidden>Id</th>
+							<th style="text-align: center; width: 10%">Nor-No</th>
+							<th style="text-align: center; width: 10%">Divisi</th>
+							<th style="text-align: center; width: 25%">Activity</th>
+							<th style="text-align: center; width: 15%">Plan Date</th>
+							<th style="text-align: center; width: 15%">Actual Date</th>
+							<th style="text-align: center; width: 20%">Action</th>
+						</tr>
+					</thead>
+					<tbody id="tbl_agendaactivity" style="text-align: center;">
 
-						<table class="table table-striped table-bordered table-responsive-md tblcus" style="table-layout:all; width: 100%" id="agendaall">
-							<thead>
-								<tr style="background-color: #E8E8E8;">
-									<!-- <th style="width: 5%;">No</th> -->
-									<th style="text-align: center;" hidden>Id</th>
-									<th style="text-align: center; width: 25% ">Activity</th>
-									<!-- <th style="text-align: center; width: 5%">Rev</th> -->
-									<th style="text-align: center; width: 15%">Plan Date</th>
-									<th style="text-align: center; width: 15%">Actual Date</th>
-									<th style="text-align: center; width: 10%">Divisi</th>
-									<th style="text-align: center; width: 10%">Nor-No</th>
-									<th style="text-align: center; width: 20%">Action</th>
-								</tr>
-							</thead>
-							<tbody id="tbl_agendaactivity" style="text-align: center;">
-
-							</tbody> 
-						</table>
-					</div>
-				</div>	
+					</tbody> 
+				</table>
 			</div>
-		</div>
-</div>
+		</div>	
+	</div>
+
+	</div>  
+	<!-- end container  -->
 
 	<!--MODAL Baru-->
 	<form id="formbaru">
@@ -164,17 +160,14 @@
 	<!--END MODAL baru-->
 
 	<script type="text/javascript">
-		$(document).ready(function () {
-    var date = new Date();
-    var currentMonth = date.getMonth();
-    var currentDate = date.getDate();
-    var currentYear = date.getFullYear();
-
-    $('.datepicker').datepicker({
-        minDate: new Date(currentDate, currentMonth, currentYear),
-        dateFormat: 'dd-mm-yy'
-    });
-});
+	 $(function(){
+	  $(".datepicker").datepicker({
+	  	// var tgl_ahir = tgl_b.getDate()+"/"+(parseInt(tgl_b.getMonth(), 10)+1)+"/"+tgl_b.getFullYear();
+	   //    format: ,
+	      autoclose: true,
+	      todayHighlight: true,
+	  });
+	 });
 	</script>
 
 	<!--MODAL START UPDATEEE UPDATEEE-->
@@ -211,8 +204,8 @@
 									</div>
 									<div class="col-6">
 										<label for="#">Implemented Plan: </label>
-										<div class="input-daterange input-group" id="datepickerss">
-											<input  class="form-control" name="u_date_plan" id="u_date_plan" placeholder="Date (Plan)" required/>
+										<div class="input-daterange input-group">
+											<input  class="form-control datepicker" name="u_date_plan" id="u_date_plan" placeholder="Date (Plan)" required/>
 										</div>
 									</div>
 
@@ -266,109 +259,4 @@
 		</div>
 	</form>
 	<!--END MODAL Delete-->
-	<script type="text/javascript">
-		function klikDetail() {
-			document.getElementById("btn_submit").disabled 			= true;
-			document.getElementById("v_nor").disabled 				= true;
-			document.getElementById("v_no").disabled 				= true;
-			document.getElementById("v_rev").disabled 				= true;
-			document.getElementById("v_item_changes").disabled		= true;
-			document.getElementById("v_start").disabled 			= true;
-			document.getElementById("v_carline").disabled 			= true;
-			document.getElementById("v_de_epl").disabled 			= true;
-			document.getElementById("v_de_eng").disabled 			= true;
-			document.getElementById("v_de_com").disabled 			= true;
-			document.getElementById("v_pp_swct").disabled 			= true;
-			document.getElementById("v_pp_matrik").disabled 		= true;
-			document.getElementById("v_qp_swct").disabled 			= true;
-			document.getElementById("v_qp_dwg").disabled 			= true;
-			document.getElementById("v_qmp_trial").disabled		 	= true;
-			document.getElementById("v_qmp_vld_mat").disabled 		= true;
-			document.getElementById("v_qmp_vld_jig").disabled 		= true;
-			document.getElementById("v_eng_sao").disabled 			= true;
-			document.getElementById("v_eng_housing").disabled 		= true;
-			document.getElementById("v_eng_jig").disabled 			= true;
-			document.getElementById("v_eng_matrik").disabled 		= true;
-			document.getElementById("v_eng_setting").disabled 		= true;
-			document.getElementById("v_nys_kb_cct").disabled 		= true;
-			document.getElementById("v_nys_kb_material").disabled 	= true;
-			document.getElementById("v_nys_mcl").disabled 			= true;
-			document.getElementById("v_prod_imp").disabled 			= true;
-			document.getElementById("v_prod_pengosongan").disabled	= true;
-			document.getElementById("v_prod_karantina").disabled 	= true;
-			document.getElementById("v_prod_cutting").disabled 		= true;
-			document.getElementById("v_ppc_req").disabled 			= true;
-			document.getElementById("v_ppc_release").disabled 		= true;
-		}
-
-		function klikUpdate(){
-
-			if(document.getElementById("v_nor").value == ""){
-				document.getElementById("btn_submit").disabled 			= true;
-				document.getElementById("v_nor").disabled 				= true;
-				document.getElementById("v_no").disabled 				= true;
-				document.getElementById("v_rev").disabled 				= true;
-				document.getElementById("v_item_changes").disabled		= true;
-				document.getElementById("v_start").disabled 			= true;
-				document.getElementById("v_carline").disabled 			= true;
-				document.getElementById("v_de_eng").disabled 			= true;
-				document.getElementById("v_de_epl").disabled 			= true;
-				document.getElementById("v_de_com").disabled 			= true;
-				document.getElementById("v_pp_swct").disabled 			= true;
-				document.getElementById("v_pp_matrik").disabled 		= true;
-				document.getElementById("v_qp_swct").disabled 			= true;
-				document.getElementById("v_qp_dwg").disabled 			= true;
-				document.getElementById("v_qmp_trial").disabled		 	= true;
-				document.getElementById("v_qmp_vld_mat").disabled 		= true;
-				document.getElementById("v_qmp_vld_jig").disabled 		= true;
-				document.getElementById("v_eng_sao").disabled 			= true;
-				document.getElementById("v_eng_housing").disabled 		= true;
-				document.getElementById("v_eng_jig").disabled 			= true;
-				document.getElementById("v_eng_matrik").disabled 		= true;
-				document.getElementById("v_eng_setting").disabled 		= true;
-				document.getElementById("v_nys_kb_cct").disabled 		= true;
-				document.getElementById("v_nys_kb_material").disabled 	= true;
-				document.getElementById("v_nys_mcl").disabled 			= true;
-				document.getElementById("v_prod_imp").disabled 			= true;
-				document.getElementById("v_prod_pengosongan").disabled	= true;
-				document.getElementById("v_prod_karantina").disabled 	= true;
-				document.getElementById("v_prod_cutting").disabled 		= true;
-				document.getElementById("v_ppc_req").disabled 			= true;
-				document.getElementById("v_ppc_release").disabled 		= true;
-			}else{
-				document.getElementById("btn_submit").disabled			= false;
-				document.getElementById("v_nor").disabled 				= false;
-				document.getElementById("v_no").disabled 				= false;
-				document.getElementById("v_rev").disabled 				= false;
-				document.getElementById("v_item_changes").disabled 		= false;
-				document.getElementById("v_start").disabled 			= false;
-				document.getElementById("v_carline").disabled 			= false;
-				document.getElementById("v_de_epl").disabled 			= false;
-				document.getElementById("v_de_eng").disabled 			= false;
-				document.getElementById("v_de_com").disabled 			= false;
-				document.getElementById("v_pp_swct").disabled			= false;
-				document.getElementById("v_pp_matrik").disabled 		= false;
-				document.getElementById("v_qp_swct").disabled 			= false;
-				document.getElementById("v_qp_dwg").disabled			= false;
-				document.getElementById("v_qmp_trial").disabled 		= false;
-				document.getElementById("v_qmp_vld_mat").disabled 		= false;
-				document.getElementById("v_qmp_vld_jig").disabled 		= false;
-				document.getElementById("v_eng_sao").disabled 			= false;
-				document.getElementById("v_eng_housing").disabled 		= false;
-				document.getElementById("v_eng_jig").disabled 			= false;
-				document.getElementById("v_eng_matrik").disabled 		= false;
-				document.getElementById("v_eng_setting").disabled 		= false;
-				document.getElementById("v_nys_kb_cct").disabled 		= false;
-				document.getElementById("v_nys_kb_material").disabled 	= false;
-				document.getElementById("v_nys_mcl").disabled 			= false;
-				document.getElementById("v_prod_imp").disabled 			= false;
-				document.getElementById("v_prod_pengosongan").disabled	= false;
-				document.getElementById("v_prod_karantina").disabled 	= false;
-				document.getElementById("v_prod_cutting").disabled 		= false;
-				document.getElementById("v_ppc_req").disabled 			= false;
-				document.getElementById("v_ppc_release").disabled 		= false;
-			}
-		}
-
-	</script>
 </main>

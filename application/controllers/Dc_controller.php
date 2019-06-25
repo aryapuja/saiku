@@ -93,9 +93,9 @@ class Dc_Controller extends CI_Controller {
 	{
 		echo json_encode($this->dc_model->get_count_week_agenda());
 	}
-
-	//activity
-	public function getActivitySched()
+//================================================================Acivity================================================================
+	
+	public function getActSched()
 	{
 		$month = $this->input->post('month_p');
 		$year = $this->input->post('year_p');

@@ -49,7 +49,7 @@
 		<div class="agendaview">
 			<div style="background-color: #FFF; padding: 5px;">
 				<div class="boddy card">
-					<center><h4 class="namatitel card-header">AGENDA KEGIATAN</h4></center>
+					<center><h4 class="namatitel card-header">NOR SCHEDULE</h4></center>
 					<div class="card-body">
 						<div class="pull-right"><a href="javascript:void(0);" class="btn btn-success" data-toggle="modal" data-target="#Modal_Add"><span class="fa fa-plus"></span> Add Schedule</a></div>
 						<table class="table table-striped table-bordered table-responsive-md tblcus" style="table-layout:all; width: 100%" id="agendaall">
@@ -77,20 +77,20 @@
 
 	<div class="minipengumuman" style="border: 2px; padding-top: 20px; width: 100%">
 		<div class="boddy card" style="width: 100%">
+			<center><h4 class="namatitel card-header">ACTIVITY SCHEDULE</h4></center>
 			<div class="card-body">
-			<center><h4 class="namatitel card-header">AGENDA KEGIATAN</h4></center>
-				<div class="pull-right"><a href="javascript:void(0);" class="btn btn-success" data-toggle="modal" data-target="#Modal_Add"><span class="fa fa-plus"></span> Add Activity</a></div>
+				<div class="pull-right"><a href="javascript:void(0);" class="btn btn-success" data-toggle="modal" data-target="#Modal_Add2"><span class="fa fa-plus"></span> Add Activity</a></div>
 				<table class="table table-striped table-bordered table-responsive-md tblcus" style="table-layout:all; width: 100%" id="agendaall2">
 					<thead>
 						<tr style="background-color: #E8E8E8;">
 							<!-- <th style="width: 5%;">No</th> -->
 							<th style="text-align: center;" hidden>Id</th>
 							<th style="text-align: center; width: 10%">Nor-No</th>
-							<th style="text-align: center; width: 10%">Divisi</th>
-							<th style="text-align: center; width: 25%">Activity</th>
-							<th style="text-align: center; width: 15%">Plan Date</th>
-							<th style="text-align: center; width: 15%">Actual Date</th>
-							<th style="text-align: center; width: 20%">Action</th>
+							<th style="text-align: center; width: 5%">Divisi</th>
+							<th style="text-align: center; width: 60%">Activity</th>
+							<th style="text-align: center; width: 5%">Plan Date</th>
+							<th style="text-align: center; width: 5%">Actual Date</th>
+							<th style="text-align: center; width: 15%">Action</th>
 						</tr>
 					</thead>
 					<tbody id="tbl_agendaactivity" style="text-align: center;">
@@ -104,7 +104,7 @@
 	</div>  
 	<!-- end container  -->
 
-	<!--MODAL Baru-->
+	<!--MODAL NOR Baru-->
 	<form id="formbaru">
 		<div class="modal fade" id="Modal_Add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"  aria-hidden="true">
 			<div class="modal-dialog" role="document" style="max-width: 70%">
@@ -157,20 +157,9 @@
 			</div>
 		</div>
 	</form>
-	<!--END MODAL baru-->
+	<!--END MODAL NOR baru-->
 
-	<script type="text/javascript">
-	 $(function(){
-	  $(".datepicker").datepicker({
-	  	// var tgl_ahir = tgl_b.getDate()+"/"+(parseInt(tgl_b.getMonth(), 10)+1)+"/"+tgl_b.getFullYear();
-	   //    format: ,
-	      autoclose: true,
-	      todayHighlight: true,
-	  });
-	 });
-	</script>
-
-	<!--MODAL START UPDATEEE UPDATEEE-->
+	<!--MODAL NOR START UPDATEEE UPDATEEE-->
 	<form id="formupdate">
 		<div class="modal fade" id="Modal_Update" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"  aria-hidden="true">
 			<div class="modal-dialog" role="document" style="max-width: 70%">
@@ -215,7 +204,7 @@
 									<!-- inputan button simpan dan batal -->
 									<input type="hidden" id="u_id" name="u_id" value="">
 									<button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-									<button type="submit" id="btn_update" class="btn btn-primary">Tambah</button>
+									<button type="submit" id="btn_update" class="btn btn-primary">Update</button>
 								</div>
 							</div>
 						</div>
@@ -224,9 +213,9 @@
 			</div>
 		</div>
 	</form>
-	<!--END UPDATEEE UPDATEEE-->
+	<!--END NOR UPDATEEE UPDATEEE-->
 
-	<!--MODAL Delete-->
+	<!--MODAL NOR Delete-->
 	<form id="formdelete">
 		<div class="modal fade" id="Modal_Delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
@@ -258,5 +247,104 @@
 			</div>
 		</div>
 	</form>
-	<!--END MODAL Delete-->
+	<!--END MODAL NOR Delete-->
+
+	<!--MODAL Activity Baru-->
+	<form id="formbaru2">
+		<div class="modal fade" id="Modal_Add2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"  aria-hidden="true">
+			<div class="modal-dialog" role="document" style="max-width: 70%">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">New Activity</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>			           
+					</div>
+					<div class="modal-body">			   
+						<div class="container-fluid">   
+							<div class="row">        
+								<!-- form inputan nama kegiatan -->
+								<div class="form-group col-lg-12 row">
+
+									<div class="form-group col-lg-2">
+										<label>Nomor Nor</label>
+										<select class="form-control" id="slct_nor" name="nor[]" required="">
+											<option disabled selected hidden> Pilih Nomor Nor</option>
+											<?php foreach ($nor as $key) { ?>
+											<option value="<?php  echo $key->nor ?>"> <?php  echo $key->nor ?> </option>
+											<?php }  ?>
+										</select>
+									</div>
+
+									<div class="form-group col-lg-2">
+										<label>Nomor No</label>
+										<select class="form-control" id="slct_no" name="no[]" required="">
+											<option disabled selected hidden> Pilih Nomor No</option>
+											<?php foreach ($nor as $key) { ?>
+											<option value="<?php  echo $key->no ?>"> <?php  echo $key->no ?> </option>
+											<?php }  ?>
+										</select>
+									</div>
+									
+									<div class="col-2">
+										<label>Divisi</label>
+										<div class="form-group">
+							                <select class="form-control" name="nama_dvs[]">
+							                  <option disabled selected hidden>Pilih Divisi</option>
+							                  <option value="de">de</option>
+							                  <option value="pp">pp</option>
+							                  <option value="qp">qp</option>
+							                  <option value="qmp">qmp</option>
+							                  <option value="eng">eng</option>
+							                  <option value="nys">nys</option>
+							                  <option value="prod">prod</option>
+							                  <option value="ppc">ppc</option>
+							                </select>
+						              </div>
+									</div>
+
+									<div class="col-2">
+										<label>Activity</label>
+										<input type="text" id="activity" name="activity[]" class="form-control" placeholder="Masukkan Activity" required></input>
+									</div>
+
+									<div class="col-2">
+										<label for="#">Implemented Date Plan</label>
+										<div class="input-daterange input-group">
+											<input  class="form-control datepickers" name="date_plan[]" id="date_plan" placeholder="Date (Plan)" required/>
+										</div>
+									</div>
+
+									<div class="col-2">
+										<label for="#">Implemented Date Act</label>
+										<div class="input-daterange input-group">
+											<input  class="form-control datepickers" name="date_actual[]" id="date_actual" placeholder="Date (Actual)" required/>
+										</div>
+									</div>
+
+								</div>
+								<!--  -->
+								<div class="modal-footer">
+									<!-- inputan button simpan dan batal -->
+									<button type="button" class="btn btn-secondary " data-dismiss="modal">Batal</button>
+									<button type="submit" id="btn_push" class="btn btn-primary ">Tambah</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+	<!--END MODAL Activity baru-->
+
+	<script type="text/javascript">
+	 $(function(){
+	  $(".datepicker").datepicker({
+	  	// var tgl_ahir = tgl_b.getDate()+"/"+(parseInt(tgl_b.getMonth(), 10)+1)+"/"+tgl_b.getFullYear();
+	   //    format: ,
+	      autoclose: true,
+	      todayHighlight: true,
+	  });
+	 });
+	</script>
+
 </main>

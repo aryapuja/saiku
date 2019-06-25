@@ -12,10 +12,10 @@ class Dc_Controller extends CI_Controller {
 
 	public function index()
 	{
-		// $data['level'] = $this->dc_model->get_all_level();
+		$data['nor'] = $this->dc_model->get_nor();
 
 		$this->load->view("agenda/header"); 
-		$this->load->view('agenda/agenda_view');
+		$this->load->view('agenda/agenda_view',$data);
 		$this->load->view("agenda/footer");
 	}
 

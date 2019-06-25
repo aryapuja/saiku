@@ -105,13 +105,20 @@ class Dc_Model extends CI_Model {
 
     public function get_activity()
     {
-        $query = $this->db->query("SELECT * FROM activity WHERE month(plan_date)=month(curdate()) and year(plan_date)=year(curdate()) order by plan_date ASC");
+        $query = $this->db->query("SELECT * FROM activity WHERE month(date_plan)=month(curdate()) and year(date_plan)=year(curdate()) order by date_plan ASC");
         return $query->result();
     }
 
     public function get_activity_sched($month,$years)
     {
-        $query = $this->db->query("SELECT * FROM activity WHERE month(plan_date)=".$month." AND year(plan_date)=".$years." order by plan_date ASC");
+        $query = $this->db->query("SELECT * FROM activity WHERE month(date_plan)=".$month." AND year(date_plan)=".$years." order by date_plan ASC");
+        return $query->result();
+    }
+
+    public function get_nor()
+    {
+        
+        $query = $this->db->get('nor');
         return $query->result();
     }
 

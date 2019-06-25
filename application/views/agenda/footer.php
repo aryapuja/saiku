@@ -496,21 +496,21 @@
 
  		// fungsi refresh reset data all form dan calendar
  		function refresh() {
- 			
- 			$("#agendaall").DataTable().destroy();
- 			$('tbody').empty();
- 			$("#agendaall2").DataTable().destroy();
- 			$('tbody').empty();
- 			document.getElementById('formbaru').reset();
- 			document.getElementById('formupdate').reset();
- 			document.getElementById('formdelete').reset();
- 			document.getElementById('formbaru2').reset();
+
+ 			document.location.reload('formbaru2'); 
+ 			// $("#agendaall").DataTable().destroy();
+ 			// $('tbody').empty();
+ 			// $("#agendaall2").DataTable().destroy();
+ 			// $('tbody').empty();
+ 			// document.getElementById('formbaru').reset();
+ 			// document.getElementById('formupdate').reset();
+ 			// document.getElementById('formdelete').reset();
+ 			// document.getElementById('formbaru2').reset();
  			// document.getElementById('formupdate2').reset();
  			// document.getElementById('formdelete2').reset();
 
             showAgendaandCalendar(currentMonth,currentYear);
-            showAct(currentMonth,currentYear); //call function show all agenda 
-             //call function show all agenda 
+            showAct(currentMonth,currentYear);
         }
 
 

@@ -13,6 +13,7 @@ class Dc_Controller extends CI_Controller {
 	public function index()
 	{
 		$data['nor'] = $this->dc_model->get_nor();
+		$data['no'] = $this->dc_model->get_no();
 
 		$this->load->view("agenda/header"); 
 		$this->load->view('agenda/agenda_view',$data);

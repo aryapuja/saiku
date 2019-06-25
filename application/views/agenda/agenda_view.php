@@ -250,18 +250,19 @@
 	<!--END MODAL NOR Delete-->
 
 	<!--MODAL Activity Baru-->
-	<form id="formbaru2">
+	<!-- <form id="formbaru2">
 		<div class="modal fade" id="Modal_Add2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"  aria-hidden="true">
-			<div class="modal-dialog" role="document" style="max-width: 70%">
+			<div class="modal-dialog" role="document" style="max-width: 80%;overflow-y: initial !important">
 				<div class="modal-content">
 					<div class="modal-header">
 						<h4 class="modal-title">New Activity</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>			           
 					</div>
-					<div class="modal-body">			   
-						<div class="container-fluid">   
-							<div class="row">        
-								<!-- form inputan nama kegiatan -->
+					<div class="modal-body" id="mdl_bdy" style="max-height: calc(100vh - 200px);overflow-y: auto;">			   
+						<div class="container-fluid scroll">   
+							<div class="row">
+								<input type="hidden" id="jumlah-form" value="1">
+								
 								<div class="form-group col-lg-12 row">
 
 									<div class="form-group col-lg-2">
@@ -278,7 +279,7 @@
 										<label>Nomor No</label>
 										<select class="form-control" id="slct_no" name="no[]" required="">
 											<option disabled selected hidden> Pilih Nomor No</option>
-											<?php foreach ($nor as $key) { ?>
+											<?php foreach ($no as $key) { ?>
 											<option value="<?php  echo $key->no ?>"> <?php  echo $key->no ?> </option>
 											<?php }  ?>
 										</select>
@@ -321,19 +322,74 @@
 									</div>
 
 								</div>
-								<!--  -->
-								<div class="modal-footer">
-									<!-- inputan button simpan dan batal -->
-									<button type="button" class="btn btn-secondary " data-dismiss="modal">Batal</button>
-									<button type="submit" id="btn_push" class="btn btn-primary ">Tambah</button>
-								</div>
 							</div>
 						</div>
 					</div>
+								
+				<div class="modal-footer">
+	
+					<button type="button" class="btn btn-secondary " data-dismiss="modal">Batal</button>
+					<button type="button" class="btn btn-primary" id="btn-tambah-form">Tambah Data Form</button>
+					<button type="submit" id="btn_push" class="btn btn-success ">Input Data</button>
+				</div>							
 				</div>
 			</div>
 		</div>
-	</form>
+	</form> -->
+
+	<div class="form-group">  
+            <form name="add_activity" id="add_activity">
+            	<div class="modal fade" id="Modal_Add2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"  aria-hidden="true">
+				<div class="modal-dialog" role="document" style="max-width: 80%;overflow-y: initial !important">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">New Activity</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>			           
+					</div>
+						<div class="container-fluid scroll">  
+                          <div class="table-responsive">  
+                               <table class="table table-bordered" id="dynamic_field">  
+                                    <tr>  
+                                         <td><input type="text" name="name[]" placeholder="Enter your Name" class="form-control name_list" /></td>  
+                                         <td><select class="form-control" id="slct_nor" name="nor[]" required="">
+											<option disabled selected hidden> Pilih Nomor Nor</option>
+											<?php foreach ($nor as $key) { ?>
+											<option value="<?php  echo $key->nor ?>"> <?php  echo $key->nor ?> </option>
+											<?php }  ?>
+											</select></td>
+										<td><select class="form-control" id="slct_no" name="no[]" required="">
+											<option disabled selected hidden> Pilih Nomor No</option>
+											<?php foreach ($no as $key) { ?>
+											<option value="<?php  echo $key->no ?>"> <?php  echo $key->no ?> </option>
+											<?php }  ?>
+										</select></td>
+										<td><select class="form-control" name="nama_dvs[]">
+							                  <option disabled selected hidden>Pilih Divisi</option>
+							                  <option value="de">de</option>
+							                  <option value="pp">pp</option>
+							                  <option value="qp">qp</option>
+							                  <option value="qmp">qmp</option>
+							                  <option value="eng">eng</option>
+							                  <option value="nys">nys</option>
+							                  <option value="prod">prod</option>
+							                  <option value="ppc">ppc</option>
+							                </select></td>
+							                <td><input  class="form-control datepickers" name="date_plan[]" id="date_plan" placeholder="Date (Plan)" required/></td>
+
+							            <td>
+										<input type="text" id="activity" name="activity[]" class="form-control" placeholder="Masukkan Activity" required></input></td>
+										<td><input  class="form-control datepickers" name="date_actual[]" id="date_actual" placeholder="Date (Actual)" required/></td>
+                                         <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>  
+                                    </tr>  
+                               </table>  
+                               <input type="button" name="submit" id="submit" class="btn btn-info" value="Submit" />  
+                          </div>
+                      </div>
+					</div>
+				</div>
+			</div>
+                     </form>  
+                </div>
 	<!--END MODAL Activity baru-->
 
 	<script type="text/javascript">
@@ -345,6 +401,111 @@
 	      todayHighlight: true,
 	  });
 	 });
+
+	 $(document).ready(function(){  
+      var i=1;  
+      $('#add').click(function(){  
+           i++;  
+           $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="name[]" placeholder="Enter your Name" class="form-control name_list" /></td> <td><select class="form-control" id="slct_nor" name="nor[]" required="">    <option disabled selected hidden> Pilih Nomor Nor</option>    <?php foreach($nor as $key) { ?>    <option value="<?php  echo $key->nor ?>">    <?php echo $key->nor ?> </option><?php }  ?> </select>    </td> <td>        <select class="form-control" id="slct_no" name="no[]" required="">        <option disabled selected hidden> Pilih Nomor No</option>        <?php foreach($no as $key) { ?>        <option value="<?php  echo $key->no ?>">        <?php echo $key->no ?> </option><?php }  ?> </select>        </td> <td><select class="form-control" name="nama_dvs[]">            <option disabled selected hidden>Pilih Divisi</option>            <option value="de"> de </option> <option value="pp">pp</option>            <option value="qp"> qp </option> <option value="qmp">qmp</option>            <option value="eng"> eng </option> <option value="nys">nys</option>            <option value="prod"> prod </option> <option value="ppc">ppc</option>            </select> </td>            <td>            <input class="form-control datepickers" name="date_plan[]" id="date_plan" placeholder="Date (Plan)" required />            </td> <td><input class="form-control datepickers" name="date_actual[]" id="date_actual" placeholder="Date (Actual)" required/ > </td> <td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button>                </td> </tr>');  
+      });  
+      $(document).on('click', '.btn_remove', function(){  
+           var button_id = $(this).attr("id");   
+           $('#row'+button_id+'').remove();  
+      });  
+      $('#submit').click(function(){            
+           $.ajax({  
+                url:"name.php",  
+                method:"POST",  
+                data:$('#add_activity').serialize(),  
+                success:function(data)  
+                {  
+                     alert(data);  
+                     $('#add_activity')[0].reset();  
+                }  
+           });  
+      });  
+ 	});
+
+	//  $(document).ready(function(){ // Ketika halaman sudah diload dan siap
+	// 	var i = 1;	
+	// 	$("#btn-tambah-form").click(function(){ // Ketika tombol Tambah Data Form di klik
+	// 		var jumlah = parseInt($("#jumlah-form").val()); // Ambil jumlah data form pada textbox jumlah-form
+	// 		var nextform = jumlah + 1; // Tambah 1 untuk jumlah form nya
+			
+	// 		// Kita akan menambahkan form dengan menggunakan append
+	// 		// pada sebuah tag div yg kita beri id insert-form
+	// 		$("#mdl_bdy").append(
+	// 			'<input type="text" id="jumlah-form'+i+'" value="1">'+
+	// 			'<div class="form-group col-lg-12 row">'+
+	// 				'<div class="form-group col-lg-2">'+
+	// 					'<label>Nomor Nor</label>'+
+	// 					'<select class="form-control" id="slct_nor" name="nor[]" required="">'+
+	// 						'<option disabled selected hidden> Pilih Nomor Nor</option>'+
+	// 						'<?php foreach ($nor as $key) { ?>'+
+	// 						'<option value="<?php  echo $key->nor ?>"> <?php  echo $key->nor ?> </option>'+
+	// 						'<?php }  ?>'+
+	// 					'</select>'+
+	// 				'</div>'+
+
+	// 				'<div class="form-group col-lg-2">'+
+	// 					'<label>Nomor No</label>'+
+	// 					'<select class="form-control" id="slct_no" name="no[]" required="">'+
+	// 						'<option disabled selected hidden> Pilih Nomor No</option>'+
+	// 						'<?php foreach ($no as $key) { ?>'+
+	// 						'<option value="<?php  echo $key->no ?>"> <?php  echo $key->no ?> </option>'+
+	// 						'<?php }  ?>'+
+	// 					'</select>'+
+	// 				'</div>'+
+					
+	// 				'<div class="col-2">'+
+	// 					'<label>Divisi</label>'+
+	// 					'<div class="form-group">'+
+	// 		                '<select class="form-control" name="nama_dvs[]">'+
+	// 		                  '<option disabled selected hidden>Pilih Divisi</option>'+
+	// 		                  '<option value="de">de</option>'+
+	// 		                  '<option value="pp">pp</option>'+
+	// 		                  '<option value="qp">qp</option>'+
+	// 		                  '<option value="qmp">qmp</option>'+
+	// 		                  '<option value="eng">eng</option>'+
+	// 		                  '<option value="nys">nys</option>'+
+	// 		                  '<option value="prod">prod</option>'+
+	// 		                  '<option value="ppc">ppc</option>'+
+	// 		                '</select>'+
+	// 	              '</div>'+
+	// 				'</div>'+
+
+	// 				'<div class="col-2">'+
+	// 					'<label>Activity</label>'+
+	// 					'<input type="text" id="activity" name="activity[]" class="form-control" placeholder="Masukkan Activity" required></input>'+
+	// 				'</div>'+
+
+	// 				'<div class="col-2">'+
+	// 					'<label for="#">Implemented Date Plan</label>'+
+	// 					'<div class="input-daterange input-group">'+
+	// 						'<input  class="form-control datepickers" name="date_plan[]" id="date_plan" placeholder="Date (Plan)" required/>'+
+	// 					'</div>'+
+	// 				'</div>'+
+
+	// 				'<div class="col-2">'+
+	// 					'<label for="#">Implemented Date Act</label>'+
+	// 					'<div class="input-daterange input-group">'+
+	// 						'<input  class="form-control datepickers" name="date_actual[]" id="date_actual" placeholder="Date (Actual)" required/>'+
+	// 					'</div>'+
+	// 				'</div>'+
+	// 				'<button type="button" name="remove" class="btn btn-danger" id="btn_rmv_form">X</button>'+
+	// 			'</div>'
+	// 		);
+	// 		i++;
+	// 		$("#jumlah-form").val(nextform); // Ubah value textbox jumlah-form dengan variabel nextform
+	// 	});
+
+	// 	$("#btn-rmv-form").click(function(){ 
+	// 		var jumlah = parseInt($("#jumlah-form").val());   
+ //          	// $('#row'+button_id+'').remove();
+	// 		$("#jumlah-form"+i).remove(); // Ubah kembali value jumlah form menjadi 1
+	// 	});
+		
+	// });
 	</script>
 
 </main>

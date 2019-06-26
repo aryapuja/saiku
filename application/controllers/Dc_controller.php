@@ -12,10 +12,11 @@ class Dc_Controller extends CI_Controller {
 
 	public function index()
 	{
-		// $data['level'] = $this->dc_model->get_all_level();
+		$data['nor'] = $this->dc_model->get_nor();
+		$data['no'] = $this->dc_model->get_no();
 
 		$this->load->view("agenda/header"); 
-		$this->load->view('agenda/agenda_view');
+		$this->load->view('agenda/agenda_view',$data);
 		$this->load->view("agenda/footer");
 	}
 
@@ -38,65 +39,35 @@ class Dc_Controller extends CI_Controller {
 
 		$nor = $this->input->post('nor');
 		$no = $this->input->post('no');
-		$rev = $this->input->post('rev');
+		$line = $this->input->post('line');
 		$item_changes = $this->input->post('item_changes');
-		$carline = $this->input->post('carline');
-		$start = date( 'Y-m-d H:i:s', strtotime( $this->input->post('start') ) );
-		$end = $start;
-		$color = "#FFFFFFF";
-		$de_epl            = date( 'Y-m-d H:i:s', strtotime($this->input->post('de_epl')) );
-            $de_com            = date( 'Y-m-d H:i:s', strtotime($this->input->post('de_com')) );
-            $de_eng           = date( 'Y-m-d H:i:s', strtotime($this->input->post('de_eng')) );
-            $pp_swct           = date( 'Y-m-d H:i:s', strtotime($this->input->post('pp_swct')) );
-            $pp_matrik         = date( 'Y-m-d H:i:s', strtotime($this->input->post('pp_matrik')) );
-            $qp_swct           = date( 'Y-m-d H:i:s', strtotime($this->input->post('qp_swct')) );
-            $qp_dwg            = date( 'Y-m-d H:i:s', strtotime($this->input->post('qp_dwg')) );
-            $qmp_trial         = date( 'Y-m-d H:i:s', strtotime($this->input->post('qmp_trial')) );
-            $qmp_vld_mat       = date( 'Y-m-d H:i:s', strtotime($this->input->post('qmp_vld_mat')) );
-            $qmp_vld_jig       = date( 'Y-m-d H:i:s', strtotime($this->input->post('qmp_vld_jig')) );
-            $eng_sao           = date( 'Y-m-d H:i:s', strtotime($this->input->post('eng_sao')) );
-            $eng_housing       = date( 'Y-m-d H:i:s', strtotime($this->input->post('eng_housing')) );
-            $eng_jig           = date( 'Y-m-d H:i:s', strtotime($this->input->post('eng_jig')) );
-            $eng_matrik        = date( 'Y-m-d H:i:s', strtotime($this->input->post('eng_matrik')) );
-            $eng_setting       = date( 'Y-m-d H:i:s', strtotime($this->input->post('eng_setting')) );
-            $nys_kb_cct        = date( 'Y-m-d H:i:s', strtotime($this->input->post('nys_kb_cct')) );
-            $nys_kb_material   = date( 'Y-m-d H:i:s', strtotime($this->input->post('nys_kb_material')) );
-            $nys_mcl           = date( 'Y-m-d H:i:s', strtotime($this->input->post('nys_mcl')) );
-            $prod_imp           = date( 'Y-m-d H:i:s', strtotime($this->input->post('prod_imp')) );
-            $prod_pengosongan  = date( 'Y-m-d H:i:s', strtotime($this->input->post('prod_pengosongan')) );
-            $prod_karantina    = date( 'Y-m-d H:i:s', strtotime($this->input->post('prod_karantina')) );
-            $prod_cutting      = date( 'Y-m-d H:i:s', strtotime($this->input->post('prod_cutting')) );
-            $ppc_req           = date( 'Y-m-d H:i:s', strtotime($this->input->post('ppc_req')) );
-            $ppc_release       = date( 'Y-m-d H:i:s', strtotime($this->input->post('ppc_release')) );
+		// $carline = $this->input->post('carline');
+		$date_plan = date( 'Y-m-d H:i:s', strtotime( $this->input->post('date_plan') ) );
+		
 
-		$result = $this->dc_model->newDc($nor,$no,$rev,$item_changes,$start, $end, $color, $carline, $de_epl,$de_com,$de_eng,$pp_swct,$pp_matrik,$qp_swct,$qp_dwg,$qmp_trial,$qmp_vld_mat,$qmp_vld_jig,$eng_sao,$eng_housing,$eng_jig,$eng_matrik,$eng_setting,$nys_kb_cct,$nys_kb_material,$nys_mcl,$prod_imp,$prod_pengosongan,$prod_karantina,$prod_cutting,$ppc_req,$ppc_release);
+		$result = $this->dc_model->newDc($nor,$no,$item_changes,$line,$date_plan);
 
 		echo json_encode($result);
 	}
 
 	// Membuat fungsi UPDATE
-	public function agendaUpdate()
+	public function updateDc()
 	{	 
 		date_default_timezone_set("Asia/Jakarta");
 
-		$tglpost = date("Y-m-d H:i:s");//new name
-		$idk = $this->input->post('id_dc');
-		$nama = $this->input->post('nama');
-		$keterangan = $this->input->post('keterangan');
-		$tglmulai = date( 'Y-m-d H:i:s', strtotime( $this->input->post('mulai') ) );
-		$tglselesai = date( 'Y-m-d H:i:s', strtotime( $this->input->post('selesai') ) );
-		$agenda = $this->input->post('level');
+		$id = $this->input->post('u_id');
+        $nor = $this->input->post('u_nor');
+        $no = $this->input->post('u_no');
+        $line = $this->input->post('u_line');
+        $item_changes = $this->input->post('u_item_changes');
+        $date_plan = date( 'Y-m-d H:i:s', strtotime( $this->input->post('u_date_plan') ) );
 
-		$result = $this->dc_model->updateAgenda($idk,$nama,$keterangan,$tglmulai,$tglselesai,$agenda,$tglpost);
-		if ($result) {
-			echo json_encode("suc ");
-		}else{
-			echo json_encode("Gagal");
-		}
-		
+		$result = $this->dc_model->updateDc($id,$nor,$no,$line,$item_changes,$date_plan);
+
+		echo json_encode($result);
 	}
 
-	// Membuat fungsi create
+	// Membuat fungsi delete
 	public function deleteDc()
 	{	  
 		// $id = $this->input->post('deleteDcku');
@@ -114,7 +85,85 @@ class Dc_Controller extends CI_Controller {
 	{
 		echo json_encode($this->dc_model->get_count_week_agenda());
 	}
+//================================================================Acivity================================================================
+	
+	public function getActSched()
+	{
+		$month = $this->input->post('month_p');
+		$year = $this->input->post('year_p');
+        echo json_encode( $this->dc_model->get_activity_sched($month,$year));
+	}
 
+	public function getActivityMonth()
+	{
+        echo json_encode( $this->dc_model->get_activity());
+	}
 
+	// Membuat fungsi create
+	public function newActivity()
+	{	 
+		date_default_timezone_set("Asia/Jakarta");
 
+		$nor 			= $_POST['nor_act']; // Ambil data nis dan masukkan ke variabel nis
+		$no 			= $_POST['no_act']; // Ambil data nama dan masukkan ke variabel nama
+		$nama_dvs 		= $_POST['nama_dvs']; // Ambil data telp dan masukkan ke variabel telp
+		$nama_act 		= $_POST['nama_act']; // Ambil data alamat dan masukkan ke variabel alamat
+		$date_plan 		= $_POST['date_plan_act'];
+		$date_actual 	= $_POST['date_actual'];
+		$data = array();
+		
+		$index = 0; // Set index array awal dengan 0
+		foreach($nor as $datanor){ // Kita buat perulangan berdasarkan nis sampai data terakhir
+			array_push($data, array(
+				'nor'=>$datanor,
+				'no'=>$no[$index],  // Ambil dan set data nama sesuai index array dari $index
+				'nama_dvs'=>$nama_dvs[$index],  // Ambil dan set data telepon sesuai index array dari $index
+				'nama_act'=>$nama_act[$index],  // Ambil dan set data alamat sesuai index array dari $index
+				'date_plan'=>date( 'Y-m-d H:i:s', strtotime( $date_plan[$index] ) ),  // Ambil dan set data alamat sesuai index array dari $index
+				'actual_plan'=>date( 'Y-m-d H:i:s', strtotime( $date_actual[$index] ) ),  // Ambil dan set data alamat sesuai index array dari $index
+			));
+			
+			$index++;
+		}
+		
+		$sql = $this->dc_model->newactivity($data);
+
+		echo json_encode($sql);
+	}
+
+	// Membuat fungsi UPDATE
+	public function updateActivity()
+	{	 
+		date_default_timezone_set("Asia/Jakarta");
+
+		$id = $this->input->post('u_id_act');
+        $nor = $this->input->post('nor_act_up');
+        $no = $this->input->post('no_act_up');
+        $nama_dvs = $this->input->post('nama_dvs_up');
+        $nama_act = $this->input->post('nama_act_up');
+        $plan_date = date( 'Y-m-d H:i:s', strtotime( $this->input->post('date_plan_act_up') ) );
+        $plan_actual = date( 'Y-m-d H:i:s', strtotime( $this->input->post('date_actual_act_up') ) );
+		
+		// $end = $start;
+
+		$result = $this->dc_model->updateActivity($id,$nama_act,$plan_date,$plan_actual,$nama_dvs,$nor,$no);
+
+		echo json_encode($result);
+
+		// if ($result) {
+		// 	echo json_encode("suc ");
+		// }else{
+		// 	echo json_encode("Gagal");
+		// }
+		
+	}
+
+	// Membuat fungsi create
+	public function deleteActivity()
+	{	  
+		// $id = $this->input->post('deleteDcku');
+
+		$result = $this->dc_model->deleteActivity();
+		echo json_encode($result);
+	}
 }

@@ -58,7 +58,6 @@
 									<!-- <th style="width: 5%;">No</th> -->
 									<th style="text-align: center;" hidden>Id</th>
 									<th style="text-align: center; width: 15% ">Nor-No</th>
-									<!-- <th style="text-align: center; width: 5%">Rev</th> -->
 									<th style="text-align: center; width: 50%">Item Changes</th>
 									<th style="text-align: center; width: 10%">Line</th>
 									<th style="text-align: center; width: 10%">Date Plan</th>
@@ -265,22 +264,21 @@
 						<div class="container-fluid scroll">  
                           <div class="table-responsive">  
                                <table class="table table-bordered" id="dynamic_field">  
-                                    <tr>
+                                    <tr id="asw">
                                          <td>
                                          	<label>Nor</label>
-                                         	<select class="form-control" id="slct_nor" name="nor_act[]" required="">
+                                         	<select class="form-control slct_nor" id="slct_nor" name="nor_act[]" required="">
 												<option disabled selected hidden> Pilih Nomor Nor</option>
 														
-												
 											</select>
 										</td>
 										<td>
 											<label>No</label>
 												<select class="form-control" id="slct_no" name="no_act[]" required="">
-												<option disabled selected hidden> Pilih Nomor No</option>
-												<?php foreach ($no as $key) { ?>
-												<option value="<?php  echo $key->no ?>"> <?php  echo $key->no ?> </option>
-												<?php }  ?>
+												<option disabled selected hidden class="nomor-not"> Pilih Nomor No</option>
+													<?php foreach ($no as $key) { ?>
+														<option value="<?php echo $key->no ?>" class="nomor-nor-<?php echo $key->nor ?>"> <?php  echo $key->no ?> </option>
+													<?php }  ?>
 												</select>
 										</td>
 										<td> <label>Divisi</label>
@@ -430,6 +428,36 @@
 	</form>
 	<!--END MODAL NOR Delete-->
 
+	<div id="input-container" style="display: none;">
+		
+           		<yudha id="row">
+           			<arya><select class="form-control slct_nor2" id="slct_nor" name="nor_act[]" required="">' 
+           				<option disabled selected hidden> Pilih Nomor Nor</option>
+           				<?php foreach($nor as $key) { ?><option value="<?php  echo $key->nor ?>">
+           				<?php echo $key->nor ?> </option><?php }  ?>
+           				</select></arya>
+           				<arya><select class="form-control" id="slct_no" name="no_act[]" required="">
+           					<option disabled selected hidden> Pilih Nomor No</option>
+           					<?php foreach($no as $key) { ?>
+           					<option value="<?php  echo $key->no ?>"><?php echo $key->no ?> </option><?php }  ?>
+           				</select></arya> 
+           				<arya><select class="form-control" name="nama_dvs[]" id="nama_dvs">
+           					<option disabled selected hidden>Pilih Divisi</option>
+           					<option value="de">de</option> 
+           					<option value="pp">pp</option>
+           					<option value="qp">qp</option>
+           					<option value="qmp">qmp</option>
+           					<option value="eng">eng</option>
+           					<option value="nys">nys</option>
+           					<option value="prod">prod</option>
+           					<option value="ppc">ppc</option>
+           					</select> </arya>
+						<arya><input type="text" id="nama_act" name="nama_act[]" class="form-control" placeholder="Masukkan Activity" required /></arya>
+           				<arya><input type="date" class="form-control datepicker" name="date_plan_act[]" id="date_plan_act" placeholder="Date (Plan)" required/></arya>
+           				<arya><input type="date" class="form-control datepicker" name="date_actual[]" id="date_actual" placeholder="Date (Actual)" required/ > </arya>
+           				<arya><button type="button" name="remove" id="i" class="btn btn-danger btn_remove">X</button></arya>
+           			</yudha>
+	</div>
 	<script type="text/javascript">
 	 $(function(){
 	  $(".datepicker").datepicker({
@@ -440,139 +468,46 @@
 	  });
 	 });
 
-	 $(document).ready(function(){  
+	 $(document).ready(function(){
       var i=1;  
       $('#add').click(function(){  
            i++;  
-           $('#dynamic_field').append(
-           		'<tr id="row'+i+'">'+
-           			'<td><select class="form-control" id="slct_nor" name="nor_act[]" required="">'+ 
-           				'<option disabled selected hidden> Pilih Nomor Nor</option>'+
-           				'<?php foreach($nor as $key) { ?><option value="<?php  echo $key->nor ?>">'+
-           				'<?php echo $key->nor ?> </option><?php }  ?>'+
-           				'</select></td>'+
-           				'<td><select class="form-control" id="slct_no" name="no_act[]" required="">'+
-           					'<option disabled selected hidden> Pilih Nomor No</option>'+
-           					'<?php foreach($no as $key) { ?>'+
-           					'<option value="<?php  echo $key->no ?>"><?php echo $key->no ?> </option><?php }  ?>'+
-           				'</select></td> '+
-           				'<td><select class="form-control" name="nama_dvs[]" id="nama_dvs">'+
-           					'<option disabled selected hidden>Pilih Divisi</option>'+
-           					'<option value="de">de</option> '+
-           					'<option value="pp">pp</option>'+
-           					'<option value="qp">qp</option>'+
-           					'<option value="qmp">qmp</option>'+
-           					'<option value="eng">eng</option>'+
-           					'<option value="nys">nys</option>'+
-           					'<option value="prod">prod</option>'+
-           					'<option value="ppc">ppc</option>'+
-           					'</select> </td>'+
-						'<td><input type="text" id="nama_act" name="nama_act[]" class="form-control" placeholder="Masukkan Activity" required /></td>'+
-           				'<td><input type="date" class="form-control datepicker" name="date_plan_act[]" id="date_plan_act" placeholder="Date (Plan)" required/></td>'+
-           				'<td><input type="date" class="form-control datepicker" name="date_actual[]" id="date_actual" placeholder="Date (Actual)" required/ > </td>'+
-           				'<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td>'+
-           			'</tr>'
-           	);  
-      });  
+           var html = String($('#input-container').html()); 
+           html.replace('yudha','tr');
+           html.replace('arya','td');
+           alert(html);
+           $('#dynamic_field').append(html);  
+      });
+
       $(document).on('click', '.btn_remove', function(){  
            var button_id = $(this).attr("id");   
            $('#row'+button_id+'').remove();  
       });
 
-      // $('#submit').click(function(){            
-      //      $.ajax({  
-      //           url:"<?php echo site_url(); ?>/Dc_controller/newactivity",  
-      //           method:"POST",  
-      //           data:$('#add_activity').serialize(),  
-      //           success:function(data)  
-      //           {  
-      //                alert(data);  
-      //                $('#add_activity')[0].reset();  
-      //           }  
-      //      });  
-      // });  
  	});
 
-	//  $(document).ready(function(){ // Ketika halaman sudah diload dan siap
-	// 	var i = 1;	
-	// 	$("#btn-tambah-form").click(function(){ // Ketika tombol Tambah Data Form di klik
-	// 		var jumlah = parseInt($("#jumlah-form").val()); // Ambil jumlah data form pada textbox jumlah-form
-	// 		var nextform = jumlah + 1; // Tambah 1 untuk jumlah form nya
-			
-	// 		// Kita akan menambahkan form dengan menggunakan append
-	// 		// pada sebuah tag div yg kita beri id insert-form
-	// 		$("#mdl_bdy").append(
-	// 			'<input type="text" id="jumlah-form'+i+'" value="1">'+
-	// 			'<div class="form-group col-lg-12 row">'+
-	// 				'<div class="form-group col-lg-2">'+
-	// 					'<label>Nomor Nor</label>'+
-	// 					'<select class="form-control" id="slct_nor" name="nor[]" required="">'+
-	// 						'<option disabled selected hidden> Pilih Nomor Nor</option>'+
-	// 						'<?php foreach ($nor as $key) { ?>'+
-	// 						'<option value="<?php  echo $key->nor ?>"> <?php  echo $key->nor ?> </option>'+
-	// 						'<?php }  ?>'+
-	// 					'</select>'+
-	// 				'</div>'+
-
-	// 				'<div class="form-group col-lg-2">'+
-	// 					'<label>Nomor No</label>'+
-	// 					'<select class="form-control" id="slct_no" name="no[]" required="">'+
-	// 						'<option disabled selected hidden> Pilih Nomor No</option>'+
-	// 						'<?php foreach ($no as $key) { ?>'+
-	// 						'<option value="<?php  echo $key->no ?>"> <?php  echo $key->no ?> </option>'+
-	// 						'<?php }  ?>'+
-	// 					'</select>'+
-	// 				'</div>'+
-					
-	// 				'<div class="col-2">'+
-	// 					'<label>Divisi</label>'+
-	// 					'<div class="form-group">'+
-	// 		                '<select class="form-control" name="nama_dvs[]">'+
-	// 		                  '<option disabled selected hidden>Pilih Divisi</option>'+
-	// 		                  '<option value="de">de</option>'+
-	// 		                  '<option value="pp">pp</option>'+
-	// 		                  '<option value="qp">qp</option>'+
-	// 		                  '<option value="qmp">qmp</option>'+
-	// 		                  '<option value="eng">eng</option>'+
-	// 		                  '<option value="nys">nys</option>'+
-	// 		                  '<option value="prod">prod</option>'+
-	// 		                  '<option value="ppc">ppc</option>'+
-	// 		                '</select>'+
-	// 	              '</div>'+
-	// 				'</div>'+
-
-	// 				'<div class="col-2">'+
-	// 					'<label>Activity</label>'+
-	// 					'<input type="text" id="activity" name="activity[]" class="form-control" placeholder="Masukkan Activity" required></input>'+
-	// 				'</div>'+
-
-	// 				'<div class="col-2">'+
-	// 					'<label for="#">Implemented Date Plan</label>'+
-	// 					'<div class="input-daterange input-group">'+
-	// 						'<input  class="form-control datepickers" name="date_plan[]" id="date_plan" placeholder="Date (Plan)" required/>'+
-	// 					'</div>'+
-	// 				'</div>'+
-
-	// 				'<div class="col-2">'+
-	// 					'<label for="#">Implemented Date Act</label>'+
-	// 					'<div class="input-daterange input-group">'+
-	// 						'<input  class="form-control datepickers" name="date_actual[]" id="date_actual" placeholder="Date (Actual)" required/>'+
-	// 					'</div>'+
-	// 				'</div>'+
-	// 				'<button type="button" name="remove" class="btn btn-danger" id="btn_rmv_form">X</button>'+
-	// 			'</div>'
-	// 		);
-	// 		i++;
-	// 		$("#jumlah-form").val(nextform); // Ubah value textbox jumlah-form dengan variabel nextform
-	// 	});
-
-	// 	$("#btn-rmv-form").click(function(){ 
-	// 		var jumlah = parseInt($("#jumlah-form").val());   
- //          	// $('#row'+button_id+'').remove();
-	// 		$("#jumlah-form"+i).remove(); // Ubah kembali value jumlah form menjadi 1
-	// 	});
+	$('.slct_nor').change(function(){
+		let select = $(this).closest("tr");
+		alert(select.attr('id'))
+		let nor = $('.slct_nor :selected').val();
+		select.find('select[name="no_act[]"]').find('option').not('.nomor-not').hide();
+		select.find('select[name="no_act[]"]').val('0');
+		select.find('.nomor-nor-'+nor).show();
 		
-	// });
+
+	});
+
+	$('.slct_nor2').change(function(){
+		let select = $(this).closest("tr");
+		alert(select.attr('id'))
+		let nor = $('.slct_nor :selected').val();
+		select.find('select[name="no_act[]"]').find('option').not('.nomor-not').hide();
+		select.find('select[name="no_act[]"]').val('0');
+		select.find('.nomor-nor-'+nor).show();
+		
+
+	});
+
 	</script>
 
 </main>

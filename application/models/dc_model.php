@@ -114,7 +114,7 @@ class Dc_Model extends CI_Model {
 
     public function get_no()
     {
-        $query = $this->db->query("SELECT DISTINCT no FROM nor");
+        $query = $this->db->query("SELECT DISTINCT no,nor FROM nor");
         return $query->result();
     }
 

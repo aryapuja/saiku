@@ -47,7 +47,6 @@
 
 		$(document).ready(function(){
 
-			
 			// fungsi date picker tanggal mulai
 			var datepickerss= $("#datepickerss");
 			datepickerss.datepicker({ 
@@ -126,7 +125,7 @@
 	                        '<td hidden>'+data[i].id+'</td>'+
 	                        '<td >'+data[i].nor+'-'+data[i].no+'</td>'+
 		                            // '<td>'+data[i].rev+'</td>'+
-		                            '<td>'+data[i].item_changes+'</td>'+
+		                            '<td style="text-align: left;">'+data[i].item_changes+'</td>'+
 		                            '<td>'+data[i].line+'</td>'+
 		                            '<td>'+tgl_awal2+'</td>'+
 		                            '<td>'+
@@ -146,6 +145,7 @@
 	                    $('#tbl_agendakegiatan').html(html);
 	                    $("#agendaall").DataTable({
 	                    	destroy:true,
+	                    	"order": [[ 4, "asc" ]],
 	                    	"lengthMenu": [[5], [5]]
 	                    });
 	                }

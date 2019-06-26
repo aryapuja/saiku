@@ -46,6 +46,8 @@
 		}
 
 		$(document).ready(function(){
+
+			
 			// fungsi date picker tanggal mulai
 			var datepickerss= $("#datepickerss");
 			datepickerss.datepicker({ 
@@ -286,12 +288,12 @@
 	                    	// mengkonversi tanggal yang akan ditampilkan
 	                    	const tgl_a = new Date(data[i].date_plan);
 	                    	var tgl_awal = ('0'+tgl_a.getDate()).slice(-2)+"/"+(parseInt(tgl_a.getMonth(), 10)+1)+"/"+tgl_a.getFullYear();
-	                    	const tgl_b = new Date(data[i].actual_plan);
+	                    	const tgl_b = new Date(data[i].date_actual);
 	                    	var tgl_awal2 = ('0'+tgl_b.getDate()).slice(-2)+"/"+(parseInt(tgl_b.getMonth(), 10)+1)+"/"+tgl_b.getFullYear();
 
 	                    	const tgl_c = new Date(data[i].date_plan);
 	                    	var tgl_awal3 = (parseInt(tgl_a.getMonth(), 10)+1)+"/"+('0'+tgl_a.getDate()).slice(-2)+"/"+tgl_a.getFullYear();
-	                    	const tgl_d = new Date(data[i].actual_plan);
+	                    	const tgl_d = new Date(data[i].date_actual);
 	                    	var tgl_awal4 = (parseInt(tgl_a.getMonth(), 10)+1)+"/"+('0'+tgl_a.getDate()).slice(-2)+"/"+tgl_a.getFullYear();
 
 	                    	var ag = {
@@ -314,7 +316,7 @@
 		                            '<td>'+tgl_awal+'</td>'+
 		                            '<td>'+tgl_awal2+'</td>'+
 		                            '<td>'+
-		                            '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit2" data-id="'+data[i].id+'" data-nor="'+data[i].nor+'" data-no="'+data[i].no+'" data-act="'+data[i].nama_act+'" data-dvs="'+data[i].nama_dvs+'" data-date_plan="'+tgl_awal3+'" data-actual_plan="'+tgl_awal4+'">Edit</a>   '+
+		                            '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit2" data-id="'+data[i].id+'" data-nor="'+data[i].nor+'" data-no="'+data[i].no+'" data-act="'+data[i].nama_act+'" data-dvs="'+data[i].nama_dvs+'" data-date_plan="'+tgl_awal3+'" data-date_actual="'+tgl_awal4+'">Edit</a>   '+
 
 
 		                            '<a href="javascript:void(0);" class="btn btn-danger btn-sm item_delete2" data-id="'+data[i].id+'" data-nor="'+data[i].nor+'" data-no="'+data[i].no+'" data-act="'+data[i].nama_act+'">Hapus</a>'+
@@ -497,6 +499,15 @@
         		return false;
         	});
 
+        	$('#Modal_Add2').on('shown.bs.modal',function(){
+        		$.ajax({
+        			url: "<?php echo site_url(); ?>/Dc_controller/select_nor",
+        			success : function(data){
+        				$('#slct_nor').html(data);
+        			}
+        		});
+        	});
+
 
 //  ===================  START UPDATE Record ===============================================
             //get data for UPDATE record show prompt
@@ -508,7 +519,7 @@
             	var updvs			= $(this).data('dvs'); 
             	var upact 			= $(this).data('act'); 
             	var update_plan 	= $(this).data('date_plan'); 
-            	var upactual_plan 	= $(this).data('actual_plan'); 
+            	var update_actual 	= $(this).data('date_actual'); 
 
                 // memasukkan data ke form updatean
                 $('[name="u_id_act"]').val(upid);
@@ -517,7 +528,7 @@
                 $('[name="nama_act_up"]').val(upact);
                 $('[name="nama_dvs_up"]').val(updvs);
                 $('[name="date_plan_act_up"]').val(update_plan);
-                $('[name="date_actual_up"]').val(upactual_plan);
+                $('[name="date_actual_up"]').val(update_actual);
 
                 $('#Modal_Update2').modal('show');
                 
@@ -533,7 +544,7 @@
         		var up_dvs 			= $('#nama_dvs_up').val();
         		var up_act 			= $('#nama_act_up').val();
         		var up_date_plan 	= $('#date_plan_act_up').val();
-        		var up_actual_plan 	= $('#date_actual_up').val();
+        		var up_date_actual 	= $('#date_actual_up').val();
 
         		// alert(up_date_plan);
 
@@ -599,17 +610,14 @@
  		// fungsi refresh reset data all form dan calendar
  		function refresh() {
 
- 			document.location.reload('formbaru2'); 
- 			// $("#agendaall").DataTable().destroy();
- 			// $('tbody').empty();
- 			// $("#agendaall2").DataTable().destroy();
- 			// $('tbody').empty();
- 			// document.getElementById('formbaru').reset();
- 			// document.getElementById('formupdate').reset();
- 			// document.getElementById('formdelete').reset();
- 			// document.getElementById('formbaru2').reset();
- 			// document.getElementById('formupdate2').reset();
- 			// document.getElementById('formdelete2').reset();
+ 			$("#agendaall").DataTable().destroy();
+ 			$("#agendaall").find('tbody').empty();
+ 			$("#agendaall2").DataTable().destroy();
+ 			$("#agendaall2").find('tbody').empty();
+
+ 			document.getElementById('formbaru').reset();
+ 			document.getElementById('formupdate').reset();
+ 			document.getElementById('formdelete').reset();
 
             showAgendaandCalendar(currentMonth,currentYear);
             showAct(currentMonth,currentYear);
@@ -619,11 +627,11 @@
 
  			// document.location.reload('formbaru2'); 
  			$("#agendaall").DataTable().destroy();
- 			$('tbody').empty();
+ 			$("#agendaall").find('tbody').empty();
  			$("#agendaall2").DataTable().destroy();
- 			$('tbody').empty();
+ 			$("#agendaall2").find('tbody').empty();
  			document.getElementById('add_activity').reset();
- 			document.getElementById('update_activity').reset();
+ 			// document.getElementById('update_activity').reset();
  			// document.getElementById('formdelete').reset();
  			// document.getElementById('add_activity').reset();
  			// document.getElementById('formupdate2').reset();
@@ -637,7 +645,7 @@
 
     });
 
-
+	
 </script>
 
 </body>

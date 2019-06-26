@@ -73,7 +73,7 @@ class Dc_Model extends CI_Model {
         $data = array(
             'nama_act'                  =>$nama_act,
             'date_plan'                 =>$plan_date,
-            'actual_plan'               =>$plan_actual,
+            'date_actual'               =>$plan_actual,
             'nama_dvs'                  =>$nama_dvs,
             'nor'                       =>$nor,
             'no'                        =>$no,

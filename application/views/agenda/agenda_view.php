@@ -74,7 +74,6 @@
 			</div>
 		</div>
 		
-
 	<div class="minipengumuman" style="border: 2px; padding-top: 20px; width: 100%">
 		<div class="boddy card" style="width: 100%">
 			<center><h4 class="namatitel card-header">ACTIVITY SCHEDULE</h4></center>
@@ -247,96 +246,11 @@
 			</div>
 		</div>
 	</form>
-	<!--END MODAL NOR Delete-->
+	<!--END MODAL NOR Delete -->
 
-	<!--MODAL Activity Baru-->
-	<!-- <form id="formbaru2">
-		<div class="modal fade" id="Modal_Add2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"  aria-hidden="true">
-			<div class="modal-dialog" role="document" style="max-width: 80%;overflow-y: initial !important">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h4 class="modal-title">New Activity</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>			           
-					</div>
-					<div class="modal-body" id="mdl_bdy" style="max-height: calc(100vh - 200px);overflow-y: auto;">			   
-						<div class="container-fluid scroll">   
-							<div class="row">
-								<input type="hidden" id="jumlah-form" value="1">
-								
-								<div class="form-group col-lg-12 row">
-
-									<div class="form-group col-lg-2">
-										<label>Nomor Nor</label>
-										<select class="form-control" id="slct_nor" name="nor[]" required="">
-											<option disabled selected hidden> Pilih Nomor Nor</option>
-											<?php foreach ($nor as $key) { ?>
-											<option value="<?php  echo $key->nor ?>"> <?php  echo $key->nor ?> </option>
-											<?php }  ?>
-										</select>
-									</div>
-
-									<div class="form-group col-lg-2">
-										<label>Nomor No</label>
-										<select class="form-control" id="slct_no" name="no[]" required="">
-											<option disabled selected hidden> Pilih Nomor No</option>
-											<?php foreach ($no as $key) { ?>
-											<option value="<?php  echo $key->no ?>"> <?php  echo $key->no ?> </option>
-											<?php }  ?>
-										</select>
-									</div>
-									
-									<div class="col-2">
-										<label>Divisi</label>
-										<div class="form-group">
-							                <select class="form-control" name="nama_dvs[]">
-							                  <option disabled selected hidden>Pilih Divisi</option>
-							                  <option value="de">de</option>
-							                  <option value="pp">pp</option>
-							                  <option value="qp">qp</option>
-							                  <option value="qmp">qmp</option>
-							                  <option value="eng">eng</option>
-							                  <option value="nys">nys</option>
-							                  <option value="prod">prod</option>
-							                  <option value="ppc">ppc</option>
-							                </select>
-						              </div>
-									</div>
-
-									<div class="col-2">
-										<label>Activity</label>
-										<input type="text" id="activity" name="activity[]" class="form-control" placeholder="Masukkan Activity" required></input>
-									</div>
-
-									<div class="col-2">
-										<label for="#">Implemented Date Plan</label>
-										<div class="input-daterange input-group">
-											<input  class="form-control datepickers" name="date_plan[]" id="date_plan" placeholder="Date (Plan)" required/>
-										</div>
-									</div>
-
-									<div class="col-2">
-										<label for="#">Implemented Date Act</label>
-										<div class="input-daterange input-group">
-											<input  class="form-control datepickers" name="date_actual[]" id="date_actual" placeholder="Date (Actual)" required/>
-										</div>
-									</div>
-
-								</div>
-							</div>
-						</div>
-					</div>
-								
-				<div class="modal-footer">
+	<!--========================================================== ACTIVITY ========================================================== -->
 	
-					<button type="button" class="btn btn-secondary " data-dismiss="modal">Batal</button>
-					<button type="button" class="btn btn-primary" id="btn-tambah-form">Tambah Data Form</button>
-					<button type="submit" id="btn_push" class="btn btn-success ">Input Data</button>
-				</div>							
-				</div>
-			</div>
-		</div>
-	</form> -->
-
+	<!--MODAL Activity Create -->
 	<div class="form-group">  
             <form name="add_activity" id="add_activity">
             	<div class="modal fade" id="Modal_Add2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"  aria-hidden="true">
@@ -355,10 +269,9 @@
                                          <td>
                                          	<label>Nor</label>
                                          	<select class="form-control" id="slct_nor" name="nor_act[]" required="">
-											<option disabled selected hidden> Pilih Nomor Nor</option>
-												<?php foreach ($nor as $key) { ?>
-													<option value="<?php  echo $key->nor ?>"> <?php  echo $key->nor ?> </option>
-												<?php }  ?>
+												<option disabled selected hidden> Pilih Nomor Nor</option>
+														
+												
 											</select>
 										</td>
 										<td>
@@ -393,7 +306,8 @@
 											<input  class="form-control datepicker" name="date_actual[]" id="date_actual" placeholder="Date (Actual)" required/>
 										</td>
                                          <td>
-                                         	<!-- <button type="button" name="add" id="add" class="btn btn-success">Add More</button> -->
+                                         	<label for="hapus">Hapus Form</label><br/>
+                                         	<button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove" disabled>X</button>
                                          </td>  
                                     </tr>  
                                </table>  
@@ -554,8 +468,8 @@
            					'<option value="ppc">ppc</option>'+
            					'</select> </td>'+
 						'<td><input type="text" id="nama_act" name="nama_act[]" class="form-control" placeholder="Masukkan Activity" required /></td>'+
-           				'<td><input class="form-control datepicker" name="date_plan_act[]" id="date_plan_act" placeholder="Date (Plan)" required/></td>'+
-           				'<td><input class="form-control datepicker" name="date_actual[]" id="date_actual" placeholder="Date (Actual)" required/ > </td>'+
+           				'<td><input type="date" class="form-control datepicker" name="date_plan_act[]" id="date_plan_act" placeholder="Date (Plan)" required/></td>'+
+           				'<td><input type="date" class="form-control datepicker" name="date_actual[]" id="date_actual" placeholder="Date (Actual)" required/ > </td>'+
            				'<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td>'+
            			'</tr>'
            	);  

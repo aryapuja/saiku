@@ -120,7 +120,7 @@ class Dc_Controller extends CI_Controller {
 				'nama_dvs'=>$nama_dvs[$index],  // Ambil dan set data telepon sesuai index array dari $index
 				'nama_act'=>$nama_act[$index],  // Ambil dan set data alamat sesuai index array dari $index
 				'date_plan'=>date( 'Y-m-d H:i:s', strtotime( $date_plan[$index] ) ),  // Ambil dan set data alamat sesuai index array dari $index
-				'actual_plan'=>date( 'Y-m-d H:i:s', strtotime( $date_actual[$index] ) ),  // Ambil dan set data alamat sesuai index array dari $index
+				'date_actual'=>date( 'Y-m-d H:i:s', strtotime( $date_actual[$index] ) ),  // Ambil dan set data alamat sesuai index array dari $index
 			));
 			
 			$index++;
@@ -165,5 +165,12 @@ class Dc_Controller extends CI_Controller {
 
 		$result = $this->dc_model->deleteActivity();
 		echo json_encode($result);
+	}
+
+	public function select_nor()
+	{
+		$data['nor'] = $this->dc_model->get_nor();
+		$data['no'] = $this->dc_model->get_no();
+		$this->load->view('agenda/select_nor',$data);
 	}
 }

@@ -8,6 +8,13 @@ class Dc_Controller extends CI_Controller {
 		parent::__construct();
 		$this->load->model('dc_model');
 
+		if ($this->session->userdata('status')==TRUE) 
+		{
+			// redirect('Dc_Controller/index');
+		}else{	
+			redirect('login');
+		}
+
 	}
 
 	public function index()
@@ -18,6 +25,16 @@ class Dc_Controller extends CI_Controller {
 		$this->load->view("agenda/header"); 
 		$this->load->view('agenda/agenda_view',$data);
 		$this->load->view("agenda/footer");
+	}
+
+	public function indexx()
+	{
+		$data['nor'] = $this->dc_model->get_nor();
+		$data['no'] = $this->dc_model->get_no();
+
+		$this->load->view("agenda/header"); 
+		$this->load->view('home/agenda_view',$data);
+		$this->load->view("home/footer");
 	}
 
 	public function getDcSched()
@@ -173,4 +190,7 @@ class Dc_Controller extends CI_Controller {
 		$data['no'] = $this->dc_model->get_no();
 		$this->load->view('agenda/select_nor',$data);
 	}
+
+	
+
 }

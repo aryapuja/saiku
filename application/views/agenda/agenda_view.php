@@ -51,7 +51,7 @@
 				<div class="boddy card">
 					<center><h4 class="namatitel card-header">NOR SCHEDULE</h4></center>
 					<div class="card-body">
-						<div class="pull-right"><a href="javascript:void(0);" class="btn btn-success" data-toggle="modal" data-target="#Modal_Add"><span class="fa fa-plus"></span> Add Schedule</a></div>
+						<div class="pull-right"><a href="javascript:void(0);" class="btn btn-success float-right" data-toggle="modal" data-target="#Modal_Add"><span class="fa fa-plus"></span> Add Schedule</a></div>
 						<table class="table table-striped table-bordered table-responsive-md tblcus" style="table-layout:all; width: 100%" id="agendaall">
 							<thead>
 								<tr style="background-color: #E8E8E8;">
@@ -77,7 +77,7 @@
 		<div class="boddy card" style="width: 100%">
 			<center><h4 class="namatitel card-header">ACTIVITY SCHEDULE</h4></center>
 			<div class="card-body">
-				<div class="pull-right"><a href="javascript:void(0);" class="btn btn-success" data-toggle="modal" data-target="#Modal_Add2"><span class="fa fa-plus"></span> Add Activity</a></div>
+				<div class="pull-right"><a href="javascript:void(0);" class="btn btn-success float-right" data-toggle="modal" data-target="#Modal_Add2"><span class="fa fa-plus"></span> Add Activity</a></div>
 				<table class="table table-striped table-bordered table-responsive-md tblcus" style="table-layout:all; width: 100%" id="agendaall2">
 					<thead>
 						<tr style="background-color: #E8E8E8;">
@@ -261,27 +261,26 @@
 					</div>
 
 					<div class="modal-body" id="mdl_bdy" style="max-height: calc(100vh - 200px);overflow-y: auto;">
-						<div class="container-fluid scroll">  
-                          <div class="table-responsive">  
-                               <table class="table table-bordered" id="dynamic_field">  
-                                    <tr id="asw">
-                                         <td>
-                                         	<label>Nor</label>
-                                         	<select class="form-control slct_nor" id="slct_nor" name="nor_act[]" required="">
+						<div class="container-fluid scroll">
+							<div class="row input-header" id="row1">
+						<div class="col-md-2">
+							<label>Nor</label>
+                                         	<select class="form-control slct_nor" id="slct_nor" name="nor_act[]" required="" onchange="change_second($(this).val(),$(this).parents('.row').attr('id'))">
 												<option disabled selected hidden> Pilih Nomor Nor</option>
 														
 											</select>
-										</td>
-										<td>
-											<label>No</label>
-												<select class="form-control" id="slct_no" name="no_act[]" required="">
+						</div>  
+						<div class="col-md-2">
+							<label>No</label>
+												<select class="form-control slct_no" id="slct_no" name="no_act[]" required="">
 												<option disabled selected hidden class="nomor-not"> Pilih Nomor No</option>
 													<?php foreach ($no as $key) { ?>
 														<option value="<?php echo $key->no ?>" class="nomor-nor-<?php echo $key->nor ?>"> <?php  echo $key->no ?> </option>
 													<?php }  ?>
 												</select>
-										</td>
-										<td> <label>Divisi</label>
+						</div>  
+						<div class="col-md-2">
+							<label>Divisi</label>
 											<select class="form-control" name="nama_dvs[]" id="nama_dvs">
 								                 <option disabled selected hidden>Pilih Divisi</option>
 								                 <option value="de">de</option>
@@ -293,25 +292,24 @@
 								                 <option value="prod">prod</option>
 								                 <option value="ppc">ppc</option>
 							               </select>
-							           </td>
-							            <td> <label>Activity</label>
+						</div>  
+						<div class="col-md-3">
+							<label>Activity</label>
 											<input type="text" id="nama_act" name="nama_act[]" class="form-control" placeholder="Masukkan Activity" required />
-										</td>
-							            <td> <label>Date Plan</label>
+						</div>  
+						<div class="col-md-2">
+							<label>Date Plan</label>
 							            	<input class="form-control datepicker" name="date_plan_act[]" id="date_plan_act" placeholder="Date (Plan)" required/>
-							            </td>
-										<td> <label>Date Actual</label>
-											<input  class="form-control datepicker" name="date_actual[]" id="date_actual" placeholder="Date (Actual)" required/>
-										</td>
-                                         <td>
-                                         	<label for="hapus">Hapus Form</label><br/>
-                                         	<button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove" disabled>X</button>
-                                         </td>  
-                                    </tr>  
-                               </table>  
-                               <!-- <input type="button" name="submit" id="submit" class="btn btn-info" value="Submit" />   -->
-                          </div>
-                      </div>
+						</div>  
+						<div class="col-md-1">
+							<label for="hapus">Hapus Form</label><br/>
+                         <button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove" disabled> X </button> </div>
+						</div>
+
+                               <div class="input-field">
+                               	
+                               </div>
+                         </div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary " data-dismiss="modal">Batal</button>
@@ -429,19 +427,23 @@
 	<!--END MODAL NOR Delete-->
 
 	<div id="input-container" style="display: none;">
-		
-           		<yudha id="row">
-           			<arya><select class="form-control slct_nor2" id="slct_nor" name="nor_act[]" required="">' 
+		<div class="row input-header" id="rows" style="margin-top: 1rem">
+			<div class="col-md-2">
+				<select class="form-control slct_nor" id="slct_nor" name="nor_act[]" required="" onchange="change_second($(this).val(),$(this).parents('.row').attr('id'))">
            				<option disabled selected hidden> Pilih Nomor Nor</option>
            				<?php foreach($nor as $key) { ?><option value="<?php  echo $key->nor ?>">
            				<?php echo $key->nor ?> </option><?php }  ?>
-           				</select></arya>
-           				<arya><select class="form-control" id="slct_no" name="no_act[]" required="">
+           				</select>
+			</div>
+			<div class="col-md-2">
+				<select class="form-control slct_no" id="slct_no" name="no_act[]" required="">
            					<option disabled selected hidden> Pilih Nomor No</option>
            					<?php foreach($no as $key) { ?>
-           					<option value="<?php  echo $key->no ?>"><?php echo $key->no ?> </option><?php }  ?>
-           				</select></arya> 
-           				<arya><select class="form-control" name="nama_dvs[]" id="nama_dvs">
+           					<option value="<?php  echo $key->no ?>" class="nomor-nor-<?php echo $key->nor ?>"><?php echo $key->no ?> </option><?php }  ?>
+           				</select>
+			</div>
+			<div class="col-md-2">
+				<select class="form-control" name="nama_dvs[]" id="nama_dvs">
            					<option disabled selected hidden>Pilih Divisi</option>
            					<option value="de">de</option> 
            					<option value="pp">pp</option>
@@ -451,12 +453,15 @@
            					<option value="nys">nys</option>
            					<option value="prod">prod</option>
            					<option value="ppc">ppc</option>
-           					</select> </arya>
-						<arya><input type="text" id="nama_act" name="nama_act[]" class="form-control" placeholder="Masukkan Activity" required /></arya>
-           				<arya><input type="date" class="form-control datepicker" name="date_plan_act[]" id="date_plan_act" placeholder="Date (Plan)" required/></arya>
-           				<arya><input type="date" class="form-control datepicker" name="date_actual[]" id="date_actual" placeholder="Date (Actual)" required/ > </arya>
-           				<arya><button type="button" name="remove" id="i" class="btn btn-danger btn_remove">X</button></arya>
-           			</yudha>
+           					</select>
+			</div>
+			<div class="col-md-3"><input type="text" id="nama_act" name="nama_act[]" class="form-control" placeholder="Masukkan Activity" required /></div>
+			<div class="col-md-2"><input type="date" class="form-control datepicker" name="date_plan_act[]" id="date_plan_act" placeholder="Date (Plan)" required/></div>
+			<div class="cols-md-1"><center><button type="button" name="remove" id="" class="btn btn-danger btn_remove">X</button></center></div>
+		</div>
+		<script>
+
+		</script>
 	</div>
 	<script type="text/javascript">
 	 $(function(){
@@ -472,11 +477,10 @@
       var i=1;  
       $('#add').click(function(){  
            i++;  
+           $('#input-container').find('.input-header').attr('id','row'+i);
+           $('#input-container').find('button[name="remove"]').attr('id',i);
            var html = String($('#input-container').html()); 
-           html.replace('yudha','tr');
-           html.replace('arya','td');
-           alert(html);
-           $('#dynamic_field').append(html);  
+           $('.input-field').append(html);  
       });
 
       $(document).on('click', '.btn_remove', function(){  
@@ -488,26 +492,22 @@
 
 	$('.slct_nor').change(function(){
 		let select = $(this).closest("tr");
-		alert(select.attr('id'))
+		// alert(select.attr('id'))
 		let nor = $('.slct_nor :selected').val();
 		select.find('select[name="no_act[]"]').find('option').not('.nomor-not').hide();
 		select.find('select[name="no_act[]"]').val('0');
 		select.find('.nomor-nor-'+nor).show();
 		
-
 	});
 
-	$('.slct_nor2').change(function(){
-		let select = $(this).closest("tr");
-		alert(select.attr('id'))
-		let nor = $('.slct_nor :selected').val();
-		select.find('select[name="no_act[]"]').find('option').not('.nomor-not').hide();
-		select.find('select[name="no_act[]"]').val('0');
-		select.find('.nomor-nor-'+nor).show();
-		
-
-	});
-
+	function change_second(value,target) {
+		let nor = value;
+		// alert(target);
+		target = '#'+target;
+		$(target).find('.slct_no').find('option').not('.nomor-not').hide();
+		$(target).find('.slct_no').val('0');
+		$(target).find('.slct_no').find('.nomor-nor-'+nor).show();
+	}
 	</script>
 
 </main>

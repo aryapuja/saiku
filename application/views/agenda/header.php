@@ -1,11 +1,10 @@
-<!DOCTYPE html>
 <html lang="">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" href="<?=base_url()?>assets/image/Mojokerto.png">
-        <title>Admin E-scheduling</title>
+        <link rel="icon" href="<?=base_url()?>assets/logoaja.png">
+        <title>PT. SAI</title>
 
         <!-- fontawesome icon -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
@@ -25,24 +24,27 @@
     <body class="admin-body" onload=display_ct()>
 
         <!-- navigasi bar -->
-        <nav  class=" navbar navbar-expand-md navbar-dark bg-uno box-shadowf"role="" style="background: #0039e6">
+        <nav class=" navbar navbar-expand-md navbar-dark bg-uno box-shadowf"role="" style="background:#EEE8AA">
             <div class="container-fluid">
-                <a class="navbar-brand" style="color: #ffffff" href="#">PT. SAI</a>
+                <div class="navbar-header" style="color: #ffffff" href="#"> 
+                    <img class ="navbar-brand" src="<?=base_url()?>assets/logoaja.png" width="75px" >
+                </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainnavbar" aria-controls="mainnavbar" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="mainnavbar">
                     <ul class="navbar-nav mr-auto">             
                         <li class="nav-item active">
-                            <a class="nav-link" href="<?php echo site_url() ?>/Dc_Controller">Design Change Scheduling</a>
+                            <a class="nav-link" href="<?php echo base_url().'/index.php/dc_controller'?>" style="font-size: 20px;color: black">Admin View</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Statistik</a>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="<?php echo base_url().'/index.php/dc_controller/indexx'?>" style="font-size: 20px;color: black">User View</a>
                         </li>
+                        
                     </ul>
-                    <!-- <div class="btn-group" role="group" aria-label="Data baru">
-                        <a class="btn-group btn btn-outline-danger " data-toggle="modal" href="#modal_keluar" >Keluar</a>
-                    </div> --> 
+                    <div class="btn-group" role="group" aria-label="Data baru">
+                        <a class="btn-group btn btn-danger" href="<?php echo base_url().'/index.php/login/logout'?>" >LOGOUT</a>
+                    </div>
                 </div>
             </div>
         </nav>

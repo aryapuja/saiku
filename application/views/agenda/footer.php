@@ -77,6 +77,8 @@
 				currentYear = (currentMonth === 11) ? currentYear + 1 : currentYear;
 				currentMonth = (currentMonth + 1) % 12;
 				showAgendaandCalendar(currentMonth, currentYear);
+            	showAct(currentMonth,currentYear); 
+
 			}
 
 			// fungsi previous month
@@ -84,6 +86,7 @@
 				currentYear = (currentMonth === 0) ? currentYear - 1 : currentYear;
 				currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1;
 				showAgendaandCalendar(currentMonth, currentYear);
+            	showAct(currentMonth,currentYear); 
 			}
 
 	        //function show NOR berdasarkan bulan dan tahun

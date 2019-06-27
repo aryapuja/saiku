@@ -8,6 +8,16 @@ class Dc_Model extends CI_Model {
     	parent::__construct();
     }
 
+    /*============================ LOGIN ============================*/
+    public function login($username,$password)
+    {
+        $this->db->where('username', $username);
+        $this->db->where('password', $password);
+        return $this->db->get('user');
+    }
+    /*============================ END LOGIN ============================*/
+
+    /*============================ DESIGN CHANGE ============================*/
     public function newDc($nor,$no,$item_changes,$line,$date_plan)
     {
         $data = array(
@@ -60,7 +70,10 @@ class Dc_Model extends CI_Model {
         return $query->result();
     }
 
-    //activity
+    /*============================ END DESIGN CHANGE ============================*/
+
+    /*============================ ACTIVITY ============================*/
+
     public function newactivity($data)
     {
         return $this->db->insert_batch('activity', $data);
@@ -117,5 +130,19 @@ class Dc_Model extends CI_Model {
         $query = $this->db->query("SELECT DISTINCT no,nor FROM nor");
         return $query->result();
     }
+
+    public function get_dc_sched_user($day,$month,$years)
+    {
+        $query = $this->db->query("SELECT * FROM nor WHERE day(date_plan)=".$day." AND month(date_plan)=".$month." AND year(date_plan)=".$years." order by date_plan ASC");
+        return $query->result();
+    }
+
+    public function get_activity_sched_user($day,$month,$years)
+    {
+        $query = $this->db->query("SELECT * FROM activity WHERE day(date_plan)=".$day." AND month(date_plan)=".$month." AND year(date_plan)=".$years." order by date_plan ASC");
+        return $query->result();
+    }
+
+    /*============================ ACTIVITY ============================*/
 
 }

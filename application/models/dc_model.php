@@ -145,8 +145,8 @@ class Dc_Model extends CI_Model {
 
     public function get_count_line($day,$month,$years)
     {
-        $query = $this->db->query("SELECT DISTINCT 'line' FROM nor WHERE day(date_plan)=".$day." AND month(date_plan)=".$month." AND year(date_plan)=".$years);
-        return $query->num_rows();
+        $query = $this->db->query("SELECT DISTINCT line FROM nor WHERE day(date_plan)=".$day." AND month(date_plan)=".$month." AND year(date_plan)=".$years);
+        return $query->result();
     }
 
 

@@ -126,7 +126,7 @@ class Dc_Controller extends CI_Controller {
 		$nama_dvs 		= $_POST['nama_dvs']; // Ambil data telp dan masukkan ke variabel telp
 		$nama_act 		= $_POST['nama_act']; // Ambil data alamat dan masukkan ke variabel alamat
 		$date_plan 		= $_POST['date_plan_act'];
-		$date_actual 	= $_POST['date_actual'];
+		$date_actual 	= "null";
 		$data = array();
 		
 		$index = 0; // Set index array awal dengan 0
@@ -137,7 +137,7 @@ class Dc_Controller extends CI_Controller {
 				'nama_dvs'=>$nama_dvs[$index],  // Ambil dan set data telepon sesuai index array dari $index
 				'nama_act'=>$nama_act[$index],  // Ambil dan set data alamat sesuai index array dari $index
 				'date_plan'=>date( 'Y-m-d H:i:s', strtotime( $date_plan[$index] ) ),  // Ambil dan set data alamat sesuai index array dari $index
-				'date_actual'=>date( 'Y-m-d H:i:s', strtotime( $date_actual[$index] ) ),  // Ambil dan set data alamat sesuai index array dari $index
+				'date_actual'=>$date_actual[$index],  // Ambil dan set data alamat sesuai index array dari $index
 			));
 			
 			$index++;

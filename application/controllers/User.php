@@ -28,7 +28,8 @@ class User extends CI_Controller {
 		$month = $this->input->post('month_p');
 		$year = $this->input->post('year_p');
 		$data['lineku'] = $this->dc_model->get_count_line($day,$month,$year);
-		$data['sch'] = $this->dc_model->get_dc_sched_user($day,$month,$year);
+		$data['cline'] = count($data['lineku']);
+ 		$data['sch'] = $this->dc_model->get_dc_sched_user($day,$month,$year);
         echo json_encode( $data);
 
 	}

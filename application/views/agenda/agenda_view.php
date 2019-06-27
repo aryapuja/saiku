@@ -38,6 +38,24 @@
 								</thead>
 								<tbody id="calendarbody"> </tbody>
 							</table>
+							<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+								1
+							</div>
+							<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+								2
+							</div>
+							<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+								3
+							</div>
+							<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+								4
+							</div>
+							<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+								5
+							</div>
+							<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+								6
+							</div>
 						</center>
 					</div>
 				</div>
@@ -144,8 +162,8 @@
 								</div>
 								<!--  -->
 								<div class="modal-footer">
-									<!-- inputan button simpan dan batal -->
-									<button type="button" class="btn btn-secondary " data-dismiss="modal">Batal</button>
+									<!-- inputan button simpan dan Cancel -->
+									<button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
 									<button type="submit" id="btn_push" class="btn btn-primary ">Tambah</button>
 								</div>
 							</div>
@@ -199,9 +217,9 @@
 								</div>
 								<!--  -->
 								<div class="modal-footer">
-									<!-- inputan button simpan dan batal -->
+									<!-- inputan button simpan dan Cancel -->
 									<input type="hidden" id="u_id" name="u_id" value="">
-									<button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 									<button type="submit" id="btn_update" class="btn btn-primary">Update</button>
 								</div>
 							</div>
@@ -234,7 +252,7 @@
 
 						<br />
 						<center>
-							<button type="button" class="btn btn-secondary col-md-3" data-dismiss="modal" style="margin-right: 20px">Batal</button>
+							<button type="button" class="btn btn-secondary col-md-3" data-dismiss="modal" style="margin-right: 20px">Cancel</button>
 							<button type="submit" id="btn_delete" class="btn btn-danger col-md-3">Hapus</button>	
 						</center>
 					</div>
@@ -312,7 +330,7 @@
                          </div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary " data-dismiss="modal">Batal</button>
+						<button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
 						<button type="button" class="btn btn-primary"  name="add" id="add">Tambah Data Form</button>
 						<button type="submit" id="submit" class="btn btn-success ">Input Data</button>
 					</div>
@@ -370,9 +388,6 @@
 										<td> <label>Date Actual</label>
 											<input  class="form-control datepicker" name="date_actual_up" id="date_actual_up" placeholder="Date (Actual)" required/>
 										</td>
-                                         <td>
-                                         	<!-- <button type="button" name="add" id="add" class="btn btn-success">Add More</button> -->
-                                         </td>  
                                     </tr>  
                                </table>  
                                <!-- <input type="button" name="submit" id="submit" class="btn btn-info" value="Submit" />   -->
@@ -381,9 +396,8 @@
 					</div>
 					<div class="modal-footer">
 						<input type="hidden" id="u_id_act" name="u_id_act" value="">
-						<button type="button" class="btn btn-secondary " data-dismiss="modal">Batal</button>
-						<button type="button" class="btn btn-primary"  name="updatee" id="updatee">Tambah Data Form</button>
-						<button type="submit" id="submit" class="btn btn-success ">Input Data</button>
+						<button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
+						<button type="submit" id="submit" class="btn btn-success ">Update Data Activity</button>
 					</div>
 				</div>
 				</div>
@@ -413,7 +427,7 @@
 
 						<br />
 						<center>
-							<button type="button" class="btn btn-secondary col-md-3" data-dismiss="modal" style="margin-right: 20px">Batal</button>
+							<button type="button" class="btn btn-secondary col-md-3" data-dismiss="modal" style="margin-right: 20px">Cancel</button>
 							<button type="submit" id="btn_delete2" class="btn btn-danger col-md-3">Hapus</button>	
 						</center>
 					</div>
@@ -457,7 +471,7 @@
 			</div>
 			<div class="col-md-3"><input type="text" id="nama_act" name="nama_act[]" class="form-control" placeholder="Masukkan Activity" required /></div>
 			<div class="col-md-2"><input type="date" class="form-control datepicker" name="date_plan_act[]" id="date_plan_act" placeholder="Date (Plan)" required/></div>
-			<div class="cols-md-1"><center><button type="button" name="remove" id="" class="btn btn-danger btn_remove">X</button></center></div>
+			<div class="cols-md-1" style="align-items: center;"><center><button type="button" name="remove" id="" class="btn btn-danger btn_remove">X</button></center></div>
 		</div>
 		<script>
 

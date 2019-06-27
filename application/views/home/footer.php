@@ -106,8 +106,8 @@
 
 	        			success : function(data){
 	        				var dataList = data.sch;
-	        				lineku = data.lineku;
-	        				 
+	        				lineku = data.cline;
+	        				 // alert(lineku2);
 	        				var agend=[];
 	        				var html='';
 
@@ -213,7 +213,7 @@
 			            			}
 			            			html+='</td>'; 
 			            		}else if(asign==1){ 
-			            			html+='<td bgcolor="#53ff1a">'; //1 NOR
+			            			html+='<td bgcolor="#1ab2ff">'; //1 NOR
 			            			if (date==today.getDate() && today.getMonth()==currentMonth) {
 			            				html+='<div style="background: url(<?php echo base_url() ?>assets/image/bg_datenow.png); background-repeat: no-repeat; background-position: center;  font-weight: 900; text-align: center; color: #FFF;">'+date+'</div>';
 			            			}else{ 
@@ -221,7 +221,7 @@
 			            			}
 			            			html+='</td>';
 			            		}else if(asign==2){
-			            			html+='<td bgcolor="#ffff66">'; //2 NOR
+			            			html+='<td bgcolor="#FFF8CD">'; //2 NOR
 			            			if (date==today.getDate() && today.getMonth()==currentMonth) {
 			            				html+='<div style="background: url(<?php echo base_url() ?>assets/image/bg_datenow.png); background-repeat: no-repeat; background-position: center;  font-weight: 900; text-align: center; color: #FFF;">'+date+'</div>';
 			            			}else{
@@ -229,7 +229,7 @@
 			            			}
 			            			html+='</td>';
 			            		}else if(asign==3){
-			            			html+='<td bgcolor="#ffd633">'; //3 NOR
+			            			html+='<td bgcolor="#ffff1a">'; //3 NOR
 			            			if (date==today.getDate() && today.getMonth()==currentMonth) {
 			            				html+='<div style="background: url(<?php echo base_url() ?>assets/image/bg_datenow.png); background-repeat: no-repeat; background-position: center;  font-weight: 900; text-align: center; color: #FFF;">'+date+'</div>';
 			            			}else{
@@ -237,7 +237,7 @@
 			            			}
 			            			html+='</td>';
 			            		}else if(asign==4){
-			            			html+='<td bgcolor="#ff9933">'; //4 NOR
+			            			html+='<td bgcolor="#ffc54a">'; //4 NOR
 			            			if (date==today.getDate() && today.getMonth()==currentMonth) {
 			            				html+='<div style="background: url(<?php echo base_url() ?>assets/image/bg_datenow.png); background-repeat: no-repeat; background-position: center;  font-weight: 900; text-align: center; color: #FFF;">'+date+'</div>';
 			            			}else{
@@ -245,7 +245,7 @@
 			            			}
 			            			html+='</td>';
 			            		}else if(asign==5){
-			            			html+='<td bgcolor="#b36b00">'; //>=5 NOR
+			            			html+='<td bgcolor="#ff7b24">'; //>=5 NOR
 			            			if (date==today.getDate() && today.getMonth()==currentMonth) {
 			            				html+='<div style="background: url(<?php echo base_url() ?>assets/image/bg_datenow.png); background-repeat: no-repeat; background-position: center;  font-weight: 900; text-align: center; color: #FFF;">'+date+'</div>';
 			            			}else{
@@ -330,7 +330,8 @@
 	                    $('#tbl_agendaactivity').html(html);
 	                    $("#agendaall2").DataTable({
 	                    	destroy:true,
-	                    	"lengthMenu": [[5], [5]]
+	                    	"order": [[ 1, "asc" ]],
+	                    	"lengthMenu": [[-1], ['all']]
 	                    }); 
 	                }
 	            });

@@ -32,7 +32,7 @@
 <script src="<?php echo base_url() ?>assets/js/bootstrap-datepicker.js"></script>
 
 <script type="text/javascript">
-
+		var lineku = null;
 		// timer jam refresh in detik
 		function display_c(){
 			var refresh=1000; // Refresh rate in milli seconds
@@ -93,6 +93,7 @@
 	        	var mm =(month+1);
 	        	// var dd =
 
+
 	        	$.ajax({
 	        		async: false,
 	        		type : "POST",
@@ -103,43 +104,46 @@
 	        			month_p:mm,
 	        			year_p:year},
 
-	        			success : function(data){ 
+	        			success : function(data){
+	        				var dataList = data.sch;
+	        				lineku = data.lineku;
+	        				 
 	        				var agend=[];
 	        				var html='';
 
-	        				for(i=0; i<data.length; i++){ 
+	        				for(i=0; i<dataList.length; i++){ 
 	        					a=i+1;   
 	                    	// mengkonversi tanggal yang akan ditampilkan
-	                    	const tgl_a = new Date(data[i].date_plan);
+	                    	const tgl_a = new Date(dataList[i].date_plan);
 	                    	var tgl_awal = (parseInt(tgl_a.getMonth(), 10)+1)+"/"+('0'+tgl_a.getDate()).slice(-2)+"/"+tgl_a.getFullYear();
-	                    	const tgl_b = new Date(data[i].date_plan);
+	                    	const tgl_b = new Date(dataList[i].date_plan);
 	                    	var tgl_awal2 = ('0'+tgl_a.getDate()).slice(-2)+"/"+(parseInt(tgl_a.getMonth(), 10)+1)+"/"+tgl_a.getFullYear();
 
 	                    	var ag = {
 	                    		tanggal_a:tgl_a,
 	                    		tanggal_b:tgl_b
-	                        			// level:data[i].level
+	                        			// level:dataList[i].level
 	                        		}
-	                        // memasukkan data agenda kedalam array yang nantinya akan diolah untuk coloring calendar
+	                        // memasukkan dataList agenda kedalam array yang nantinya akan diolah untuk coloring calendar
 	                        agend.push(ag);
 
 	                        html += '<tr>';
 	                        html +=	
-	                        '<td hidden>'+data[i].id+'</td>'+
-	                        '<td >'+data[i].nor+'-'+data[i].no+'</td>'+
-		                            // '<td>'+data[i].rev+'</td>'+
-		                            '<td style="text-align: left;">'+data[i].item_changes+'</td>'+
-		                            '<td>'+data[i].line+'</td>'+
+	                        '<td hidden>'+dataList[i].id+'</td>'+
+	                        '<td >'+dataList[i].nor+'-'+dataList[i].no+'</td>'+
+		                            // '<td>'+dataList[i].rev+'</td>'+
+		                            '<td style="text-align: left;">'+dataList[i].item_changes+'</td>'+
+		                            '<td>'+dataList[i].line+'</td>'+
 		                            '<td>'+tgl_awal2+'</td>'+
 		                            // '<td>'+
-		                            // '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit" data-id="'+data[i].id+'" data-nor="'+data[i].nor+'" data-no="'+data[i].no+'" data-item_changes="'+data[i].item_changes+'" data-line="'+data[i].line+'" data-date_plan="'+tgl_awal+'">Edit</a>   '+
+		                            // '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit" dataList-id="'+dataList[i].id+'" dataList-nor="'+dataList[i].nor+'" dataList-no="'+dataList[i].no+'" dataList-item_changes="'+dataList[i].item_changes+'" dataList-line="'+dataList[i].line+'" dataList-date_plan="'+tgl_awal+'">Edit</a>   '+
 
 
-		                            // '<a href="javascript:void(0);" class="btn btn-danger btn-sm item_delete" data-id="'+data[i].id+'" data-nor="'+data[i].nor+'" data-no="'+data[i].no+'">Hapus</a>'+
+		                            // '<a href="javascript:void(0);" class="btn btn-danger btn-sm item_delete" dataList-id="'+dataList[i].id+'" dataList-nor="'+dataList[i].nor+'" dataList-no="'+dataList[i].no+'">Hapus</a>'+
 		                            // '</td>'+
 		                            '</tr>';
 		                        } 
-	                    // memasukkan data agenda lokal ke variabel agenda global
+	                    // memasukkan dataList agenda lokal ke variabel agenda global
 	                    agenda=agend;
 
 	                    $("#agendaall").DataTable().destroy();
@@ -192,21 +196,10 @@
 			            		for (var ia = (agenda.length-1); ia >=0 ; ia--) {
 			            			for (var ib = 0; ib < agenda.length; ib++) {
 
-			            				if (new Date(currentYear,currentMonth,date) >=agenda[ia].tanggal_a && new Date(currentYear,currentMonth,date)<=agenda[ia].tanggal_a) {
+			            				if (new Date(currentYear,currentMonth,date) >= agenda[ia].tanggal_a && new Date(currentYear,currentMonth,date)<=agenda[ia].tanggal_a) { 
 			            					
 			            					// pemberian warna jika level bupati
-			            					if (asign==null) {
-			            						asign=1;
-			            					}else if (asign==1) { 
-			            						asign=2; 
-			            					}else if (asign==2) { 
-			            						asign=3; 
-			            					}else if (asign==3) { 
-			            						asign=4; 
-			            					}else{ 
-			            						asign=5;
-			            					}
-			            					break; 
+			            					asign = lineku;
 			            				} 
 			            			} 
 			            		}

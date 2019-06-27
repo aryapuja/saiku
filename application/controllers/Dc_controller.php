@@ -33,7 +33,7 @@ class Dc_Controller extends CI_Controller {
 		$data['no'] = $this->dc_model->get_no();
 
 		$this->load->view("agenda/header"); 
-		$this->load->view('home/agenda_view',$data);
+		$this->load->view("home/agenda_view",$data);
 		$this->load->view("home/footer");
 	}
 

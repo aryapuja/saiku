@@ -13,8 +13,10 @@ class User extends CI_Controller {
 
 	public function index()
 	{
+
 		$data['nor'] = $this->dc_model->get_nor();
 		$data['no'] = $this->dc_model->get_no();
+
 		$this->load->view("home/header"); 
 		$this->load->view('home/agenda_view',$data);
 		$this->load->view("home/footer");
@@ -25,7 +27,10 @@ class User extends CI_Controller {
 		$day = $this->input->post('date_p');	
 		$month = $this->input->post('month_p');
 		$year = $this->input->post('year_p');
-        echo json_encode( $this->dc_model->get_dc_sched_user($day,$month,$year));
+		$data['lineku'] = $this->dc_model->get_count_line($day,$month,$year);
+		$data['sch'] = $this->dc_model->get_dc_sched_user($day,$month,$year);
+        echo json_encode( $data);
+
 	}
 
 	public function getDcActUser()

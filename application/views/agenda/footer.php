@@ -1,30 +1,5 @@
 
 <!-- navbar jam dan tanggal bottom -->
-<nav class="navbar navbar-default navbar-fixed-bottom footer" style="background-color: transparent;" role="navigation">
-	<div class="container-fluid" >
-		<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-			<button type="button" class="btn btn-warning btn-lg disabled" id="time"></button>
-		</div>
-		<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-			<div class="runtext-container">
-				<div class="main-runtext">
-					<marquee direction="" onmouseover="this.stop();"onmouseout="this.start();">
-						<div class="text-container"> 
-						</div>
-					</marquee>
-				</div>
-			</div>
-		</div> 
-		<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" >
-			<button type="button" class="btn btn-danger btn-lg disabled" style="align-items: center;"> 
-				<?php
-				date_default_timezone_set("Asia/Jakarta");
-				echo " " . date("d:M:Y");
-				?>
-			</button>
-		</div>
-	</div>	
-</nav>
 
 <!-- =============== Bootstrap & datatables datepicker JavaScript ============== -->
 <script src="<?php echo base_url() ?>assets/js/bootstrap.min.js"></script> 
@@ -106,6 +81,21 @@
 	        			success : function(data){ 
 	        				var agend=[];
 	        				var html='';
+	        				// var d = new Date();
+							var month = new Array();
+							month[0] = "January";
+							month[1] = "February";
+							month[2] = "March";
+							month[3] = "April";
+							month[4] = "May";
+							month[5] = "June";
+							month[6] = "July";
+							month[7] = "August";
+							month[8] = "September";
+							month[9] = "October";
+							month[10] = "November";
+							month[11] = "December";
+							// var n = month[d.getMonth()];
 
 	        				for(i=0; i<data.length; i++){ 
 	        					a=i+1;   
@@ -113,7 +103,7 @@
 	                    	const tgl_a = new Date(data[i].date_plan);
 	                    	var tgl_awal = (parseInt(tgl_a.getMonth(), 10)+1)+"/"+('0'+tgl_a.getDate()).slice(-2)+"/"+tgl_a.getFullYear();
 	                    	const tgl_b = new Date(data[i].date_plan);
-	                    	var tgl_awal2 = ('0'+tgl_a.getDate()).slice(-2)+"/"+(parseInt(tgl_a.getMonth(), 10)+1)+"/"+tgl_a.getFullYear();
+	                    	var tgl_awal2 = month[tgl_a.getMonth()]+", "+('0'+tgl_a.getDate()).slice(-2)+" "+tgl_a.getFullYear();
 
 	                    	var ag = {
 	                    		tanggal_a:tgl_a,
@@ -272,6 +262,19 @@
 	        function showAct(month,year){
 	        	var agenda=null;
 	        	var mm =(month+1);
+	        	var month = new Array();
+				month[0] = "January";
+				month[1] = "February";
+				month[2] = "March";
+				month[3] = "April";
+				month[4] = "May";
+				month[5] = "June";
+				month[6] = "July";
+				month[7] = "August";
+				month[8] = "September";
+				month[9] = "October";
+				month[10] = "November";
+				month[11] = "December";
 
 	        	$.ajax({
 	        		async: false,
@@ -290,9 +293,9 @@
 	        					a=i+1;   
 	                    	// mengkonversi tanggal yang akan ditampilkan
 	                    	const tgl_a = new Date(data[i].date_plan);
-	                    	var tgl_awal = ('0'+tgl_a.getDate()).slice(-2)+"/"+(parseInt(tgl_a.getMonth(), 10)+1)+"/"+tgl_a.getFullYear();
+	                    	var tgl_awal = month[tgl_a.getMonth()]+", "+('0'+tgl_a.getDate()).slice(-2)+" "+tgl_a.getFullYear();
 	                    	const tgl_b = new Date(data[i].date_actual);
-	                    	var tgl_awal2 = ('0'+tgl_b.getDate()).slice(-2)+"/"+(parseInt(tgl_b.getMonth(), 10)+1)+"/"+tgl_b.getFullYear();
+	                    	var tgl_awal2 = month[tgl_b.getMonth()]+", "+('0'+tgl_b.getDate()).slice(-2)+" "+tgl_b.getFullYear();
 
 	                    	const tgl_c = new Date(data[i].date_plan);
 	                    	var tgl_awal3 = (parseInt(tgl_c.getMonth(), 10)+1)+"/"+('0'+tgl_c.getDate()).slice(-2)+"/"+tgl_c.getFullYear();
@@ -315,7 +318,7 @@
 	                        '<td hidden>'+data[i].id+'</td>'+
 	                        '<td >'+data[i].nor+'-'+data[i].no+'</td>'+
 		                            '<td>'+data[i].nama_dvs+'</td>'+
-		                            '<td>'+data[i].nama_act+'</td>'+
+		                            '<td style="text-align: left;">'+data[i].nama_act+'</td>'+
 		                            '<td>'+tgl_awal+'</td>'+
 		                            '<td>'+tgl_awal2+'</td>'+
 		                            '<td>'+

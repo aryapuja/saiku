@@ -1,10 +1,34 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
 <!-- Begin page content -->
-<main role="main">
-	<br>
+
 	<div class="container-fluid row">
 		<!-- view tabel Calendar -->
+		<nav class="navbar navbar-default navbar-fixed-bottom footer" style="background-color: transparent;" role="navigation">
+	<div class="container-fluid" >
+		<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+			<button type="button" class="btn btn-primary btn-lg disabled" id="time"></button>
+		</div>
+		<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+			<div class="runtext-container">
+				<div class="main-runtext">
+					<marquee direction="" onmouseover="this.stop();"onmouseout="this.start();">
+						<div class="text-container"> 
+						</div>
+					</marquee>
+				</div>
+			</div>
+		</div> 
+		<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" >
+			<button type="button" class="btn btn-primary btn-lg disabled" style="align-items: center;"> 
+				<?php
+				date_default_timezone_set("Asia/Jakarta");
+				echo " " . date("d:M:Y");
+				?>
+			</button>
+		</div>
+	</div>	
+</nav>
 		<div class="calendaragenda">
 			<div style="background-color: #FFF; padding: 5px; height: 100%">
 
@@ -38,23 +62,18 @@
 								</thead>
 								<tbody id="calendarbody"> </tbody>
 							</table>
-							<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-								1
+							<div class="row" align="left">
+
+							<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+								<img src="#" width="10px">&nbsp Tidak Ada Nor<br>
+								<img src="<?=base_url()?>assets/image/1.png" width="10px">&nbsp Ada 1 Nor<br>
+								<img src="<?=base_url()?>assets/image/2.png" width="10px">&nbsp Ada 2 Nor<br>
 							</div>
-							<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-								2
+							<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+								<img src="<?=base_url()?>assets/image/3.png" width="10px">&nbsp Ada 3 Nor<br>
+								<img src="<?=base_url()?>assets/image/4.png" width="10px">&nbsp Ada 4 Nor<br>
+								<img src="<?=base_url()?>assets/image/5.png" width="10px">&nbsp Ada >=5 Nor<br>
 							</div>
-							<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-								3
-							</div>
-							<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-								4
-							</div>
-							<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-								5
-							</div>
-							<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-								6
 							</div>
 						</center>
 					</div>

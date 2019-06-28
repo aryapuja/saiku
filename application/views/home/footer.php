@@ -16,7 +16,7 @@
 			</div>
 		</div> 
 		<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" >
-			<button type="button" class="btn btn-danger btn-lg disabled" style="align-items: center;"> 
+			<button type="button" class="btn btn-info btn-lg disabled" style="align-items: center;"> 
 				<?php
 				date_default_timezone_set("Asia/Jakarta");
 				echo " " . date("d:M:Y");
@@ -70,8 +70,8 @@
             showAct(currentDate,currentMonth,currentYear); 
 
 			// event click previous and next button month
-			document.getElementById("previous").addEventListener("click",previous);
-			document.getElementById("next").addEventListener("click",next);
+			// document.getElementById("previous").addEventListener("click",previous);
+			// document.getElementById("next").addEventListener("click",next);
 
 			// fungsi next month
 			function next() {
@@ -107,9 +107,23 @@
 	        			success : function(data){
 	        				var dataList = data.sch;
 	        				lineku = data.cline;
+	        				cline2 = data.cline2;
 	        				 // alert(lineku2);
 	        				var agend=[];
 	        				var html='';
+	        				var month = new Array();
+							month[0] = "January";
+							month[1] = "February";
+							month[2] = "March";
+							month[3] = "April";
+							month[4] = "May";
+							month[5] = "June";
+							month[6] = "July";
+							month[7] = "August";
+							month[8] = "September";
+							month[9] = "October";
+							month[10] = "November";
+							month[11] = "December";
 
 	        				for(i=0; i<dataList.length; i++){ 
 	        					a=i+1;   
@@ -117,7 +131,7 @@
 	                    	const tgl_a = new Date(dataList[i].date_plan);
 	                    	var tgl_awal = (parseInt(tgl_a.getMonth(), 10)+1)+"/"+('0'+tgl_a.getDate()).slice(-2)+"/"+tgl_a.getFullYear();
 	                    	const tgl_b = new Date(dataList[i].date_plan);
-	                    	var tgl_awal2 = ('0'+tgl_a.getDate()).slice(-2)+"/"+(parseInt(tgl_a.getMonth(), 10)+1)+"/"+tgl_a.getFullYear();
+	                    	var tgl_awal2 = month[tgl_a.getMonth()]+", "+('0'+tgl_a.getDate()).slice(-2)+" "+tgl_a.getFullYear();
 
 	                    	var ag = {
 	                    		tanggal_a:tgl_a,
@@ -152,7 +166,7 @@
 	                    $('#tbl_agendakegiatan').html(html);
 	                    $("#agendaall").DataTable({
 	                    	destroy:true,
-	                    	"order": [[ 4, "asc" ]],
+	                    	"order": [[ 1, "asc" ]],
 	                    	"lengthMenu": [[5], [5]]
 	                    });
 	                }
@@ -196,16 +210,22 @@
 			            		for (var ia = (agenda.length-1); ia >=0 ; ia--) {
 			            			for (var ib = 0; ib < agenda.length; ib++) {
 
+			            				for (var iz = 0; iz < cline2.length; iz++) {
+			            					if (cline2[iz].tgl == date) {
+			            						asign=cline2[iz].jml;
+			            					}
+			            				}
+
 			            				if (new Date(currentYear,currentMonth,date) >= agenda[ia].tanggal_a && new Date(currentYear,currentMonth,date)<=agenda[ia].tanggal_a) { 
 			            					
 			            					// pemberian warna jika level bupati
-			            					asign = lineku;
+			            					
 			            				} 
 			            			} 
 			            		}
 			            		// penentuan warna warna
 			            		if (asign==null) {
-			            			html+='<td style="border: 1px solid #dddddd;">'; 
+			            			html+='<td style="border: 1px solid #dddddd;" onclick="alert('+date+')">'; 
 			            			if (date==today.getDate() && today.getMonth()==currentMonth) {
 			            				html+='<div style="background: url(<?php echo base_url() ?>assets/image/bg_datenow.png); background-repeat: no-repeat; background-position: center;  font-weight: 900; text-align: center; color: #FFF;">'+date+'</div>';
 			            			}else{
@@ -280,14 +300,27 @@
 	        			success : function(data){ 
 	        				var agend=[];
 	        				var html='';
+	        				var month = new Array();
+							month[0] = "January";
+							month[1] = "February";
+							month[2] = "March";
+							month[3] = "April";
+							month[4] = "May";
+							month[5] = "June";
+							month[6] = "July";
+							month[7] = "August";
+							month[8] = "September";
+							month[9] = "October";
+							month[10] = "November";
+							month[11] = "December";
 
 	        				for(i=0; i<data.length; i++){ 
 	        					a=i+1;   
 	                    	// mengkonversi tanggal yang akan ditampilkan
 	                    	const tgl_a = new Date(data[i].date_plan);
-	                    	var tgl_awal = ('0'+tgl_a.getDate()).slice(-2)+"/"+(parseInt(tgl_a.getMonth(), 10)+1)+"/"+tgl_a.getFullYear();
+	                    	var tgl_awal = month[tgl_a.getMonth()]+", "+('0'+tgl_a.getDate()).slice(-2)+" "+tgl_a.getFullYear();
 	                    	const tgl_b = new Date(data[i].date_actual);
-	                    	var tgl_awal2 = ('0'+tgl_b.getDate()).slice(-2)+"/"+(parseInt(tgl_b.getMonth(), 10)+1)+"/"+tgl_b.getFullYear();
+	                    	var tgl_awal2 = month[tgl_b.getMonth()]+", "+('0'+tgl_b.getDate()).slice(-2)+" "+tgl_b.getFullYear();
 
 	                    	const tgl_c = new Date(data[i].date_plan);
 	                    	var tgl_awal3 = (parseInt(tgl_a.getMonth(), 10)+1)+"/"+('0'+tgl_a.getDate()).slice(-2)+"/"+tgl_a.getFullYear();
@@ -313,12 +346,12 @@
 		                            '<td>'+data[i].nama_act+'</td>'+
 		                            '<td>'+tgl_awal+'</td>'+
 		                            '<td>'+tgl_awal2+'</td>'+
-		                            '<td>'+
-		                            '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit2" data-id="'+data[i].id+'" data-nor="'+data[i].nor+'" data-no="'+data[i].no+'" data-act="'+data[i].nama_act+'" data-dvs="'+data[i].nama_dvs+'" data-date_plan="'+tgl_awal3+'" data-date_actual="'+tgl_awal4+'">Edit</a>   '+
+		                            // '<td>'+
+		                            // '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit2" data-id="'+data[i].id+'" data-nor="'+data[i].nor+'" data-no="'+data[i].no+'" data-act="'+data[i].nama_act+'" data-dvs="'+data[i].nama_dvs+'" data-date_plan="'+tgl_awal3+'" data-date_actual="'+tgl_awal4+'">Edit</a>   '+
 
 
-		                            '<a href="javascript:void(0);" class="btn btn-danger btn-sm item_delete2" data-id="'+data[i].id+'" data-nor="'+data[i].nor+'" data-no="'+data[i].no+'" data-act="'+data[i].nama_act+'">Hapus</a>'+
-		                            '</td>'+
+		                            // '<a href="javascript:void(0);" class="btn btn-danger btn-sm item_delete2" data-id="'+data[i].id+'" data-nor="'+data[i].nor+'" data-no="'+data[i].no+'" data-act="'+data[i].nama_act+'">Hapus</a>'+
+		                            // '</td>'+
 		                            '</tr>';
 		                        } 
 	                    // memasukkan data agenda lokal ke variabel agenda global

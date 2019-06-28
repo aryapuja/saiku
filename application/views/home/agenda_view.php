@@ -2,7 +2,6 @@
 
 <!-- Begin page content -->
 <main role="main">
-	<br>
 	<div class="container-fluid row">
 		<!-- view tabel Calendar -->
 		<div class="calendaragenda">
@@ -39,6 +38,19 @@
 								</thead>
 								<tbody id="calendarbody"> </tbody>
 							</table>
+							<div class="row" align="left">
+
+							<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+								<img src="#" width="10px">&nbsp Tidak Ada Activity<br>
+								<img src="<?=base_url()?>assets/image/1.png" width="10px">&nbsp Ada 1 Line<br>
+								<img src="<?=base_url()?>assets/image/2.png" width="10px">&nbsp Ada 2 Line<br>
+							</div>
+							<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+								<img src="<?=base_url()?>assets/image/3.png" width="10px">&nbsp Ada 3 Line<br>
+								<img src="<?=base_url()?>assets/image/4.png" width="10px">&nbsp Ada 4 Line<br>
+								<img src="<?=base_url()?>assets/image/5.png" width="10px">&nbsp Ada >=5 Line<br>
+							</div>
+							</div>
 						</center>
 					</div>
 				</div>

@@ -82,15 +82,41 @@ class Dc_Model extends CI_Model {
 
     public function updateactivity($id,$nama_act,$plan_date,$plan_actual,$nama_dvs,$nor,$no)
     {
+        if($plan_actual==null&&$plan_date==null){
+            // $plan_actual="0000-00-00";
+            $data = array(
+                'nama_act'                  =>$nama_act,
+                'nama_dvs'                  =>$nama_dvs,
+                'nor'                       =>$nor,
+                'no'                        =>$no,
+            );
+        }else if($plan_actual==null){
+            $data = array(
+                'nama_act'                  =>$nama_act,
+                'nama_dvs'                  =>$nama_dvs,
+                'date_plan'                 =>$plan_date,
+                'nor'                       =>$nor,
+                'no'                        =>$no,
+            );
+        }else if($plan_date==null){
+            $data = array(
+                'nama_act'                  =>$nama_act,
+                'nama_dvs'                  =>$nama_dvs,
+                'date_actual'               =>$plan_actual,
+                'nor'                       =>$nor,
+                'no'                        =>$no,
+            );    
+        }else{
+            $data = array(
+                'nama_act'                  =>$nama_act,
+                'nama_dvs'                  =>$nama_dvs,
+                'date_plan'                 =>$plan_date,
+                'date_actual'               =>$plan_actual,
+                'nor'                       =>$nor,
+                'no'                        =>$no,
+            );
+        }
 
-        $data = array(
-            'nama_act'                  =>$nama_act,
-            'date_plan'                 =>$plan_date,
-            'date_actual'               =>$plan_actual,
-            'nama_dvs'                  =>$nama_dvs,
-            'nor'                       =>$nor,
-            'no'                        =>$no,
-        );
 
         $this->db->where('id', $id);
         $result=$this->db->update('activity', $data);
@@ -146,6 +172,17 @@ class Dc_Model extends CI_Model {
     public function get_count_line($day,$month,$years)
     {
         $query = $this->db->query("SELECT DISTINCT line FROM nor WHERE day(date_plan)=".$day." AND month(date_plan)=".$month." AND year(date_plan)=".$years);
+        return $query->result();
+    }
+
+    public function get_count_line_month($month)
+    {
+        $this->db->select('day(date_plan) as tgl,count(distinct(line)) as jml');
+        $this->db->from('nor');
+        $this->db->where('month(date_plan)',$month);
+        $this->db->group_by('day(date_plan)');
+        $query = $this->db->get();
+    
         return $query->result();
     }
 

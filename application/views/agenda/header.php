@@ -27,7 +27,7 @@
         <nav class=" navbar navbar-expand-md navbar-dark bg-uno box-shadowf"role="" style="background:#EEE8AA">
             <div class="container-fluid">
                 <div class="navbar-header" style="color: #ffffff" href="#"> 
-                    <img class ="navbar-brand" src="<?=base_url()?>assets/logoaja.png" width="75px" >
+                    <img class ="navbar-brand" src="<?=base_url()?>assets/logoaja.png" width="75px">
                 </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainnavbar" aria-controls="mainnavbar" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>

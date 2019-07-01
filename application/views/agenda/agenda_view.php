@@ -2,7 +2,7 @@
 
 <!-- Begin page content -->
 
-	<div class="container-fluid row">
+	<div class="container-fluid row" style="zoom:80%">
 		<!-- view tabel Calendar -->
 		<nav class="navbar navbar-default navbar-fixed-bottom footer" style="background-color: transparent;" role="navigation">
 	<div class="container-fluid" >
@@ -95,9 +95,10 @@
 									<!-- <th style="width: 5%;">No</th> -->
 									<th style="text-align: center;" hidden>Id</th>
 									<th style="text-align: center; width: 15% ">Nor-No</th>
-									<th style="text-align: center; width: 50%">Item Changes</th>
+									<th style="text-align: center; width: 40%">Item Changes</th>
 									<th style="text-align: center; width: 10%">Line</th>
-									<th style="text-align: center; width: 10%">Date Plan</th>
+									<th style="text-align: center; width: 10%">Implementasi Plan</th>
+									<th style="text-align: center; width: 10%">Implementasi Actual</th>
 									<th style="text-align: center; width: 15%">Action</th>
 								</tr>
 							</thead>
@@ -174,7 +175,7 @@
 									<div class="col-6">
 										<label for="#">Implemented Plan </label>
 										<div class="input-daterange input-group" id="datepickers">
-											<input  class="form-control" name="date_plan" id="date_plan" placeholder="Date (Plan)" required/>
+											<input  class="form-control" name="nor_plan_imp" id="nor_plan_imp" placeholder="Imp. (Plan)" required/>
 										</div>
 									</div>
 
@@ -200,7 +201,7 @@
 			<div class="modal-dialog" role="document" style="max-width: 70%">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h4 class="modal-title">New Schedule</h4>
+						<h4 class="modal-title">Update Schedule</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>			           
 					</div>
 					<div class="modal-body">			   
@@ -229,7 +230,11 @@
 									<div class="col-6">
 										<label for="#">Implemented Plan: </label>
 										<div class="input-daterange input-group">
-											<input  class="form-control datepicker" name="u_date_plan" id="u_date_plan" placeholder="Date (Plan)" required/>
+											<input  class="form-control datepicker" name="u_nor_plan_imp" id="u_nor_plan_imp" placeholder="Imp. (Plan)" required/>
+										</div>
+										<label for="#">Implemented Actual: </label>
+										<div class="input-daterange input-group">
+											<input  class="form-control datepicker" name="u_nor_act_imp" id="u_nor_act_imp" placeholder="Imp. (Actual)" required/>
 										</div>
 									</div>
 
@@ -335,8 +340,8 @@
 											<input type="text" id="nama_act" name="nama_act[]" class="form-control" placeholder="Masukkan Activity" required />
 						</div>  
 						<div class="col-md-2">
-							<label>Date Plan</label>
-							            	<input class="form-control datepicker" name="date_plan_act[]" id="date_plan_act" placeholder="Date (Plan)" required/>
+							<label>Implementasi Plan</label>
+							            	<input class="form-control datepicker" name="ak_plan_imp[]" id="ak_plan_imp" placeholder="Date (Plan)" required/>
 						</div>  
 						<div class="col-md-1">
 							<label for="hapus">Hapus Form</label><br/>
@@ -401,11 +406,11 @@
 							            <td> <label>Activity</label>
 											<input type="text" id="nama_act_up" name="nama_act_up" class="form-control" placeholder="Masukkan Activity" required />
 										</td>
-							            <td> <label>Date Plan</label>
-							            	<input class="form-control datepicker" name="date_plan_act_up" id="date_plan_act_up" placeholder="Date (Plan)" required/>
+							            <td><label>Implementasi Plan</label>
+							            	<input class="form-control datepicker" name="ak_plan_imp_up" id="ak_plan_imp_up" placeholder="Date (Plan)" required/>
 							            </td>
-										<td> <label>Date Actual</label>
-											<input  class="form-control datepicker" name="date_actual_up" id="date_actual_up" placeholder="Date (Actual)" required/>
+										<td> <label>Implementasi Actual</label>
+											<input  class="form-control datepicker" name="ak_act_imp_up" id="ak_act_imp_up" placeholder="Date (Actual)" required/>
 										</td>
                                     </tr>  
                                </table>  
@@ -489,7 +494,7 @@
            					</select>
 			</div>
 			<div class="col-md-3"><input type="text" id="nama_act" name="nama_act[]" class="form-control" placeholder="Masukkan Activity" required /></div>
-			<div class="col-md-2"><input type="date" class="form-control datepicker" name="date_plan_act[]" id="date_plan_act" placeholder="Date (Plan)" required/></div>
+			<div class="col-md-2"><input type="date" class="form-control datepicker" name="ak_plan_imp[]" id="ak_plan_imp" placeholder="Date (Plan)" required/></div>
 			<div class="cols-md-1" style="align-items: center;"><center><button type="button" name="remove" id="" class="btn btn-danger btn_remove">X</button></center></div>
 		</div>
 		<script>

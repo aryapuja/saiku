@@ -2,7 +2,7 @@
 
 <!-- Begin page content -->
 <main role="main">
-	<div class="container-fluid row">
+	<div class="container-fluid row"  style="zoom:60%">
 		<!-- view tabel Calendar -->
 		<div class="calendaragenda">
 			<div style="background-color: #FFF; padding: 5px; height: 100%">
@@ -73,7 +73,7 @@
 									<th style="text-align: center; width: 15% ">Nor-No</th>
 									<th style="text-align: center; width: 50%">Item Changes</th>
 									<th style="text-align: center; width: 10%">Line</th>
-									<th style="text-align: center; width: 10%">Date Plan</th>
+									<th style="text-align: center; width: 10%">Implementasi Plan</th>
 									<!-- <th style="text-align: center; width: 15%">Action</th> -->
 								</tr>
 							</thead>
@@ -96,11 +96,12 @@
 						<tr style="background-color: #E8E8E8;">
 							<!-- <th style="width: 5%;">No</th> -->
 							<th style="text-align: center;" hidden>Id</th>
-							<th style="text-align: center; width: 10%">Nor-No</th>
+							<th style="text-align: center; width: 5%">Nor-No</th>
+							<th style="text-align: center; width: 5%">Implementasi Plan Nor</th>
 							<th style="text-align: center; width: 5%">Divisi</th>
-							<th style="text-align: center; width: 60%">Activity</th>
-							<th style="text-align: center; width: 5%">Plan Date</th>
-							<th style="text-align: center; width: 5%">Actual Date</th>
+							<th style="text-align: center; width: 75%">Activity</th>
+							<th style="text-align: center; width: 5%">Implementasi Plan</th>
+							<th style="text-align: center; width: 5%">Implementasi Actual</th>
 							<!-- <th style="text-align: center; width: 15%">Action</th> -->
 						</tr>
 					</thead>
@@ -168,6 +169,47 @@
 			</div>
 		</div>
 	</form>
+	<!--END MODAL NOR baru-->
+
+		<div class="modal fade" id="Modal_Detail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"  aria-hidden="true">
+			<div class="modal-dialog" role="document" style="max-width: 70%">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Detail NOR</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>			           
+					</div>
+					<div class="modal-body">			   
+						<div class="container-fluid">   
+							<table class="table-bordered">
+								<thead>
+									<tr>
+										<th>NOR-No</th>
+										<th>Item Changes</th>
+										<th>Line</th>
+										<th>Date Plan</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>nor</td>
+										<td>item Changes</td>
+										<td></td>
+										<td></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>	
+						<div class="modal-footer">
+									<!-- inputan button simpan dan batal -->
+									<button type="button" class="btn btn-secondary " data-dismiss="modal">Batal</button>
+									<button type="submit" id="btn_push" class="btn btn-primary ">Tambah</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	<!--END MODAL NOR baru-->
 
 	<!--MODAL NOR START UPDATEEE UPDATEEE-->

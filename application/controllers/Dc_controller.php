@@ -59,10 +59,10 @@ class Dc_Controller extends CI_Controller {
 		$line = $this->input->post('line');
 		$item_changes = $this->input->post('item_changes');
 		// $carline = $this->input->post('carline');
-		$date_plan = date( 'Y-m-d H:i:s', strtotime( $this->input->post('date_plan') ) );
+		$nor_plan_imp = date( 'Y-m-d H:i:s', strtotime( $this->input->post('nor_plan_imp') ) );
+		// $nor_act_imp = date( 'Y-m-d H:i:s', strtotime( $this->input->post('nor_act_imp') ) );
 		
-
-		$result = $this->dc_model->newDc($nor,$no,$item_changes,$line,$date_plan);
+		$result = $this->dc_model->newDc($nor,$no,$item_changes,$line,$nor_plan_imp);
 
 		echo json_encode($result);
 	}
@@ -77,9 +77,10 @@ class Dc_Controller extends CI_Controller {
         $no = $this->input->post('u_no');
         $line = $this->input->post('u_line');
         $item_changes = $this->input->post('u_item_changes');
-        $date_plan = date( 'Y-m-d H:i:s', strtotime( $this->input->post('u_date_plan') ) );
+        $nor_plan_imp = date( 'Y-m-d H:i:s', strtotime( $this->input->post('u_nor_plan_imp') ) );
+        $nor_act_imp = date( 'Y-m-d H:i:s', strtotime( $this->input->post('u_nor_act_imp') ) );
 
-		$result = $this->dc_model->updateDc($id,$nor,$no,$line,$item_changes,$date_plan);
+		$result = $this->dc_model->updateDc($id,$nor,$no,$item_changes,$line,$nor_plan_imp,$nor_act_imp);
 
 		echo json_encode($result);
 	}
@@ -125,7 +126,7 @@ class Dc_Controller extends CI_Controller {
 		$no 			= $_POST['no_act']; // Ambil data nama dan masukkan ke variabel nama
 		$nama_dvs 		= $_POST['nama_dvs']; // Ambil data telp dan masukkan ke variabel telp
 		$nama_act 		= $_POST['nama_act']; // Ambil data alamat dan masukkan ke variabel alamat
-		$date_plan 		= $_POST['date_plan_act'];
+		$ak_plan_imp 		= $_POST['ak_plan_imp'];
 		// $date_actual 	= "null";
 		$data = array();
 		
@@ -136,8 +137,8 @@ class Dc_Controller extends CI_Controller {
 				'no'=>$no[$index],  // Ambil dan set data nama sesuai index array dari $index
 				'nama_dvs'=>$nama_dvs[$index],  // Ambil dan set data telepon sesuai index array dari $index
 				'nama_act'=>$nama_act[$index],  // Ambil dan set data alamat sesuai index array dari $index
-				'date_plan'=>date( 'Y-m-d H:i:s', strtotime( $date_plan[$index] ) ),  // Ambil dan set data alamat sesuai index array dari $index
-				'date_actual'=>"0000-00-00",  // Ambil dan set data alamat sesuai index array dari $index
+				'ak_plan_imp'=>date( 'Y-m-d H:i:s', strtotime( $ak_plan_imp[$index] ) ),  // Ambil dan set data alamat sesuai index array dari $index
+				'ak_act_imp'=>"0000-00-00",  // Ambil dan set data alamat sesuai index array dari $index
 			));
 			
 			$index++;
@@ -158,12 +159,12 @@ class Dc_Controller extends CI_Controller {
         $no = $this->input->post('no_act_up');
         $nama_dvs = $this->input->post('nama_dvs_up');
         $nama_act = $this->input->post('nama_act_up');
-        $plan_date = date( 'Y-m-d H:i:s', strtotime( $this->input->post('date_plan_act_up') ) );
-        $plan_actual = date( 'Y-m-d H:i:s', strtotime( $this->input->post('date_actual_act_up') ) );
+        $ak_plan_imp = date( 'Y-m-d H:i:s', strtotime( $this->input->post('ak_plan_imp_up') ) );
+        $ak_act_imp = date( 'Y-m-d H:i:s', strtotime( $this->input->post('ak_act_imp_up') ) );
 		
 		// $end = $start;
 
-		$result = $this->dc_model->updateActivity($id,$nama_act,$plan_date,$plan_actual,$nama_dvs,$nor,$no);
+		$result = $this->dc_model->updateActivity($id,$nama_act,$ak_plan_imp,$ak_act_imp,$nama_dvs,$nor,$no);
 
 		echo json_encode($result);
 

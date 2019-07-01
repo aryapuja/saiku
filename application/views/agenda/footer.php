@@ -100,14 +100,22 @@
 	        				for(i=0; i<data.length; i++){ 
 	        					a=i+1;   
 	                    	// mengkonversi tanggal yang akan ditampilkan
-	                    	const tgl_a = new Date(data[i].date_plan);
+	                    	const tgl_a = new Date(data[i].nor_plan_imp);
 	                    	var tgl_awal = (parseInt(tgl_a.getMonth(), 10)+1)+"/"+('0'+tgl_a.getDate()).slice(-2)+"/"+tgl_a.getFullYear();
-	                    	const tgl_b = new Date(data[i].date_plan);
+	                    	const tgl_b = new Date(data[i].nor_plan_imp);
 	                    	var tgl_awal2 = month[tgl_a.getMonth()]+", "+('0'+tgl_a.getDate()).slice(-2)+" "+tgl_a.getFullYear();
+
+	                    	const tgl_c = new Date(data[i].nor_act_imp);
+	                    	var tgl_awal3 = (parseInt(tgl_c.getMonth(), 10)+1)+"/"+('0'+tgl_c.getDate()).slice(-2)+"/"+tgl_c.getFullYear();
+	                    	const tgl_d = new Date(data[i].nor_act_imp);
+	                    	var tgl_awal4 = month[tgl_d.getMonth()]+", "+('0'+tgl_d.getDate()).slice(-2)+" "+tgl_d.getFullYear();
 
 	                    	var ag = {
 	                    		tanggal_a:tgl_a,
-	                    		tanggal_b:tgl_b
+	                    		tanggal_b:tgl_b,
+	                    		tanggal_c:tgl_c,
+	                    		tanggal_d:tgl_d
+
 	                        			// level:data[i].level
 	                        		}
 	                        // memasukkan data agenda kedalam array yang nantinya akan diolah untuk coloring calendar
@@ -121,8 +129,9 @@
 		                            '<td style="text-align: left;">'+data[i].item_changes+'</td>'+
 		                            '<td>'+data[i].line+'</td>'+
 		                            '<td>'+tgl_awal2+'</td>'+
+		                            '<td>'+tgl_awal3+'</td>'+
 		                            '<td>'+
-		                            '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit" data-id="'+data[i].id+'" data-nor="'+data[i].nor+'" data-no="'+data[i].no+'" data-item_changes="'+data[i].item_changes+'" data-line="'+data[i].line+'" data-date_plan="'+tgl_awal+'">Edit</a>   '+
+		                            '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit" data-id="'+data[i].id+'" data-nor="'+data[i].nor+'" data-no="'+data[i].no+'" data-item_changes="'+data[i].item_changes+'" data-line="'+data[i].line+'" data-nor_plan_imp="'+tgl_awal+'" data-nor_act_imp="'+tgl_awal3+'">Edit</a>   '+
 
 
 		                            '<a href="javascript:void(0);" class="btn btn-danger btn-sm item_delete" data-id="'+data[i].id+'" data-nor="'+data[i].nor+'" data-no="'+data[i].no+'">Hapus</a>'+
@@ -292,14 +301,14 @@
 	        				for(i=0; i<data.length; i++){ 
 	        					a=i+1;   
 	                    	// mengkonversi tanggal yang akan ditampilkan
-	                    	const tgl_a = new Date(data[i].date_plan);
+	                    	const tgl_a = new Date(data[i].ak_plan_imp);
 	                    	var tgl_awal = month[tgl_a.getMonth()]+", "+('0'+tgl_a.getDate()).slice(-2)+" "+tgl_a.getFullYear();
-	                    	const tgl_b = new Date(data[i].date_actual);
+	                    	const tgl_b = new Date(data[i].ak_act_imp);
 	                    	var tgl_awal2 = month[tgl_b.getMonth()]+", "+('0'+tgl_b.getDate()).slice(-2)+" "+tgl_b.getFullYear();
 
-	                    	const tgl_c = new Date(data[i].date_plan);
+	                    	const tgl_c = new Date(data[i].ak_plan_imp);
 	                    	var tgl_awal3 = (parseInt(tgl_c.getMonth(), 10)+1)+"/"+('0'+tgl_c.getDate()).slice(-2)+"/"+tgl_c.getFullYear();
-	                    	const tgl_d = new Date(data[i].date_actual);
+	                    	const tgl_d = new Date(data[i].ak_act_imp);
 	                    	var tgl_awal4 = (parseInt(tgl_d.getMonth(), 10)+1)+"/"+('0'+tgl_d.getDate()).slice(-2)+"/"+tgl_d.getFullYear();
 
 	                    	var ag = {
@@ -322,7 +331,7 @@
 		                            '<td>'+tgl_awal+'</td>'+
 		                            '<td>'+tgl_awal2+'</td>'+
 		                            '<td>'+
-		                            '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit2" data-id="'+data[i].id+'" data-nor="'+data[i].nor+'" data-no="'+data[i].no+'" data-act="'+data[i].nama_act+'" data-dvs="'+data[i].nama_dvs+'" data-date_plan="'+tgl_awal3+'" data-date_actual="'+tgl_awal4+'">Edit</a>   '+
+		                            '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit2" data-id="'+data[i].id+'" data-nor="'+data[i].nor+'" data-no="'+data[i].no+'" data-act="'+data[i].nama_act+'" data-dvs="'+data[i].nama_dvs+'" data-ak_plan_imp="'+tgl_awal3+'" data-ak_act_imp="'+tgl_awal4+'">Edit</a>   '+
 
 
 		                            '<a href="javascript:void(0);" class="btn btn-danger btn-sm item_delete2" data-id="'+data[i].id+'" data-nor="'+data[i].nor+'" data-no="'+data[i].no+'" data-act="'+data[i].nama_act+'">Hapus</a>'+
@@ -355,7 +364,8 @@
         		var no 					= $('#no').val();
         		var line 				= $('#line').val();
         		var item_changes 		= $('#item_changes').val();
-        		var date_plan 			= $('#date_plan').val();
+        		var nor_plan_imp 		= $('#nor_plan_imp').val();
+        		var nor_act_imp 			= $('#nor_act_imp').val();
 
         		$.ajax({
         			type : "POST",
@@ -366,7 +376,8 @@
         				no:no,
         				line:line,
         				item_changes:item_changes,
-        				date_plan:date_plan
+        				nor_plan_imp:nor_plan_imp,
+        				nor_act_imp:nor_act_imp
         			},
 
         			success: function(){ 
@@ -390,7 +401,8 @@
             	var upno 			= $(this).data('no');
             	var upitem_changes	= $(this).data('item_changes'); 
             	var upline 			= $(this).data('line'); 
-            	var update_plan 	= $(this).data('date_plan'); 
+            	var upnor_plan_imp 	= $(this).data('nor_plan_imp'); 
+            	var upnor_act_imp 	= $(this).data('nor_act_imp'); 
 
                 // memasukkan data ke form updatean
                 $('[name="u_id"]').val(upid);
@@ -398,7 +410,9 @@
                 $('[name="u_no"]').val(upno);
                 $('[name="u_item_changes"]').val(upitem_changes);
                 $('[name="u_line"]').val(upline);
-                $('[name="u_date_plan"]').val(update_plan);
+                $('[name="u_nor_plan_imp"]').val(upnor_plan_imp);
+                $('[name="u_nor_act_imp"]').val(upnor_act_imp);
+
 
                 $('#Modal_Update').modal('show');
                 
@@ -413,7 +427,8 @@
         		var up_no 			= $('#u_no').val();
         		var up_line 			= $('#u_line').val();
         		var up_item_changes 	= $('#u_item_changes').val();
-        		var up_date_plan 	= $('#u_date_plan').val();
+        		var up_nor_plan_imp 	= $('#u_nor_plan_imp').val();
+        		var up_nor_act_imp 	= $('#u_nor_act_imp').val();
 
         		// alert(up_date_plan);
 
@@ -428,7 +443,8 @@
         				u_no:up_no,
         				u_item_changes:up_item_changes,
         				u_line:up_line,
-        				u_date_plan:up_date_plan
+        				u_nor_plan_imp:up_nor_plan_imp,
+        				u_nor_act_imp:up_nor_act_imp
         			},
 
         			success: function(data){
@@ -487,8 +503,8 @@
         		var no 					= $('#slct_no').val();
         		var nama_dvs 			= $('#nama_dvs').val();
         		var nama_act 			= $('#nama_act').val();
-        		var date_plan 			= $('#date_plan').val();
-        		var date_actual 		= $('#date_actual').val();
+        		var ak_plan_imp 			= $('#ak_plan_imp').val();
+        		var ak_act_imp 		= $('#ak_act_imp').val();
 
         		$.ajax({
         			type : "POST",
@@ -525,8 +541,8 @@
             	var upno 			= $(this).data('no');
             	var updvs			= $(this).data('dvs'); 
             	var upact 			= $(this).data('act'); 
-            	var update_plan 	= $(this).data('date_plan'); 
-            	var update_actual 	= $(this).data('date_actual'); 
+            	var upak_plan_imp 	= $(this).data('ak_plan_imp'); 
+            	var upak_act_imp 	= $(this).data('ak_act_imp'); 
 
                 // memasukkan data ke form updatean
                 $('[name="u_id_act"]').val(upid);
@@ -534,8 +550,8 @@
                 $('[name="no_act_up"]').val(upno);
                 $('[name="nama_act_up"]').val(upact);
                 $('[name="nama_dvs_up"]').val(updvs);
-                $('[name="date_plan_act_up"]').val(update_plan);
-                $('[name="date_actual_up"]').val(update_actual);
+                $('[name="ak_plan_imp_up"]').val(upak_plan_imp);
+                $('[name="ak_act_imp_up"]').val(upak_act_imp);
 
                 $('#Modal_Update2').modal('show');
                 
@@ -550,8 +566,8 @@
         		var up_no 			= $('#slct_no_up').val();
         		var up_dvs 			= $('#nama_dvs_up').val();
         		var up_act 			= $('#nama_act_up').val();
-        		var up_date_plan 	= $('#date_plan_act_up').val();
-        		var up_date_actual 	= $('#date_actual_up').val();
+        		var up_ak_plan_imp 	= $('#ak_plan_imp_up').val();
+        		var up_ak_act_imp 	= $('#ak_act_imp_up').val();
 
         		// alert(up_date_plan);
 
@@ -566,8 +582,8 @@
         				no_act_up:up_no,
         				nama_dvs_up:up_dvs,
         				nama_act_up:up_act,
-        				date_plan_act_up:up_date_plan,
-        				date_actual_act_up:up_date_actual
+        				ak_plan_imp_up:up_ak_plan_imp,
+        				ak_act_imp_up:up_ak_act_imp
         			},
 
         			success: function(data){

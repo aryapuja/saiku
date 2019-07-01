@@ -128,14 +128,21 @@
 	        				for(i=0; i<dataList.length; i++){ 
 	        					a=i+1;   
 	                    	// mengkonversi tanggal yang akan ditampilkan
-	                    	const tgl_a = new Date(dataList[i].date_plan);
+	                    	const tgl_a = new Date(dataList[i].nor_plan_imp);
 	                    	var tgl_awal = (parseInt(tgl_a.getMonth(), 10)+1)+"/"+('0'+tgl_a.getDate()).slice(-2)+"/"+tgl_a.getFullYear();
-	                    	const tgl_b = new Date(dataList[i].date_plan);
+	                    	const tgl_b = new Date(dataList[i].nor_plan_imp);
 	                    	var tgl_awal2 = month[tgl_a.getMonth()]+", "+('0'+tgl_a.getDate()).slice(-2)+" "+tgl_a.getFullYear();
+
+	                    	const tgl_c = new Date(dataList[i].nor_act_imp);
+	                    	var tgl_awal3 = (parseInt(tgl_c.getMonth(), 10)+1)+"/"+('0'+tgl_c.getDate()).slice(-2)+"/"+tgl_c.getFullYear();
+	                    	const tgl_d = new Date(dataList[i].nor_act_imp);
+	                    	var tgl_awal4 = month[tgl_d.getMonth()]+", "+('0'+tgl_d.getDate()).slice(-2)+" "+tgl_d.getFullYear();
 
 	                    	var ag = {
 	                    		tanggal_a:tgl_a,
-	                    		tanggal_b:tgl_b
+	                    		tanggal_b:tgl_b,
+	                    		tanggal_c:tgl_c,
+	                    		tanggal_d:tgl_d
 	                        			// level:dataList[i].level
 	                        		}
 	                        // memasukkan dataList agenda kedalam array yang nantinya akan diolah untuk coloring calendar
@@ -225,7 +232,7 @@
 			            		}
 			            		// penentuan warna warna
 			            		if (asign==null) {
-			            			html+='<td style="border: 1px solid #dddddd;" onclick="alert('+date+')">'; 
+			            			html+='<td style="border: 1px solid #dddddd;" onclick="alert('+date+currentMonth+currentYear+')">'; 
 			            			if (date==today.getDate() && today.getMonth()==currentMonth) {
 			            				html+='<div style="background: url(<?php echo base_url() ?>assets/image/bg_datenow.png); background-repeat: no-repeat; background-position: center;  font-weight: 900; text-align: center; color: #FFF;">'+date+'</div>';
 			            			}else{
@@ -317,21 +324,19 @@
 	        				for(i=0; i<data.length; i++){ 
 	        					a=i+1;   
 	                    	// mengkonversi tanggal yang akan ditampilkan
-	                    	const tgl_a = new Date(data[i].date_plan);
+	                    	const tgl_a = new Date(data[i].ak_plan_imp);
 	                    	var tgl_awal = month[tgl_a.getMonth()]+", "+('0'+tgl_a.getDate()).slice(-2)+" "+tgl_a.getFullYear();
-	                    	const tgl_b = new Date(data[i].date_actual);
+	                    	const tgl_b = new Date(data[i].ak_act_imp);
 	                    	var tgl_awal2 = month[tgl_b.getMonth()]+", "+('0'+tgl_b.getDate()).slice(-2)+" "+tgl_b.getFullYear();
 
-	                    	const tgl_c = new Date(data[i].date_plan);
-	                    	var tgl_awal3 = (parseInt(tgl_a.getMonth(), 10)+1)+"/"+('0'+tgl_a.getDate()).slice(-2)+"/"+tgl_a.getFullYear();
-	                    	const tgl_d = new Date(data[i].date_actual);
-	                    	var tgl_awal4 = (parseInt(tgl_a.getMonth(), 10)+1)+"/"+('0'+tgl_a.getDate()).slice(-2)+"/"+tgl_a.getFullYear();
+	                    
+	                    	const tgl_e = new Date(data[i].nor_plan_imp);
+	                    	var tgl_awal5 = month[tgl_e.getMonth()]+", "+('0'+tgl_e.getDate()).slice(-2)+" "+tgl_e.getFullYear();
 
 	                    	var ag = {
 	                    		tanggal_a:tgl_a,
 	                    		tanggal_b:tgl_b,
-	                    		tanggal_c:tgl_c,
-	                    		tanggal_d:tgl_d,
+	                    		tanggal_e:tgl_e,
 
 	                        			// level:data[i].level
 	                        		}
@@ -342,8 +347,9 @@
 	                        html +=	
 	                        '<td hidden>'+data[i].id+'</td>'+
 	                        '<td >'+data[i].nor+'-'+data[i].no+'</td>'+
+		                            '<td>'+tgl_awal5+'</td>'+
 		                            '<td>'+data[i].nama_dvs+'</td>'+
-		                            '<td>'+data[i].nama_act+'</td>'+
+		                            '<td style="text-align: left;">'+data[i].nama_act+'</td>'+
 		                            '<td>'+tgl_awal+'</td>'+
 		                            '<td>'+tgl_awal2+'</td>'+
 		                            // '<td>'+

@@ -25,7 +25,7 @@
     <body class="admin-body" onload=display_ct()>
 
         <!-- navigasi bar -->
-        <nav class=" navbar navbar-expand-md navbar-dark bg-uno box-shadowf"role="" style="background:#EEE8AA">
+        <nav class=" navbar navbar-expand-md navbar-dark bg-uno box-shadowf" role="" style="background:#EEE8AA">
             <div class="container-fluid">
                 <div class="navbar-header" style="color: #ffffff" href="#"> 
                     <img class ="navbar-brand" src="<?=base_url()?>assets/logoaja.png" width="75px" >

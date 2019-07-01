@@ -31,7 +31,7 @@
 						'id_user' => $value->id_user,
 						'username' => $value->username,
 						'password' => $value->password,
-						'level' => $value->level,
+						'section' => $value->section,
 						'status' => TRUE
 					);
 					$this->session->set_userdata($userdata);

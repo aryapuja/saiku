@@ -35,8 +35,12 @@
 						'status' => TRUE
 					);
 					$this->session->set_userdata($userdata);
-					// $this->session->set_flashdata('user_loggedin', 'You are now logged in');
-					redirect('dc_controller','refresh');
+
+					if($value->section=='ppc'){
+						redirect('dc_controller','refresh');
+					}else{
+						redirect('section','refresh');
+					}
 
 				} else {
 					echo "<script>alert('Informasi Akun yang Anda Masukkan Salah') </script>";

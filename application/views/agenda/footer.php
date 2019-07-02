@@ -210,7 +210,7 @@
 			            		}
 			            		// penentuan warna warna
 			            		if (asign==null) {
-			            			html+='<td style="border: 1px solid #dddddd;">'; 
+			            			html+='<td style="border: 1px solid #dddddd;"  onclick="openDetailModal('+date+','+currentMonth+','+currentYear+')">'; 
 			            			if (date==today.getDate() && today.getMonth()==currentMonth) {
 			            				html+='<div style="background: url(<?php echo base_url() ?>assets/image/bg_datenow.png); background-repeat: no-repeat; background-position: center;  font-weight: 900; text-align: center; color: #FFF;">'+date+'</div>';
 			            			}else{
@@ -218,7 +218,7 @@
 			            			}
 			            			html+='</td>'; 
 			            		}else if(asign==1){ 
-			            			html+='<td bgcolor="#1ab2ff">'; //1 NOR
+			            			html+='<td bgcolor="#1ab2ff" onclick="openDetailModal('+date+','+currentMonth+','+currentYear+')">'; //1 NOR
 			            			if (date==today.getDate() && today.getMonth()==currentMonth) {
 			            				html+='<div style="background: url(<?php echo base_url() ?>assets/image/bg_datenow.png); background-repeat: no-repeat; background-position: center;  font-weight: 900; text-align: center; color: #FFF;">'+date+'</div>';
 			            			}else{ 
@@ -226,7 +226,7 @@
 			            			}
 			            			html+='</td>';
 			            		}else if(asign==2){
-			            			html+='<td bgcolor="#FFF8CD">'; //2 NOR
+			            			html+='<td bgcolor="#FFF8CD" onclick="openDetailModal('+date+','+currentMonth+','+currentYear+')">'; //2 NOR
 			            			if (date==today.getDate() && today.getMonth()==currentMonth) {
 			            				html+='<div style="background: url(<?php echo base_url() ?>assets/image/bg_datenow.png); background-repeat: no-repeat; background-position: center;  font-weight: 900; text-align: center; color: #FFF;">'+date+'</div>';
 			            			}else{
@@ -234,7 +234,7 @@
 			            			}
 			            			html+='</td>';
 			            		}else if(asign==3){
-			            			html+='<td bgcolor="#ffff1a">'; //3 NOR
+			            			html+='<td bgcolor="#ffff1a"onclick="openDetailModal('+date+','+currentMonth+','+currentYear+')">'; //3 NOR
 			            			if (date==today.getDate() && today.getMonth()==currentMonth) {
 			            				html+='<div style="background: url(<?php echo base_url() ?>assets/image/bg_datenow.png); background-repeat: no-repeat; background-position: center;  font-weight: 900; text-align: center; color: #FFF;">'+date+'</div>';
 			            			}else{
@@ -242,7 +242,7 @@
 			            			}
 			            			html+='</td>';
 			            		}else if(asign==4){
-			            			html+='<td bgcolor="#ffc54a">'; //4 NOR
+			            			html+='<td bgcolor="#ffc54a" onclick="openDetailModal('+date+','+currentMonth+','+currentYear+')">'; //4 NOR
 			            			if (date==today.getDate() && today.getMonth()==currentMonth) {
 			            				html+='<div style="background: url(<?php echo base_url() ?>assets/image/bg_datenow.png); background-repeat: no-repeat; background-position: center;  font-weight: 900; text-align: center; color: #FFF;">'+date+'</div>';
 			            			}else{
@@ -250,7 +250,7 @@
 			            			}
 			            			html+='</td>';
 			            		}else if(asign==5){
-			            			html+='<td bgcolor="#ff7b24">'; //>=5 NOR
+			            			html+='<td bgcolor="#ff7b24" onclick="openDetailModal('+date+','+currentMonth+','+currentYear+')">'; //>=5 NOR
 			            			if (date==today.getDate() && today.getMonth()==currentMonth) {
 			            				html+='<div style="background: url(<?php echo base_url() ?>assets/image/bg_datenow.png); background-repeat: no-repeat; background-position: center;  font-weight: 900; text-align: center; color: #FFF;">'+date+'</div>';
 			            			}else{
@@ -668,7 +668,23 @@
 
     });
 
-	
+	function openDetailModal(date,month,year) {
+        	$.ajax({
+        		url : "<?php echo site_url('Dc_controller/getModalDetail') ?>",
+        		type : "POST",
+        		data : {
+        			'date' : date,
+        			'month' : month,
+        			'year' : year,
+        		},
+        		success : function(data){
+        			$('#Modal_Detail2').find('.modal-content').html(data)
+        			$('#Modal_Detail2').modal('show');
+
+        		}
+        	})
+        }
+
 </script>
 
 </body>

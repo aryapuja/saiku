@@ -45,7 +45,8 @@
 			display_c();
 		}
 
-		$(document).ready(function(){
+		$(document).ready(function(data){
+			var section=data.section;
 
 			// fungsi date picker tanggal mulai
 			var datepickerss= $("#datepickerss");
@@ -66,29 +67,29 @@
 	        let currentYear = today.getFullYear();
 
 			//call function show all agenda berdasarkan bulan dan tahun 
-			showAgendaandCalendar(currentDate,currentMonth,currentYear);
-            showAct(currentDate,currentMonth,currentYear); 
+			showAgendaandCalendar(currentMonth,currentYear,section);
+            // showAct(currentDate,currentMonth,currentYear); 
 
 			// event click previous and next button month
-			// document.getElementById("previous").addEventListener("click",previous);
-			// document.getElementById("next").addEventListener("click",next);
+			document.getElementById("previous").addEventListener("click",previous);
+			document.getElementById("next").addEventListener("click",next);
 
 			// fungsi next month
 			function next() {
 				currentYear = (currentMonth === 11) ? currentYear + 1 : currentYear;
 				currentMonth = (currentMonth + 1) % 12;
-				showAgendaandCalendar(currentDate,currentMonth, currentYear);
+				showAgendaandCalendar(currentMonth, currentYear, section);
 			}
 
 			// fungsi previous month
 			function previous() {
 				currentYear = (currentMonth === 0) ? currentYear - 1 : currentYear;
 				currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1;
-				showAgendaandCalendar(currentDate, currentMonth, currentYear);
+				showAgendaandCalendar(currentMonth, currentYear, section);
 			}
 
 	        //function show NOR berdasarkan bulan dan tahun
-	        function showAgendaandCalendar(day,month,year){
+	        function showAgendaandCalendar(month,year,section){
 	        	var agenda=null;
 	        	var mm =(month+1);
 	        	// var dd =
@@ -97,18 +98,19 @@
 	        	$.ajax({
 	        		async: false,
 	        		type : "POST",
-	        		url   : '<?php echo base_url();?>index.php/user/getDcSchedUser',
+	        		url   : '<?php echo base_url();?>index.php/section/getSectionSched',
 	        		dataType : 'json',
 	        		data : { 
-	        			date_p:day,
 	        			month_p:mm,
-	        			year_p:year},
+	        			year_p:year,
+	        			section:section
+	        		},
 
 	        			success : function(data){
-	        				var dataList = data.sch;
-	        				lineku = data.cline;
-	        				cline2 = data.cline2;
-	        				 // alert(lineku2);
+	        				var dataList = data.act;
+	        				actt = data.cact;
+	        				// cline2 = data.cline2;
+	        				// alert(actt);
 	        				var agend=[];
 	        				var html='';
 	        				var month = new Array();
@@ -128,40 +130,42 @@
 	        				for(i=0; i<dataList.length; i++){ 
 	        					a=i+1;   
 	                    	// mengkonversi tanggal yang akan ditampilkan
-	                    	const tgl_a = new Date(dataList[i].nor_plan_imp);
+	                    	const tgl_a = new Date(dataList[i].ak_act_imp);
 	                    	var tgl_awal = (parseInt(tgl_a.getMonth(), 10)+1)+"/"+('0'+tgl_a.getDate()).slice(-2)+"/"+tgl_a.getFullYear();
-	                    	const tgl_b = new Date(dataList[i].nor_plan_imp);
-	                    	var tgl_awal2 = month[tgl_a.getMonth()]+", "+('0'+tgl_a.getDate()).slice(-2)+" "+tgl_a.getFullYear();
+	                    	
+	                    	const tgl_b = new Date(dataList[i].ak_plan_imp);
+	                    	var tgl_awal2 = month[tgl_b.getMonth()]+", "+('0'+tgl_b.getDate()).slice(-2)+" "+tgl_b.getFullYear();
 
-	                    	const tgl_c = new Date(dataList[i].nor_act_imp);
-	                    	var tgl_awal3 = (parseInt(tgl_c.getMonth(), 10)+1)+"/"+('0'+tgl_c.getDate()).slice(-2)+"/"+tgl_c.getFullYear();
-	                    	const tgl_d = new Date(dataList[i].nor_act_imp);
-	                    	var tgl_awal4 = month[tgl_d.getMonth()]+", "+('0'+tgl_d.getDate()).slice(-2)+" "+tgl_d.getFullYear();
+	                    	const tgl_c = new Date(dataList[i].ak_act_imp);
+	                    	var tgl_awal3 = month[tgl_c.getMonth()]+", "+('0'+tgl_c.getDate()).slice(-2)+" "+tgl_c.getFullYear();
+
+	                    	const tgl_d = new Date(dataList[i].ak_plan_imp);
+	                    	var tgl_awal4 = (parseInt(tgl_d.getMonth(), 10)+1)+"/"+('0'+tgl_d.getDate()).slice(-2)+"/"+tgl_d.getFullYear();
 
 	                    	var ag = {
 	                    		tanggal_a:tgl_a,
 	                    		tanggal_b:tgl_b,
 	                    		tanggal_c:tgl_c,
 	                    		tanggal_d:tgl_d
-	                        			// level:dataList[i].level
 	                        		}
 	                        // memasukkan dataList agenda kedalam array yang nantinya akan diolah untuk coloring calendar
 	                        agend.push(ag);
 
 	                        html += '<tr>';
 	                        html +=	
-	                        '<td hidden>'+dataList[i].id+'</td>'+
+	                        '<td hidden>'+dataList[i].idact+'</td>'+
 	                        '<td >'+dataList[i].nor+'-'+dataList[i].no+'</td>'+
 		                            // '<td>'+dataList[i].rev+'</td>'+
-		                            '<td style="text-align: left;">'+dataList[i].item_changes+'</td>'+
+		                            '<td style="text-align: left;">'+dataList[i].nama_act+'</td>'+
 		                            '<td>'+dataList[i].line+'</td>'+
 		                            '<td>'+tgl_awal2+'</td>'+
-		                            // '<td>'+
-		                            // '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit" dataList-id="'+dataList[i].id+'" dataList-nor="'+dataList[i].nor+'" dataList-no="'+dataList[i].no+'" dataList-item_changes="'+dataList[i].item_changes+'" dataList-line="'+dataList[i].line+'" dataList-date_plan="'+tgl_awal+'">Edit</a>   '+
+		                            '<td>'+tgl_awal3+'</td>'+
+		                            '<td>'+
+		                            '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit" data-id="'+dataList[i].idact+'" data-nor="'+dataList[i].nor+'" data-no="'+dataList[i].no+'" data-nama_act="'+dataList[i].nama_act+'" data-line="'+dataList[i].line+'" data-ak_plan_imp="'+tgl_awal4+'" data-ak_act_imp="'+tgl_awal+'">Update</a>   '+
 
 
 		                            // '<a href="javascript:void(0);" class="btn btn-danger btn-sm item_delete" dataList-id="'+dataList[i].id+'" dataList-nor="'+dataList[i].nor+'" dataList-no="'+dataList[i].no+'">Hapus</a>'+
-		                            // '</td>'+
+		                            '</td>'+
 		                            '</tr>';
 		                        } 
 	                    // memasukkan dataList agenda lokal ke variabel agenda global
@@ -217,15 +221,27 @@
 			            		for (var ia = (agenda.length-1); ia >=0 ; ia--) {
 			            			for (var ib = 0; ib < agenda.length; ib++) {
 
-			            				for (var iz = 0; iz < cline2.length; iz++) {
-			            					if (cline2[iz].tgl == date) {
-			            						asign=cline2[iz].jml;
+			            				for (var iz = 0; iz < actt.length; iz++) {
+			            					if (actt[iz].tgl == date) {
+			            						asign=actt[iz].jml;
 			            					}
 			            				}
 
-			            				if (new Date(currentYear,currentMonth,date) >= agenda[ia].tanggal_a && new Date(currentYear,currentMonth,date)<=agenda[ia].tanggal_a) { 
+			            				if (new Date(currentYear,currentMonth,date) >= agenda[ia].tanggal_d && new Date(currentYear,currentMonth,date)<=agenda[ia].tanggal_d) { 
 			            					
 			            					// pemberian warna jika level bupati
+			            					// if (asign==null) {
+			            					// 	asign=1;
+			            					// }else if (asign==1) { 
+			            					// 	asign=2; 
+			            					// }else if (asign==2) { 
+			            					// 	asign=3; 
+			            					// }else if (asign==3) { 
+			            					// 	asign=4; 
+			            					// }else{ 
+			            					// 	asign=5;
+			            					// }
+			            					// break;
 			            					
 			            				} 
 			            			} 
@@ -289,90 +305,80 @@
    				$('#calendarbody').html(html);  
    			}
 
+
    			//function show Activity berdasarkan bulan dan tahun
-	        function showAct(day,month,year){
-	        	var agenda=null;
-	        	var mm =(month+1);
-
-	        	$.ajax({
-	        		async: false,
-	        		type : "POST",
-	        		url   : '<?php echo base_url();?>index.php/user/getDcActUser',
-	        		dataType : 'json',
-	        		data : { 
-	        			date_p:day,
-	        			month_p:mm,
-	        			year_p:year},
-
-	        			success : function(data){ 
-	        				var agend=[];
-	        				var html='';
-	        				var month = new Array();
-							month[0] = "January";
-							month[1] = "February";
-							month[2] = "March";
-							month[3] = "April";
-							month[4] = "May";
-							month[5] = "June";
-							month[6] = "July";
-							month[7] = "August";
-							month[8] = "September";
-							month[9] = "October";
-							month[10] = "November";
-							month[11] = "December";
-
-	        				for(i=0; i<data.length; i++){ 
-	        					a=i+1;   
-	                    	// mengkonversi tanggal yang akan ditampilkan
-	                    	const tgl_a = new Date(data[i].ak_plan_imp);
-	                    	var tgl_awal = month[tgl_a.getMonth()]+", "+('0'+tgl_a.getDate()).slice(-2)+" "+tgl_a.getFullYear();
-	                    	const tgl_b = new Date(data[i].ak_act_imp);
-	                    	var tgl_awal2 = month[tgl_b.getMonth()]+", "+('0'+tgl_b.getDate()).slice(-2)+" "+tgl_b.getFullYear();
-
-	                    
-	                    	const tgl_e = new Date(data[i].nor_plan_imp);
-	                    	var tgl_awal5 = month[tgl_e.getMonth()]+", "+('0'+tgl_e.getDate()).slice(-2)+" "+tgl_e.getFullYear();
-
-	                    	var ag = {
-	                    		tanggal_a:tgl_a,
-	                    		tanggal_b:tgl_b,
-	                    		tanggal_e:tgl_e,
-
-	                        			// level:data[i].level
-	                        		}
-	                        // memasukkan data agenda kedalam array yang nantinya akan diolah untuk coloring calendar
-	                        agend.push(ag);
-
-	                        html += '<tr>';
-	                        html +=	
-	                        '<td hidden>'+data[i].id+'</td>'+
-	                        '<td >'+data[i].nor+'-'+data[i].no+'</td>'+
-		                            '<td>'+tgl_awal5+'</td>'+
-		                            '<td>'+data[i].nama_dvs+'</td>'+
-		                            '<td style="text-align: left;">'+data[i].nama_act+'</td>'+
-		                            '<td>'+tgl_awal+'</td>'+
-		                            '<td>'+tgl_awal2+'</td>'+
-		                            '</tr>';
-		                        } 
-	                    // memasukkan data agenda lokal ke variabel agenda global
-	                    agenda=agend;
-
-	                    $("#agendaall2").DataTable().destroy();
-	                    $('#agendaall2').find('tbody').empty();
-	                    // memasukkan hatml activity ke id tblagendakegiatan & set datatables
-	                    $('#tbl_agendaactivity').html(html);
-	                    $("#agendaall2").DataTable({
-	                    	destroy:true,
-	                    	"order": [[ 1, "asc" ]],
-	                    	"lengthMenu": [[-1], ['all']]
-	                    }); 
-	                }
-	            });
-   			}
 
 //   ===============================  NOR ==========================================
+//  ===================  START UPDATE Record ===============================================
+            //get data for UPDATE record show prompt
+            $('#agendaall').on('click','.item_edit',function(){
+            	// memasukkan data yang dipilih dari tbl list agenda updatean ke variabel 
+            	var upid 			= $(this).data('id');
+            	var upnor 			= $(this).data('nor'); 
+            	var upno 			= $(this).data('no');
+            	var upactivity		= $(this).data('nama_act'); 
+            	var upline 			= $(this).data('line'); 
+            	var upak_plan_imp 	= $(this).data('ak_plan_imp'); 
+            	var upak_act_imp 	= $(this).data('ak_act_imp'); 
 
+                // memasukkan data ke form updatean
+                $('[name="u_id"]').val(upid);
+                $('[name="u_nor"]').val(upnor);
+                $('[name="u_no"]').val(upno);
+                $('[name="u_nama_act"]').val(upactivity);
+                $('[name="u_line"]').val(upline);
+                $('[name="u_ak_plan_imp"]').val(upak_plan_imp);
+                $('[name="u_ak_act_imp"]').val(upak_act_imp);
+
+                $('#Modal_Update').modal('show');
+
+            });
+            
+            //UPDATE record to database (submit button)
+            $('#update_activity').submit(function(e){
+            	e.preventDefault(); 
+        		// memasukkan data dari form update ke variabel untuk update db
+        		var up_id 			= $('#u_id').val();
+        		var up_nor 			= $('#u_nor').val();
+        		var up_no 			= $('#u_no').val();
+        		var up_line 		= $('#u_line').val();
+        		var up_nama_act 	= $('#u_nama_act').val();
+        		var up_ak_plan_imp 	= $('#u_ak_plan_imp').val();
+        		var up_ak_act_imp 	= $('#u_ak_act_imp').val();
+
+        		// alert(up_date_plan);
+
+				// alert("id:"+up_id+"|nor:"+up_nor+"|no:"+up_no+"|lin:"+up_line+"|item:"+up_item_changes+"|date:"+up_date_plan);        		
+        		$.ajax({
+        			type : "POST",
+        			url  : "<?php echo site_url(); ?>/section/updateSection",
+        			dataType : "JSON",
+        			data : { 
+        				u_id:up_id,
+        				u_ak_act_imp:up_ak_act_imp
+        			},
+
+        			success: function(data){
+        				$('#Modal_Update').modal('hide'); 
+        				refresh();
+        			}
+        		});
+        		return false;
+        	});
+//   ========================  END UPDATE RECORD ====================================
+
+function refresh() {
+
+ 			$("#agendaall").DataTable().destroy();
+ 			$("#agendaall").find('tbody').empty();
+
+ 			document.getElementById('update_activity').reset();
+
+            showAgendaandCalendar(currentMonth,currentYear,section);
+        }
     });
+
+
 
 function openDetailModal(date,month,year) {
         	$.ajax({

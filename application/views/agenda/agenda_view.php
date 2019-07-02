@@ -289,6 +289,15 @@
 	</form>
 	<!--END MODAL NOR Delete -->
 
+	<div class="modal fade" id="Modal_Detail2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"  aria-hidden="true">
+		<div class="modal-dialog" role="document" style="max-width: 70%">
+<div class="modal-content">
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
 	<!--========================================================== ACTIVITY ========================================================== -->
 	
 	<!--MODAL Activity Create -->

@@ -191,4 +191,38 @@ class Dc_Model extends CI_Model {
 
     /*============================ ACTIVITY ============================*/
 
+
+    /*============================ section ============================*/
+    public function get_activity_section($month,$years,$section)
+    {
+        $query = $this->db->query("SELECT *,a.id as idact FROM activity as a inner join nor as n on n.nor=a.nor and n.no=a.no WHERE month(ak_plan_imp)=".$month." AND year(ak_plan_imp)=".$years." AND nama_dvs='".$section."' order by ak_plan_imp ASC");
+        return $query->result();
+    }
+
+    public function get_act_line_month($month,$years,$section)
+    {
+        $this->db->select('day(ak_plan_imp) as tgl, count(id) as jml');
+        $this->db->from('activity');
+        $this->db->where('month(ak_plan_imp)',$month);
+        $this->db->where('year(ak_plan_imp)',$years);
+        $this->db->where('nama_dvs',$section);
+        $this->db->group_by('day(ak_plan_imp)');
+        $query = $this->db->get();
+    
+        return $query->result();
+    }
+
+    public function updateSection($id,$ak_act_imp)
+    {
+            $data = array(
+                'ak_act_imp'                  =>$ak_act_imp,
+                
+            );
+
+
+        $this->db->where('id', $id);
+        $result=$this->db->update('activity', $data);
+        return $result;
+    }
+
 }

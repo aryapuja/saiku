@@ -34,7 +34,7 @@
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
 				<form class="login100-form validate-form" action="<?php echo base_url().'index.php/login'?>" method='post'>
 					<span class="login100-form-title p-b-33">
-						<img class ="navbar-brand" src="<?=base_url()?>assets/logoaja.png" width="100px" >
+						<img class ="navbar-brand" src="<?=base_url()?>assets/logoaja.png" width="140px" >
 					</span>
 					<span class="login100-form-title p-b-33">
 						Admin Login

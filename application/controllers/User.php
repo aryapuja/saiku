@@ -43,6 +43,22 @@ class User extends CI_Controller {
         echo json_encode( $this->dc_model->get_activity_sched_user($day,$month,$year));
 	}
 
+	public function getModalDetail()
+	{
+		$date = $this->input->post('date');
+		$month = (int) $this->input->post('month')+1;
+		$year = $this->input->post('year');
+
+		$data['tgl'] = [
+			'date' => $date,
+			'month' => $month,
+			'year' => $year,
+		];
+ 		$data['sch'] = $this->dc_model->get_dc_sched_user($date,$month,$year);
+ 		$data['act'] = $this->dc_model->get_activity_sched_user($date,$month,$year);
+ 		
+		$this->load->view('home/modal_detail',$data);
+	}
 }
 
 /* End of file User.php */

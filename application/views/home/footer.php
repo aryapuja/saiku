@@ -364,6 +364,13 @@
 	                    	const tgl_e = new Date(data[i].nor_plan_imp);
 	                    	var tgl_awal5 = month[tgl_e.getMonth()]+", "+('0'+tgl_e.getDate()).slice(-2)+" "+tgl_e.getFullYear();
 
+	                    	tanggal="";
+	                    	if (data[i].ak_act_imp == null) {
+	                    		tanggal="belum terimplementasi";
+	                    	}else{
+		                    	tanggal =  month[tgl_b.getMonth()]+", "+('0'+tgl_b.getDate()).slice(-2)+" "+tgl_b.getFullYear();
+	                    	}
+
 	                    	var ag = {
 	                    		tanggal_a:tgl_a,
 	                    		tanggal_b:tgl_b,
@@ -382,7 +389,7 @@
 		                            '<td>'+data[i].nama_dvs+'</td>'+
 		                            '<td style="text-align: left;">'+data[i].nama_act+'</td>'+
 		                            '<td>'+tgl_awal+'</td>'+
-		                            '<td>'+tgl_awal2+'</td>'+
+		                            '<td>'+tanggal+'</td>'+
 		                            '</tr>';
 		                        } 
 	                    // memasukkan data agenda lokal ke variabel agenda global

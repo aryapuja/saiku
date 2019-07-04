@@ -5,6 +5,7 @@
 <script src="<?php echo base_url() ?>assets/js/bootstrap.min.js"></script> 
 <script type="text/javascript" src="<?php echo base_url().'assets/datatables/datatables.min.js'?>"></script> 
 <script src="<?php echo base_url() ?>assets/js/bootstrap-datepicker.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
 <script type="text/javascript">
 
@@ -354,6 +355,13 @@
 	                    	const tgl_d = new Date(data[i].ak_act_imp);
 	                    	var tgl_awal4 = (parseInt(tgl_d.getMonth(), 10)+1)+"/"+('0'+tgl_d.getDate()).slice(-2)+"/"+tgl_d.getFullYear();
 
+	                    	tanggal="";
+	                    	if (data[i].ak_act_imp == null) {
+	                    		tanggal="belum terimplementasi";
+	                    	}else{
+		                    	tanggal =  month[tgl_d.getMonth()]+", "+('0'+tgl_d.getDate()).slice(-2)+" "+tgl_d.getFullYear();
+	                    	}
+
 	                    	var ag = {
 	                    		tanggal_a:tgl_a,
 	                    		tanggal_b:tgl_b,
@@ -372,7 +380,7 @@
 		                            '<td>'+data[i].nama_dvs+'</td>'+
 		                            '<td style="text-align: left;">'+data[i].nama_act+'</td>'+
 		                            '<td>'+tgl_awal+'</td>'+
-		                            '<td>'+tgl_awal2+'</td>'+
+		                            '<td>'+tanggal+'</td>'+
 		                            '<td>'+
 		                            '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit2" data-id="'+data[i].id+'" data-nor="'+data[i].nor+'" data-no="'+data[i].no+'" data-act="'+data[i].nama_act+'" data-dvs="'+data[i].nama_dvs+'" data-ak_plan_imp="'+tgl_awal3+'" data-ak_act_imp="'+tgl_awal4+'">Edit</a>   '+
 
@@ -424,6 +432,12 @@
         			},
 
         			success: function(){ 
+        				Swal.fire({
+        					type: 'success',
+        					title: 'Your work has been saved',
+        					showConfirmButton: false,
+        					timer: 1500
+        				})
         				$('#Modal_Add').modal('hide'); 
                         // method clear form & calendar agenda
                         refresh();
@@ -727,6 +741,10 @@
         		}
         	})
         }
+
+        
+
+
 
 </script>
 

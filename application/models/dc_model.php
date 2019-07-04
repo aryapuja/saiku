@@ -232,4 +232,10 @@ class Dc_Model extends CI_Model {
         return $query->result();
     }
 
+    public function get_activity_sched_section($day,$month,$years,$section)
+    {
+        $query = $this->db->query("SELECT * FROM activity as a inner join nor as n on n.nor=a.nor and n.no=a.no WHERE a.nama_dvs='".$section."' AND day(ak_plan_imp)=".$day." AND month(ak_plan_imp)=".$month." AND year(ak_plan_imp)=".$years." order by ak_plan_imp ASC");
+        return $query->result();
+    }
+
 }

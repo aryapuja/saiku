@@ -49,7 +49,23 @@ class Section extends CI_Controller {
 		echo json_encode($result);
 	}
 
+	public function getModalDetail()
+	{
+		$date = $this->input->post('date');
+		$month = (int) $this->input->post('month')+1;
+		$year = $this->input->post('year');
+		$section = $this->session->section;
 
+		$data['tgl'] = [
+			'date' => $date,
+			'month' => $month,
+			'year' => $year,
+		];
+
+ 		$data['act'] = $this->dc_model->get_activity_sched_section($date,$month,$year,$section);
+ 		
+		$this->load->view('section/modal_detail',$data);
+	}
 }
 
 /* End of file Section.php */

@@ -142,7 +142,12 @@
 	                    	const tgl_d = new Date(dataList[i].ak_plan_imp);
 	                    	var tgl_awal4 = (parseInt(tgl_d.getMonth(), 10)+1)+"/"+('0'+tgl_d.getDate()).slice(-2)+"/"+tgl_d.getFullYear();
 
-	                    	
+	                    	tanggal="";
+	                    	if (dataList[i].ak_act_imp == null) {
+	                    		tanggal="belum terimplementasi";
+	                    	}else{
+		                    	tanggal =  month[tgl_d.getMonth()]+", "+('0'+tgl_d.getDate()).slice(-2)+" "+tgl_d.getFullYear();
+	                    	}
 
 	                    	var ag = {
 	                    		tanggal_a:tgl_a,
@@ -163,7 +168,7 @@
 		                            '<td style="text-align: left;">'+dataList[i].nama_act+'</td>'+
 		                            '<td>'+dataList[i].line+'</td>'+
 		                            '<td>'+tgl_awal2+'</td>'+
-		                            '<td>'+tgl_awal3+'</td>'+
+		                            '<td>'+tanggal+'</td>'+
 		                            // '<td><span class="badge badge-'+cls+'">'+status+'</span></td>'+
 		                            '<td>'+
 		                            '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit" data-id="'+dataList[i].idact+'" data-nor="'+dataList[i].nor+'" data-no="'+dataList[i].no+'" data-nama_act="'+dataList[i].nama_act+'" data-line="'+dataList[i].line+'" data-ak_plan_imp="'+tgl_awal4+'" data-ak_act_imp="'+tgl_awal+'">Update</a>   '+
@@ -253,7 +258,7 @@
 			            		}
 			            		// penentuan warna warna
 			            		if (asign==null) {
-			            			html+='<td style="border: 1px solid #dddddd;" onclick="openDetailModal('+date+','+currentMonth+','+currentYear+')">'; 
+			            			html+='<td style="border: 1px solid #dddddd;" onclick="openDetailModal('+date+','+currentMonth+','+currentYear+','+section+')">'; 
 			            			if (date==today.getDate() && today.getMonth()==currentMonth) {
 			            				html+='<div style="background: url(<?php echo base_url() ?>assets/image/bg_datenow.png); background-repeat: no-repeat; background-position: center;  font-weight: 900; text-align: center; color: #FFF;">'+date+'</div>';
 			            			}else{
@@ -261,7 +266,7 @@
 			            			}
 			            			html+='</td>'; 
 			            		}else if(asign==1){ 
-			            			html+='<td bgcolor="#1ab2ff" onclick="openDetailModal('+date+','+currentMonth+','+currentYear+')">'; //1 NOR
+			            			html+='<td bgcolor="#1ab2ff" onclick="openDetailModal('+date+','+currentMonth+','+currentYear+','+section+')">'; //1 NOR
 			            			if (date==today.getDate() && today.getMonth()==currentMonth) {
 			            				html+='<div style="background: url(<?php echo base_url() ?>assets/image/bg_datenow.png); background-repeat: no-repeat; background-position: center;  font-weight: 900; text-align: center; color: #FFF;">'+date+'</div>';
 			            			}else{ 
@@ -269,7 +274,7 @@
 			            			}
 			            			html+='</td>';
 			            		}else if(asign==2){
-			            			html+='<td bgcolor="#FFF8CD" onclick="openDetailModal('+date+','+currentMonth+','+currentYear+')">'; //2 NOR
+			            			html+='<td bgcolor="#FFF8CD" onclick="openDetailModal('+date+','+currentMonth+','+currentYear+','+section+')">'; //2 NOR
 			            			if (date==today.getDate() && today.getMonth()==currentMonth) {
 			            				html+='<div style="background: url(<?php echo base_url() ?>assets/image/bg_datenow.png); background-repeat: no-repeat; background-position: center;  font-weight: 900; text-align: center; color: #FFF;">'+date+'</div>';
 			            			}else{
@@ -277,7 +282,7 @@
 			            			}
 			            			html+='</td>';
 			            		}else if(asign==3){
-			            			html+='<td bgcolor="#ffff1a" onclick="openDetailModal('+date+','+currentMonth+','+currentYear+')">'; //3 NOR
+			            			html+='<td bgcolor="#ffff1a" onclick="openDetailModal('+date+','+currentMonth+','+currentYear+','+section+')">'; //3 NOR
 			            			if (date==today.getDate() && today.getMonth()==currentMonth) {
 			            				html+='<div style="background: url(<?php echo base_url() ?>assets/image/bg_datenow.png); background-repeat: no-repeat; background-position: center;  font-weight: 900; text-align: center; color: #FFF;">'+date+'</div>';
 			            			}else{
@@ -285,7 +290,7 @@
 			            			}
 			            			html+='</td>';
 			            		}else if(asign==4){
-			            			html+='<td bgcolor="#ffc54a" onclick="openDetailModal('+date+','+currentMonth+','+currentYear+')">'; //4 NOR
+			            			html+='<td bgcolor="#ffc54a" onclick="openDetailModal('+date+','+currentMonth+','+currentYear+','+section+')">'; //4 NOR
 			            			if (date==today.getDate() && today.getMonth()==currentMonth) {
 			            				html+='<div style="background: url(<?php echo base_url() ?>assets/image/bg_datenow.png); background-repeat: no-repeat; background-position: center;  font-weight: 900; text-align: center; color: #FFF;">'+date+'</div>';
 			            			}else{
@@ -293,7 +298,7 @@
 			            			}
 			            			html+='</td>';
 			            		}else if(asign==5){
-			            			html+='<td bgcolor="#ff7b24" onclick="openDetailModal('+date+','+currentMonth+','+currentYear+')">'; //>=5 NOR
+			            			html+='<td bgcolor="#ff7b24" onclick="openDetailModal('+date+','+currentMonth+','+currentYear+','+section+')">'; //>=5 NOR
 			            			if (date==today.getDate() && today.getMonth()==currentMonth) {
 			            				html+='<div style="background: url(<?php echo base_url() ?>assets/image/bg_datenow.png); background-repeat: no-repeat; background-position: center;  font-weight: 900; text-align: center; color: #FFF;">'+date+'</div>';
 			            			}else{
@@ -385,9 +390,9 @@ function refresh() {
 
 
 
-function openDetailModal(date,month,year) {
+function openDetailModal(date,month,year,section) {
         	$.ajax({
-        		url : "<?php echo site_url('User/getModalDetail') ?>",
+        		url : "<?php echo site_url('section/getModalDetail') ?>",
         		type : "POST",
         		data : {
         			'date' : date,

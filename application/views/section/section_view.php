@@ -70,10 +70,11 @@
 									<!-- <th style="width: 5%;">No</th> -->
 									<th style="text-align: center;" hidden>Id</th>
 									<th style="text-align: center; width: 15% ">Nor-No</th>
-									<th style="text-align: center; width: 40%">Activity</th>
+									<th style="text-align: center; width: 30%">Activity</th>
 									<th style="text-align: center; width: 10%">Line</th>
 									<th style="text-align: center; width: 15%">Implementasi Plan</th>
 									<th style="text-align: center; width: 15%">Implementasi Actual</th>
+									<!-- <th style="text-align: center; width: 10%">Status</th> -->
 									<th style="text-align: center; width: 10%">Action</th>
 								</tr>
 							</thead>

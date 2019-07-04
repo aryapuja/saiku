@@ -104,22 +104,38 @@
 	                    	var tgl_awal = (parseInt(tgl_a.getMonth(), 10)+1)+"/"+('0'+tgl_a.getDate()).slice(-2)+"/"+tgl_a.getFullYear();
 	                    	const tgl_b = new Date(data[i].nor_plan_imp);
 	                    	var tgl_awal2 = month[tgl_a.getMonth()]+", "+('0'+tgl_a.getDate()).slice(-2)+" "+tgl_a.getFullYear();
+	                    	
+	                        const tgl_c = new Date(data[i].nor_act_imp);
+	                        var tgl_awal3 = (parseInt(tgl_c.getMonth(), 10)+1)+"/"+('0'+tgl_c.getDate()).slice(-2)+"/"+tgl_c.getFullYear(); 
+							const tgl_d = new Date(data[i].nor_act_imp);
+		                    // var tgl_awal4 =
+	                    	
+	                    	tanggal="";
+	                    	if (data[i].nor_act_imp == null) {
+	                    		tanggal="belum terimplementasi";
+	                    	}else{
+		                    	tanggal =  month[tgl_d.getMonth()]+", "+('0'+tgl_d.getDate()).slice(-2)+" "+tgl_d.getFullYear();
+	                    	}
 
-	                    	const tgl_c = new Date(data[i].nor_act_imp);
-	                    	var tgl_awal3 = (parseInt(tgl_c.getMonth(), 10)+1)+"/"+('0'+tgl_c.getDate()).slice(-2)+"/"+tgl_c.getFullYear();
-	                    	const tgl_d = new Date(data[i].nor_act_imp);
-	                    	var tgl_awal4 = month[tgl_d.getMonth()]+", "+('0'+tgl_d.getDate()).slice(-2)+" "+tgl_d.getFullYear();
+	                        status = "";
+	                        if(data[i].count_nan == '0'){
+	                        	status = "close";
+	                        	cls="success";
+	                        }else{
+	                        	status = "open";
+	                        	cls="danger";
+	                        
+	                        }
+	                        // alert(status);
 
-	                    	var ag = {
+	                        var ag = {
 	                    		tanggal_a:tgl_a,
 	                    		tanggal_b:tgl_b,
 	                    		tanggal_c:tgl_c,
-	                    		tanggal_d:tgl_d
-
-	                        			// level:data[i].level
-	                        		}
-	                        // memasukkan data agenda kedalam array yang nantinya akan diolah untuk coloring calendar
-	                        agend.push(ag);
+	                    		tanggal_d:tgl_d,
+	                    		status:status
+							}
+                        	agend.push(ag);         
 
 	                        html += '<tr>';
 	                        html +=	
@@ -129,7 +145,8 @@
 		                            '<td style="text-align: left;">'+data[i].item_changes+'</td>'+
 		                            '<td>'+data[i].line+'</td>'+
 		                            '<td>'+tgl_awal2+'</td>'+
-		                            '<td>'+tgl_awal3+'</td>'+
+		                            '<td>'+tanggal+'</td>'+
+		                            '<td><span class="badge badge-'+cls+'">'+status+'</span></td>'+
 		                            '<td>'+
 		                            '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit" data-id="'+data[i].id+'" data-nor="'+data[i].nor+'" data-no="'+data[i].no+'" data-item_changes="'+data[i].item_changes+'" data-line="'+data[i].line+'" data-nor_plan_imp="'+tgl_awal+'" data-nor_act_imp="'+tgl_awal3+'">Edit</a>   '+
 
@@ -137,7 +154,9 @@
 		                            '<a href="javascript:void(0);" class="btn btn-danger btn-sm item_delete" data-id="'+data[i].id+'" data-nor="'+data[i].nor+'" data-no="'+data[i].no+'">Hapus</a>'+
 		                            '</td>'+
 		                            '</tr>';
-		                        } 
+		                        }
+
+                        // memasukkan data agenda kedalam array yang nantinya akan diolah untuk coloring calendar
 	                    // memasukkan data agenda lokal ke variabel agenda global
 	                    agenda=agend;
 
@@ -185,26 +204,34 @@
 	        			} else {	
 			            		// variabel info agar tidak terjadi doubel
 			            		var asign=null;
+			            		var anu=new Date();
+			            		var t=anu.setDate(anu.getDate() - 1);
 
 			            		// pengecekan calendar jika ada agenda di tanggal ini(date)
 			            		for (var ia = (agenda.length-1); ia >=0 ; ia--) {
 			            			for (var ib = 0; ib < agenda.length; ib++) {
 
 			            				if (new Date(currentYear,currentMonth,date) >=agenda[ia].tanggal_a && new Date(currentYear,currentMonth,date)<=agenda[ia].tanggal_a) {
-			            					
-			            					// pemberian warna jika level bupati
-			            					if (asign==null) {
-			            						asign=1;
-			            					}else if (asign==1) { 
-			            						asign=2; 
-			            					}else if (asign==2) { 
-			            						asign=3; 
-			            					}else if (asign==3) { 
-			            						asign=4; 
-			            					}else{ 
-			            						asign=5;
+
+			            					if( t > agenda[ia].tanggal_a  && agenda[ia].status=="close"){
+			            						asign=6;
+			            					}else if(t > agenda[ia].tanggal_a && agenda[ia].status=="open"){
+			            						asign=7;
+			            					}else{
+			            						// pemberian warna jika level bupati
+				            					if (asign==null) {
+				            						asign=1;
+				            					}else if (asign==1) { 
+				            						asign=2; 
+				            					}else if (asign==2) { 
+				            						asign=3; 
+				            					}else if (asign==3) { 
+				            						asign=4; 
+				            					}else{ 
+				            						asign=5;
+				            					}
+				            					break;
 			            					}
-			            					break; 
 			            				} 
 			            			} 
 			            		}
@@ -251,6 +278,22 @@
 			            			html+='</td>';
 			            		}else if(asign==5){
 			            			html+='<td bgcolor="#ff7b24" onclick="openDetailModal('+date+','+currentMonth+','+currentYear+')">'; //>=5 NOR
+			            			if (date==today.getDate() && today.getMonth()==currentMonth) {
+			            				html+='<div style="background: url(<?php echo base_url() ?>assets/image/bg_datenow.png); background-repeat: no-repeat; background-position: center;  font-weight: 900; text-align: center; color: #FFF;">'+date+'</div>';
+			            			}else{
+			            				html+='<font style="color: #000;">'+date+'</font>';
+			            			}
+			            			html+='</td>';
+			            		}else if(asign==6){
+			            			html+='<td bgcolor="#5aff1f" onclick="openDetailModal('+date+','+currentMonth+','+currentYear+')">'; //>=5 NOR
+			            			if (date==today.getDate() && today.getMonth()==currentMonth) {
+			            				html+='<div style="background: url(<?php echo base_url() ?>assets/image/bg_datenow.png); background-repeat: no-repeat; background-position: center;  font-weight: 900; text-align: center; color: #FFF;">'+date+'</div>';
+			            			}else{
+			            				html+='<font style="color: #000;">'+date+'</font>';
+			            			}
+			            			html+='</td>';
+			            		}else if(asign==7){
+			            			html+='<td bgcolor="#ff0000" onclick="openDetailModal('+date+','+currentMonth+','+currentYear+')">'; //>=5 NOR
 			            			if (date==today.getDate() && today.getMonth()==currentMonth) {
 			            				html+='<div style="background: url(<?php echo base_url() ?>assets/image/bg_datenow.png); background-repeat: no-repeat; background-position: center;  font-weight: 900; text-align: center; color: #FFF;">'+date+'</div>';
 			            			}else{

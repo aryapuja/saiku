@@ -68,11 +68,13 @@
 								<img src="#" width="10px">&nbsp Tidak Ada Nor<br>
 								<img src="<?=base_url()?>assets/image/1.png" width="10px">&nbsp Ada 1 Nor<br>
 								<img src="<?=base_url()?>assets/image/2.png" width="10px">&nbsp Ada 2 Nor<br>
+								<img src="<?=base_url()?>assets/image/6.png" width="10px">&nbsp Activity Selesai<br>
 							</div>
 							<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 								<img src="<?=base_url()?>assets/image/3.png" width="10px">&nbsp Ada 3 Nor<br>
 								<img src="<?=base_url()?>assets/image/4.png" width="10px">&nbsp Ada 4 Nor<br>
 								<img src="<?=base_url()?>assets/image/5.png" width="10px">&nbsp Ada >=5 Nor<br>
+								<img src="<?=base_url()?>assets/image/7.png" width="10px">&nbsp Activity Belum Selesai<br>
 							</div>
 							</div>
 						</center>
@@ -95,10 +97,11 @@
 									<!-- <th style="width: 5%;">No</th> -->
 									<th style="text-align: center;" hidden>Id</th>
 									<th style="text-align: center; width: 15% ">Nor-No</th>
-									<th style="text-align: center; width: 40%">Item Changes</th>
+									<th style="text-align: center; width: 30%">Item Changes</th>
 									<th style="text-align: center; width: 10%">Line</th>
 									<th style="text-align: center; width: 10%">Implementasi Plan</th>
 									<th style="text-align: center; width: 10%">Implementasi Actual</th>
+									<th style="text-align: center; width: 10%">Status</th>
 									<th style="text-align: center; width: 15%">Action</th>
 								</tr>
 							</thead>

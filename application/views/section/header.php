@@ -35,10 +35,7 @@
                 <div class="collapse navbar-collapse" id="mainnavbar">
                     <ul class="navbar-nav mr-auto">             
                         <li class="nav-item active">
-                            <a class="nav-link" href="<?php echo base_url().'/index.php/dc_controller'?>" style="font-size: 20px;color: black">Admin View</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="<?php echo base_url().'/index.php/dc_controller/indexx'?>" style="font-size: 20px;color: black">User View</a>
+                            <a class="nav-link" href="#" style="font-size: 20px;color: black">STATUS LOGIN: <?php echo strtoupper($this->session->section) ?> SECTION</a>
                         </li>
                         
                     </ul>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 01, 2019 at 07:53 AM
+-- Generation Time: Jul 04, 2019 at 05:34 AM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -32,7 +32,7 @@ CREATE TABLE `activity` (
   `id` int(11) NOT NULL,
   `nama_act` varchar(100) NOT NULL,
   `ak_plan_imp` datetime NOT NULL,
-  `ak_act_imp` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `ak_act_imp` datetime DEFAULT NULL,
   `nama_dvs` varchar(100) NOT NULL,
   `nor` varchar(10) NOT NULL,
   `no` varchar(11) NOT NULL
@@ -44,18 +44,11 @@ CREATE TABLE `activity` (
 
 INSERT INTO `activity` (`id`, `nama_act`, `ak_plan_imp`, `ak_act_imp`, `nama_dvs`, `nor`, `no`) VALUES
 (7, 'dssds', '2019-07-04 07:00:00', '2019-07-03 07:00:00', 'pp', 'RZN21', '0010'),
-(8, 'qq', '2019-07-01 07:00:00', '2019-07-01 07:00:00', 'de', 'RZN21', '0010'),
-(10, 'Fi Mesin', '2019-07-02 07:00:00', '2019-07-01 07:00:00', 'eng', 'JCZM19', '0222'),
+(8, 'qq', '2019-07-02 07:00:00', '2019-07-01 07:00:00', 'de', 'RZN21', '0010'),
 (12, ':D', '2019-07-02 07:00:00', '2019-07-03 07:00:00', 'ppc', 'RJCZM19', '3210'),
-(13, 'dssds', '2019-07-03 07:00:00', '2019-07-02 07:00:00', 'pp', 'RJCZM19', '0020'),
-(14, 'bbb', '2019-07-01 07:00:00', '2019-07-01 07:00:00', 'de', 'JCZM19', '0020'),
-(20, 'dummy act 1', '2019-07-03 07:00:00', '0000-00-00 00:00:00', 'pp', 'RZN21', '3210'),
-(21, 'dummy act 2', '2019-07-05 07:00:00', '2019-07-03 07:00:00', 'eng', 'RZN21', '0020'),
-(22, 'yudhaa', '2019-07-01 07:00:00', '2019-07-01 07:00:00', 'qp', 'RZN21', '0020'),
-(23, 'Dummy Act 3', '2019-07-01 07:00:00', '2019-07-01 07:00:00', 'prod', 'JP13N', '3182'),
-(33, 'testing', '2019-07-01 00:00:00', '0000-00-00 00:00:00', 'de', 'JCZM19', '0019'),
-(34, 'wd', '2019-07-01 00:00:00', '0000-00-00 00:00:00', 'de', 'JP12N', '0011'),
-(35, 'aaa', '2019-07-01 00:00:00', '0000-00-00 00:00:00', 'de', 'JCZM19', '0019'),
+(20, 'dummy act 1', '2019-07-03 00:00:00', '2019-07-03 00:00:00', 'pp', 'RZN21', '3210'),
+(23, 'Dummy Act 3', '2019-07-05 00:00:00', '2019-07-05 00:00:00', 'prod', 'JP13N', '3182'),
+(34, 'wd', '2019-07-02 00:00:00', '0000-00-00 00:00:00', 'de', 'JP12N', '0011'),
 (37, 'tes1', '2019-07-01 00:00:00', '0000-00-00 00:00:00', 'qp', 'JP12N', '0011'),
 (38, 'testing', '2019-07-01 00:00:00', '0000-00-00 00:00:00', 'prod', 'JP12N', '0011'),
 (39, 'testing2', '1970-01-01 07:00:00', '0000-00-00 00:00:00', 'ppc', 'JP12N', '0011'),
@@ -63,8 +56,8 @@ INSERT INTO `activity` (`id`, `nama_act`, `ak_plan_imp`, `ak_act_imp`, `nama_dvs
 (41, 'testing2', '1970-01-01 07:00:00', '0000-00-00 00:00:00', 'ppc', 'JP12N', '0011'),
 (42, 'testing', '2019-07-01 00:00:00', '0000-00-00 00:00:00', 'prod', 'JP12N', '0011'),
 (43, 'testing2', '1970-01-01 07:00:00', '0000-00-00 00:00:00', 'ppc', 'JP12N', '0011'),
-(44, 'tes1', '2019-07-01 00:00:00', '0000-00-00 00:00:00', 'prod', 'JCZM19', '0019'),
-(45, 'tes3', '2019-07-01 00:00:00', '2019-07-01 00:00:00', 'ppc', 'JCZM19', '0019');
+(46, 'testing', '2019-07-04 00:00:00', '2019-07-16 00:00:00', 'nys', '323232', 'cvc'),
+(47, 'Bismillah :D', '2019-07-08 00:00:00', '0000-00-00 00:00:00', 'ppc', 'RZN21', '3210');
 
 -- --------------------------------------------------------
 
@@ -104,33 +97,53 @@ CREATE TABLE `nor` (
   `item_changes` text NOT NULL,
   `line` varchar(10) NOT NULL,
   `nor_plan_imp` datetime NOT NULL,
-  `nor_act_imp` datetime NOT NULL DEFAULT '0000-00-00 00:00:00'
+  `nor_act_imp` datetime DEFAULT NULL,
+  `status` enum('Close','Open') NOT NULL DEFAULT 'Open'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `nor`
 --
 
-INSERT INTO `nor` (`id`, `nor`, `no`, `item_changes`, `line`, `nor_plan_imp`, `nor_act_imp`) VALUES
-(1, 'PDN19N', '2130', 'Change dim, change cot length, change packing, change outer covering (spiral ? VS)', '1A', '2019-07-02 00:00:00', '2019-07-04 00:00:00'),
-(7, 'RJVC3', '0212', 'Bismillah :D', '10A', '2019-07-02 00:00:00', '0000-00-00 00:00:00'),
-(10, 'RJ451', '0202', 'Dummy 1', '2C', '2019-07-03 00:00:00', '0000-00-00 00:00:00'),
-(11, 'RJ451', '0202', 'Dummy 2', '2A', '2019-07-03 00:00:00', '0000-00-00 00:00:00'),
-(12, 'RJ431', '0222', 'Dummy 3', '2A', '2019-07-04 00:00:00', '0000-00-00 00:00:00'),
-(13, 'JCZM19', '0019', 'Dummy 4', '2A', '2019-07-04 00:00:00', '0000-00-00 00:00:00'),
-(14, 'JCZM19', '0020', 'Dummy 5', '4B', '2019-07-04 00:00:00', '0000-00-00 00:00:00'),
-(15, 'RJCZM19', '0223', 'Dummy 6', '12A', '2019-07-04 00:00:00', '0000-00-00 00:00:00'),
-(16, 'RJCZM19', '2049', 'Dummy 6', '2A', '2019-07-05 00:00:00', '0000-00-00 00:00:00'),
-(17, 'RZN21', '0010', 'Dummy 7', '3A', '2019-07-05 00:00:00', '0000-00-00 00:00:00'),
-(18, 'RZN21', '0020', 'Dummy 8', '2A', '2019-07-05 00:00:00', '0000-00-00 00:00:00'),
-(19, 'RZN21', '3210', 'Dummy 9', '4B', '2019-07-05 00:00:00', '0000-00-00 00:00:00'),
-(20, 'RZN21', '0040', 'Dummy 10', '2A', '2019-07-05 00:00:00', '0000-00-00 00:00:00'),
-(21, 'RZN21', '0050', 'Dummy 11', '2A', '2019-07-05 00:00:00', '0000-00-00 00:00:00'),
-(22, 'PDN19N', '2100', 'Change dim, change cot length, change packing, change outer covering (spiral ? VS)', '1A', '2019-07-03 00:00:00', '0000-00-00 00:00:00'),
-(23, 'JP12N', '0011', 'Dummy 12', '1a', '2019-07-01 00:00:00', '0000-00-00 00:00:00'),
-(24, 'JP13N', '3182', 'Dummy 13', '1A', '2019-07-01 00:00:00', '0000-00-00 00:00:00'),
-(25, 'JZ12', '6251', 'Tes Input', '5A', '2019-07-01 00:00:00', '0000-00-00 00:00:00'),
-(27, 'testing2', '2222222', 'tes2', '2a', '2019-07-01 00:00:00', '2019-07-02 00:00:00');
+INSERT INTO `nor` (`id`, `nor`, `no`, `item_changes`, `line`, `nor_plan_imp`, `nor_act_imp`, `status`) VALUES
+(1, 'PDN19N', '2130', 'Change dim, change cot length, change packing, change outer covering (spiral ? VS)', '1A', '2019-07-02 00:00:00', '2019-07-04 00:00:00', 'Open'),
+(7, 'RJVC3', '0212', 'Bismillah :D', '10A', '2019-07-02 00:00:00', NULL, 'Open'),
+(10, 'RJ451', '0202', 'Dummy 1', '2C', '2019-07-03 00:00:00', NULL, 'Open'),
+(11, 'RJ451', '0202', 'Dummy 2', '2A', '2019-07-02 00:00:00', '1970-01-01 07:00:00', 'Open'),
+(12, 'RJ431', '0222', 'Dummy 3', '2A', '2019-07-04 00:00:00', NULL, 'Open'),
+(13, 'JCZM19', '0019', 'Dummy 4', '2A', '2019-07-04 00:00:00', NULL, 'Open'),
+(15, 'RJCZM19', '0223', 'Dummy 6', '12A', '2019-07-04 00:00:00', NULL, 'Open'),
+(16, 'RJCZM19', '2049', 'Dummy 6', '2A', '2019-07-05 00:00:00', NULL, 'Open'),
+(17, 'RZN21', '0010', 'Dummy 7', '3A', '2019-07-05 00:00:00', NULL, 'Open'),
+(18, 'RZN21', '0020', 'Dummy 8', '2A', '2019-07-05 00:00:00', NULL, 'Open'),
+(19, 'RZN21', '3210', 'Dummy 9', '4B', '2019-07-05 00:00:00', NULL, 'Open'),
+(20, 'RZN21', '0040', 'Dummy 10', '2A', '2019-07-05 00:00:00', NULL, 'Open'),
+(21, 'RZN21', '0050', 'Dummy 11', '2A', '2019-07-05 00:00:00', NULL, 'Open'),
+(22, 'PDN19N', '2100', 'Change dim, change cot length, change packing, change outer covering (spiral ? VS)', '1A', '2019-07-03 00:00:00', NULL, 'Open'),
+(23, 'JP12N', '0011', 'Dummy 12', '1a', '2019-07-01 00:00:00', '2019-08-02 00:00:00', 'Open'),
+(24, 'JP13N', '3182', 'Dummy 13', '1A', '2019-07-01 00:00:00', NULL, 'Open'),
+(25, 'JZ12', '6251', 'Tes Input', '5A', '2019-07-01 00:00:00', NULL, 'Open'),
+(27, 'testing2', '2222222', 'tes2', '2a', '2019-07-01 00:00:00', '2019-07-02 00:00:00', 'Open'),
+(28, '7828482482', '2242', 'yazz', '10 A', '2019-07-06 00:00:00', NULL, 'Open'),
+(29, '3121321212', 'hah21', 'waw', '5 D', '2019-07-07 00:00:00', NULL, 'Open'),
+(30, '13232', '23232', 'as', '3 C', '2019-07-08 00:00:00', NULL, 'Open'),
+(31, 'adsaa', '12', '21', '10 A', '2019-07-09 00:00:00', NULL, 'Open'),
+(32, 'wwq21', '318203', '12121', '10 A', '2019-07-10 00:00:00', NULL, 'Close'),
+(33, '323232', 'cvc', '3', '10 A', '2019-07-11 00:00:00', NULL, 'Open'),
+(34, '3343', 'ffffc', 'd', '3 S', '2019-07-13 00:00:00', NULL, 'Open'),
+(35, 'qw', 'vvf32', 're', '1A', '2019-07-12 00:00:00', NULL, 'Open'),
+(36, 'yudha', '1', 'llkl', '1a', '2019-07-03 00:00:00', NULL, 'Open'),
+(37, 'aaa', '111', '1', '1', '2019-07-03 00:00:00', NULL, 'Open'),
+(38, 'wee', '12', 'weee', '11', '2019-07-03 00:00:00', NULL, 'Open'),
+(39, 'lalal', '111', '1', '1', '2019-07-03 00:00:00', NULL, 'Open');
+
+--
+-- Triggers `nor`
+--
+DELIMITER $$
+CREATE TRIGGER `delete activity` AFTER DELETE ON `nor` FOR EACH ROW delete from activity where activity.nor=old.nor AND activity.no=old.no
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -203,7 +216,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `activity`
 --
 ALTER TABLE `activity`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `divisi`
@@ -215,7 +228,7 @@ ALTER TABLE `divisi`
 -- AUTO_INCREMENT for table `nor`
 --
 ALTER TABLE `nor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `user`

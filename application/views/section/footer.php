@@ -142,11 +142,15 @@
 	                    	const tgl_d = new Date(dataList[i].ak_plan_imp);
 	                    	var tgl_awal4 = (parseInt(tgl_d.getMonth(), 10)+1)+"/"+('0'+tgl_d.getDate()).slice(-2)+"/"+tgl_d.getFullYear();
 
+	                    	
+
 	                    	var ag = {
 	                    		tanggal_a:tgl_a,
 	                    		tanggal_b:tgl_b,
 	                    		tanggal_c:tgl_c,
-	                    		tanggal_d:tgl_d
+	                    		tanggal_d:tgl_d,
+	                    		// status:status
+
 	                        		}
 	                        // memasukkan dataList agenda kedalam array yang nantinya akan diolah untuk coloring calendar
 	                        agend.push(ag);
@@ -160,6 +164,7 @@
 		                            '<td>'+dataList[i].line+'</td>'+
 		                            '<td>'+tgl_awal2+'</td>'+
 		                            '<td>'+tgl_awal3+'</td>'+
+		                            // '<td><span class="badge badge-'+cls+'">'+status+'</span></td>'+
 		                            '<td>'+
 		                            '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit" data-id="'+dataList[i].idact+'" data-nor="'+dataList[i].nor+'" data-no="'+dataList[i].no+'" data-nama_act="'+dataList[i].nama_act+'" data-line="'+dataList[i].line+'" data-ak_plan_imp="'+tgl_awal4+'" data-ak_act_imp="'+tgl_awal+'">Update</a>   '+
 

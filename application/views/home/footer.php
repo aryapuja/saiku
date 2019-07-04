@@ -138,7 +138,18 @@
 	                    	const tgl_d = new Date(dataList[i].nor_act_imp);
 	                    	var tgl_awal4 = month[tgl_d.getMonth()]+", "+('0'+tgl_d.getDate()).slice(-2)+" "+tgl_d.getFullYear();
 
-	                    	var ag = {
+
+	                         status = "";
+	                        if(dataList[i].count_nan == '0'){
+	                        	status = "close";
+	                        	cls="success";
+	                        }else{
+	                        	status = "open";
+	                        	cls="danger";
+	                        
+	                        }
+
+	                        var ag = {
 	                    		tanggal_a:tgl_a,
 	                    		tanggal_b:tgl_b,
 	                    		tanggal_c:tgl_c,
@@ -154,14 +165,10 @@
 	                        '<td >'+dataList[i].nor+'-'+dataList[i].no+'</td>'+
 		                            // '<td>'+dataList[i].rev+'</td>'+
 		                            '<td style="text-align: left;">'+dataList[i].item_changes+'</td>'+
-		                            '<td>'+dataList[i].line+'</td>'+
+	                        		'<td >'+dataList[i].line+'</td>'+
 		                            '<td>'+tgl_awal2+'</td>'+
-		                            // '<td>'+
-		                            // '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit" dataList-id="'+dataList[i].id+'" dataList-nor="'+dataList[i].nor+'" dataList-no="'+dataList[i].no+'" dataList-item_changes="'+dataList[i].item_changes+'" dataList-line="'+dataList[i].line+'" dataList-date_plan="'+tgl_awal+'">Edit</a>   '+
-
-
-		                            // '<a href="javascript:void(0);" class="btn btn-danger btn-sm item_delete" dataList-id="'+dataList[i].id+'" dataList-nor="'+dataList[i].nor+'" dataList-no="'+dataList[i].no+'">Hapus</a>'+
-		                            // '</td>'+
+		                            // '<td><span class="badge badge-'+cls+'">'+status+'</span></td>'+
+		                            
 		                            '</tr>';
 		                        } 
 	                    // memasukkan dataList agenda lokal ke variabel agenda global
@@ -212,20 +219,28 @@
 	        			} else {	
 			            		// variabel info agar tidak terjadi doubel
 			            		var asign=null;
+			            		var anu=new Date();
+			            		var t=anu.setDate(anu.getDate() - 1);
 
 			            		// pengecekan calendar jika ada agenda di tanggal ini(date)
 			            		for (var ia = (agenda.length-1); ia >=0 ; ia--) {
 			            			for (var ib = 0; ib < agenda.length; ib++) {
 
 			            				for (var iz = 0; iz < cline2.length; iz++) {
-			            					if (cline2[iz].tgl == date) {
-			            						asign=cline2[iz].jml;
-			            					}
-			            				}
+					            					if (cline2[iz].tgl == date) {
+					            						asign=cline2[iz].jml;
+					            					}
+			            						}
+			            				
 
-			            				if (new Date(currentYear,currentMonth,date) >= agenda[ia].tanggal_a && new Date(currentYear,currentMonth,date)<=agenda[ia].tanggal_a) { 
+			            				if (new Date(currentYear,currentMonth,date) <= agenda[ia].tanggal_a && new Date(currentYear,currentMonth,date)>=agenda[ia].tanggal_a) { 
+
+			            					if( t > agenda[ia].tanggal_a  && agenda[ia].status=="close"){
+			            						asign=666;
+			            					}else if(t > agenda[ia].tanggal_a && agenda[ia].status=="open"){
+			            						asign=777;
+			            					}
 			            					
-			            					// pemberian warna jika level bupati
 			            					
 			            				} 
 			            			} 
@@ -273,6 +288,22 @@
 			            			html+='</td>';
 			            		}else if(asign==5){
 			            			html+='<td bgcolor="#ff7b24" onclick="openDetailModal('+date+','+currentMonth+','+currentYear+')">'; //>=5 NOR
+			            			if (date==today.getDate() && today.getMonth()==currentMonth) {
+			            				html+='<div style="background: url(<?php echo base_url() ?>assets/image/bg_datenow.png); background-repeat: no-repeat; background-position: center;  font-weight: 900; text-align: center; color: #FFF;">'+date+'</div>';
+			            			}else{
+			            				html+='<font style="color: #000;">'+date+'</font>';
+			            			}
+			            			html+='</td>';
+			            		}else if(asign==666){
+			            			html+='<td bgcolor="#5aff1f" onclick="openDetailModal('+date+','+currentMonth+','+currentYear+')">'; //>=5 NOR
+			            			if (date==today.getDate() && today.getMonth()==currentMonth) {
+			            				html+='<div style="background: url(<?php echo base_url() ?>assets/image/bg_datenow.png); background-repeat: no-repeat; background-position: center;  font-weight: 900; text-align: center; color: #FFF;">'+date+'</div>';
+			            			}else{
+			            				html+='<font style="color: #000;">'+date+'</font>';
+			            			}
+			            			html+='</td>';
+			            		}else if(asign==777){
+			            			html+='<td bgcolor="#ff0000" onclick="openDetailModal('+date+','+currentMonth+','+currentYear+')">'; //>=5 NOR
 			            			if (date==today.getDate() && today.getMonth()==currentMonth) {
 			            				html+='<div style="background: url(<?php echo base_url() ?>assets/image/bg_datenow.png); background-repeat: no-repeat; background-position: center;  font-weight: 900; text-align: center; color: #FFF;">'+date+'</div>';
 			            			}else{

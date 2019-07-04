@@ -26,7 +26,7 @@ class Dc_Model extends CI_Model {
             'line'              =>$line,
             'item_changes'      =>$item_changes,
             'nor_plan_imp'         =>$nor_plan_imp,
-            'nor_act_imp'         =>"0000-00-00",
+            // 'nor_act_imp'         =>"0000-00-00",
         );
 
         return $this->db->insert('nor', $data);
@@ -68,7 +68,8 @@ class Dc_Model extends CI_Model {
 
     public function get_dc_sched($month,$years)
     {
-        $query = $this->db->query("SELECT * FROM nor WHERE month(nor_plan_imp)=".$month." AND year(nor_plan_imp)=".$years." order by nor_plan_imp ASC");
+        $query = $this->db->query("SELECT *,(select count(nor) from activity where activity.nor=nor.nor AND activity.no=nor.no AND ak_act_imp='0000-00-00 00:00:00
+') as count_nan FROM nor WHERE month(nor_plan_imp)=".$month." AND year(nor_plan_imp)=".$years." order by nor_plan_imp ASC");
         return $query->result();
     }
 
@@ -161,7 +162,8 @@ class Dc_Model extends CI_Model {
 
     public function get_dc_sched_user($day,$month,$years)
     {
-        $query = $this->db->query("SELECT * FROM nor WHERE day(nor_plan_imp)=".$day." AND month(nor_plan_imp)=".$month." AND year(nor_plan_imp)=".$years." order by nor_plan_imp ASC");
+        $query = $this->db->query("SELECT *,(select count(nor) from activity where activity.nor=nor.nor AND activity.no=nor.no AND ak_act_imp='0000-00-00 00:00:00
+') as count_nan FROM nor WHERE day(nor_plan_imp)=".$day." AND month(nor_plan_imp)=".$month." AND year(nor_plan_imp)=".$years." order by nor_plan_imp ASC");
         return $query->result();
     }
 
@@ -219,10 +221,15 @@ class Dc_Model extends CI_Model {
                 
             );
 
-
         $this->db->where('id', $id);
         $result=$this->db->update('activity', $data);
         return $result;
+    }
+
+    public function countDate($nor,$no)
+    {
+        $query = $this->db->query("SELECT COUNT(ak_act_imp) FROM `activity` WHERE nor=".$nor." and no=".$no." and ak_plan_imp=null");
+        return $query->result();
     }
 
 }

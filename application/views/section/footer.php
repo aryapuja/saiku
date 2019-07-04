@@ -30,6 +30,8 @@
 <script src="<?php echo base_url() ?>assets/js/bootstrap.min.js"></script> 
 <script type="text/javascript" src="<?php echo base_url().'assets/datatables/datatables.min.js'?>"></script> 
 <script src="<?php echo base_url() ?>assets/js/bootstrap-datepicker.js"></script>
+<script src="<?php echo base_url() ?>assets/js/sweetalert2@8.js"></script>
+
 
 <script type="text/javascript">
 		var lineku = null;
@@ -146,7 +148,7 @@
 	                    	if (dataList[i].ak_act_imp == null) {
 	                    		tanggal="belum terimplementasi";
 	                    	}else{
-		                    	tanggal =  month[tgl_d.getMonth()]+", "+('0'+tgl_d.getDate()).slice(-2)+" "+tgl_d.getFullYear();
+		                    	tanggal =  month[tgl_c.getMonth()]+", "+('0'+tgl_c.getDate()).slice(-2)+" "+tgl_c.getFullYear();
 	                    	}
 
 	                    	var ag = {
@@ -369,6 +371,12 @@
         			},
 
         			success: function(data){
+        				Swal.fire({
+        					type: 'success',
+        					title: 'Berhasil mengupdate implementasi actual',
+        					showConfirmButton: false,
+        					timer: 1500
+        				})
         				$('#Modal_Update').modal('hide'); 
         				refresh();
         			}

@@ -5,7 +5,8 @@
 <script src="<?php echo base_url() ?>assets/js/bootstrap.min.js"></script> 
 <script type="text/javascript" src="<?php echo base_url().'assets/datatables/datatables.min.js'?>"></script> 
 <script src="<?php echo base_url() ?>assets/js/bootstrap-datepicker.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<script src="<?php echo base_url() ?>assets/js/sweetalert2@8.js"></script>
+
 
 <script type="text/javascript">
 
@@ -434,7 +435,7 @@
         			success: function(){ 
         				Swal.fire({
         					type: 'success',
-        					title: 'Your work has been saved',
+        					title: 'Berhasil menambahkan data ',
         					showConfirmButton: false,
         					timer: 1500
         				})
@@ -505,6 +506,12 @@
         			},
 
         			success: function(data){
+        				Swal.fire({
+        					type: 'success',
+        					title: 'Berhasil mengupdate data',
+        					showConfirmButton: false,
+        					timer: 1500
+        				})
         				$('#Modal_Update').modal('hide'); 
         				refresh();
         			}
@@ -570,6 +577,12 @@
         			data : $('#add_activity').serialize(),
 
         			success: function(data){ 
+        				Swal.fire({
+        					type: 'success',
+        					title: 'Berhasil menambahkan data',
+        					showConfirmButton: false,
+        					timer: 1500
+        				})
         				$('#Modal_Add2').modal('hide'); 
                         // method clear form & calendar agenda
                         refresh2();
@@ -644,6 +657,12 @@
         			},
 
         			success: function(data){
+        				Swal.fire({
+        					type: 'success',
+        					title: 'Berhasil mengupdate data',
+        					showConfirmButton: false,
+        					timer: 1500
+        				})
         				$('#Modal_Update2').modal('hide'); 
         				refresh();
         			}

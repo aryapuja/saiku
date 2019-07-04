@@ -30,6 +30,9 @@
 <script src="<?php echo base_url() ?>assets/js/bootstrap.min.js"></script> 
 <script type="text/javascript" src="<?php echo base_url().'assets/datatables/datatables.min.js'?>"></script> 
 <script src="<?php echo base_url() ?>assets/js/bootstrap-datepicker.js"></script>
+<script src="<?php echo base_url() ?>assets/js/sweetalert2@8.js"></script>
+
+
 
 <script type="text/javascript">
 		var lineku = null;

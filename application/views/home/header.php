@@ -8,8 +8,16 @@
         <title>PT. SAI</title>
 
         <!-- fontawesome icon -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+        <link rel="stylesheet" href="<?php echo base_url() ?>assets/fa/css/fontawesome.min.css" />
+        <link rel="stylesheet" href="<?php echo base_url() ?>assets/fa/css/fontawesome.css" /> 
+        <link rel="stylesheet" href="<?php echo base_url() ?>assets/fa/css/all.min.css" />
+        <link rel="stylesheet" href="<?php echo base_url() ?>assets/fa/css/all.css" crossorigin="anonymous"/>
+        <link rel="stylesheet" href="<?php echo base_url() ?>assets/fa/js/fontawesome.min.js" />
+        <link rel="stylesheet" href="<?php echo base_url() ?>assets/fa/js/fontawesome.js" /> 
+        <link rel="stylesheet" href="<?php echo base_url() ?>assets/fa/js/all.min.js" />
+        <link rel="stylesheet" href="<?php echo base_url() ?>assets/fa/js/all.js" crossorigin="anonymous"/>
+        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous"> -->
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/bootstrap.min.css">
         <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/custom.css">

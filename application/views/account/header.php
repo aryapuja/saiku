@@ -35,7 +35,7 @@
     </style>
 
 
-    <body class="admin-body" onload="display_ct()">
+    <body class="admin-body" onload=display_ct()>
 
         <!-- navigasi bar -->
         <nav class=" navbar navbar-expand-md navbar-dark bg-uno box-shadowf"role="" style="background:#EEE8AA">

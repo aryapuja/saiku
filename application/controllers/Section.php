@@ -8,7 +8,7 @@ class Section extends CI_Controller {
 		parent::__construct();
 		$this->load->model('dc_model');
 
-		if ($this->session->userdata('status')==TRUE) 
+		if ($this->session->userdata('value')==TRUE) 
 		{
 			// redirect('Dc_Controller/index');
 		}else{	
@@ -39,13 +39,16 @@ class Section extends CI_Controller {
 	public function updateSection()
 	{	 
 		date_default_timezone_set("Asia/Jakarta");
-
+		$tglact = $this->input->post('ak_act_imp_up');
 		$id = $this->input->post('u_id');
-        
-        $ak_act_imp = date( 'Y-m-d H:i:s', strtotime( $this->input->post('u_ak_act_imp') ) );
+
+        if ($tglact == "0000-00-00 00:00:00" || $tglact == "1970-01-01 07:00:00" || $tglact == "NaN/aN/NaN") {
+			$ak_act_imp = "0000-00-00 00:00:00";
+        }else{
+	        $ak_act_imp = date( 'Y-m-d H:i:s', strtotime( $this->input->post('u_ak_act_imp') ) );
+		}
 
 		$result = $this->dc_model->updateSection($id,$ak_act_imp);
-
 		echo json_encode($result);
 	}
 

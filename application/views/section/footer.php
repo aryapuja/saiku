@@ -145,7 +145,7 @@
 	                    	var tgl_awal4 = (parseInt(tgl_d.getMonth(), 10)+1)+"/"+('0'+tgl_d.getDate()).slice(-2)+"/"+tgl_d.getFullYear();
 
 	                    	tanggal="";
-	                    	if (dataList[i].ak_act_imp == null) {
+	                    	if (dataList[i].ak_act_imp == "0000-00-00 00:00:00") {
 	                    		tanggal="belum terimplementasi";
 	                    	}else{
 		                    	tanggal =  month[tgl_c.getMonth()]+", "+('0'+tgl_c.getDate()).slice(-2)+" "+tgl_c.getFullYear();

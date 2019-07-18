@@ -12,36 +12,47 @@
 
 		public function index()
 		{
-			$this->form_validation->set_rules('username', 'Username', 'trim|required');
+			$this->form_validation->set_rules('nik', 'nik', 'trim|required');
 			$this->form_validation->set_rules('password', 'Password', 'trim|required');
 
 			if($this->form_validation->run() === FALSE){
 				$this->load->view('v_login');
 			}else {
-				$username = $this->input->post('username');
+				$nik = $this->input->post('nik');
 				$password = $this->input->post('password');
+				// print_r($nik);
+				// die();
 
-				$cek = $this->dc_model->login($username,$password);
-
+				$cek = $this->dc_model->login($nik,$password);
 				if ($cek->num_rows() == 1) {
 
 					$value = $cek->row();
 
 					$userdata = array(
 						'id_user' => $value->id_user,
-						'username' => $value->username,
+						'nik' => $value->nik,
+						'name' => $value->name,
 						'password' => $value->password,
 						'section' => $value->section,
-						'status' => TRUE
+						'jabatan' => $value->jabatan,
+						'status' => $value->status,
+						'signin' => TRUE
 					);
 					$this->session->set_userdata($userdata);
 
-					if($value->section=='ppc'){
-						redirect('dc_controller','refresh');
+					if($value->status == "on"){
+						if($value->section=='ppc'){
+							redirect('dc_controller','refresh');
+						}else{
+							redirect('section','refresh');
+						}
+					}else if($value->status == "waiting"){
+							echo "<script>alert('Akun anda belum dikonfirmasi. Silahkan hubungi PPC untuk keterangan lebih lanjut') </script>";
+							redirect('login','refresh');
 					}else{
-						redirect('section','refresh');
+							echo "<script>alert('Akun anda telah dinonaktifkan') </script>";
+							redirect('login','refresh');
 					}
-
 				} else {
 					echo "<script>alert('Informasi Akun yang Anda Masukkan Salah') </script>";
 					redirect('login','refresh');
@@ -59,8 +70,24 @@
 			echo "<script>alert('Logout Success') </script>";
 			redirect('login','refresh');
 		}
+
+		public function newAccount()
+		{
 		
+			$name = $this->input->post('name');
+			$nik = $this->input->post('nik');
+			$section = $this->input->post('section');
+			$jabatan = $this->input->post('jabatan');
+			$password = $this->input->post('password');
+			
+			$result = $this->dc_model->register($name,$nik,$section,$jabatan,$password);
+
+			echo json_encode($result);
 		}
+		
+	}
+
+		
 	
 	/* End of file login.php */
 	/* Location: ./application/controllers/login.php */

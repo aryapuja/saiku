@@ -113,20 +113,22 @@
 		                    // var tgl_awal4 =
 	                    	
 	                    	tanggal="";
-	                    	if (data[i].nor_act_imp == null) {
+	                    	if (data[i].nor_act_imp == "0000-00-00 00:00:00") {
 	                    		tanggal="belum terimplementasi";
 	                    	}else{
 		                    	tanggal =  month[tgl_d.getMonth()]+", "+('0'+tgl_d.getDate()).slice(-2)+" "+tgl_d.getFullYear();
 	                    	}
 
-	                        status = "";
-	                        if(data[i].count_nan == '0'){
-	                        	status = "close";
+	                        status = data[i].status;
+	                        if(data[i].status == "Close"){
+	                        	// status = "close";
 	                        	cls="success";
-	                        }else{
-	                        	status = "open";
+	                        }else if(data[i].status == "Open"){
+	                        	// status = "open";
 	                        	cls="danger";
 	                        
+	                        }else{
+	                        	cls="warning";
 	                        }
 	                        // alert(status);
 
@@ -148,11 +150,9 @@
 		                            '<td>'+data[i].line+'</td>'+
 		                            '<td>'+tgl_awal2+'</td>'+
 		                            '<td>'+tanggal+'</td>'+
-		                            '<td><span class="badge badge-'+cls+'">'+status+'</span></td>'+
+		                            '<td><span class="badge badge-'+cls+'">'+data[i].status+'</span></td>'+
 		                            '<td>'+
-		                            '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit" data-id="'+data[i].id+'" data-nor="'+data[i].nor+'" data-no="'+data[i].no+'" data-item_changes="'+data[i].item_changes+'" data-line="'+data[i].line+'" data-nor_plan_imp="'+tgl_awal+'" data-nor_act_imp="'+tgl_awal3+'">Edit</a>   '+
-
-
+		                            '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit" data-id="'+data[i].id+'" data-nor="'+data[i].nor+'" data-no="'+data[i].no+'" data-item_changes="'+data[i].item_changes+'" data-line1="'+data[i].line+'" data-line2="'+data[i].line2+'" data-line3="'+data[i].line3+'" data-line4="'+data[i].line4+'" data-line5="'+data[i].line5+'" data-nor_plan_imp="'+tgl_awal+'" data-nor_act_imp="'+tgl_awal3+'" data-status="'+data[i].status+'">Edit</a>   '+
 		                            '<a href="javascript:void(0);" class="btn btn-danger btn-sm item_delete" data-id="'+data[i].id+'" data-nor="'+data[i].nor+'" data-no="'+data[i].no+'">Hapus</a>'+
 		                            '</td>'+
 		                            '</tr>';
@@ -214,10 +214,11 @@
 			            			for (var ib = 0; ib < agenda.length; ib++) {
 
 			            				if (new Date(currentYear,currentMonth,date) >=agenda[ia].tanggal_a && new Date(currentYear,currentMonth,date)<=agenda[ia].tanggal_a) {
+			            					// alert(agenda[ia].status);
 
-			            					if( t > agenda[ia].tanggal_a  && agenda[ia].status=="close"){
+			            					if( t > agenda[ia].tanggal_a  && agenda[ia].status=="Close"){
 			            						asign=6;
-			            					}else if(t > agenda[ia].tanggal_a && agenda[ia].status=="open"){
+			            					}else if(t > agenda[ia].tanggal_a && agenda[ia].status=="On Progress"){
 			            						asign=7;
 			            					}else{
 			            						// pemberian warna jika level bupati
@@ -234,7 +235,7 @@
 				            					}
 				            					break;
 			            					}
-			            				} 
+			            				}
 			            			} 
 			            		}
 			            		// penentuan warna warna
@@ -357,7 +358,7 @@
 	                    	var tgl_awal4 = (parseInt(tgl_d.getMonth(), 10)+1)+"/"+('0'+tgl_d.getDate()).slice(-2)+"/"+tgl_d.getFullYear();
 
 	                    	tanggal="";
-	                    	if (data[i].ak_act_imp == null) {
+	                    	if (data[i].ak_act_imp == "0000-00-00 00:00:00") {
 	                    		tanggal="belum terimplementasi";
 	                    	}else{
 		                    	tanggal =  month[tgl_d.getMonth()]+", "+('0'+tgl_d.getDate()).slice(-2)+" "+tgl_d.getFullYear();
@@ -383,7 +384,7 @@
 		                            '<td>'+tgl_awal+'</td>'+
 		                            '<td>'+tanggal+'</td>'+
 		                            '<td>'+
-		                            '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit2" data-id="'+data[i].id+'" data-nor="'+data[i].nor+'" data-no="'+data[i].no+'" data-act="'+data[i].nama_act+'" data-dvs="'+data[i].nama_dvs+'" data-ak_plan_imp="'+tgl_awal3+'" data-ak_act_imp="'+tgl_awal4+'">Edit</a>   '+
+		                            '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit2" data-id="'+data[i].id+'" data-nor="'+data[i].nor+'" data-no="'+data[i].no+'" data-act="'+data[i].nama_act+'" data-dvs="'+data[i].nama_dvs+'" data-ak_plan_imp="'+tgl_awal3+'" data-ak_act_imp="'+tgl_awal4+'" data-status="'+data[i].statusku+'">Edit</a>   '+
 
 
 		                            '<a href="javascript:void(0);" class="btn btn-danger btn-sm item_delete2" data-id="'+data[i].id+'" data-nor="'+data[i].nor+'" data-no="'+data[i].no+'" data-act="'+data[i].nama_act+'">Hapus</a>'+
@@ -414,10 +415,14 @@
         		// memasukkan data inputan ke variabel
         		var nor 				= $('#nor').val();
         		var no 					= $('#no').val();
-        		var line 				= $('#line').val();
+        		var line1 				= $('#line1').val();
+        		var line2 				= $('#line2').val();
+        		var line3 				= $('#line3').val();
+        		var line4 				= $('#line4').val();
+        		var line5 				= $('#line5').val();
         		var item_changes 		= $('#item_changes').val();
         		var nor_plan_imp 		= $('#nor_plan_imp').val();
-        		var nor_act_imp 			= $('#nor_act_imp').val();
+        		var nor_act_imp 		= $('#nor_act_imp').val();
 
         		$.ajax({
         			type : "POST",
@@ -426,10 +431,14 @@
         			data : {
         				nor:nor,
         				no:no,
-        				line:line,
+        				line1:line1,
+        				line2:line2,
+        				line3:line3,
+        				line4:line4,
+        				line5:line5,
         				item_changes:item_changes,
         				nor_plan_imp:nor_plan_imp,
-        				nor_act_imp:nor_act_imp
+        				// nor_act_imp:nor_act_imp
         			},
 
         			success: function(){ 
@@ -458,16 +467,25 @@
             	var upnor 			= $(this).data('nor'); 
             	var upno 			= $(this).data('no');
             	var upitem_changes	= $(this).data('item_changes'); 
-            	var upline 			= $(this).data('line'); 
+            	var upline1 			= $(this).data('line1'); 
+            	var upline2 			= $(this).data('line2'); 
+            	var upline3 			= $(this).data('line3'); 
+            	var upline4 			= $(this).data('line4'); 
+            	var upline5 			= $(this).data('line5'); 
             	var upnor_plan_imp 	= $(this).data('nor_plan_imp'); 
             	var upnor_act_imp 	= $(this).data('nor_act_imp'); 
+        		var upstatus		= $(this).data('status');
 
                 // memasukkan data ke form updatean
                 $('[name="u_id"]').val(upid);
                 $('[name="u_nor"]').val(upnor);
                 $('[name="u_no"]').val(upno);
                 $('[name="u_item_changes"]').val(upitem_changes);
-                $('[name="u_line"]').val(upline);
+                $('[name="u_line1"]').val(upline1);
+                $('[name="u_line2"]').val(upline2);
+                $('[name="u_line3"]').val(upline3);
+                $('[name="u_line4"]').val(upline4);
+                $('[name="u_line5"]').val(upline5);
                 $('[name="u_nor_plan_imp"]').val(upnor_plan_imp);
                 $('[name="u_nor_act_imp"]').val(upnor_act_imp);
 
@@ -483,10 +501,15 @@
         		var up_id 			= $('#u_id').val();
         		var up_nor 			= $('#u_nor').val();
         		var up_no 			= $('#u_no').val();
-        		var up_line 			= $('#u_line').val();
+        		var up_line1 			= $('#u_line1').val();
+        		var up_line2 			= $('#u_line2').val();
+        		var up_line3 			= $('#u_line3').val();
+        		var up_line4 			= $('#u_line4').val();
+        		var up_line5 			= $('#u_line5').val();
         		var up_item_changes 	= $('#u_item_changes').val();
         		var up_nor_plan_imp 	= $('#u_nor_plan_imp').val();
         		var up_nor_act_imp 	= $('#u_nor_act_imp').val();
+
 
         		// alert(up_date_plan);
 
@@ -500,19 +523,25 @@
         				u_nor:up_nor,
         				u_no:up_no,
         				u_item_changes:up_item_changes,
-        				u_line:up_line,
+        				u_line1:up_line1,
+        				u_line2:up_line2,
+        				u_line3:up_line3,
+        				u_line4:up_line4,
+        				u_line5:up_line5,
         				u_nor_plan_imp:up_nor_plan_imp,
-        				u_nor_act_imp:up_nor_act_imp
+        				nor_act_imp_up:up_nor_act_imp
         			},
 
         			success: function(data){
         				Swal.fire({
-        					type: 'success',
+        				   	type: 'success',
         					title: 'Berhasil mengupdate data',
         					showConfirmButton: false,
         					timer: 1500
-        				})
+        				});
         				$('#Modal_Update').modal('hide'); 
+        				
+        				$('body').css('padding-right','0px');
         				refresh();
         			}
         		});
@@ -585,7 +614,7 @@
         				})
         				$('#Modal_Add2').modal('hide'); 
                         // method clear form & calendar agenda
-                        refresh2();
+                        refresh();
                     }
                 });
 
@@ -596,7 +625,13 @@
         		$.ajax({
         			url: "<?php echo site_url(); ?>/Dc_controller/select_nor",
         			success : function(data){
-        				$('#slct_nor').html(data);
+        				$('#Modal_Add2').find('#slct_nor').html(data);
+        			}
+        		});
+        		$.ajax({
+        			url: "<?php echo site_url(); ?>/Dc_controller/select_no",
+        			success : function(data){
+        				$('#Modal_Add2').find('#slct_no').html(data);
         			}
         		});
         	});
@@ -613,6 +648,7 @@
             	var upact 			= $(this).data('act'); 
             	var upak_plan_imp 	= $(this).data('ak_plan_imp'); 
             	var upak_act_imp 	= $(this).data('ak_act_imp'); 
+            	var upstatus 		= $(this).data('status'); 
 
                 // memasukkan data ke form updatean
                 $('[name="u_id_act"]').val(upid);
@@ -622,6 +658,7 @@
                 $('[name="nama_dvs_up"]').val(updvs);
                 $('[name="ak_plan_imp_up"]').val(upak_plan_imp);
                 $('[name="ak_act_imp_up"]').val(upak_act_imp);
+                $('[name="status_up"]').val(upstatus);
 
                 $('#Modal_Update2').modal('show');
                 
@@ -638,10 +675,8 @@
         		var up_act 			= $('#nama_act_up').val();
         		var up_ak_plan_imp 	= $('#ak_plan_imp_up').val();
         		var up_ak_act_imp 	= $('#ak_act_imp_up').val();
+        		var up_status 		= $('#status_up').val();
 
-        		// alert(up_date_plan);
-
-				// alert("id:"+up_id+"|nor:"+up_nor+"|no:"+up_no+"|lin:"+up_line+"|item:"+up_item_changes+"|date:"+up_date_plan);        		
         		$.ajax({
         			type : "POST",
         			url  : "<?php echo site_url(); ?>/Dc_controller/updateActivity",
@@ -653,8 +688,10 @@
         				nama_dvs_up:up_dvs,
         				nama_act_up:up_act,
         				ak_plan_imp_up:up_ak_plan_imp,
-        				ak_act_imp_up:up_ak_act_imp
+        				ak_act_imp_up:up_ak_act_imp,
+        				status:up_status
         			},
+
 
         			success: function(data){
         				Swal.fire({
@@ -711,12 +748,16 @@
 
  			$("#agendaall").DataTable().destroy();
  			$("#agendaall").find('tbody').empty();
+
  			$("#agendaall2").DataTable().destroy();
  			$("#agendaall2").find('tbody').empty();
 
  			document.getElementById('formbaru').reset();
  			document.getElementById('formupdate').reset();
  			document.getElementById('formdelete').reset();
+ 			document.getElementById('add_activity').reset();
+ 			document.getElementById('update_activity').reset();
+ 			document.getElementById('formdelete2').reset();
 
             showAgendaandCalendar(currentMonth,currentYear);
             showAct(currentMonth,currentYear);
@@ -739,9 +780,6 @@
             showAgendaandCalendar(currentMonth,currentYear);
             showAct(currentMonth,currentYear);
         }
-
-
-
     });
 
 	function openDetailModal(date,month,year) {

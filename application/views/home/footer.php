@@ -50,6 +50,9 @@
 
 		$(document).ready(function(){
 
+			refresh_notif();
+            refresh_notif2();
+
 			// fungsi date picker tanggal mulai
 			var datepickerss= $("#datepickerss");
 			datepickerss.datepicker({ 
@@ -430,6 +433,28 @@ function openDetailModal(date,month,year) {
 
         		}
         	})
+        }
+
+        window.setInterval(function(){
+        	refresh_notif();
+        	refresh_notif2();
+        	},5000);
+
+        function refresh_notif() {
+        	$.ajax({
+            	url : "<?php echo site_url('Dc_controller/get_notif') ?>",
+            	success : function(data){
+            		$('#notifaccount').html(data);
+            	}
+            })
+        }
+        function refresh_notif2() {
+        	$.ajax({
+            	url : "<?php echo site_url('Dc_controller/get_notif2') ?>",
+            	success : function(data){
+            		$('#notifaccount2').html(data);
+            	}
+            })
         }
 	
 </script>

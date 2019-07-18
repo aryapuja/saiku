@@ -93,21 +93,24 @@ class Dc_Model extends CI_Model {
 
     public function updateactivity($id,$nama_act,$ak_plan_imp,$ak_act_imp,$nama_dvs,$nor,$no)
     {
-        if($ak_act_imp==null&&$ak_plan_imp==null){
+        if($ak_act_imp=="0000-00-00 00:00:00"&&$ak_plan_imp==null){
             // $ak_act_imp="0000-00-00";
             $data = array(
                 'nama_act'                  =>$nama_act,
                 'nama_dvs'                  =>$nama_dvs,
                 'nor'                       =>$nor,
                 'no'                        =>$no,
+                'status'                    =>"not updated",
+
             );
-        }else if($ak_act_imp==null){
+        }else if($ak_act_imp=="0000-00-00 00:00:00"){
             $data = array(
                 'nama_act'                  =>$nama_act,
                 'nama_dvs'                  =>$nama_dvs,
                 'ak_plan_imp'                 =>$ak_plan_imp,
                 'nor'                       =>$nor,
                 'no'                        =>$no,
+                'status'                    =>"not updated",
             );
         }else if($ak_plan_imp==null){
             $data = array(
@@ -116,6 +119,7 @@ class Dc_Model extends CI_Model {
                 'ak_act_imp'               =>$ak_act_imp,
                 'nor'                       =>$nor,
                 'no'                        =>$no,
+                'status'                    =>"not updated",
             );    
         }else{
             $data = array(
@@ -125,6 +129,7 @@ class Dc_Model extends CI_Model {
                 'ak_act_imp'               =>$ak_act_imp,
                 'nor'                       =>$nor,
                 'no'                        =>$no,
+                'status'                    =>"verified",
             );
         }
 
@@ -205,7 +210,7 @@ class Dc_Model extends CI_Model {
     /*============================ section ============================*/
     public function get_activity_section($month,$years,$section)
     {
-        $query = $this->db->query("SELECT *,a.id as idact FROM activity as a inner join nor as n on n.nor=a.nor and n.no=a.no WHERE month(ak_plan_imp)=".$month." AND year(ak_plan_imp)=".$years." AND nama_dvs='".$section."' order by ak_plan_imp ASC");
+        $query = $this->db->query("SELECT *,a.id as idact,a.status as astatus FROM activity as a inner join nor as n on n.nor=a.nor and n.no=a.no WHERE month(ak_plan_imp)=".$month." AND year(ak_plan_imp)=".$years." AND nama_dvs='".$section."' order by ak_plan_imp ASC");
         return $query->result();
     }
 
@@ -226,6 +231,7 @@ class Dc_Model extends CI_Model {
     {
             $data = array(
                 'ak_act_imp'                  =>$ak_act_imp,
+                'status'                      =>"waiting",
                 
             );
 
@@ -306,6 +312,12 @@ class Dc_Model extends CI_Model {
         return $query->result_array();
     }
 
+    public function countActivityWaiting()
+    {
+        $query = $this->db->query("SELECT count(status) FROM `activity` WHERE status='waiting'");
+        return $query->result_array();
+    }
+
     //master acticity
     public function newMasterAct($namaAct)
     {
@@ -338,6 +350,33 @@ class Dc_Model extends CI_Model {
         $id = $this->input->post('id');
         $this->db->where('id', $id);
         $result = $this->db->delete('mActivity');
+        return $result;
+    }
+
+    public function confirmActivity($id,$nor,$no)
+    {
+         $data = array(
+            'status'                   =>"verified",
+        );
+
+        $this->db->where('id', $id);
+        $this->db->where('nor', $nor);
+        $this->db->where('no', $no);
+        $result = $this->db->update('activity', $data);
+        return $result;
+    }
+
+    public function updateStatus2($jml,$nor,$no)
+    {
+        if ($jml == 0) {
+            $data = array( 'status'=>"Close" );            
+        }else{
+            $data = array( 'status'=>"On Progress" );            
+        }
+
+        $this->db->where('nor', $nor);
+        $this->db->where('no', $no);
+        $result=$this->db->update('nor', $data);
         return $result;
     }
 

@@ -21,13 +21,25 @@ class Dc_Controller extends CI_Controller {
 	{
 		$data['nor'] = $this->dc_model->get_nor();
 		$data['no'] = $this->dc_model->get_no();
-		$count=$this->dc_model->countUserWaiting();
-		$count2=$count[0]['count(status)'];
-		$data['countuserwaiting'] = $count2;
+		
 
 		$this->load->view("agenda/header",$data); 
 		$this->load->view('agenda/agenda_view',$data);
 		$this->load->view("agenda/footer");
+	}
+
+	public function get_notif()
+	{
+		$count=$this->dc_model->countUserWaiting();
+		$count2=$count[0]['count(status)'];
+		echo $count2;
+	}
+
+	public function get_notif2()
+	{
+		$count=$this->dc_model->countActivityWaiting();
+		$count2=$count[0]['count(status)'];
+		echo $count2;
 	}
 
 	public function indexx()
@@ -163,7 +175,8 @@ class Dc_Controller extends CI_Controller {
 				'nama_dvs'=>$nama_dvs[$index],  // Ambil dan set data telepon sesuai index array dari $index
 				'nama_act'=>$nama_act[$index],  // Ambil dan set data alamat sesuai index array dari $index
 				'ak_plan_imp'=>date( 'Y-m-d H:i:s', strtotime( $ak_plan_imp[$index] ) ),  // Ambil dan set data alamat sesuai index array dari $index
-				'ak_act_imp'=>"0000-00-00 00:00:00",  // Ambil dan set data alamat sesuai index array dari $index
+				'ak_act_imp'=>"0000-00-00 00:00:00",
+				'status'=>"not updated",  // Ambil dan set data alamat sesuai index array dari $index
 				
 			));
 			$set = [
@@ -201,15 +214,7 @@ class Dc_Controller extends CI_Controller {
         }else{
         	$ak_act_imp = date( 'Y-m-d H:i:s', strtotime( $this->input->post('ak_act_imp_up') ) );
         }
-   //      // $jml2=(string)$jml;
-   //      if ($jml[0]['count(ak_act_imp)'] == 0) {
-   //      	$status = "Close";
-			// $this->dc_model->updateStatus($status,$nor,$no);
-   //      }else{
-   //      	$status = "Open";
-   //      }
-        // var_dump($jml);
-        // die();
+        
 		$this->dc_model->updateStatus($jml,$nor,$no);
 		$result = $this->dc_model->updateActivity($id,$nama_act,$ak_plan_imp,$ak_act_imp,$nama_dvs,$nor,$no);
 		echo json_encode($result);		
@@ -321,6 +326,21 @@ class Dc_Controller extends CI_Controller {
 	public function deletemActivity()
 	{
 		$result=$this->dc_model->deleteMasterAct();
+		echo json_encode($result);
+	}
+
+	public function confirmActivity()
+	{
+		$id = $this->input->post('id');
+		$nor = $this->input->post('nor');
+		$no = $this->input->post('no');
+
+		$jml1 = $this->dc_model->countDate($nor,$no);
+		$jml = $jml1[0]['count(ak_act_imp)'];
+		
+		$this->dc_model->updateStatus2($jml,$nor,$no);
+		$result = $this->dc_model->confirmActivity($id,$nor,$no);
+
 		echo json_encode($result);
 	}
 

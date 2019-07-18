@@ -126,8 +126,9 @@
 							<th style="text-align: center;" hidden>Id</th>
 							<th style="text-align: center; width: 10%">Nor-No</th>
 							<th style="text-align: center; width: 5%">Divisi</th>
-							<th style="text-align: center; width: 60%">Activity</th>
+							<th style="text-align: center; width: 55%">Activity</th>
 							<th style="text-align: center; width: 5%">Plan Date</th>
+							<th style="text-align: center; width: 5%">Status</th>
 							<th style="text-align: center; width: 5%">Actual Date</th>
 							<th style="text-align: center; width: 15%">Action</th>
 						</tr>
@@ -484,6 +485,70 @@
 		</form>  
 	</div>
 
+	<!-- Update Modal Activity confirm -->
+	<div class="form-group">  
+		<form name="confirmation" id="confirmation">
+			<div class="modal fade" id="Modal_UpdateStatus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"  aria-hidden="true">
+				<div class="modal-dialog" role="document" style="max-width: 80%;overflow-y: initial !important">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title">Confirmation Activity</h4>
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>			           
+						</div>
+
+						<div class="modal-body" id="mdl_bdy" style="max-height: calc(100vh - 200px);overflow-y: auto;">
+							<div class="container-fluid scroll">  
+								<div class="table-responsive">  
+									<table class="table table-bordered" id="dynamic_field">  
+										<tr>
+											<td>
+												<label>Nor</label>
+												<input type="text" id="slct_nor_c" name="nor_act_c" class="form-control" placeholder="Masukkan Activity" required readonly />
+											</td>
+											<td>
+												<label>No</label>
+												<input type="text" id="slct_no_c" name="no_act_c" class="form-control" placeholder="Masukkan Activity" required readonly />
+
+											</td>
+											<td> <label>Divisi</label>
+												<select class="form-control" name="nama_dvs_c" id="nama_dvs_c" readonly>
+													<option disabled selected hidden>Pilih Divisi</option>
+													<option value="de">de</option>
+													<option value="pp">pp</option>
+													<option value="qp">qp</option>
+													<option value="qmp">qmp</option>
+													<option value="eng">eng</option>
+													<option value="nys">nys</option>
+													<option value="prod">prod</option>
+													<option value="ppc">ppc</option>
+												</select>
+											</td>
+											<td> <label>Activity</label>
+												<input type="text" id="nama_act_c" name="nama_act_c" class="form-control" placeholder="Masukkan Activity" required readonly />
+											</td>
+											<td><label>Implementasi Plan</label>
+												<input class="form-control datepicker" name="ak_plan_imp_c" id="ak_plan_imp_c" placeholder="Date (Plan)" required readonly/>
+											</td>
+											<td> <label>Implementasi Actual</label>
+												<input  class="form-control datepicker" name="ak_act_imp_c" id="ak_act_imp_c" placeholder="Date (Actual)"/>
+											</td>
+										</tr>  
+									</table>  
+									<!-- <input type="button" name="submit" id="submit" class="btn btn-info" value="Submit" />   -->
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<input type="hidden" id="c_id_act" name="c_id_act" value="">
+							<button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
+							<button type="submit" id="submit" class="btn btn-success ">Confirm</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>  
+	</div>
+
 	<!--MODAL Activity Delete-->
 	<form id="formdelete2">
 		<div class="modal fade" id="Modal_Delete2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -518,6 +583,8 @@
 		</div>
 	</form>
 	<!--END MODAL NOR Delete-->
+
+	
 
 	<div id="input-container" style="display: none;">
 		<div class="row input-header" id="rows" style="margin-top: 1rem">

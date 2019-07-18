@@ -8,9 +8,9 @@ class Section extends CI_Controller {
 		parent::__construct();
 		$this->load->model('dc_model');
 
-		if ($this->session->userdata('value')==TRUE) 
+		if ($this->session->userdata('signin')==TRUE) 
 		{
-			// redirect('Dc_Controller/index');
+			// redirect('Section/index');
 		}else{	
 			redirect('login');
 		}

@@ -9,7 +9,7 @@
 
 
 <script type="text/javascript">
-
+		
 		// timer jam refresh in detik
 		function display_c(){
 			var refresh=1000; // Refresh rate in milli seconds
@@ -23,7 +23,9 @@
 		}
 
 		$(document).ready(function(){
-
+		
+            refresh_notif();
+            refresh_notif2();
 			// fungsi date picker tanggal mulai
 			var datepickerss= $("#datepickerss");
 			datepickerss.datepicker({ 
@@ -364,6 +366,15 @@
 		                    	tanggal =  month[tgl_d.getMonth()]+", "+('0'+tgl_d.getDate()).slice(-2)+" "+tgl_d.getFullYear();
 	                    	}
 
+	                    	color="";
+	                    	if (data[i].status == "not updated") {
+	                    		color='<span class="badge badge-secondary">'+data[i].status+'</span>';
+	                    	}else if(data[i].status == "waiting"){
+	                    		color='<a href="javascript:void(0);" class="badge badge-warning item_waiting" data-id="'+data[i].id+'" data-nor="'+data[i].nor+'" data-no="'+data[i].no+'" data-act="'+data[i].nama_act+'" data-dvs="'+data[i].nama_dvs+'" data-ak_plan_imp="'+tgl_awal+'" data-ak_act_imp="'+tanggal+'" data-dvs="'+data[i].nama_dvs+'">'+data[i].status+'</a>';
+	                    	}else if(data[i].status =="verified"){
+	                    		color='<span class="badge badge-success">'+data[i].status+'</span>';
+	                    	}
+
 	                    	var ag = {
 	                    		tanggal_a:tgl_a,
 	                    		tanggal_b:tgl_b,
@@ -382,11 +393,10 @@
 		                            '<td>'+data[i].nama_dvs+'</td>'+
 		                            '<td style="text-align: left;">'+data[i].nama_act+'</td>'+
 		                            '<td>'+tgl_awal+'</td>'+
+		                            '<td>'+color+'</td>'+
 		                            '<td>'+tanggal+'</td>'+
 		                            '<td>'+
 		                            '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit2" data-id="'+data[i].id+'" data-nor="'+data[i].nor+'" data-no="'+data[i].no+'" data-act="'+data[i].nama_act+'" data-dvs="'+data[i].nama_dvs+'" data-ak_plan_imp="'+tgl_awal3+'" data-ak_act_imp="'+tgl_awal4+'" data-status="'+data[i].statusku+'">Edit</a>   '+
-
-
 		                            '<a href="javascript:void(0);" class="btn btn-danger btn-sm item_delete2" data-id="'+data[i].id+'" data-nor="'+data[i].nor+'" data-no="'+data[i].no+'" data-act="'+data[i].nama_act+'">Hapus</a>'+
 		                            '</td>'+
 		                            '</tr>';
@@ -741,7 +751,70 @@
             	});
             	return false;
             });
-//   ==================  END DELETE Activity ====================================
+
+            //  ===================  START UPDATE Confirmation ===============================================
+            //get data for UPDATE record show prompt
+            $('#agendaall2').on('click','.item_waiting',function(){
+            	// memasukkan data yang dipilih dari tbl list agenda updatean ke variabel 
+            	var upid 			= $(this).data('id');
+            	var upnor 			= $(this).data('nor'); 
+            	var upno 			= $(this).data('no');
+            	var updvs			= $(this).data('dvs'); 
+            	var upact 			= $(this).data('act'); 
+            	var upak_plan_imp 	= $(this).data('ak_plan_imp'); 
+            	var upak_act_imp 	= $(this).data('ak_act_imp'); 
+            	var upstatus 		= $(this).data('status'); 
+
+                // memasukkan data ke form updatean
+                $('[name="c_id_act"]').val(upid);
+                $('[name="nor_act_c"]').val(upnor);
+                $('[name="no_act_c"]').val(upno);
+                $('[name="nama_act_c"]').val(upact);
+                $('[name="nama_dvs_c"]').val(updvs);
+                $('[name="ak_plan_imp_c"]').val(upak_plan_imp);
+                $('[name="ak_act_imp_c"]').val(upak_act_imp);
+
+                $('#Modal_UpdateStatus').modal('show');
+                
+            });
+            
+            //UPDATE record to database (submit button)
+            $('#confirmation').submit(function(e){
+            	e.preventDefault(); 
+        		// memasukkan data dari form update ke variabel untuk update db
+        		var up_id 			= $('#c_id_act').val();
+        		var up_nor 			= $('#slct_nor_c').val();
+        		var up_no 			= $('#slct_no_c').val();
+        		var up_dvs 			= $('#nama_dvs_c').val();
+        		var up_act 			= $('#nama_act_c').val();
+        		var up_ak_plan_imp 	= $('#ak_plan_imp_c').val();
+        		var up_ak_act_imp 	= $('#ak_act_imp_c').val();
+
+        		$.ajax({
+        			type : "POST",
+        			url  : "<?php echo site_url(); ?>/Dc_controller/confirmActivity",
+        			dataType : "JSON",
+        			data : { 
+        				id:up_id,
+        				nor:up_nor,
+        				no:up_no,
+        			},
+
+
+        			success: function(data){
+        				Swal.fire({
+        					type: 'success',
+        					title: 'Terverifikasi',
+        					showConfirmButton: true,
+        					// timer: 1500
+        				})
+        				$('#Modal_UpdateStatus').modal('hide'); 
+        				refresh();
+        			}
+        		});
+        		return false;
+        	});
+//   ========================  END UPDATE RECORD ====================================
 
  		// fungsi refresh reset data all form dan calendar
  		function refresh() {
@@ -761,6 +834,8 @@
 
             showAgendaandCalendar(currentMonth,currentYear);
             showAct(currentMonth,currentYear);
+
+            refresh_notif();
         }
 
         function refresh2() {
@@ -800,9 +875,27 @@
         }
 
         
+        window.setInterval(function(){
+        	refresh_notif();
+        	refresh_notif2();
+        	},5000);
 
-
-
+        function refresh_notif() {
+        	$.ajax({
+            	url : "<?php echo site_url('Dc_controller/get_notif') ?>",
+            	success : function(data){
+            		$('#notifaccount').html(data);
+            	}
+            })
+        }
+        function refresh_notif2() {
+        	$.ajax({
+            	url : "<?php echo site_url('Dc_controller/get_notif2') ?>",
+            	success : function(data){
+            		$('#notifaccount2').html(data);
+            	}
+            })
+        }
 </script>
 
 </body>

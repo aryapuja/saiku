@@ -59,7 +59,7 @@
 
 		<!-- view tabel agenda -->
 		<div class="agendaview">
-			<div style="background-color: #FFF; padding: 5px;">
+			<div style="background-color: #FFF; padding: 0px;">
 				<div class="boddy card">
 					<center><h4 class="namatitel card-header">ACTIVITY SCHEDULE</h4></center>
 					<div class="card-body">
@@ -70,12 +70,12 @@
 									<!-- <th style="width: 5%;">No</th> -->
 									<th style="text-align: center;" hidden>Id</th>
 									<th style="text-align: center; width: 15% ">Nor-No</th>
-									<th style="text-align: center; width: 30%">Activity</th>
-									<th style="text-align: center; width: 10%">Line</th>
-									<th style="text-align: center; width: 15%">Implementasi Plan</th>
-									<th style="text-align: center; width: 15%">Implementasi Actual</th>
-									<!-- <th style="text-align: center; width: 10%">Status</th> -->
-									<th style="text-align: center; width: 10%">Action</th>
+									<th style="text-align: center; width: 35%">Activity</th>
+									<th style="text-align: center; width: 5%">Line</th>
+									<th style="text-align: center; width: 10%">Implementasi Plan</th>
+									<th style="text-align: center; width: 10%">Status</th>
+									<th style="text-align: center; width: 10%">Implementasi Actual</th>
+									<th style="text-align: center; width: 5%">Action</th>
 								</tr>
 							</thead>
 							<tbody id="tbl_agendakegiatan" style="text-align: center;">

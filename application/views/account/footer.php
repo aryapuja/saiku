@@ -51,7 +51,8 @@
 		$(document).ready(function(){
 
 			//call function show all agenda berdasarkan bulan dan tahun 
-			
+			refresh_notif();
+            refresh_notif2();
             showAccount();
 	        
 	        function showAccount(){
@@ -205,6 +206,28 @@
     });
 //   ===============================  NOR ==========================================
 });
+
+window.setInterval(function(){
+            refresh_notif();
+            refresh_notif2();
+            },5000);
+
+        function refresh_notif() {
+            $.ajax({
+                url : "<?php echo site_url('Dc_controller/get_notif') ?>",
+                success : function(data){
+                    $('#notifaccount').html(data);
+                }
+            })
+        }
+        function refresh_notif2() {
+            $.ajax({
+                url : "<?php echo site_url('Dc_controller/get_notif2') ?>",
+                success : function(data){
+                    $('#notifaccount2').html(data);
+                }
+            })
+        }
 
 	
 </script>

@@ -49,13 +49,13 @@
                 <div class="collapse navbar-collapse" id="mainnavbar">
                     <ul class="navbar-nav mr-auto">             
                         <li class="nav-item active">
-                            <a class="nav-link" href="<?php echo base_url().'/index.php/dc_controller'?>" style="font-size: 20px;color: black">Admin View</a>
+                            <a class="nav-link" href="<?php echo base_url().'/index.php/dc_controller'?>" style="font-size: 20px;color: black">Admin View <sup><span class="badge badge-light" id="notifaccount2"></span></sup></a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="<?php echo base_url().'/index.php/dc_controller/indexx'?>" style="font-size: 20px;color: black">User View</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="<?php echo base_url().'/index.php/dc_controller/listUser'?>" style="font-size: 20px;color: black">List User <sup><span class="badge badge-light"><?php echo $countuserwaiting[0] ?></span></sup></a>
+                            <a class="nav-link" href="<?php echo base_url().'/index.php/dc_controller/listUser'?>" style="font-size: 20px;color: black">List User <sup><span class="badge badge-light" id="notifaccount"></span></sup></span></sup></a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="<?php echo base_url().'/index.php/dc_controller/ListActivity'?>" style="font-size: 20px;color: black">List Activity</a>

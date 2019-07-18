@@ -151,6 +151,17 @@
 		                    	tanggal =  month[tgl_c.getMonth()]+", "+('0'+tgl_c.getDate()).slice(-2)+" "+tgl_c.getFullYear();
 	                    	}
 
+	                    	
+
+	                    	color="";
+	                    	if (dataList[i].astatus == "not updated") {
+	                    		color='<span class="badge badge-secondary">'+dataList[i].astatus+'</span>';
+	                    	}else if(dataList[i].astatus == "waiting"){
+	                    		color='<span class="badge badge-warning">'+dataList[i].astatus+'</span>';
+	                    	}else if(dataList[i].astatus =="verified"){
+	                    		color='<span class="badge badge-success">'+dataList[i].astatus+'</span>';
+	                    	}
+
 	                    	var ag = {
 	                    		tanggal_a:tgl_a,
 	                    		tanggal_b:tgl_b,
@@ -170,6 +181,7 @@
 		                            '<td style="text-align: left;">'+dataList[i].nama_act+'</td>'+
 		                            '<td>'+dataList[i].line+'</td>'+
 		                            '<td>'+tgl_awal2+'</td>'+
+		                            '<td>'+color+'</td>'+
 		                            '<td>'+tanggal+'</td>'+
 		                            // '<td><span class="badge badge-'+cls+'">'+status+'</span></td>'+
 		                            '<td>'+

@@ -138,7 +138,7 @@
         $('[name="u_id"]').val(upid);
         $('[name="u_namaact"]').val(upnama);
 
-        alert(upnama);
+        // alert(upnama);
         $('#Modal_UpdatelistAct').modal('show');
     });
     

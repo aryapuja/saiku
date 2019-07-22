@@ -6,7 +6,7 @@ class Section extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('dc_model');
+		$this->load->model('Dc_model');
 
 		if ($this->session->userdata('signin')==TRUE) 
 		{
@@ -30,8 +30,8 @@ class Section extends CI_Controller {
 		$month = $this->input->post('month_p');
 		$year = $this->input->post('year_p');
 		$section = $this->session->section;
-		$data['act'] = $this->dc_model->get_activity_section($month,$year,$section);
-		$data['cact'] = $this->dc_model->get_act_line_month($month,$year,$section);
+		$data['act'] = $this->Dc_model->get_activity_section($month,$year,$section);
+		$data['cact'] = $this->Dc_model->get_act_line_month($month,$year,$section);
 
         echo json_encode($data);
 	}
@@ -48,7 +48,7 @@ class Section extends CI_Controller {
 	        $ak_act_imp = date( 'Y-m-d H:i:s', strtotime( $this->input->post('u_ak_act_imp') ) );
 		}
 
-		$result = $this->dc_model->updateSection($id,$ak_act_imp);
+		$result = $this->Dc_model->updateSection($id,$ak_act_imp);
 		echo json_encode($result);
 	}
 
@@ -65,7 +65,7 @@ class Section extends CI_Controller {
 			'year' => $year,
 		];
 
- 		$data['act'] = $this->dc_model->get_activity_sched_section($date,$month,$year,$section);
+ 		$data['act'] = $this->Dc_model->get_activity_sched_section($date,$month,$year,$section);
  		
 		$this->load->view('section/modal_detail',$data);
 	}

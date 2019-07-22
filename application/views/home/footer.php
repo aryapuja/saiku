@@ -103,7 +103,7 @@
 	        	$.ajax({
 	        		async: false,
 	        		type : "POST",
-	        		url   : '<?php echo base_url();?>index.php/user/getDcSchedUser',
+	        		url   : '<?php echo base_url();?>index.php/User/getDcSchedUser',
 	        		dataType : 'json',
 	        		data : { 
 	        			date_p:day,
@@ -112,8 +112,10 @@
 
 	        			success : function(data){
 	        				var dataList = data.sch;
-	        				lineku = data.cline;
+	        				// alert(data.cline2[0].jml);
+	        				// lineku = data.cline;
 	        				cline2 = data.cline2;
+	        				// alert(cline2);
 	        				 // alert(lineku2);
 	        				var agend=[];
 	        				var html='';
@@ -145,7 +147,7 @@
 	                    	var tgl_awal4 = month[tgl_d.getMonth()]+", "+('0'+tgl_d.getDate()).slice(-2)+" "+tgl_d.getFullYear();
 
 
-	                         status = "";
+	                        status = "";
 	                        if(dataList[i].count_nan == '0'){
 	                        	status = "close";
 	                        	cls="success";
@@ -154,12 +156,12 @@
 	                        	cls="danger";
 	                        
 	                        }
-
+	                        
 	                        var ag = {
 	                    		tanggal_a:tgl_a,
 	                    		tanggal_b:tgl_b,
 	                    		tanggal_c:tgl_c,
-	                    		tanggal_d:tgl_d
+	                    		tanggal_d:tgl_d,
 	                        			// level:dataList[i].level
 	                        		}
 	                        // memasukkan dataList agenda kedalam array yang nantinya akan diolah untuk coloring calendar
@@ -208,6 +210,7 @@
 
 	        	// variabel tanggal dimulai tgl 1
 	        	let date = 1;
+	        	var total;
 	        	for (let i = 0; i < 6; i++) {
     				// creates a table row calendar
     				html+='<tr>';
@@ -228,18 +231,19 @@
 			            		var anu=new Date();
 			            		var t=anu.setDate(anu.getDate() - 1);
 
+
 			            		// pengecekan calendar jika ada agenda di tanggal ini(date)
 			            		for (var ia = (agenda.length-1); ia >=0 ; ia--) {
 			            			for (var ib = 0; ib < agenda.length; ib++) {
 
 			            				for (var iz = 0; iz < cline2.length; iz++) {
 					            					if (cline2[iz].tgl == date) {
-					            						asign=cline2[iz].jml;
+					            						asign=parseInt(cline2[iz].jml)+parseInt(cline2[iz].jml2)+parseInt(cline2[iz].jml3)+parseInt(cline2[iz].jml4)+parseInt(cline2[iz].jml5);;
 					            					}
 			            						}
 			            				
 
-			            				if (new Date(currentYear,currentMonth,date) <= agenda[ia].tanggal_a && new Date(currentYear,currentMonth,date)>=agenda[ia].tanggal_a) { 
+			            				if (new Date(currentYear,currentMonth,date) >= agenda[ia].tanggal_a && new Date(currentYear,currentMonth,date)<=agenda[ia].tanggal_a) { 
 
 			            					if( t > agenda[ia].tanggal_a  && agenda[ia].status=="close"){
 			            						asign=666;
@@ -334,7 +338,7 @@
 	        	$.ajax({
 	        		async: false,
 	        		type : "POST",
-	        		url   : '<?php echo base_url();?>index.php/user/getDcActUser',
+	        		url   : '<?php echo base_url();?>index.php/User/getDcActUser',
 	        		dataType : 'json',
 	        		data : { 
 	        			date_p:day,

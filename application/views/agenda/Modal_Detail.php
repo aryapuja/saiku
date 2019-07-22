@@ -1,4 +1,3 @@
-
 				<div class="modal-header">
 					<h4 class="modal-title">Detail NOR</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>			           
@@ -11,7 +10,7 @@
 									<th>NOR-No</th>
 									<th>Item Changes</th>
 									<th>Line</th>
-									<th>Implementasi Plan</th>
+									<th>Due Date Plan</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -19,7 +18,7 @@
 									<tr>
 										<td><?php echo $value->nor."-".$value->no ?></td>
 										<td><?php echo $value->item_changes ?></td>
-										<td><?php echo $value->line ?></td>
+										<td><?php echo $value->line." ".$value->line2." ".$value->line3." ".$value->line4." ".$value->line5 ?></td>
 										<td><?php echo date("d-F-Y", strtotime($value->nor_plan_imp)) ?></td>
 									</tr>
 								<?php endforeach ?>
@@ -32,10 +31,10 @@
 							<thead>
 								<tr>
 									<th>NOR-No</th>
-									<th>Divisi</th>
+									<th>Section</th>
 									<th>Activity</th>
-									<th>Implementasi Plan</th>
-									<th>Implementasi Actual</th>
+									<th>Due Date Plan</th>
+									<th>Due Date Actual</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -45,7 +44,11 @@
 										<td><?php echo $value->nama_dvs ?></td>
 										<td><?php echo $value->nama_act ?></td>
 										<td><?php echo date("d-F-Y", strtotime($value->ak_plan_imp)) ?></td>
+										<?php if ($value->ak_act_imp == "0000-00-00 00:00:00") { ?>
+										<td>Belum Terimplementasi</td>
+										<?php }else{ ?>
 										<td><?php echo date("d-F-Y", strtotime($value->ak_act_imp)) ?></td>
+										<?php } ?>
 									</tr>
 								<?php endforeach ?>
 							</tbody>

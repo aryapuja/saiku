@@ -98,7 +98,7 @@
 									<div class="col-lg-12">
 										<label>Section</label>
 											<select class="form-control" name="section" id="section">
-								                 <option disabled selected hidden>Pilih Divisi</option>
+								                 <option disabled selected hidden>Pilih Section</option>
 								                 <option value="de">de</option>
 								                 <option value="pp">pp</option>
 								                 <option value="qp">qp</option>

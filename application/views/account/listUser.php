@@ -51,27 +51,31 @@
 							<div class="form-group col-lg-12 row">
 								<div class="col-4">
 									<label>Nama: </label>
-									<input type="text" id="u_name" name="u_name" class="form-control" placeholder="Masukkan Nama" style="width: 100%" required disabled="">
+									<input type="text" id="u_name" name="u_name" class="form-control" placeholder="Masukkan Nama" style="width: 100%" required >
 								</div>
 								<div class="col-4">
 									<label>NIK: </label>
-									<input type="text" id="u_nik" name="u_nik" class="form-control" placeholder="Masukkan nik" style="width: 100%" required disabled="">
+									<input type="text" id="u_nik" name="u_nik" class="form-control" placeholder="Masukkan nik" style="width: 100%" required >
 								</div>
 								<div class="col-4">
 									<label>Section: </label>
-									<input type="text" id="u_section" name="u_section" class="form-control" placeholder="Masukkan Section" required disabled=""> 
+									<input type="text" id="u_section" name="u_section" class="form-control" placeholder="Masukkan Section" required > 
 								</div>
 							</div>
 							<div class="form-group col-lg-12 row">
-								<div class="col-6">
+								<div class="col-4">
 									<label>Jabatan: </label>
-									<input type="text" id="u_jabatan" name="u_jabatan" class="form-control" placeholder="Masukkan jabatan" required disabled=""> 
+									<input type="text" id="u_jabatan" name="u_jabatan" class="form-control" placeholder="Masukkan jabatan" required > 
 								</div>
-								<div class="col-6">
+								<div class="col-4">
+									<label>Password: </label>
+										<input type="password" id="u_password" name="u_password" class="form-control" placeholder="Masukkan Password" required><span class="glyphicon glyphicon-eye-open"></span>
+								</div>
+								<div class="col-4">
 									
 									<label for="#">Status </label>
 											<select class="form-control" name="u_status" id="u_status">
-								                 <option disabled selected hidden>Pilih Status</option>
+								                 <option selected hidden>Pilih Status</option>
 								                 <option value="on">on</option>
 								                 <option value="off">off</option>
 								        	</select>
@@ -126,5 +130,7 @@
 		</div>
 	</div>
 </form>
+	
+
 <!--END MODAL NOR Delete -->
 </main>

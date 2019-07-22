@@ -49,20 +49,20 @@
                 <div class="collapse navbar-collapse" id="mainnavbar">
                     <ul class="navbar-nav mr-auto">             
                         <li class="nav-item active">
-                            <a class="nav-link" href="<?php echo base_url().'/index.php/dc_controller'?>" style="font-size: 20px;color: black">Admin View <sup><span class="badge badge-light" id="notifaccount2"></span></sup></a>
+                            <a class="nav-link" href="<?php echo base_url().'/index.php/Dc_controller'?>" style="font-size: 20px;color: black">Admin View <sup><span class="badge badge-light" id="notifaccount2"></span></sup></a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="<?php echo base_url().'/index.php/dc_controller/indexx'?>" style="font-size: 20px;color: black">User View</a>
+                            <a class="nav-link" href="<?php echo base_url().'/index.php/Dc_controller/indexx'?>" style="font-size: 20px;color: black">User View</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="<?php echo base_url().'/index.php/dc_controller/listUser'?>" style="font-size: 20px;color: black">List User <sup><span class="badge badge-light" id="notifaccount"></span></sup></a>
+                            <a class="nav-link" href="<?php echo base_url().'/index.php/Dc_controller/listUser'?>" style="font-size: 20px;color: black">List User <sup><span class="badge badge-light" id="notifaccount"></span></sup></a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="<?php echo base_url().'/index.php/dc_controller/ListActivity'?>" style="font-size: 20px;color: black">List Activity</a>
+                            <a class="nav-link" href="<?php echo base_url().'/index.php/Dc_controller/ListActivity'?>" style="font-size: 20px;color: black">List Activity</a>
                         </li>
                     </ul>
                     <div class="btn-group" role="group" aria-label="Data baru">
-                        <a class="btn-group btn btn-danger" href="<?php echo base_url().'/index.php/login/logout'?>" >LOGOUT</a>
+                        <a class="btn-group btn btn-danger" href="<?php echo base_url().'/index.php/Login/logout'?>" >LOGOUT</a>
                     </div>
                 </div>
             </div>

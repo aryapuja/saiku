@@ -100,7 +100,7 @@
 	        	$.ajax({
 	        		async: false,
 	        		type : "POST",
-	        		url   : '<?php echo base_url();?>index.php/section/getSectionSched',
+	        		url   : '<?php echo base_url();?>index.php/Section/getSectionSched',
 	        		dataType : 'json',
 	        		data : { 
 	        			month_p:mm,
@@ -151,16 +151,19 @@
 		                    	tanggal =  month[tgl_c.getMonth()]+", "+('0'+tgl_c.getDate()).slice(-2)+" "+tgl_c.getFullYear();
 	                    	}
 
-	                    	
-
+	                    	btn="";
 	                    	color="";
 	                    	if (dataList[i].astatus == "not updated") {
 	                    		color='<span class="badge badge-secondary">'+dataList[i].astatus+'</span>';
+	                    		btn='<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit" data-id="'+dataList[i].idact+'" data-nor="'+dataList[i].nor+'" data-no="'+dataList[i].no+'" data-nama_act="'+dataList[i].nama_act+'" data-line="'+dataList[i].line+'" data-ak_plan_imp="'+tgl_awal4+'" data-ak_act_imp="'+tgl_awal+'">Update</a>';
 	                    	}else if(dataList[i].astatus == "waiting"){
 	                    		color='<span class="badge badge-warning">'+dataList[i].astatus+'</span>';
+	                    		btn='<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit" data-id="'+dataList[i].idact+'" data-nor="'+dataList[i].nor+'" data-no="'+dataList[i].no+'" data-nama_act="'+dataList[i].nama_act+'" data-line="'+dataList[i].line+'" data-ak_plan_imp="'+tgl_awal4+'" data-ak_act_imp="'+tgl_awal+'">Update</a>';
 	                    	}else if(dataList[i].astatus =="verified"){
 	                    		color='<span class="badge badge-success">'+dataList[i].astatus+'</span>';
+	                    		btn='<a href="javascript:void(0);" class="btn btn-success btn-sm item_edit disabled" data-id="'+dataList[i].idact+'" data-nor="'+dataList[i].nor+'" data-no="'+dataList[i].no+'" data-nama_act="'+dataList[i].nama_act+'" data-line="'+dataList[i].line+'" data-ak_plan_imp="'+tgl_awal4+'" data-ak_act_imp="'+tgl_awal+'"><span class="form-check-label"></span>Done</a>';
 	                    	}
+
 
 	                    	var ag = {
 	                    		tanggal_a:tgl_a,
@@ -168,8 +171,7 @@
 	                    		tanggal_c:tgl_c,
 	                    		tanggal_d:tgl_d,
 	                    		// status:status
-
-	                        		}
+	                        	}
 	                        // memasukkan dataList agenda kedalam array yang nantinya akan diolah untuk coloring calendar
 	                        agend.push(ag);
 
@@ -185,9 +187,7 @@
 		                            '<td>'+tanggal+'</td>'+
 		                            // '<td><span class="badge badge-'+cls+'">'+status+'</span></td>'+
 		                            '<td>'+
-		                            '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit" data-id="'+dataList[i].idact+'" data-nor="'+dataList[i].nor+'" data-no="'+dataList[i].no+'" data-nama_act="'+dataList[i].nama_act+'" data-line="'+dataList[i].line+'" data-ak_plan_imp="'+tgl_awal4+'" data-ak_act_imp="'+tgl_awal+'">Update</a>   '+
-
-
+		                            btn+
 		                            // '<a href="javascript:void(0);" class="btn btn-danger btn-sm item_delete" dataList-id="'+dataList[i].id+'" dataList-nor="'+dataList[i].nor+'" dataList-no="'+dataList[i].no+'">Hapus</a>'+
 		                            '</td>'+
 		                            '</tr>';
@@ -375,7 +375,7 @@
 				// alert("id:"+up_id+"|nor:"+up_nor+"|no:"+up_no+"|lin:"+up_line+"|item:"+up_item_changes+"|date:"+up_date_plan);        		
         		$.ajax({
         			type : "POST",
-        			url  : "<?php echo site_url(); ?>/section/updateSection",
+        			url  : "<?php echo site_url(); ?>/Section/updateSection",
         			dataType : "JSON",
         			data : { 
         				u_id:up_id,
@@ -412,7 +412,7 @@ function refresh() {
 
 function openDetailModal(date,month,year,section) {
         	$.ajax({
-        		url : "<?php echo site_url('section/getModalDetail') ?>",
+        		url : "<?php echo site_url('Section/getModalDetail') ?>",
         		type : "POST",
         		data : {
         			'date' : date,

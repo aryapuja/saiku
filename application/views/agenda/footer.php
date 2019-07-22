@@ -127,12 +127,31 @@
 	                        	cls="success";
 	                        }else if(data[i].status == "Open"){
 	                        	// status = "open";
-	                        	cls="danger";
-	                        
+	                        	cls="danger";	                        
 	                        }else{
 	                        	cls="warning";
 	                        }
 	                        // alert(status);
+							var line = new Array();
+	                        line[0]=data[i].line;
+	                        line[1]=data[i].line2;
+	                        line[2]=data[i].line3;
+	                        line[3]=data[i].line4;
+	                        line[4]=data[i].line5;
+	                        a="";
+	                        
+	                        for (var b = 0; b < 5; b++) {
+	                        	if (line[b] != null) {
+		                        	if (b>0) {
+										a+=","+line[b];	                        		
+		                        	}else{
+		                        		a+=line[b];
+		                        	}
+	                        	}
+
+	                        }
+
+	                        // alert(a);
 
 	                        var ag = {
 	                    		tanggal_a:tgl_a,
@@ -149,7 +168,7 @@
 	                        '<td >'+data[i].nor+'-'+data[i].no+'</td>'+
 		                            // '<td>'+data[i].rev+'</td>'+
 		                            '<td style="text-align: left;">'+data[i].item_changes+'</td>'+
-		                            '<td>'+data[i].line+'</td>'+
+		                            '<td>'+a+'</td>'+
 		                            '<td>'+tgl_awal2+'</td>'+
 		                            '<td>'+tanggal+'</td>'+
 		                            '<td><span class="badge badge-'+cls+'">'+data[i].status+'</span></td>'+
@@ -397,7 +416,7 @@
 		                            '<td>'+tanggal+'</td>'+
 		                            '<td>'+
 		                            '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit2" data-id="'+data[i].id+'" data-nor="'+data[i].nor+'" data-no="'+data[i].no+'" data-act="'+data[i].nama_act+'" data-dvs="'+data[i].nama_dvs+'" data-ak_plan_imp="'+tgl_awal3+'" data-ak_act_imp="'+tgl_awal4+'" data-status="'+data[i].statusku+'">Edit</a>   '+
-		                            '<a href="javascript:void(0);" class="btn btn-danger btn-sm item_delete2" data-id="'+data[i].id+'" data-nor="'+data[i].nor+'" data-no="'+data[i].no+'" data-act="'+data[i].nama_act+'">Hapus</a>'+
+		                            '<a href="javascript:void(0);" class="btn btn-danger btn-sm item_delete2" data-id="'+data[i].id+'" data-nor="'+data[i].nor+'" data-no="'+data[i].no+'" data-ak_act_imp="'+tgl_awal4+'" data-act="'+data[i].nama_act+'">Hapus</a>'+
 		                            '</td>'+
 		                            '</tr>';
 		                        } 
@@ -583,9 +602,16 @@
             		type : "POST",
             		url  : "<?php echo site_url(); ?>/Dc_controller/deleteDc",
             		dataType : "JSON",
-            		data : {id:id},
+            		data : {
+            			id:id
+            		},
             		success: function(){
             			$('[name="deleteDcku"]').val("");
+            			Swal.fire({
+        					type: 'success',
+        					title: 'Berhasil menghapus data ',
+        					showConfirmButton: true,
+        				})
             			$('#Modal_Delete').modal('hide'); 
             			refresh();
             		}
@@ -670,6 +696,7 @@
                 $('[name="ak_act_imp_up"]').val(upak_act_imp);
                 $('[name="status_up"]').val(upstatus);
 
+                // alert(upak_plan_imp);
                 $('#Modal_Update2').modal('show');
                 
             });
@@ -724,27 +751,42 @@
             	var id = $(this).data('id');
             	var nor = $(this).data('nor'); 
             	var no = $(this).data('no'); 
+            	var act = $(this).data('ak_act_imp'); 
             	var activity = $(this).data('act'); 
-
+            	// alert(act);
             	$('#Modal_Delete2').modal('show');
             	document.getElementById("msg2").innerHTML=activity;
             	document.getElementById("msg3").innerHTML=nor+'-'+no;
-
             	$('[name="deleteActku"]').val(id);
+            	$('[name="norku"]').val(nor);
+            	$('[name="noku"]').val(no);
+            	$('[name="actku"]').val(act);
             });
 
             //delete record to database
             $('#formdelete2').submit(function(e){
             	        e.preventDefault(); 
             	var id = $('#deleteActku').val();
-
+            	var nor = $('#norku').val();
+            	var no = $('#noku').val();
+            	var act = $('#actku').val();
             	$.ajax({
             		type : "POST",
             		url  : "<?php echo site_url(); ?>/Dc_controller/deleteActivity",
             		dataType : "JSON",
-            		data : {id:id},
+            		data : {
+            			id:id,
+            			nor:nor,
+            			no:no,
+            			act:act,
+            		},
             		success: function(){
             			$('[name="deleteActku"]').val("");
+            			Swal.fire({
+        					type: 'success',
+        					title: 'Berhasil menghapus data ',
+        					showConfirmButton: true,
+        				})
             			$('#Modal_Delete2').modal('hide'); 
             			refresh();
             		}

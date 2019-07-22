@@ -7,7 +7,7 @@
 		public function __construct()
 		{
 			parent::__construct();
-			$this->load->model('dc_model');
+			$this->load->model('Dc_model');
 		}
 
 		public function index()
@@ -23,7 +23,7 @@
 				// print_r($nik);
 				// die();
 
-				$cek = $this->dc_model->login($nik,$password);
+				$cek = $this->Dc_model->login($nik,$password);
 				if ($cek->num_rows() == 1) {
 
 					$value = $cek->row();
@@ -80,7 +80,7 @@
 			$jabatan = $this->input->post('jabatan');
 			$password = $this->input->post('password');
 			
-			$result = $this->dc_model->register($name,$nik,$section,$jabatan,$password);
+			$result = $this->Dc_model->register($name,$nik,$section,$jabatan,$password);
 
 			echo json_encode($result);
 		}

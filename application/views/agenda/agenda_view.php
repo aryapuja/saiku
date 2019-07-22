@@ -99,8 +99,8 @@
 								<th style="text-align: center; width: 15% ">Nor-No</th>
 								<th style="text-align: center; width: 30%">Item Changes</th>
 								<th style="text-align: center; width: 10%">Line</th>
-								<th style="text-align: center; width: 10%">Implementasi Plan</th>
-								<th style="text-align: center; width: 10%">Implementasi Actual</th>
+								<th style="text-align: center; width: 10%">Due Date Plan</th>
+								<th style="text-align: center; width: 10%">Due Date Actual</th>
 								<th style="text-align: center; width: 10%">Status</th>
 								<th style="text-align: center; width: 15%">Action</th>
 							</tr>
@@ -125,11 +125,11 @@
 							<!-- <th style="width: 5%;">No</th> -->
 							<th style="text-align: center;" hidden>Id</th>
 							<th style="text-align: center; width: 10%">Nor-No</th>
-							<th style="text-align: center; width: 5%">Divisi</th>
-							<th style="text-align: center; width: 55%">Activity</th>
-							<th style="text-align: center; width: 5%">Plan Date</th>
+							<th style="text-align: center; width: 5%">Section</th>
+							<th style="text-align: center; width: 35%">Activity</th>
+							<th style="text-align: center; width: 15%">Due Date Plan</th>
 							<th style="text-align: center; width: 5%">Status</th>
-							<th style="text-align: center; width: 5%">Actual Date</th>
+							<th style="text-align: center; width: 15%">Due Date Actual</th>
 							<th style="text-align: center; width: 15%">Action</th>
 						</tr>
 					</thead>
@@ -167,9 +167,9 @@
 									<input type="text" id="no" class="form-control" placeholder="Masukkan No" style="width: 100%" required>
 								</div>
 								<div class="col-4">
-									<label for="#">Implemented Plan </label>
+									<label for="#">Due Date Plan </label>
 									<div class="input-daterange input-group" id="datepickers">
-										<input  class="form-control" name="nor_plan_imp" id="nor_plan_imp" placeholder="Imp. (Plan)" required/>
+										<input  class="form-control" name="nor_plan_imp" id="nor_plan_imp" placeholder="DD. (Plan)" required autocomplete="off" />
 									</div>
 								</div>
 							</div>
@@ -268,13 +268,13 @@
 									<textarea type="text" id="u_item_changes" name="u_item_changes" class="form-control" rows="4" placeholder="Masukkan item Changes"  required></textarea>
 								</div>
 								<div class="col-6">
-									<label for="#">Implemented Plan: </label>
+									<label for="#">Due Date Plan: </label>
 									<div class="input-daterange input-group">
-										<input  class="form-control datepicker" name="u_nor_plan_imp" id="u_nor_plan_imp" placeholder="Imp. (Plan)" required/>
+										<input  class="form-control datepicker" name="u_nor_plan_imp" id="u_nor_plan_imp" placeholder="DD. (Plan)" required autocomplete="off" />
 									</div>
-									<label for="#">Implemented Actual: </label>
+									<label for="#">Due Date Actual: </label>
 									<div class="input-daterange input-group">
-										<input  class="form-control datepicker" name="u_nor_act_imp" id="u_nor_act_imp" placeholder="Imp. (Actual)" />
+										<input  class="form-control datepicker" name="u_nor_act_imp" id="u_nor_act_imp" placeholder="DD. (Actual)" autocomplete="off" />
 									</div>
 								</div>
 
@@ -311,7 +311,7 @@
 						<br><br>
 						<center><H4 id="msg"></H4></center>
 						<input type="hidden" name="deleteDcku" id="deleteDcku" class="form-control">
-
+						
 					</div>
 
 					<br />
@@ -371,9 +371,9 @@
 									</select>
 								</div>  
 								<div class="col-md-2">
-									<label>Divisi</label>
+									<label>Section</label>
 									<select class="form-control" name="nama_dvs[]" id="nama_dvs">
-										<option disabled selected hidden>Pilih Divisi</option>
+										<option disabled selected hidden>Pilih Section</option>
 										<option value="de">de</option>
 										<option value="pp">pp</option>
 										<option value="qp">qp</option>
@@ -386,7 +386,7 @@
 								</div>  
 								<div class="col-md-3">
 									<label>Activity</label>
-									<input type="text" id="nama_act" name="nama_act[]" class="form-control" placeholder="Masukkan Activity" list="data" required />
+									<input type="text" id="nama_act" name="nama_act[]" class="form-control" placeholder="Masukkan Activity" list="data" required autocomplete="off" />
 									<datalist id="data">
 										<?php foreach ($this->db->get('mactivity')->result() as $key => $value) : ?>
 										 <option value="<?= $value->namaActivity ?>" data-json='<?php echo json_encode($value) ?>'><?= $value->namaActivity ?>	 	
@@ -395,8 +395,8 @@
 									</datalist>
 								</div>  
 								<div class="col-md-2">
-									<label>Implementasi Plan</label>
-									<input class="form-control datepicker" name="ak_plan_imp[]" id="ak_plan_imp" placeholder="Date (Plan)" required/>
+									<label>Due Date Plan</label>
+									<input class="form-control datepicker" name="ak_plan_imp[]" id="ak_plan_imp" placeholder="Date (Plan)" required autocomplete="off"/>
 								</div>  
 								<div class="col-md-1">
 									<label for="hapus">Hapus Form</label><br/>
@@ -445,9 +445,9 @@
 												<input type="text" id="slct_no_up" name="no_act_up" class="form-control" placeholder="Masukkan Activity" required readonly />
 
 											</td>
-											<td> <label>Divisi</label>
+											<td> <label>Section</label>
 												<select class="form-control" name="nama_dvs_up" id="nama_dvs_up">
-													<option disabled selected hidden>Pilih Divisi</option>
+													<option disabled selected hidden>Pilih Section</option>
 													<option value="de">de</option>
 													<option value="pp">pp</option>
 													<option value="qp">qp</option>
@@ -461,11 +461,11 @@
 											<td> <label>Activity</label>
 												<input type="text" id="nama_act_up" name="nama_act_up" class="form-control" placeholder="Masukkan Activity" required />
 											</td>
-											<td><label>Implementasi Plan</label>
-												<input class="form-control datepicker" name="ak_plan_imp_up" id="ak_plan_imp_up" placeholder="Date (Plan)" required/>
+											<td><label>Due Date Plan</label>
+												<input class="form-control datepicker" name="ak_plan_imp_up" id="ak_plan_imp_up" placeholder="Date (Plan)" required autocomplete="off"/>
 											</td>
-											<td> <label>Implementasi Actual</label>
-												<input  class="form-control datepicker" name="ak_act_imp_up" id="ak_act_imp_up" placeholder="Date (Actual)"/>
+											<td> <label>Due Date Actual</label>
+												<input  class="form-control datepicker" name="ak_act_imp_up" id="ak_act_imp_up" placeholder="Date (Actual)" autocomplete="off"/>
 											</td>
 										</tr>  
 									</table>  
@@ -510,9 +510,9 @@
 												<input type="text" id="slct_no_c" name="no_act_c" class="form-control" placeholder="Masukkan Activity" required readonly />
 
 											</td>
-											<td> <label>Divisi</label>
+											<td> <label>Section</label>
 												<select class="form-control" name="nama_dvs_c" id="nama_dvs_c" readonly>
-													<option disabled selected hidden>Pilih Divisi</option>
+													<option disabled selected hidden>Pilih Section</option>
 													<option value="de">de</option>
 													<option value="pp">pp</option>
 													<option value="qp">qp</option>
@@ -526,11 +526,11 @@
 											<td> <label>Activity</label>
 												<input type="text" id="nama_act_c" name="nama_act_c" class="form-control" placeholder="Masukkan Activity" required readonly />
 											</td>
-											<td><label>Implementasi Plan</label>
+											<td><label>Due Date Plan</label>
 												<input class="form-control datepicker" name="ak_plan_imp_c" id="ak_plan_imp_c" placeholder="Date (Plan)" required readonly/>
 											</td>
-											<td> <label>Implementasi Actual</label>
-												<input  class="form-control datepicker" name="ak_act_imp_c" id="ak_act_imp_c" placeholder="Date (Actual)"/>
+											<td> <label>Due Date Actual</label>
+												<input  class="form-control datepicker" name="ak_act_imp_c" id="ak_act_imp_c" placeholder="Date (Actual)" autocomplete="off"/>
 											</td>
 										</tr>  
 									</table>  
@@ -566,6 +566,9 @@
 							<label><font size="6"> dari nor-no : <b id="msg3"></b> ? </font></label>
 							
 							<input type="hidden" name="deleteActku" id="deleteActku" class="form-control">
+							<input type="hidden" name="norku" id="norku" class="form-control">
+						<input type="hidden" name="noku" id="noku" class="form-control">
+						<input type="hidden" name="actku" id="actku" class="form-control">
 
 						</div>
 
@@ -583,8 +586,6 @@
 		</div>
 	</form>
 	<!--END MODAL NOR Delete-->
-
-	
 
 	<div id="input-container" style="display: none;">
 		<div class="row input-header" id="rows" style="margin-top: 1rem">
@@ -604,7 +605,7 @@
 					</div>
 					<div class="col-md-2">
 						<select class="form-control" name="nama_dvs[]" id="nama_dvs">
-							<option disabled selected hidden>Pilih Divisi</option>
+							<option disabled selected hidden>Pilih Section</option>
 							<option value="de">de</option> 
 							<option value="pp">pp</option>
 							<option value="qp">qp</option>
@@ -624,7 +625,7 @@
 									<?php endforeach; ?>
 									</datalist>
 					</div>
-					<div class="col-md-2"><input type="date" class="form-control datepicker" name="ak_plan_imp[]" id="ak_plan_imp" placeholder="Date (Plan)" required/></div>
+					<div class="col-md-2"><input type="date" class="form-control datepicker" name="ak_plan_imp[]" id="ak_plan_imp" placeholder="Date (Plan)" required autocomplete="off"/></div>
 					<div class="cols-md-1" style="align-items: center;"><center><button type="button" name="remove" id="" class="btn btn-danger btn_remove">X</button></center></div>
 				</div>
 				<script>

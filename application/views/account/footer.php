@@ -85,7 +85,7 @@
     				'<td>'+data[i].section+'</td>'+
     				'<td>'+data[i].jabatan+'</td>'+
     				'<td style="background-color:'+cls+';">'+data[i].status+'</td>'+
-    				'<td>'+ '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit_user" data-id_user="'+data[i].id_user+'" data-name="'+data[i].name+'" data-nik="'+data[i].nik+'" data-section="'+data[i].section+'" data-jabatan="'+data[i].jabatan+'" data-status="'+data[i].status+'"> <span class="fa fa-edit"></span> </a>'+ 
+    				'<td>'+ '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit_user" data-id_user="'+data[i].id_user+'" data-name="'+data[i].name+'" data-nik="'+data[i].nik+'" data-section="'+data[i].section+'" data-jabatan="'+data[i].jabatan+'" data-password="'+data[i].password+'" data-status="'+data[i].status+'"> <span class="fa fa-edit"></span> </a>'+ 
     				'     '+
     				'<a href="javascript:void(0);" class="btn btn-danger btn-sm item_delete_user" data-id_user="'+data[i].id_user+'" data-name="'+data[i].name+'" data-section="'+data[i].section+'"> <span class="fa fa-trash"></span> </a>'+
     				'</td>'+
@@ -115,7 +115,8 @@
         var upname          = $(this).data('name'); 
         var upnik        	= $(this).data('nik'); 
         var upsection       = $(this).data('section');
-        var upjabatan     	= $(this).data('jabatan'); 
+        var upjabatan       = $(this).data('jabatan'); 
+        var uppassword     	= $(this).data('password'); 
         var upstatus 	    = $(this).data('status'); 
 
 
@@ -125,6 +126,7 @@
         $('[name="u_nik"]').val(upnik);
         $('[name="u_section"]').val(upsection);
         $('[name="u_jabatan"]').val(upjabatan);
+        $('[name="u_password"]').val(uppassword);
         $('[name="u_status"]').val(upstatus);
 
         $('#Modal_Updatelist').modal('show');
@@ -135,10 +137,11 @@
         e.preventDefault(); 
         // memasukkan data dari form update ke variabel untuk update db
         var up_id                = $('#u_id').val();
-        // var up_name      	 	 = $('#u_name').val();
-        // var up_nik      	 	 = $('#u_nik').val();
-        // var up_section        	 = $('#u_section').val();
-        // var up_jabatan         	 = $('#u_jabatan').val();
+        var up_name      	 	 = $('#u_name').val();
+        var up_nik      	 	 = $('#u_nik').val();
+        var up_section        	 = $('#u_section').val();
+        var up_jabatan           = $('#u_jabatan').val();
+        var up_password         	 = $('#u_password').val();
         var up_status 	      	 = $('#u_status').val();
 
         $.ajax({
@@ -147,6 +150,11 @@
             dataType : "JSON",
             data : { 
                 u_id:up_id,
+                u_name:up_name,
+                u_nik:up_nik,
+                u_section:up_section,
+                u_jabatan:up_jabatan,
+                u_password:up_password,
                 u_status:up_status,
             },
 

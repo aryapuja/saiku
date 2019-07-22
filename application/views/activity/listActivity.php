@@ -9,7 +9,7 @@
 				<div class="boddy card">
 					<center><h4 class="namatitel card-header">List Activity</h4></center>
 					<div class="card-body">
-						<div class="pull-right"><a href="javascript:void(0);" class="btn btn-success" data-toggle="modal" data-target="#Modal_AddAct"><span class="fa fa-plus"></span> Add</a></div>
+						<div class="pull-right"><a href="javascript:void(0);" class="btn btn-success float-right" data-toggle="modal" data-target="#Modal_AddAct"><span class="fa fa-plus"></span> Add</a></div>
 						<table class="table table-striped table-bordered table-responsive-md tblcus" style="table-layout:all; width: 100%" id="listactivity">
 							<thead>
 								<tr style="background-color: #E8E8E8;">

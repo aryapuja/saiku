@@ -41,13 +41,13 @@
 
 								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 									<img src="#" width="10px">&nbsp Tidak Ada Activity<br>
-									<img src="<?=base_url()?>assets/image/1.png" width="10px">&nbsp Ada 1 Line<br>
-									<img src="<?=base_url()?>assets/image/2.png" width="10px">&nbsp Ada 2 Line<br>
+									<img src="<?=base_url()?>assets/image/1.png" width="10px">&nbsp Ada 1 Activity<br>
+									<img src="<?=base_url()?>assets/image/2.png" width="10px">&nbsp Ada 2 Activity<br>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-									<img src="<?=base_url()?>assets/image/3.png" width="10px">&nbsp Ada 3 Line<br>
-									<img src="<?=base_url()?>assets/image/4.png" width="10px">&nbsp Ada 4 Line<br>
-									<img src="<?=base_url()?>assets/image/5.png" width="10px">&nbsp Ada >=5 Line<br>
+									<img src="<?=base_url()?>assets/image/3.png" width="10px">&nbsp Ada 3 Activity<br>
+									<img src="<?=base_url()?>assets/image/4.png" width="10px">&nbsp Ada 4 Activity<br>
+									<img src="<?=base_url()?>assets/image/5.png" width="10px">&nbsp Ada >=5 Activity<br>
 								</div>
 							</div>
 						</center>
@@ -72,9 +72,9 @@
 									<th style="text-align: center; width: 15% ">Nor-No</th>
 									<th style="text-align: center; width: 35%">Activity</th>
 									<th style="text-align: center; width: 5%">Line</th>
-									<th style="text-align: center; width: 10%">Implementasi Plan</th>
+									<th style="text-align: center; width: 10%">Due Date Plan</th>
 									<th style="text-align: center; width: 10%">Status</th>
-									<th style="text-align: center; width: 10%">Implementasi Actual</th>
+									<th style="text-align: center; width: 10%">Due Date Actual</th>
 									<th style="text-align: center; width: 5%">Action</th>
 								</tr>
 							</thead>
@@ -110,7 +110,7 @@
 			<div class="modal-dialog" role="document" style="max-width: 80%;overflow-y: initial !important">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h4 class="modal-title">Update Activity Implementasi Actual</h4>
+						<h4 class="modal-title">Update Activity : Due Date Actual</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>			           
 					</div>
 
@@ -205,5 +205,4 @@
 					$(target).find('.slct_no').find('.nomor-nor-'+nor).show();
 				}
 			</script>
-
 		</main>

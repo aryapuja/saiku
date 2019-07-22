@@ -48,7 +48,7 @@
                         
                     </ul>
                     <div class="btn-group" role="group" aria-label="Data baru">
-                        <a class="btn-group btn btn-danger" href="<?php echo base_url().'/index.php/login/logout'?>" >LOGOUT</a>
+                        <a class="btn-group btn btn-danger" href="<?php echo base_url().'/index.php/Login/logout'?>" >LOGOUT</a>
                     </div>
                 </div>
             </div>

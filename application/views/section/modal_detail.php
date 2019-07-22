@@ -10,10 +10,10 @@
 							<thead>
 								<tr>
 									<th>NOR-No</th>
-									<th>Divisi</th>
+									<th>Section</th>
 									<th>Activity</th>
-									<th>Implementasi Plan</th>
-									<th>Implementasi Actual</th>
+									<th>Due Date Plan</th>
+									<th>Due Date Actual</th>
 								</tr>
 							</thead>
 							<tbody>

@@ -48,7 +48,7 @@
                         </li>
                     </ul>
                     <div class="btn-group" role="group" aria-label="Data baru">
-                         <a class="btn-group btn btn-success" href="<?php echo base_url().'/index.php/login'?>" >LOGIN</a>
+                         <a class="btn-group btn btn-success" href="<?php echo base_url().'/index.php/Login'?>" >LOGIN</a>
                      </div> 
                 </div>
             </div>

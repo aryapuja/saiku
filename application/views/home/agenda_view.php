@@ -73,7 +73,7 @@
 									<th style="text-align: center; width: 15% ">Nor-No</th>
 									<th style="text-align: center; width: 50%">Item Changes</th>
 									<th style="text-align: center; width: 10%">Line</th>
-									<th style="text-align: center; width: 10%">Implementasi Plan</th>
+									<th style="text-align: center; width: 10%">Due Date Plan</th>
 									<!-- <th style="text-align: center; width: 15%">Action</th> -->
 								</tr>
 							</thead>
@@ -97,11 +97,11 @@
 								<!-- <th style="width: 5%;">No</th> -->
 								<th style="text-align: center;" hidden>Id</th>
 								<th style="text-align: center; width: 5%">Nor-No</th>
-								<th style="text-align: center; width: 5%">Implementasi Plan Nor</th>
-								<th style="text-align: center; width: 5%">Divisi</th>
+								<th style="text-align: center; width: 5%">Due Date Plan Nor</th>
+								<th style="text-align: center; width: 5%">Section</th>
 								<th style="text-align: center; width: 75%">Activity</th>
-								<th style="text-align: center; width: 5%">Implementasi Plan</th>
-								<th style="text-align: center; width: 5%">Implementasi Actual</th>
+								<th style="text-align: center; width: 5%">Due Date Plan</th>
+								<th style="text-align: center; width: 5%">Due Date Actual</th>
 								<!-- <th style="text-align: center; width: 15%">Action</th> -->
 							</tr>
 						</thead>
@@ -149,7 +149,7 @@
 										<textarea type="text" id="item_changes" class="form-control" rows="4" placeholder="Masukkan item Changes"  required></textarea>
 									</div>
 									<div class="col-6">
-										<label for="#">Implemented Plan </label>
+										<label for="#">Due Date Plan </label>
 										<div class="input-daterange input-group" id="datepickers">
 											<input  class="form-control" name="date_plan" id="date_plan" placeholder="Date (Plan)" required/>
 										</div>
@@ -214,7 +214,7 @@
 									<textarea type="text" id="u_item_changes" name="u_item_changes" class="form-control" rows="4" placeholder="Masukkan item Changes"  required></textarea>
 								</div>
 								<div class="col-6">
-									<label for="#">Implemented Plan: </label>
+									<label for="#">Due Date Plan: </label>
 									<div class="input-daterange input-group">
 										<input  class="form-control datepicker" name="u_date_plan" id="u_date_plan" placeholder="Date (Plan)" required/>
 									</div>
@@ -305,9 +305,9 @@
 												<?php }  ?>
 											</select>
 										</td>
-										<td> <label>Divisi</label>
+										<td> <label>Section</label>
 											<select class="form-control" name="nama_dvs[]" id="nama_dvs">
-												<option disabled selected hidden>Pilih Divisi</option>
+												<option disabled selected hidden>Pilih Section</option>
 												<option value="de">de</option>
 												<option value="pp">pp</option>
 												<option value="qp">qp</option>
@@ -377,9 +377,9 @@
 											<input type="text" id="slct_no_up" name="no_act_up" class="form-control" placeholder="Masukkan Activity" required readonly />
 
 										</td>
-										<td> <label>Divisi</label>
+										<td> <label>Section</label>
 											<select class="form-control" name="nama_dvs_up" id="nama_dvs_up">
-												<option disabled selected hidden>Pilih Divisi</option>
+												<option disabled selected hidden>Pilih Section</option>
 												<option value="de">de</option>
 												<option value="pp">pp</option>
 												<option value="qp">qp</option>
@@ -393,10 +393,10 @@
 										<td> <label>Activity</label>
 											<input type="text" id="nama_act_up" name="nama_act_up" class="form-control" placeholder="Masukkan Activity" required />
 										</td>
-										<td> <label>Date Plan</label>
+										<td> <label>Due Date Plan</label>
 											<input class="form-control datepicker" name="date_plan_act_up" id="date_plan_act_up" placeholder="Date (Plan)" required/>
 										</td>
-										<td> <label>Date Actual</label>
+										<td> <label>Due Date Actual</label>
 											<input  class="form-control datepicker" name="date_actual_up" id="date_actual_up" placeholder="Date (Actual)" required/>
 										</td>
 										<td>
@@ -473,7 +473,7 @@
 				</div>
 				<div class="col-md-2">
 					<select class="form-control" name="nama_dvs[]" id="nama_dvs">
-						<option disabled selected hidden>Pilih Divisi</option>
+						<option disabled selected hidden>Pilih Section</option>
 						<option value="de">de</option> 
 						<option value="pp">pp</option>
 						<option value="qp">qp</option>

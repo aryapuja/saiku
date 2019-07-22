@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 18, 2019 at 03:15 AM
+-- Generation Time: Jul 22, 2019 at 08:51 AM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -38,6 +38,15 @@ CREATE TABLE `activity` (
   `nor` varchar(10) NOT NULL,
   `no` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `activity`
+--
+
+INSERT INTO `activity` (`id`, `nama_act`, `ak_plan_imp`, `ak_act_imp`, `nama_dvs`, `status`, `nor`, `no`) VALUES
+(30, 'yudha ganteng', '2019-07-18 00:00:00', '2019-07-24 00:00:00', 'de', 'verified', 'yudha-yu', '123'),
+(31, 'yudha ganteng', '2019-07-18 00:00:00', '2019-07-19 00:00:00', 'de', 'verified', 'yudha-yu', '123'),
+(35, 'yudha ganteng', '2019-07-22 00:00:00', '2019-07-30 00:00:00', 'de', 'verified', 'yy', '1');
 
 -- --------------------------------------------------------
 
@@ -81,8 +90,7 @@ CREATE TABLE `mactivity` (
 
 INSERT INTO `mactivity` (`id`, `namaActivity`) VALUES
 (2, 'lalala'),
-(3, 'yudha ganteng'),
-(4, 'Dinar Cantik');
+(3, 'yudha ganteng');
 
 -- --------------------------------------------------------
 
@@ -102,7 +110,7 @@ CREATE TABLE `nor` (
   `line5` varchar(10) DEFAULT NULL,
   `nor_plan_imp` datetime NOT NULL,
   `nor_act_imp` datetime NOT NULL,
-  `status` enum('Close','Open','On Progress') NOT NULL DEFAULT 'On Progress'
+  `status` enum('Close','Open','On Progress') NOT NULL DEFAULT 'Close'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -110,7 +118,8 @@ CREATE TABLE `nor` (
 --
 
 INSERT INTO `nor` (`id`, `nor`, `no`, `item_changes`, `line`, `line2`, `line3`, `line4`, `line5`, `nor_plan_imp`, `nor_act_imp`, `status`) VALUES
-(60, 'yudha', 'ganteng', 'dal', '1A', '', '', '', '', '2019-07-18 00:00:00', '0000-00-00 00:00:00', 'On Progress');
+(61, 'yudha-yu', '123', 'lala', '1A', '1B', NULL, NULL, NULL, '2019-07-18 00:00:00', '2019-07-24 00:00:00', 'Close'),
+(63, 'yy', '1', 'tes', '1A', '1B', NULL, NULL, NULL, '2019-07-22 00:00:00', '2019-07-30 00:00:00', 'Close');
 
 --
 -- Triggers `nor`
@@ -141,15 +150,15 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `name`, `password`, `section`, `nik`, `jabatan`, `status`) VALUES
-(1, 'ppc1', 'ppc1', 'ppc', '1', '', 'off'),
+(1, 'ppc1', 'ppc1', 'ppc', '1', '', 'on'),
 (2, 'ppc2', 'ppc2', 'ppc', '2', '', 'on'),
 (3, 'de', 'de', 'de', '3', '', 'on'),
 (4, 'pp', 'pp', 'pp', '4', '', 'on'),
 (5, 'qp', 'qp', 'qp', '5', '', 'on'),
-(7, 'eng', 'eng', 'eng', '7', '', 'on'),
-(8, 'nys', 'nys', 'nys', '8', '', 'on'),
+(7, 'eng', 'eng', 'eng', '7', '', 'waiting'),
+(8, 'nys', 'nys', 'nys', '8', '', 'waiting'),
 (10, 'yudha', '1234', 'ppc', '1234', 'manager', 'on'),
-(11, 'arya', '1212', 'ppc', '1212', 'spv', 'on');
+(11, 'arya p', '1212', 'ppc', '12123', 'spv', 'on');
 
 --
 -- Indexes for dumped tables
@@ -201,7 +210,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `activity`
 --
 ALTER TABLE `activity`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `divisi`
@@ -213,19 +222,19 @@ ALTER TABLE `divisi`
 -- AUTO_INCREMENT for table `mactivity`
 --
 ALTER TABLE `mactivity`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `nor`
 --
 ALTER TABLE `nor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- Constraints for dumped tables

@@ -20,6 +20,18 @@ class Dc_Model extends CI_Model {
     /*============================ DESIGN CHANGE ============================*/
     public function newDc($nor,$no,$item_changes,$line1,$line2,$line3,$line4,$line5,$nor_plan_imp)
     {
+        if ($line2 == "") {
+            $line2=null;
+        }
+        if ($line3 == "") {
+            $line3=null;
+        }
+        if ($line4 == "") {
+            $line4=null;
+        }
+        if ($line5 == "") {
+            $line5=null;
+        }
         $data = array(
             'nor'               =>$nor,
             'no'                =>$no,
@@ -192,18 +204,17 @@ class Dc_Model extends CI_Model {
         return $query->result();
     }
 
-    public function get_count_line_month($month)
+    public function get_count_line_month($month,$year)
     {
-        $this->db->select('day(nor_plan_imp) as tgl,count(distinct(line)) as jml');
+        $this->db->select('day(nor_plan_imp) as tgl,count(distinct(line)) as jml,count(distinct(line2)) as jml2,count(distinct(line3)) as jml3,count(distinct(line4)) as jml4,count(distinct(line5)) as jml5');
         $this->db->from('nor');
         $this->db->where('month(nor_plan_imp)',$month);
+        $this->db->where('year(nor_plan_imp)',$year);
         $this->db->group_by('day(nor_plan_imp)');
         $query = $this->db->get();
     
         return $query->result();
     }
-
-
     /*============================ ACTIVITY ============================*/
 
 
@@ -252,11 +263,17 @@ class Dc_Model extends CI_Model {
         return $query->result();
     }
 
-    public function updateStatus($jml,$nor,$no)
+    public function updateStatus($jml,$nor,$no,$ak_act_imp)
     {
-        if ($jml == 1) {
-            $data = array( 'status'=>"Close" );            
-        }else{
+        if ($jml <= 1) {
+            if ($ak_act_imp == "0000-00-00 00:00:00") {
+                $data = array( 'status'=>"On Progress" );            
+            }else{
+                $data = array( 
+                    'status'=>"Close",
+                 );
+            }
+        }else {
             $data = array( 'status'=>"On Progress" );            
         }
 
@@ -286,10 +303,15 @@ class Dc_Model extends CI_Model {
         return $query->result(); 
     }
 
-    public function updateUser($id,$status)
+    public function updateUser($id,$name,$nik,$password,$section,$jabatan,$status)
     {
 
         $data = array(
+            'name'  => $name,
+            'nik'  => $nik,
+            'password'  => $password,
+            'section'  => $section,
+            'jabatan'  => $jabatan,
             'status'         =>$status,
         );
 
@@ -355,7 +377,7 @@ class Dc_Model extends CI_Model {
 
     public function confirmActivity($id,$nor,$no)
     {
-         $data = array(
+        $data = array(
             'status'                   =>"verified",
         );
 
@@ -369,15 +391,59 @@ class Dc_Model extends CI_Model {
     public function updateStatus2($jml,$nor,$no)
     {
         if ($jml == 0) {
-            $data = array( 'status'=>"Close" );            
+            $data = array( 
+                'status'=>"Close",
+            );            
         }else{
-            $data = array( 'status'=>"On Progress" );            
+            $data = array( 
+                'status'=>"On Progress",
+             );            
         }
 
         $this->db->where('nor', $nor);
         $this->db->where('no', $no);
         $result=$this->db->update('nor', $data);
         return $result;
+    }
+
+    public function updateNorAct($nor,$no,$ta,$ak_act_imp)
+    {
+        if ($ta == "0000-00-00 00:00:00") {
+            $data = array(
+                'nor_act_imp'                   =>$ak_act_imp,
+            );
+        }else if($ta < $ak_act_imp){
+            $data = array(
+                'nor_act_imp'                   =>$ak_act_imp,
+            );
+        }else{
+            $data = array(
+                'nor_act_imp'                   =>$ta,
+            );
+        }
+
+        $this->db->where('nor', $nor);
+        $this->db->where('no', $no);
+        $result = $this->db->update('nor', $data);
+        return $result;
+    }
+
+    public function updateNorAct2($nor,$no,$ta)
+    {
+        $data = array(
+                'nor_act_imp'                   =>$ta,
+        );
+
+        $this->db->where('nor', $nor);
+        $this->db->where('no', $no);
+        $result = $this->db->update('nor', $data);
+        return $result;
+    }
+    //get tanggal akhir implementasi
+    public function getTanggalAkhir($nor,$no)
+    {
+        $query=$this->db->query("SELECT ak_act_imp FROM `activity` WHERE nor='".$nor."' and no='".$no."' ORDER BY ak_act_imp DESC LIMIT 1");
+        return $query->result_array();
     }
 
 }

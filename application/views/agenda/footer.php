@@ -140,7 +140,7 @@
 	                        line[4]=data[i].line5;
 	                        a="";
 	                        
-	                        for (var b = 0; b < 5; b++) {
+	                        for (var b = 0; b < line.length; b++) {
 	                        	if (line[b] != null) {
 		                        	if (b>0) {
 										a+=","+line[b];	                        		
@@ -160,7 +160,7 @@
 	                    		tanggal_d:tgl_d,
 	                    		status:status
 							}
-                        	agend.push(ag);         
+                        	agend.push(ag);
 
 	                        html += '<tr>';
 	                        html +=	
@@ -856,6 +856,33 @@
         		});
         		return false;
         	});
+
+        	$('#formimportAct').on('submit', function(event){
+						event.preventDefault();
+						$.ajax({
+							url:"<?php echo site_url('Dc_controller/import') ?>",
+							method:"POST",
+							data:new FormData(this),
+							contentType:false,
+							cache:false,
+							processData:false,
+							success:function(data){
+								Swal.fire({
+									type: 'success',
+									title: 'Berhasil Import Activity',
+									showConfirmButton: true,
+        					// timer: 1500
+        						})
+								$('#fileku').val('');
+								$('.dropify-clear').click();
+        						$('#Modal_Import').modal('hide');
+        						refresh(); 
+
+							}
+						})
+					});
+
+
 //   ========================  END UPDATE RECORD ====================================
 
  		// fungsi refresh reset data all form dan calendar
@@ -873,6 +900,7 @@
  			document.getElementById('add_activity').reset();
  			document.getElementById('update_activity').reset();
  			document.getElementById('formdelete2').reset();
+ 			document.getElementById('formimportAct').reset();
 
             showAgendaandCalendar(currentMonth,currentYear);
             showAct(currentMonth,currentYear);
@@ -897,6 +925,8 @@
             showAgendaandCalendar(currentMonth,currentYear);
             showAct(currentMonth,currentYear);
         }
+
+        
     });
 
 	function openDetailModal(date,month,year) {

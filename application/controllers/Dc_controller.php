@@ -7,7 +7,8 @@ class Dc_Controller extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('Dc_model');
-
+		// $this->load->helper('download');
+		$this->load->library('excel');
 		if ($this->session->userdata('signin')==TRUE) 
 		{
 			// redirect('Dc_Controller/index');
@@ -21,8 +22,6 @@ class Dc_Controller extends CI_Controller {
 	{
 		$data['nor'] = $this->Dc_model->get_nor();
 		$data['no'] = $this->Dc_model->get_no();
-		
-
 		$this->load->view("agenda/header",$data); 
 		$this->load->view('agenda/agenda_view',$data);
 		$this->load->view("agenda/footer");
@@ -126,6 +125,7 @@ class Dc_Controller extends CI_Controller {
 	{	  
 		// $id = $this->input->post('deleteDcku');
 
+
 		$result = $this->Dc_model->deleteDc();
 		echo json_encode($result);
 	}
@@ -179,7 +179,7 @@ class Dc_Controller extends CI_Controller {
 				'status'=>"not updated",  // Ambil dan set data alamat sesuai index array dari $index
 				
 			));
-			$set = [
+		$set = [
 			'status' => "On Progress",
 		];
 		$this->db->where('nor',$nor[$index]);
@@ -198,7 +198,6 @@ class Dc_Controller extends CI_Controller {
 	{	 
 		date_default_timezone_set("Asia/Jakarta");
         $null = "0000-00-00 00:00:00";
-
         $status=$this->input->post('status');
 		$nor = $this->input->post('nor_act_up');
         $no = $this->input->post('no_act_up');
@@ -272,7 +271,7 @@ class Dc_Controller extends CI_Controller {
 		$count=$this->Dc_model->countUserWaiting();
 		$count2=$count[0]['count(status)'];
 		$data['countuserwaiting'] = $count2;
-		$this->load->view("account/header",$data); 
+		$this->load->view("agenda/header",$data); 
 		$this->load->view("account/listUser");
 		$this->load->view("account/footer");
 	}
@@ -310,7 +309,7 @@ class Dc_Controller extends CI_Controller {
 		$count2=$count[0]['count(status)'];
 		$data['countuserwaiting'] = $count2;
 
-		$this->load->view("activity/header",$data); 
+		$this->load->view("agenda/header",$data); 
 		$this->load->view("activity/listActivity");
 		$this->load->view("activity/footer");
 	}
@@ -359,6 +358,51 @@ class Dc_Controller extends CI_Controller {
 		$result = $this->Dc_model->confirmActivity($id,$nor,$no);
 
 		echo json_encode($result);
+	}
+
+	public function downloadformat()
+	{
+		force_download('Format_NewActivity.xlsx',NULL);
+	}
+
+	public function import(){
+
+		if(isset($_FILES["fileku"]["name"])){
+			$path = $_FILES["fileku"]["tmp_name"];
+			$object = PHPExcel_IOFactory::load($path);
+			$objWriter = PHPExcel_IOFactory::createWriter($object, 'Excel2007');
+			$objWriter->save('uploadActivity/Activity.xlsx');
+			foreach($object->getWorksheetIterator() as $worksheet){
+				$highestRow = $worksheet->getHighestRow();
+				$highestColumn = $worksheet->getHighestColumn();
+				for($row=2; $row<=$highestRow; $row++){
+					$activity = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
+					$section = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+					$plan = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+					$plan2 = \PHPExcel_Style_Numberformat::toFormattedString($plan, 'YYYY-MM-DD');
+					if ($plan != null) {
+						
+					$data[] = array(
+						'nor'  => $this->input->post('nor_act'),
+						'no'   => $this->input->post('no_act'),
+						'nama_act'   => $activity,
+						'nama_dvs'   => $section,
+						'ak_plan_imp'   => $plan2,
+						'ak_act_imp'   => "0000-00-00 00:00:00",
+					);
+					$set = [
+							'status' => "On Progress",
+						];
+						$this->db->where('nor',$this->input->post('nor_act'));
+						$this->db->where('no',$this->input->post('no_act'));
+						$this->db->update('nor',$set);
+					}
+				}
+			}
+			$result=$this->Dc_model->newactivity($data);
+			echo json_encode($result);
+		}
+
 	}
 
 }

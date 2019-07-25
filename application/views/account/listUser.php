@@ -14,7 +14,6 @@
 							<thead>
 								<tr style="background-color: #E8E8E8;">
 									<!-- <th style="width: 5%;">No</th> -->
-									<th style="text-align: center;" hidden>Id</th>
 									<th style="text-align: center; width: 5%" >No</th>
 									<th style="text-align: center; width: 15% ">Nama</th>
 									<th style="text-align: center; width: 15%">NIK</th>
@@ -65,7 +64,7 @@
 							<div class="form-group col-lg-12 row">
 								<div class="col-4">
 									<label>Jabatan: </label>
-									<input type="text" id="u_jabatan" name="u_jabatan" class="form-control" placeholder="Masukkan jabatan" required > 
+									<input type="text" id="u_jabatan" name="u_jabatan" class="form-control" placeholder="Masukkan jabatan"  > 
 								</div>
 								<div class="col-4">
 									<label>Password: </label>

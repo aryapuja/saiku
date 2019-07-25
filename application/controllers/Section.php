@@ -12,7 +12,7 @@ class Section extends CI_Controller {
 		{
 			// redirect('Section/index');
 		}else{	
-			redirect('login');
+			redirect('Login');
 		}
 	}
 
@@ -23,6 +23,13 @@ class Section extends CI_Controller {
 		$this->load->view("section/header"); 
 		$this->load->view('section/section_view');
 		$this->load->view("section/footer");
+	}
+
+	public function get_notif()
+	{
+		$count=$this->Dc_model->countActivityNotUpdated($this->session->section);
+		$count2=$count[0]['count(status)'];
+		echo $count2;
 	}
 
 	public function getSectionSched()

@@ -133,6 +133,8 @@
 							month[10] = "November";
 							month[11] = "December";
 
+							
+
 	        				for(i=0; i<dataList.length; i++){ 
 	        					a=i+1;   
 	                    	// mengkonversi tanggal yang akan ditampilkan
@@ -156,13 +158,31 @@
 	                        	cls="danger";
 	                        
 	                        }
+	                        var line = new Array();
+	                        line[0]=dataList[i].line;
+	                        line[1]=dataList[i].line2;
+	                        line[2]=dataList[i].line3;
+	                        line[3]=dataList[i].line4;
+	                        line[4]=dataList[i].line5;
+	                        a="";
+	                        
+	                        for (var b = 0; b < 5; b++) {
+	                        	if (line[b] != null) {
+		                        	if (b>0) {
+										a+=","+line[b];	                        		
+		                        	}else{
+		                        		a+=line[b];
+		                        	}
+	                        	}
+
+	                        }
 	                        
 	                        var ag = {
 	                    		tanggal_a:tgl_a,
 	                    		tanggal_b:tgl_b,
 	                    		tanggal_c:tgl_c,
 	                    		tanggal_d:tgl_d,
-	                        			// level:dataList[i].level
+	                        	// line:line
 	                        		}
 	                        // memasukkan dataList agenda kedalam array yang nantinya akan diolah untuk coloring calendar
 	                        agend.push(ag);
@@ -173,7 +193,7 @@
 	                        '<td >'+dataList[i].nor+'-'+dataList[i].no+'</td>'+
 		                            // '<td>'+dataList[i].rev+'</td>'+
 		                            '<td style="text-align: left;">'+dataList[i].item_changes+'</td>'+
-	                        		'<td >'+dataList[i].line+'</td>'+
+	                        		'<td >'+a+'</td>'+
 		                            '<td>'+tgl_awal2+'</td>'+
 		                            // '<td><span class="badge badge-'+cls+'">'+status+'</span></td>'+
 		                            
@@ -181,6 +201,7 @@
 		                        } 
 	                    // memasukkan dataList agenda lokal ke variabel agenda global
 	                    agenda=agend;
+
 
 	                    $("#agendaall").DataTable().destroy();
 	                    $('#agendaall').find('tbody').empty();
@@ -210,7 +231,6 @@
 
 	        	// variabel tanggal dimulai tgl 1
 	        	let date = 1;
-	        	var total;
 	        	for (let i = 0; i < 6; i++) {
     				// creates a table row calendar
     				html+='<tr>';
@@ -230,29 +250,17 @@
 			            		var asign=null;
 			            		var anu=new Date();
 			            		var t=anu.setDate(anu.getDate() - 1);
-
-
 			            		// pengecekan calendar jika ada agenda di tanggal ini(date)
 			            		for (var ia = (agenda.length-1); ia >=0 ; ia--) {
 			            			for (var ib = 0; ib < agenda.length; ib++) {
+				            				for (var iz = 0; iz < cline2.length; iz++) {
 
-			            				for (var iz = 0; iz < cline2.length; iz++) {
-					            					if (cline2[iz].tgl == date) {
-					            						asign=parseInt(cline2[iz].jml)+parseInt(cline2[iz].jml2)+parseInt(cline2[iz].jml3)+parseInt(cline2[iz].jml4)+parseInt(cline2[iz].jml5);;
-					            					}
-			            						}
+						            					if (cline2[iz].tgl == date ) {
+						            						asign=parseInt(cline2[iz].jml)+parseInt(cline2[iz].jml2)+parseInt(cline2[iz].jml3)+parseInt(cline2[iz].jml4)+parseInt(cline2[iz].jml5);
+						            					}
+				            						}
 			            				
-
-			            				if (new Date(currentYear,currentMonth,date) >= agenda[ia].tanggal_a && new Date(currentYear,currentMonth,date)<=agenda[ia].tanggal_a) { 
-
-			            					if( t > agenda[ia].tanggal_a  && agenda[ia].status=="close"){
-			            						asign=666;
-			            					}else if(t > agenda[ia].tanggal_a && agenda[ia].status=="open"){
-			            						asign=777;
-			            					}
-			            					
-			            					
-			            				} 
+			            				 
 			            			} 
 			            		}
 			            		// penentuan warna warna

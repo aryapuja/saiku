@@ -51,6 +51,18 @@ class Dc_Model extends CI_Model {
 
     public function updateDc($id,$nor,$no,$item_changes,$line1,$line2,$line3,$line4,$line5,$nor_plan_imp,$nor_act_imp)
     {
+        if ($line2 == "") {
+            $line2=null;
+        }
+        if ($line3 == "") {
+            $line3=null;
+        }
+        if ($line4 == "") {
+            $line4=null;
+        }
+        if ($line5 == "") {
+            $line5=null;
+        }
 
         $data = array(
             'nor'               =>$nor,
@@ -299,8 +311,9 @@ class Dc_Model extends CI_Model {
 
     public function getListUser()
     {
-        $query = $this->db->query("SELECT * FROM `user`");
-        return $query->result(); 
+        $this->db->order_by('status', 'desc');
+        $query= $this->db->get('user');
+        return $query->result();
     }
 
     public function updateUser($id,$name,$nik,$password,$section,$jabatan,$status)
@@ -337,6 +350,12 @@ class Dc_Model extends CI_Model {
     public function countActivityWaiting()
     {
         $query = $this->db->query("SELECT count(status) FROM `activity` WHERE status='waiting'");
+        return $query->result_array();
+    }
+
+    public function countActivityNotUpdated($section)
+    {
+        $query = $this->db->query("SELECT count(status) FROM `activity` WHERE status='not updated' AND nama_dvs='".$section."'");
         return $query->result_array();
     }
 

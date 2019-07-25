@@ -48,6 +48,7 @@
 		}
 
 		$(document).ready(function(data){
+			refresh_notif();
 			var section=data.section;
 
 			// fungsi date picker tanggal mulai
@@ -253,20 +254,6 @@
 
 			            				if (new Date(currentYear,currentMonth,date) >= agenda[ia].tanggal_d && new Date(currentYear,currentMonth,date)<=agenda[ia].tanggal_d) { 
 			            					
-			            					// pemberian warna jika level bupati
-			            					// if (asign==null) {
-			            					// 	asign=1;
-			            					// }else if (asign==1) { 
-			            					// 	asign=2; 
-			            					// }else if (asign==2) { 
-			            					// 	asign=3; 
-			            					// }else if (asign==3) { 
-			            					// 	asign=4; 
-			            					// }else{ 
-			            					// 	asign=5;
-			            					// }
-			            					// break;
-			            					
 			            				} 
 			            			} 
 			            		}
@@ -311,7 +298,7 @@
 			            				html+='<font style="color: #000;">'+date+'</font>';
 			            			}
 			            			html+='</td>';
-			            		}else if(asign==5){
+			            		}else if(asign >= 5){
 			            			html+='<td bgcolor="#ff7b24" onclick="openDetailModal('+date+','+currentMonth+','+currentYear+','+section+')">'; //>=5 NOR
 			            			if (date==today.getDate() && today.getMonth()==currentMonth) {
 			            				html+='<div style="background: url(<?php echo base_url() ?>assets/image/bg_datenow.png); background-repeat: no-repeat; background-position: center;  font-weight: 900; text-align: center; color: #FFF;">'+date+'</div>';
@@ -319,6 +306,14 @@
 			            				html+='<font style="color: #000;">'+date+'</font>';
 			            			}
 			            			html+='</td>';
+			            		}else{
+			            			html+='<td style="border: 1px solid #dddddd;" onclick="openDetailModal('+date+','+currentMonth+','+currentYear+','+section+')">'; 
+			            			if (date==today.getDate() && today.getMonth()==currentMonth) {
+			            				html+='<div style="background: url(<?php echo base_url() ?>assets/image/bg_datenow.png); background-repeat: no-repeat; background-position: center;  font-weight: 900; text-align: center; color: #FFF;">'+date+'</div>';
+			            			}else{
+			            				html+='<font color="black">'+date+'</font>';
+			            			}
+			            			html+='</td>'; 
 			            		}
    							// tanngal bertambah
    							date++;
@@ -408,6 +403,18 @@ function refresh() {
         }
     });
 
+window.setInterval(function(){
+        	refresh_notif();
+        	},5000);
+
+        function refresh_notif() {
+        	$.ajax({
+            	url : "<?php echo site_url('Section/get_notif') ?>",
+            	success : function(data){
+            		$('#notifsection').html(data);
+            	}
+            })
+        }
 
 
 function openDetailModal(date,month,year,section) {

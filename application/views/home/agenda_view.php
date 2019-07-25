@@ -2,7 +2,7 @@
 
 <!-- Begin page content -->
 <main role="main">
-	<div class="container-fluid row"  style="zoom:60%">
+	<div class="container-fluid row"  style="zoom:10%">
 		<!-- view tabel Calendar -->
 		<div class="calendaragenda">
 			<div style="background-color: #FFF; padding: 5px; height: 100%">

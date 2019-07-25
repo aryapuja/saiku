@@ -53,22 +53,28 @@
 						<span class="focus-input100-2"></span>
 					</div>
 
-					<div class="container-login100-form-btn m-t-20">
+					<div class="container-login100-form-btn mt-md-1">
 						<button class="login100-form-btn">
 							Sign in
 						</button>
 					</div>
 				</form>
-					<div class="container-login100-form-btn m-t-20">
+				<div class=" row">
+					<div class="col-6" style="padding-right: 1px">
+					<div class="container-login100-form-btn mt-md-1">
 						<a href="javascript:void(0);" class="login100-form-btn-link" data-toggle="modal" data-target="#Modal_register"> <button class="login100-form-btn-link">
 							Sign Up
-						</button> </a>
+						</button></a>
 					</div>
-					<div class="container-login100-form-btn m-t-20">
+					</div>
+					<div class="col-6" style="padding-left: 1px">
+					<div class="container-login100-form-btn mt-md-1">
 						<a href="<?php echo base_url().'index.php/user'?>" class="login100-form-btn-link"> <button class="login100-form-btn-link">
 							Lihat Jadwal
 					</button> </a>
 					</div>
+					</div>
+				</div>
 			</div>
 					
 			</div>
@@ -113,7 +119,7 @@
 								<div class="form-group col-lg-12">
 									<div class="col-lg-12">
 										<label>Jabatan</label>
-										<input type="text" id="jabatan" class="form-control" placeholder="Masukkan jabatan" style="width: 100%" required>
+										<input type="text" id="jabatan" class="form-control" placeholder="Masukkan jabatan" style="width: 100%">
 										</textarea>
 									</div>
 									<div class="col-lg-12">

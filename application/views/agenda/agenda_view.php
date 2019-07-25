@@ -30,7 +30,7 @@
 		</div>	
 	</nav>
 	<div class="calendaragenda">
-		<div style="background-color: #FFF; padding: 5px; height: 100%">
+		<div style="background-color: #FFF; padding: 0px; height: 100%">
 
 			<div class="boddy card">
 				<center><h4 class="namatitel card-header">KALENDER KEGIATAN</h4></center>
@@ -86,11 +86,12 @@
 
 	<!-- view tabel agenda -->
 	<div class="agendaview">
-		<div style="background-color: #FFF; padding: 5px;">
+		<div style="background-color: #FFF; padding-right: 0px;">
 			<div class="boddy card">
 				<center><h4 class="namatitel card-header">NOR SCHEDULE</h4></center>
 				<div class="card-body">
 					<div class="pull-right"><a href="javascript:void(0);" class="btn btn-success float-right" data-toggle="modal" data-target="#Modal_Add"><span class="fa fa-plus"></span> Add Schedule</a></div>
+					
 					<table class="table table-striped table-bordered table-responsive-md tblcus" style="table-layout:all; width: 100%" id="agendaall">
 						<thead>
 							<tr style="background-color: #E8E8E8;">
@@ -118,7 +119,19 @@
 		<div class="boddy card" style="width: 100%">
 			<center><h4 class="namatitel card-header">ACTIVITY SCHEDULE</h4></center>
 			<div class="card-body">
-				<div class="pull-right"><a href="javascript:void(0);" class="btn btn-success float-right" data-toggle="modal" data-target="#Modal_Add2"><span class="fa fa-plus"></span> Add Activity</a></div>
+				<div class="pull-right">
+					
+				
+				<div class="btn-group float-right">
+						<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<span class="fa fa-plus"></span> Add Activity
+						</button>
+						<div class="dropdown-menu">
+							<a href="javascript:void(0);" class="dropdown-item" data-toggle="modal" data-target="#Modal_Import">Import</a>
+							<a href="javascript:void(0);" class="dropdown-item" data-toggle="modal" data-target="#Modal_Add2">Add</a>
+						</div>
+					</div>
+				</div>
 				<table class="table table-striped table-bordered table-responsive-md tblcus" style="table-layout:all; width: 100%" id="agendaall2">
 					<thead>
 						<tr style="background-color: #E8E8E8;">
@@ -215,6 +228,7 @@
 		</div>
 	</div>
 </form>
+
 <!--END MODAL NOR baru-->
 
 <!--MODAL NOR START UPDATEEE UPDATEEE-->
@@ -418,6 +432,63 @@
 			</div>
 		</form>  
 	</div>
+
+	<form id="formimportAct" enctype="multipart/form-data">
+	<div class="modal fade" id="Modal_Import" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"  aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Import Activity From Excel</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>			           
+				</div>
+				<div class="modal-body">			   
+					<div class="container-fluid">   
+						<div class="row">        
+							<!-- form inputan nama kegiatan -->
+							<div class="form-group col-lg-12 row" id="row1">
+								<div class="col-md-6">
+									<label>Nor</label>
+									<select class="form-control slct_nor" id="slct_nor" name="nor_act" required="" onchange="change_second2($(this).val(),this)">
+										<option disabled selected hidden> Pilih Nor</option>
+										
+									</select>
+								</div>  
+								<div class="col-md-6">
+									<label>No</label>
+									<select class="form-control slct_no" id="slct_no" name="no_act" required="">
+										<option disabled selected hidden class="nomor-not"> Pilih No</option>
+										<?php foreach ($no as $key) { ?>
+											<option value="<?php echo $key->no ?>" class="nomor-nor-<?php echo $key->nor ?>"> <?php  echo $key->no ?> </option>
+										<?php }  ?>
+									</select>
+								</div>
+							</div>
+							<div class="form-group col-lg-12 row">
+								<div class="col-12">
+									<label>Upload File</label>
+									<input type="file" name="fileku" id="fileku" class="form-control dropify" data-height="100" required>
+								</div>
+							</div>
+							<!-- <div class="form-group col-lg-12 row progress">
+ 				                 <div class=" progress-bar" id="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+ 				                 	<span id="status"></span>
+                  				</div>
+                  			</div> -->
+						</div>
+							<!--  -->
+							<div class="modal-footer">
+								<!-- inputan button simpan dan Cancel -->
+								<a href="<?php echo base_url().'index.php/Dc_controller/downloadformat' ?>" title="Download Format" class="btn btn-success float-left"><span class="fa fa-download"></span> Format</a>
+								<button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
+								<button type="submit" id="btn_push" class="btn btn-primary ">Tambah</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
 	<!--END MODAL Activity baru-->
 	
 	<!-- Update Modal Activity -->
@@ -652,6 +723,7 @@
 						$('.input-field').append(html);  
 					});
 
+
 					$(document).on('click', '.btn_remove', function(){  
 						var button_id = $(this).attr("id");   
 						$('#row'+button_id+'').remove();  
@@ -660,35 +732,73 @@
 						url: "<?php echo site_url(); ?>/Dc_controller/select_nor",
 						success : function(data){
 							$('#Modal_Add2').find('#slct_nor').html(data);
+							$('#Modal_Import').find('#slct_nor').html(data);
 						}
 					});
 					$.ajax({
 						url: "<?php echo site_url(); ?>/Dc_controller/select_no",
 						success : function(data){
 							$('#Modal_Add2').find('#slct_no').html(data);
+							$('#Modal_Import').find('#slct_no').html(data);
 						}
 					});
-
+						
+					$('.dropify').dropify({
+						messages: {
+							default: 'Drag atau drop untuk memilih File',
+							replace: 'Ganti',
+							remove:  'Hapus',
+							error:   'error',
+						}
+					});
 				});
+					
+					$('#Modal_Import').on('shown.bs.modal',function(){
+						// alert("ASD");
+						$.ajax({
+						url: "<?php echo site_url(); ?>/Dc_controller/select_nor",
+						success : function(data){
+							$('#Modal_Add2').find('#slct_nor').html(data);
+							$('#Modal_Import').find('#slct_nor').html(data);
+						}
+						});
+						$.ajax({
+						url: "<?php echo site_url(); ?>/Dc_controller/select_no",
+						success : function(data){
+							$('#Modal_Add2').find('#slct_no').html(data);
+							$('#Modal_Import').find('#slct_no').html(data);
+						}
+					});
+					});
+						
 
-				$('.slct_nor').change(function(){
-					let select = $(this).closest("tr");
-		// alert(select.attr('id'))
-		let nor = $('.slct_nor :selected').val();
-		select.find('select[name="no_act[]"]').find('option').not('.nomor-not').hide();
-		select.find('select[name="no_act[]"]').val('0');
-		select.find('.nomor-nor-'+nor).show();
+		$('.slct_nor').change(function(){
+			let select = $(this).closest("tr");
+			// alert(select.attr('id'))
+			let nor = $('.slct_nor :selected').val();
+			select.find('select[name="no_act[]"]').find('option').not('.nomor-not').hide();
+			select.find('select[name="no_act[]"]').val('0');
+			select.find('.nomor-nor-'+nor).show();
 		
 	});
 
-				function change_second(value,target) {
-					let nor = value;
+		function change_second(value,target) {
+		let nor = value;
 		// alert(target);
 		target = '#'+target;
 		$(target).find('.slct_no').find('option').not('.nomor-not').hide();
 		$(target).find('.slct_no').val('0');
 		$(target).find('.slct_no').find('.nomor-nor-'+nor).show();
 	}
+
+	function change_second2(value,target) {
+		let nor = value;
+		// alert(target);
+		$(target).parents('.row').find('.slct_no').find('option').not('.nomor-not').hide();
+		$(target).parents('.row').find('.slct_no').val('0');
+		$(target).parents('.row').find('.slct_no').find('.nomor-nor-'+nor).show();
+	}
+     
 </script>
 
 </main>

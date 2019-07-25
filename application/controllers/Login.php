@@ -42,20 +42,20 @@
 
 					if($value->status == "on"){
 						if($value->section=='ppc'){
-							redirect('dc_controller','refresh');
+							redirect('Dc_controller','refresh');
 						}else{
 							redirect('section','refresh');
 						}
 					}else if($value->status == "waiting"){
 							echo "<script>alert('Akun anda belum dikonfirmasi. Silahkan hubungi PPC untuk keterangan lebih lanjut') </script>";
-							redirect('login','refresh');
+							redirect('Login','refresh');
 					}else{
 							echo "<script>alert('Akun anda telah dinonaktifkan') </script>";
-							redirect('login','refresh');
+							redirect('Login','refresh');
 					}
 				} else {
 					echo "<script>alert('Informasi Akun yang Anda Masukkan Salah') </script>";
-					redirect('login','refresh');
+					redirect('Login','refresh');
 				}
 			}
 			
@@ -68,7 +68,7 @@
 			$userdata = array('username','status');
 			$this->session->unset_userdata($userdata);
 			echo "<script>alert('Logout Success') </script>";
-			redirect('login','refresh');
+			redirect('Login','refresh');
 		}
 
 		public function newAccount()
@@ -92,4 +92,3 @@
 	/* End of file login.php */
 	/* Location: ./application/controllers/login.php */
 
-?>

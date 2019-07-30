@@ -56,13 +56,13 @@
                 <div class="collapse navbar-collapse" id="mainnavbar">
                     <ul class="navbar-nav mr-auto" id="nav">             
                         <li class="nav-item ">
-                           <a class="nav-link" href="<?php echo base_url().'index.php/Dc_controller'?>" >Admin View <sup><span class="badge badge-light" id="notifaccount2"></span></sup></a>
+                           <a class="nav-link" href="<?php echo base_url().'index.php/Dc_controller'?>" >Admin View <sup><span class="badge" id="notifaccount2"></span></sup></a>
                        </li>
                         <li class="nav-item ">
                             <a class="nav-link" href="<?php echo base_url().'index.php/Dc_controller/indexx'?>" >User View</a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="<?php echo base_url().'index.php/Dc_controller/listUser'?>" >List User <sup><span class="badge badge-light" id="notifaccount"></span></sup></a>
+                            <a class="nav-link" href="<?php echo base_url().'index.php/Dc_controller/listUser'?>" >List User <sup><span class="badge" id="notifaccount"></span></sup></a>
                         </li>
                         <li class="nav-item ">
                             <a class="nav-link" href="<?php echo base_url().'index.php/Dc_controller/ListActivity'?>" >List Activity</a>
@@ -93,7 +93,7 @@
 
         <div class="modal-footer">
             <button type="button" class="btn btn-default col-md-3" data-dismiss="modal" aria-label="Close">Batal</button>
-            <?php echo anchor('login/logout', 'Keluar', array('class' => 'btn btn-danger col-md-3')); ?>
+            <?php echo anchor('Login/logout', 'Keluar', array('class' => 'btn btn-danger col-md-3')); ?>
         </div>
 
     </div>

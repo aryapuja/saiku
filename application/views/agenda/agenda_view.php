@@ -88,7 +88,7 @@
 	<div class="agendaview">
 		<div style="background-color: #FFF; padding-right: 0px;">
 			<div class="boddy card">
-				<center><h4 class="namatitel card-header">NOR SCHEDULE</h4></center>
+				<center><h5 class="namatitel card-header">NOR SCHEDULE</h5></center>
 				<div class="card-body">
 					<div class="pull-right"><a href="javascript:void(0);" class="btn btn-success float-right" data-toggle="modal" data-target="#Modal_Add"><span class="fa fa-plus"></span> Add Schedule</a></div>
 					
@@ -117,7 +117,7 @@
 	
 	<div class="minipengumuman" style="border: 2px; padding-top: 20px; width: 100%">
 		<div class="boddy card" style="width: 100%">
-			<center><h4 class="namatitel card-header">ACTIVITY SCHEDULE</h4></center>
+			<center><h5 class="namatitel card-header">ACTIVITY SCHEDULE</h5></center>
 			<div class="card-body">
 				<div class="pull-right">
 					
@@ -388,14 +388,18 @@
 									<label>Section</label>
 									<select class="form-control" name="nama_dvs[]" id="nama_dvs">
 										<option disabled selected hidden>Pilih Section</option>
-										<option value="de">de</option>
-										<option value="pp">pp</option>
-										<option value="qp">qp</option>
-										<option value="qmp">qmp</option>
-										<option value="eng">eng</option>
-										<option value="nys">nys</option>
-										<option value="prod">prod</option>
-										<option value="ppc">ppc</option>
+										<option value="de">DE</option>
+								                 <option value="pp">PP</option>
+								                 <option value="qp">QP</option>
+								                 <option value="qmp">QMP</option>
+								                 <option value="eng">ENGINEERING</option>
+								                 <option value="nys">NYS</option>
+								                 <option value="prod">PROD</option>
+								                 <option value="ppc">PPC</option>
+								                 <option value="ppc">IC</option>
+								                 <option value="ppc">WHS</option>
+								                 <option value="ppc">EXIM</option>
+								                 <option value="ppc">FA</option>
 									</select>
 								</div>  
 								<div class="col-md-3">
@@ -467,8 +471,14 @@
 								<div class="col-12">
 									<label>Upload File</label>
 									<input type="file" name="fileku" id="fileku" class="form-control dropify" data-height="100" required>
+									<!-- <br>
+									<div class="progress">
+										<div id="myBar" class="success" style="height:24px;width:0"></div>
+									</div> -->
 								</div>
 							</div>
+							
+
 							<!-- <div class="form-group col-lg-12 row progress">
  				                 <div class=" progress-bar" id="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:0%">
  				                 	<span id="status"></span>
@@ -480,7 +490,7 @@
 								<!-- inputan button simpan dan Cancel -->
 								<a href="<?php echo base_url().'index.php/Dc_controller/downloadformat' ?>" title="Download Format" class="btn btn-success float-left"><span class="fa fa-download"></span> Format</a>
 								<button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
-								<button type="submit" id="btn_push" class="btn btn-primary ">Tambah</button>
+								<button type="submit" id="btn_push" class="btn btn-primary bd-toogle-animated-progress" onclick="move()">Tambah</button>
 							</div>
 						</div>
 					</div>
@@ -519,14 +529,18 @@
 											<td> <label>Section</label>
 												<select class="form-control" name="nama_dvs_up" id="nama_dvs_up">
 													<option disabled selected hidden>Pilih Section</option>
-													<option value="de">de</option>
-													<option value="pp">pp</option>
-													<option value="qp">qp</option>
-													<option value="qmp">qmp</option>
-													<option value="eng">eng</option>
-													<option value="nys">nys</option>
-													<option value="prod">prod</option>
-													<option value="ppc">ppc</option>
+													<option value="de">DE</option>
+								                 <option value="pp">PP</option>
+								                 <option value="qp">QP</option>
+								                 <option value="qmp">QMP</option>
+								                 <option value="eng">ENGINEERING</option>
+								                 <option value="nys">NYS</option>
+								                 <option value="prod">PROD</option>
+								                 <option value="ppc">PPC</option>
+								                 <option value="ppc">IC</option>
+								                 <option value="ppc">WHS</option>
+								                 <option value="ppc">EXIM</option>
+								                 <option value="ppc">FA</option>
 												</select>
 											</td>
 											<td> <label>Activity</label>
@@ -584,14 +598,18 @@
 											<td> <label>Section</label>
 												<select class="form-control" name="nama_dvs_c" id="nama_dvs_c" readonly>
 													<option disabled selected hidden>Pilih Section</option>
-													<option value="de">de</option>
-													<option value="pp">pp</option>
-													<option value="qp">qp</option>
-													<option value="qmp">qmp</option>
-													<option value="eng">eng</option>
-													<option value="nys">nys</option>
-													<option value="prod">prod</option>
-													<option value="ppc">ppc</option>
+													<option value="de">DE</option>
+								                 <option value="pp">PP</option>
+								                 <option value="qp">QP</option>
+								                 <option value="qmp">QMP</option>
+								                 <option value="eng">ENGINEERING</option>
+								                 <option value="nys">NYS</option>
+								                 <option value="prod">PROD</option>
+								                 <option value="ppc">PPC</option>
+								                 <option value="ppc">IC</option>
+								                 <option value="ppc">WHS</option>
+								                 <option value="ppc">EXIM</option>
+								                 <option value="ppc">FA</option>
 												</select>
 											</td>
 											<td> <label>Activity</label>
@@ -677,14 +695,18 @@
 					<div class="col-md-2">
 						<select class="form-control" name="nama_dvs[]" id="nama_dvs">
 							<option disabled selected hidden>Pilih Section</option>
-							<option value="de">de</option> 
-							<option value="pp">pp</option>
-							<option value="qp">qp</option>
-							<option value="qmp">qmp</option>
-							<option value="eng">eng</option>
-							<option value="nys">nys</option>
-							<option value="prod">prod</option>
-							<option value="ppc">ppc</option>
+							<option value="de">DE</option>
+								                 <option value="pp">PP</option>
+								                 <option value="qp">QP</option>
+								                 <option value="qmp">QMP</option>
+								                 <option value="eng">ENGINEERING</option>
+								                 <option value="nys">NYS</option>
+								                 <option value="prod">PROD</option>
+								                 <option value="ppc">PPC</option>
+								                 <option value="ppc">IC</option>
+								                 <option value="ppc">WHS</option>
+								                 <option value="ppc">EXIM</option>
+								                 <option value="ppc">FA</option>
 						</select>
 					</div>
 					<div class="col-md-3">
@@ -797,6 +819,20 @@
 		$(target).parents('.row').find('.slct_no').find('option').not('.nomor-not').hide();
 		$(target).parents('.row').find('.slct_no').val('0');
 		$(target).parents('.row').find('.slct_no').find('.nomor-nor-'+nor).show();
+	}
+
+	function move() {
+		var elem = document.getElementById("myBar");   
+		var width = 1;
+		var id = setInterval(frame, 10);
+		function frame() {
+			if (width >= 100) {
+				clearInterval(id);
+			} else {
+				width++; 
+				elem.style.width = width + '%'; 
+			}
+		}
 	}
      
 </script>

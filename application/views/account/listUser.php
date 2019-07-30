@@ -58,7 +58,21 @@
 								</div>
 								<div class="col-4">
 									<label>Section: </label>
-									<input type="text" id="u_section" name="u_section" class="form-control" placeholder="Masukkan Section" required > 
+									<select class="form-control" name="u_section" id="u_section">
+								                 <option disabled selected hidden>Pilih Section</option>
+								                 <option value="de">DE</option>
+								                 <option value="pp">PP</option>
+								                 <option value="qp">QP</option>
+								                 <option value="qmp">QMP</option>
+								                 <option value="eng">ENGINEERING</option>
+								                 <option value="nys">NYS</option>
+								                 <option value="prod">PROD</option>
+								                 <option value="ppc">PPC</option>
+								                 <option value="ppc">IC</option>
+								                 <option value="ppc">WHS</option>
+								                 <option value="ppc">EXIM</option>
+								                 <option value="ppc">FA</option>
+							               </select> 
 								</div>
 							</div>
 							<div class="form-group col-lg-12 row">

@@ -1,0 +1,191 @@
+namaActivity
+Folow up NOR ke customer
+Release DCIL
+Release original drawing
+Release original circuit list
+Release original kakouzu
+Upload EPL di AS400 + Release oracle address
+Release part list matrix
+Release TSQ
+Release nameplate matrik
+Release commonize circuit
+Release commonize tube
+Release PA drawing & matrik
+Approval nameplate
+Release Engineering Drawing
+Release circuit list
+Release form obsolete
+Scrab document obsolete
+Release time study F/A KE PRODUKSI (Housing, Setting, Taping, SP, MSP, Offline)
+Release drawing (Sakehame, Atohame, Plug)
+WO input matrik (Housing, SP, MSP, Offline, Central Plug)
+WO cek matrik (SP, Offline)
+Cek matrik (housing, Msp, Central Plug)
+WO  REVISI DRAFT SAO
+WO REPAIR SAO
+RELEASE WASURENBO
+WO ANALISA SIZE BOX
+WO ID BOX MATERIAL
+REPLACE ID & BOX MATERIAL
+RELEASE ADRESSING CCT
+REPLACE & TEMPEL ID CCT
+REPLACE & TEMPEL ID SAO SUB ASSY
+RELEASE MATRIKS VARIAN BONDER
+UPDATE NO MATERIAL JIG DWG
+UPDATE NO PROGRAM DI SP
+UPDATE NO PROGRAM DI OFFLINE
+Release dan Sosialisasi Henkaten
+WO ENG. PACKET/ ENG. ORI JAPAN
+Supply W/H buzzer ke produksi
+Trial program EC-1,2 + AB
+Validasi program area Inspeksi
+Trial program SP1+SP2+AB
+Cek New Part Equipment
+Check dimensi / jig drawing
+Update revision record all JB
+Up date JB Justment
+Validasi mesin fuse
+IPI  check/TR check
+Release Symbol Nameplate (untuk approval NP)
+Pengembalian form dan dokumen obsolete
+Trial program SP1+SP2
+WO Ori drawing ke DE
+Compare drawaing
+Trial metode baru area inspeksi
+Change SWCT/Time Study
+Revisi matrik inspection area (MSP / Fuse EC/ Dim Check / Siage/ Visual / Double check)
+Revisi Important point / inspection point
+Update visual matting
+Update harness sample
+Update sample wire / terminal PA
+WO input matrik inspection area ke FAE 
+WO input patern fuse ke FAE
+WO analisa size box ke NYS
+WO ID dan box Material ke NYS
+WO cek matrik ke QMP
+WO validasi hasil input patern fuse ke QMP
+Sosialisasi henkaten
+Release henkaten
+Release SWCT /Time Study
+Replace ID material pada box / ID dikasihkan ke WHS
+(fa) check stock part / order part
+(fa) check new equipment / order new equipment
+(fa) repair box sakihame / repair meja insert plug
+(fa) repair housing / mapping duct
+(fa) repair navigasi
+(fa) repair meja MSU
+(fa) input matrik (Housing, Msp, Plug, SP, Offline, DIM/VIS)
+(fa) share henkaten jig
+(fa) repair jig drawing / repair jig ( SP/JIG/OFFLINE)
+(fa) Release draft SAO ke PP
+(fa) repair ID papan sao/add papan sao
+(fa) kirim data matrik separator ke NYS
+(fa) Repair/penambahan no material 
+(fa) repair ec/chg cf/add cf
+(fa) input/chg program ec , chg ec dwg
+(fa) add program CB EC/DIM/VIS
+(fa) Implementasi D/C & cek item perubahan
+(fa) karantina old part + cct
+(fa) Pengembalian material
+(fa) scrab old part dan circuit
+(fa) trial metode baru bersama QC & PP
+(fa) Supply material
+(fa) cutting tube
+(fa) check stock cct/material
+(fa) buat stock SP1 + A/B
+(fa) buat stock sub assy
+(fa) Repair WH buzzer
+(fa) Ganti N/P pada W/H buzzer
+(fa) Kirim hasil tial analisa material tube ke NYS
+(fa) Pengembalian box material ke NYS
+(fa) Pengembalian ID sample N/P BO ke NYS
+(fa) Pengembalian withdrawal
+(fa) Pengembalian form dan dokumen obsolete
+(fa) Mengosongkan wip housing
+(fa) Mengosongkan wip Setting
+(fa) Mengosongkan wip Taping
+(fa) Mengosongkan wip inspeksi
+(fa) Karantina dan pengembalian sisa label
+(fa) Karantina dan pengembalian sisa np
+(fa) Karantina dan pengembalian sisa cik
+(pa) cutting circuit
+(pa) Supply circuit
+(pa) Pengembalian box material ke NYS
+(pa) Pengembalian kanban cutting
+(pa) Pengembalian kanban drawing
+(pa) Release machine loading shield
+(pa) Release machine loading cct
+(pa) Release machine loading AB
+(pa) Release machine loading tube
+(pa) Replace/release kanban cct
+(pa) Replace/release kanban material PA
+(pa) WO kode RFID kanban
+(pa) Update database e-kanban
+(pa) Update patch bonder
+(pa) Release list cct delete
+(fa) Kirim analisa size box ke WHS / CTB
+(fa) Release analisa type box ke PP dan QP,QMP
+(fa) Release box material ke PP dan QP,QMP
+(fa) Release ID material ke PP dan QP, QMP
+(fa) Change identitas part store
+(fa) Release / Replace CIK
+(fa) Release kanban WU / BT
+(fa) Replace / Release ID Sample Nameplate FA / PA
+(pp pa) Release dan sosialisai henkaten
+(pp pa) WO input matrik
+(pp pa) WO bonding std
+(pp pa) Release addresing cct
+(pp pa) Replace dan tempel id sao
+(pp pa) Cek matrik
+(pp pa) WO equipment
+(pp pa) Release mapping flow PA dwg
+(pp pa) Release matrik maooing flow
+(pp pa) Addresing acc
+(pp pa) WO input matrik
+(pp pa) WO box
+Check status old part
+Claimkan dead stock ke customer
+Release schedule stop order old part
+Check status new part
+Order new part, request ETA SAI :
+Material free SoC
+List Material CSS
+Informasi usage per day to WHS
+Check actual stock old part yang mengalami D/C
+Identifikasi new part
+Supply new part 
+Replace ID Material (R/C)
+Kirim hasil analisa size box ke NYS
+Supply material common ke line : ………………
+Request SO ke PLB
+(pa) check applikator
+(pa) pembuatan crimping standart dan bonder standart
+(pa) setting machine loading
+(pa) Pengembalian form dan dokumen obsolete
+(pa) Input kode RFID ke Karakuri
+(pa) Release mapping applikator
+(pa) order new equipment, request ETA SAI :
+Isi no box/ polytainer pada kartu imp dc
+Release Harness Price
+Release UMH
+Request Price dan UMH ke FA
+Update assy code di assy plan
+Update suffix level di heikinka, assy plan, dan SPP
+Update component packing di oracle
+Release analisa S/R max loading per shift
+Release Countdown assy 
+(nameplate) Print sample label
+(nameplate) Pembuatan approval nameplate
+(nameplate) Print sample name plate to DE+QA+kantong name plate
+(nameplate) Print name plate baru
+(nameplate) Scrap name plate
+(D/C) Distribusi DCIL
+(D/C) Request NOR official ke Cust
+(D/C) Prepare NOR, checksheet dan kartu implementasi DC
+(D/C) Check list implementasi
+(D/C) Release form obsolete (COPY NOR)
+(D/C) Scrab (COPY NOR)
+(D/C) Kirim GJN ke customer
+(D/C) Konfirmasi ke Cust. Plan SAI implementasi NOR (jika tidak sesuai requirement Cust.) - Format GJN
+(D/C) Supply heikinka, nameplate, CIK dan Label
+(D/C) Update D/C Matrik

@@ -223,6 +223,11 @@ window.setInterval(function(){
             $.ajax({
                 url : "<?php echo site_url('Dc_controller/get_notif') ?>",
                 success : function(data){
+                    if(data == "0"){
+                        $('#notifaccount').addClass('badge-light');
+                    }else{
+                        $("#notifaccount").addClass('badge-danger');
+                    }
                     $('#notifaccount').html(data);
                 }
             })
@@ -231,6 +236,11 @@ window.setInterval(function(){
             $.ajax({
                 url : "<?php echo site_url('Dc_controller/get_notif2') ?>",
                 success : function(data){
+                    if(data == "0"){
+                        $('#notifaccount2').addClass('badge-light');
+                    }else{
+                        $("#notifaccount2").addClass('badge-danger');
+                    }
                     $('#notifaccount2').html(data);
                 }
             })

@@ -64,8 +64,6 @@
     		success : function(data){
     			var html = '';
     			var i;
-
-
     			for(i=0; i<data.length; i++){
     				var ii = i+1;
     				status="";
@@ -78,7 +76,6 @@
     					cls="#ffff1a";
     				}
     				html += '<tr>'+
-    				'<td hidden>'+data[i].id_user+'</td>'+
     				'<td>'+ii+'</td>'+
     				'<td>'+data[i].name+'</td>'+
     				'<td>'+data[i].nik+'</td>'+
@@ -91,8 +88,8 @@
     				'</td>'+
     				'</tr>';
     			}
-    			$('listuser').DataTable().destroy();
-    			$('listuser').find('tbody').empty();
+    			$('#listuser').DataTable().destroy();
+    			$('#listuser').find('tbody').empty();
     			$('#tbl_user').html(html);
     			$('#listuser').DataTable({
     				destroy			: true,
@@ -224,6 +221,11 @@ window.setInterval(function(){
             $.ajax({
                 url : "<?php echo site_url('Dc_controller/get_notif') ?>",
                 success : function(data){
+                    if(data == "0"){
+                        $('#notifaccount').addClass('badge-light');
+                    }else{
+                        $("#notifaccount").addClass('badge-danger');
+                    }
                     $('#notifaccount').html(data);
                 }
             })
@@ -232,6 +234,11 @@ window.setInterval(function(){
             $.ajax({
                 url : "<?php echo site_url('Dc_controller/get_notif2') ?>",
                 success : function(data){
+                    if(data == "0"){
+                        $('#notifaccount2').addClass('badge-light');
+                    }else{
+                        $("#notifaccount2").addClass('badge-danger');
+                    }
                     $('#notifaccount2').html(data);
                 }
             })

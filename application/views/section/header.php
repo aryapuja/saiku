@@ -46,7 +46,7 @@
                             <a class="nav-link" href="#" style="font-size: 20px;color: black">STATUS LOGIN: <?php echo strtoupper($this->session->section) ?> SECTION</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo base_url().'index.php/Section'?>" style="font-size: 15px;color: black">Activity <sup><span class="badge badge-light" id="notifsection"></span></sup> </a>
+                            <a class="nav-link" href="<?php echo base_url().'index.php/Section'?>" style="font-size: 15px;color: black">Activity <sup><span class="badge" id="notifsection"></span></sup> </a>
                         </li>
                         
                     </ul>

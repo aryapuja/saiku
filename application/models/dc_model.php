@@ -181,7 +181,7 @@ class Dc_Model extends CI_Model {
 
     public function get_activity_sched($month,$years)
     {
-        $query = $this->db->query("SELECT *,( select status from nor where nor.nor=activity.nor and nor.no=activity.no) as statusku FROM activity WHERE month(ak_plan_imp)=".$month." AND year(ak_plan_imp)=".$years." order by ak_plan_imp ASC");
+        $query = $this->db->query("SELECT *,( select status from nor where nor.nor=activity.nor and nor.no=activity.no) as statusku FROM activity WHERE month(ak_plan_imp)=".$month." AND year(ak_plan_imp)=".$years." order by status DESC");
         return $query->result();
     }
 
@@ -463,6 +463,17 @@ class Dc_Model extends CI_Model {
     {
         $query=$this->db->query("SELECT ak_act_imp FROM `activity` WHERE nor='".$nor."' and no='".$no."' ORDER BY ak_act_imp DESC LIMIT 1");
         return $query->result_array();
+    }
+
+    public function getNik($nik)
+    {
+        $this->db->where('nik', $nik);
+        $query = $this->db->get('user');
+        if ($query->num_rows() > 0) {
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }

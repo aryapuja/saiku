@@ -411,6 +411,11 @@ window.setInterval(function(){
         	$.ajax({
             	url : "<?php echo site_url('Section/get_notif') ?>",
             	success : function(data){
+            		if(data == "0"){
+            			$('#notifsection').addClass('badge-light');
+            		}else{
+            			$("#notifsection").addClass('badge-danger');
+            		}
             		$('#notifsection').html(data);
             	}
             })

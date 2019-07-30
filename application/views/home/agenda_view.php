@@ -1,8 +1,8 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
 <!-- Begin page content -->
-<main role="main">
-	<div class="container-fluid row"  style="zoom:10%">
+<main role="main" style="padding-bottom: 0px;">
+	<div class="container-fluid row"  style="zoom:50%">
 		<!-- view tabel Calendar -->
 		<div class="calendaragenda">
 			<div style="background-color: #FFF; padding: 5px; height: 100%">

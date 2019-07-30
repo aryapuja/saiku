@@ -105,14 +105,18 @@
 										<label>Section</label>
 											<select class="form-control" name="section" id="section">
 								                 <option disabled selected hidden>Pilih Section</option>
-								                 <option value="de">de</option>
-								                 <option value="pp">pp</option>
-								                 <option value="qp">qp</option>
-								                 <option value="qmp">qmp</option>
-								                 <option value="eng">eng</option>
-								                 <option value="nys">nys</option>
-								                 <option value="prod">prod</option>
-								                 <option value="ppc">ppc</option>
+								                 <option value="de">DE</option>
+								                 <option value="pp">PP</option>
+								                 <option value="qp">QP</option>
+								                 <option value="qmp">QMP</option>
+								                 <option value="eng">ENGINEERING</option>
+								                 <option value="nys">NYS</option>
+								                 <option value="prod">PROD</option>
+								                 <option value="ppc">PPC</option>
+								                 <option value="ppc">IC</option>
+								                 <option value="ppc">WHS</option>
+								                 <option value="ppc">EXIM</option>
+								                 <option value="ppc">FA</option>
 							               </select>
 									</div>
 								</div>
@@ -164,6 +168,39 @@
 	<script src="<?php echo base_url() ?>assets/js/bootstrap-datepicker.js"></script>
 	<script src="<?php echo base_url() ?>assets/js/sweetalert2@8.js"></script>
 	<script type="text/javascript">
+		$(document).ready(function(){
+			<?php if($this->session->flashdata('gagal')): ?>
+				Swal.fire({
+					type: 'error',
+					title: 'Ada Kesalahan',
+					text: 'NIK anda sudah terdaftar',
+        				})
+			<?php endif; ?>
+
+			<?php if($this->session->flashdata('offlah')): ?>
+				Swal.fire({
+					type: 'error',
+					title: 'Ada Kesalahan',
+					text: 'Akun anda telah dinonaktifkan',
+        				})
+			<?php endif; ?>
+
+			<?php if($this->session->flashdata('waitinglah')): ?>
+				Swal.fire({
+					type: 'warning',
+					title: 'Akun anda belum diaktifkan',
+					text: 'Silahkan hubungi PPC untuk keterangan lebih lanjut',
+        				})
+			<?php endif; ?>
+
+			<?php if($this->session->flashdata('gagal_login')): ?>
+				Swal.fire({
+					type: 'error',
+					title: 'Ada Kesalahan',
+					text: 'NIK atau Password tidak cocok',
+        				})
+			<?php endif; ?>
+		})
 		//   ========================  Start ADD RECORD ====================================
 	        //Save kegiatan baru
 	        $('#formregister').submit(function(e){
@@ -175,6 +212,7 @@
         		var jabatan 		= $('#jabatan').val();
         		var password 		= $('#password').val();
 
+
         		$.ajax({
         			type : "POST",
         			url  : "<?php echo site_url(); ?>/Login/newAccount",
@@ -184,21 +222,30 @@
         				nik:nik,
         				section:section,
         				jabatan:jabatan,
-        				password:password,
-        				
+        				password:password,        				
         			},
 
-        			success: function(){ 
-        				Swal.fire({
-        					type: 'success',
-        					title: 'Berhasil register. Silahkan tunggu konfirmasi admin PPC ',
-        					showConfirmButton: false,
-        					timer: 2000
+        			success: function(data){ 
+        				// alert(data.code);
+        				if (data.code == 2) {
+        					Swal.fire({
+        					type: 'warning',
+        					title: 'NIK anda sudah terdaftar',
+        					showConfirmButton: true,
+        					
         				})
-        				$('#Modal_register').modal('hide'); 
-                        // method clear form & calendar agenda
- 						document.getElementById('formregister').reset();
-                        
+        				// $('#Modal_register').modal('hide');
+        				}else{
+	        				Swal.fire({
+	        					type: 'success',
+	        					title: 'Berhasil register. Silahkan tunggu konfirmasi admin PPC ',
+	        					showConfirmButton: false,
+	        					timer: 2000
+	        				})
+	        				$('#Modal_register').modal('hide'); 
+	                        // method clear form & calendar agenda
+	 						document.getElementById('formregister').reset();
+        				}
                     }
                 });
 

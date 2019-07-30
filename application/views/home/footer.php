@@ -1,39 +1,9 @@
 
-<!-- navbar jam dan tanggal bottom -->
-<nav class="navbar navbar-default navbar-fixed-bottom footer" style="background-color: transparent;" role="navigation">
-	<div class="container-fluid" >
-		<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-			<button type="button" class="btn btn-warning btn-lg disabled" id="time"></button>
-		</div>
-		<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-			<div class="runtext-container">
-				<div class="main-runtext">
-					<marquee direction="" onmouseover="this.stop();"onmouseout="this.start();">
-						<div class="text-container"> 
-						</div>
-					</marquee>
-				</div>
-			</div>
-		</div> 
-		<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" >
-			<button type="button" class="btn btn-info btn-lg disabled" style="align-items: center;"> 
-				<?php
-				date_default_timezone_set("Asia/Jakarta");
-				echo " " . date("d:M:Y");
-				?>
-			</button>
-		</div>
-	</div>	
-</nav>
-
 <!-- =============== Bootstrap & datatables datepicker JavaScript ============== -->
 <script src="<?php echo base_url() ?>assets/js/bootstrap.min.js"></script> 
 <script type="text/javascript" src="<?php echo base_url().'assets/datatables/datatables.min.js'?>"></script> 
 <script src="<?php echo base_url() ?>assets/js/bootstrap-datepicker.js"></script>
 <script src="<?php echo base_url() ?>assets/js/sweetalert2@8.js"></script>
-
-
-
 <script type="text/javascript">
 		var lineku = null;
 		// timer jam refresh in detik
@@ -75,11 +45,6 @@
 			showAgendaandCalendar(currentDate,currentMonth,currentYear);
             showAct(currentDate,currentMonth,currentYear); 
 
-			// event click previous and next button month
-			// document.getElementById("previous").addEventListener("click",previous);
-			// document.getElementById("next").addEventListener("click",next);
-
-			// fungsi next month
 			function next() {
 				currentYear = (currentMonth === 11) ? currentYear + 1 : currentYear;
 				currentMonth = (currentMonth + 1) % 12;
@@ -420,7 +385,7 @@
 	                    $("#agendaall2").DataTable({
 	                    	destroy:true,
 	                    	"order": [[ 1, "asc" ]],
-	                    	"lengthMenu": [[-1], ['all']]
+	                    	"lengthMenu": [[5], [5]]
 	                    }); 
 	                }
 	            });
@@ -456,7 +421,13 @@ function openDetailModal(date,month,year) {
         	$.ajax({
             	url : "<?php echo site_url('Dc_controller/get_notif') ?>",
             	success : function(data){
+            		if(data == "0"){
+            			$('#notifaccount').addClass('badge-light');
+            		}else{
+            			$("#notifaccount").addClass('badge-danger');
+            		}
             		$('#notifaccount').html(data);
+
             	}
             })
         }
@@ -464,12 +435,16 @@ function openDetailModal(date,month,year) {
         	$.ajax({
             	url : "<?php echo site_url('Dc_controller/get_notif2') ?>",
             	success : function(data){
+            		if(data == "0"){
+            			$('#notifaccount2').addClass('badge-light');
+            		}else{
+            			$("#notifaccount2").addClass('badge-danger');
+            		}
             		$('#notifaccount2').html(data);
             	}
             })
         }
 	
 </script>
-
 </body>
 </html>

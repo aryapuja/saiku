@@ -30,10 +30,10 @@
     </head>
 
 
-    <body class="admin-body" onload=display_ct()>
+    <body class="admin-body mb-3" onload=display_ct()>
 
         <!-- navigasi bar -->
-        <nav class=" navbar navbar-expand-md navbar-dark bg-uno box-shadowf" role="" style="background:#EEE8AA">
+        <nav class=" navbar navbar-expand-md navbar-dark bg-uno box-shadowf" role="" style="background:#EEE8AA; zoom:50%">
             <div class="container-fluid">
                 <div class="navbar-header" style="color: #ffffff" href="#"> 
                     <img class ="navbar-brand" src="<?=base_url()?>assets/logoaja.png" width="75px" >
@@ -45,6 +45,25 @@
                     <ul class="navbar-nav mr-auto">             
                         <li class="nav-item active">
                             <a class="nav-link" href="#" style="font-size: 20px;color: black"><b>PT. SAI: Design Change Scheduling</b></a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav mr-auto ml-auto">
+                        <li class="nav-item active">
+                            <!-- <button type="button" class="btn btn-warning btn-lg disabled" id="time"></button> -->
+                                <font>
+                                    
+                <?php
+                date_default_timezone_set("Asia/Jakarta");
+                echo " " . date("d:M:Y");
+                ?>
+                                </font>
+                            <font id="time"></font>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav mr-auto ml-auto">
+                        <li class="nav-item active">
+                            <!-- <button type="button" class="btn btn-info btn-lg disabled" style="align-items: center;"> --> 
+            <!-- </button> -->
                         </li>
                     </ul>
                     <div class="btn-group" role="group" aria-label="Data baru">

@@ -23,7 +23,11 @@
 										<td><?php echo $value->nama_dvs ?></td>
 										<td><?php echo $value->nama_act ?></td>
 										<td><?php echo date("d-F-Y", strtotime($value->ak_plan_imp)) ?></td>
+										<?php if ($value->ak_act_imp == "0000-00-00 00:00:00") { ?>
+										<td>Belum Terimplementasi</td>
+										<?php }else{ ?>
 										<td><?php echo date("d-F-Y", strtotime($value->ak_act_imp)) ?></td>
+										<?php } ?>
 									</tr>
 								<?php endforeach ?>
 							</tbody>

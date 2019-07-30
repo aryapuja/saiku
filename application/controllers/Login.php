@@ -47,15 +47,21 @@
 							redirect('section','refresh');
 						}
 					}else if($value->status == "waiting"){
-							echo "<script>alert('Akun anda belum dikonfirmasi. Silahkan hubungi PPC untuk keterangan lebih lanjut') </script>";
-							redirect('Login','refresh');
+							$this->session->set_flashdata('waitinglah', 'waiting');
+							$this->load->view('v_login');
+							// echo "<script>alert('Akun anda belum dikonfirmasi. Silahkan hubungi PPC untuk keterangan lebih lanjut') </script>";
+							// redirect('Login','refresh');
 					}else{
-							echo "<script>alert('Akun anda telah dinonaktifkan') </script>";
-							redirect('Login','refresh');
+							$this->session->set_flashdata('offlah', 'off');
+							$this->load->view('v_login');
+							// echo "<script>alert('Akun anda telah dinonaktifkan') </script>";
+							// redirect('Login','refresh');
 					}
 				} else {
-					echo "<script>alert('Informasi Akun yang Anda Masukkan Salah') </script>";
-					redirect('Login','refresh');
+							$this->session->set_flashdata('gagal_login', 'gagal_login');
+							$this->load->view('v_login');
+					// echo "<script>alert('Informasi Akun yang Anda Masukkan Salah') </script>";
+					// redirect('Login','refresh');
 				}
 			}
 			
@@ -73,16 +79,21 @@
 
 		public function newAccount()
 		{
-		
+			$data = [];
 			$name = $this->input->post('name');
 			$nik = $this->input->post('nik');
 			$section = $this->input->post('section');
 			$jabatan = $this->input->post('jabatan');
 			$password = $this->input->post('password');
-			
-			$result = $this->Dc_model->register($name,$nik,$section,$jabatan,$password);
-
-			echo json_encode($result);
+			$ceknik = $this->Dc_model->getNik($nik);
+			if ($ceknik == true) {
+				$data =['code' => 2];
+				
+			}else{
+				$data=['result' => $this->Dc_model->register($name,$nik,$section,$jabatan,$password),
+						'code' => 1] ;
+			}
+			echo json_encode($data);
 		}
 		
 	}

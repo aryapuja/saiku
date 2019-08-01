@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>PT. SAI: PPC SECTION</title>
+	<title>PT. SAI</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -42,7 +42,7 @@
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Masukkan Nik">
-						<input class="input100" type="text" name="nik" placeholder="nik">
+						<input class="input100" type="text" name="nik" placeholder="nik" maxlength="6" onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.keyCode==8 || event.keyCode==9 || event.keyCode==37 || event.keyCode==39'>
 						<span class="focus-input100-1"></span>
 						<span class="focus-input100-2"></span>
 					</div>
@@ -99,7 +99,7 @@
 									</div>
 									<div class="col-lg-12">
 										<label>NIK</label>
-										<input type="text" id="nik" class="form-control" placeholder="Masukkan nik" style="width: 100%" required>
+										<input type="text" id="nik" class="form-control" maxlength="6" placeholder="Masukkan nik" style="width: 100%" onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.keyCode==8 || event.keyCode==9 || event.keyCode==37 || event.keyCode==39' required>
 									</div>
 									<div class="col-lg-12">
 										<label>Section</label>
@@ -195,7 +195,7 @@
 
 			<?php if($this->session->flashdata('gagal_login')): ?>
 				Swal.fire({
-					type: 'error',
+					type: 'warning',
 					title: 'Ada Kesalahan',
 					text: 'NIK atau Password tidak cocok',
         				})

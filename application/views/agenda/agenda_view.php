@@ -97,13 +97,13 @@
 							<tr style="background-color: #E8E8E8;">
 								<!-- <th style="width: 5%;">No</th> -->
 								<th style="text-align: center;" hidden>Id</th>
-								<th style="text-align: center; width: 15% ">Nor-No</th>
+								<th style="text-align: center; width: 20% ">Nor-No</th>
 								<th style="text-align: center; width: 30%">Item Changes</th>
 								<th style="text-align: center; width: 10%">Line</th>
-								<th style="text-align: center; width: 10%">Due Date Plan</th>
-								<th style="text-align: center; width: 10%">Due Date Actual</th>
+								<th style="text-align: center; width: 5%">Plan Implementation</th>
+								<th style="text-align: center; width: 5%">Act. Implementation</th>
 								<th style="text-align: center; width: 10%">Status</th>
-								<th style="text-align: center; width: 15%">Action</th>
+								<th style="text-align: center; width: 20%">Action</th>
 							</tr>
 						</thead>
 						<tbody id="tbl_agendakegiatan" style="text-align: center;">
@@ -115,7 +115,7 @@
 		</div>
 	</div>
 	
-	<div class="minipengumuman" style="border: 2px; padding-top: 20px; width: 100%">
+	<div class="minipengumuman" style="border: 2px; padding-right: 0px; padding-top: 5px; width: 100%">
 		<div class="boddy card" style="width: 100%">
 			<center><h5 class="namatitel card-header">ACTIVITY SCHEDULE</h5></center>
 			<div class="card-body">
@@ -140,9 +140,9 @@
 							<th style="text-align: center; width: 10%">Nor-No</th>
 							<th style="text-align: center; width: 5%">Section</th>
 							<th style="text-align: center; width: 35%">Activity</th>
-							<th style="text-align: center; width: 15%">Due Date Plan</th>
+							<th style="text-align: center; width: 15%">Plan Implementation</th>
 							<th style="text-align: center; width: 5%">Status</th>
-							<th style="text-align: center; width: 15%">Due Date Actual</th>
+							<th style="text-align: center; width: 15%">Actual Implementation</th>
 							<th style="text-align: center; width: 15%">Action</th>
 						</tr>
 					</thead>
@@ -180,7 +180,7 @@
 									<input type="text" id="no" class="form-control" placeholder="Masukkan No" style="width: 100%" required>
 								</div>
 								<div class="col-4">
-									<label for="#">Due Date Plan </label>
+									<label for="#">Plan Implementation </label>
 									<div class="input-daterange input-group" id="datepickers">
 										<input  class="form-control" name="nor_plan_imp" id="nor_plan_imp" placeholder="DD. (Plan)" required autocomplete="off" />
 									</div>
@@ -282,11 +282,11 @@
 									<textarea type="text" id="u_item_changes" name="u_item_changes" class="form-control" rows="4" placeholder="Masukkan item Changes"  required></textarea>
 								</div>
 								<div class="col-6">
-									<label for="#">Due Date Plan: </label>
+									<label for="#">Plan Implementation: </label>
 									<div class="input-daterange input-group">
 										<input  class="form-control datepicker" name="u_nor_plan_imp" id="u_nor_plan_imp" placeholder="DD. (Plan)" required autocomplete="off" />
 									</div>
-									<label for="#">Due Date Actual: </label>
+									<label for="#">Actual Implementation: </label>
 									<div class="input-daterange input-group">
 										<input  class="form-control datepicker" name="u_nor_act_imp" id="u_nor_act_imp" placeholder="DD. (Actual)" autocomplete="off" />
 									</div>
@@ -413,7 +413,7 @@
 									</datalist>
 								</div>  
 								<div class="col-md-2">
-									<label>Due Date Plan</label>
+									<label>Plan Implementation</label>
 									<input class="form-control datepicker" name="ak_plan_imp[]" id="ak_plan_imp" placeholder="Date (Plan)" required autocomplete="off"/>
 								</div>  
 								<div class="col-md-1">
@@ -546,10 +546,10 @@
 											<td> <label>Activity</label>
 												<input type="text" id="nama_act_up" name="nama_act_up" class="form-control" placeholder="Masukkan Activity" required />
 											</td>
-											<td><label>Due Date Plan</label>
+											<td><label>Plan Implementation</label>
 												<input class="form-control datepicker" name="ak_plan_imp_up" id="ak_plan_imp_up" placeholder="Date (Plan)" required autocomplete="off"/>
 											</td>
-											<td> <label>Due Date Actual</label>
+											<td> <label>Actual Implementation</label>
 												<input  class="form-control datepicker" name="ak_act_imp_up" id="ak_act_imp_up" placeholder="Date (Actual)" autocomplete="off"/>
 											</td>
 										</tr>  
@@ -615,10 +615,10 @@
 											<td> <label>Activity</label>
 												<input type="text" id="nama_act_c" name="nama_act_c" class="form-control" placeholder="Masukkan Activity" required readonly />
 											</td>
-											<td><label>Due Date Plan</label>
+											<td><label>Plan Implementation</label>
 												<input class="form-control datepicker" name="ak_plan_imp_c" id="ak_plan_imp_c" placeholder="Date (Plan)" required readonly/>
 											</td>
-											<td> <label>Due Date Actual</label>
+											<td> <label>Actual Implementation</label>
 												<input  class="form-control datepicker" name="ak_act_imp_c" id="ak_act_imp_c" placeholder="Date (Actual)" autocomplete="off"/>
 											</td>
 										</tr>  

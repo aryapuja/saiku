@@ -275,6 +275,24 @@ class Dc_Model extends CI_Model {
         return $query->result();
     }
 
+    public function changePass($id,$passold,$passnew)
+    {
+        $data = array( 'password'=>$passnew );
+
+        $this->db->where('id_user', $id);
+        $this->db->where('password', $passold);
+        $result = $this->db->update('user', $data);
+        return $result;
+    }
+
+    public function getPass($id)
+    {
+        $this->db->select('password');
+        $this->db->where('id_user', $id);
+        $query=$this->db->get('user');
+        return $query->result_array();
+    }
+
     public function updateStatus($jml,$nor,$no,$ak_act_imp)
     {
         if ($jml <= 1) {
@@ -474,6 +492,18 @@ class Dc_Model extends CI_Model {
         }else{
             return false;
         }
+    }
+
+    public function getCountNor($month,$year)
+    {
+        $this->db->select('count(nor) as na');
+        $this->db->from('nor');
+        $this->db->where('month(nor_plan_imp)',$month);
+        $this->db->where('year(nor_plan_imp)',$year);
+        $this->db->group_by('day(nor_plan_imp)');
+        $query = $this->db->get();
+    
+        return $query->result();
     }
 
 }

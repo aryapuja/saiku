@@ -72,9 +72,9 @@
 									<th style="text-align: center; width: 15% ">Nor-No</th>
 									<th style="text-align: center; width: 35%">Activity</th>
 									<th style="text-align: center; width: 5%">Line</th>
-									<th style="text-align: center; width: 10%">Due Date Plan</th>
+									<th style="text-align: center; width: 10%">Plan Implementation</th>
 									<th style="text-align: center; width: 10%">Status</th>
-									<th style="text-align: center; width: 10%">Due Date Actual</th>
+									<th style="text-align: center; width: 10%">Actual Implementation</th>
 									<th style="text-align: center; width: 5%">Action</th>
 								</tr>
 							</thead>
@@ -110,7 +110,7 @@
 			<div class="modal-dialog" role="document" style="max-width: 80%;overflow-y: initial !important">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h4 class="modal-title">Update Activity : Due Date Actual</h4>
+						<h4 class="modal-title">Update Activity : Actual Implementation</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>			           
 					</div>
 
@@ -134,10 +134,10 @@
 										<td> <label>Line</label>
 											<input type="text" id="u_line" name="u_line" class="form-control" placeholder="Masukkan Line" required disabled />
 										</td>
-										<td> <label>Date Plan</label>
+										<td> <label>Plan Implementation</label>
 											<input class="form-control datepicker" name="u_ak_plan_imp" id="u_ak_plan_imp" placeholder="Date (Plan)" required disabled/>
 										</td>
-										<td> <label>Date Actual</label>
+										<td> <label>Actual Implementation</label>
 											<input  class="form-control datepicker" name="u_ak_act_imp" id="u_ak_act_imp" placeholder="Date (Actual)" required/>
 										</td>
 										<td>

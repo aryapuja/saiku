@@ -80,6 +80,8 @@
 	        				// alert(data.cline2[0].jml);
 	        				// lineku = data.cline;
 	        				cline2 = data.cline2;
+	        				na=data.na;
+	        				// alert(JSON.stringify(data.na));
 	        				// alert(cline2);
 	        				 // alert(lineku2);
 	        				var agend=[];
@@ -193,7 +195,7 @@
 				// pembuatan tabel calendar
 				let firstDay = (new Date(currentYear, currentMonth)).getDay();
 				let daysInMonth = 32 - new Date(currentYear, currentMonth, 32).getDate();
-
+				// alert(daysInMonth);
 	        	// variabel tanggal dimulai tgl 1
 	        	let date = 1;
 	        	for (let i = 0; i < 6; i++) {
@@ -215,15 +217,17 @@
 			            		var asign=null;
 			            		var anu=new Date();
 			            		var t=anu.setDate(anu.getDate() - 1);
+			            		// alert(agenda.length) nilaine 0;
+			            		// alert(cline2.length) jumlah e 31;
 			            		// pengecekan calendar jika ada agenda di tanggal ini(date)
-			            		for (var ia = (agenda.length-1); ia >=0 ; ia--) {
-			            			for (var ib = 0; ib < agenda.length; ib++) {
+			            		for (var ia = (na.length); ia >=0 ; ia--) {
+			            			for (var ib = 0; ib < na.length; ib++) {
 				            				for (var iz = 0; iz < cline2.length; iz++) {
-
+				            							// alert(cline2[iz].tgl);
 						            					if (cline2[iz].tgl == date ) {
 						            						asign=parseInt(cline2[iz].jml)+parseInt(cline2[iz].jml2)+parseInt(cline2[iz].jml3)+parseInt(cline2[iz].jml4)+parseInt(cline2[iz].jml5);
 						            					}
-				            						}
+				            				}
 			            				
 			            				 
 			            			} 
@@ -269,24 +273,8 @@
 			            				html+='<font style="color: #000;">'+date+'</font>';
 			            			}
 			            			html+='</td>';
-			            		}else if(asign==5){
+			            		}else{
 			            			html+='<td bgcolor="#ff7b24" onclick="openDetailModal('+date+','+currentMonth+','+currentYear+')">'; //>=5 NOR
-			            			if (date==today.getDate() && today.getMonth()==currentMonth) {
-			            				html+='<div style="background: url(<?php echo base_url() ?>assets/image/bg_datenow.png); background-repeat: no-repeat; background-position: center;  font-weight: 900; text-align: center; color: #FFF;">'+date+'</div>';
-			            			}else{
-			            				html+='<font style="color: #000;">'+date+'</font>';
-			            			}
-			            			html+='</td>';
-			            		}else if(asign==666){
-			            			html+='<td bgcolor="#5aff1f" onclick="openDetailModal('+date+','+currentMonth+','+currentYear+')">'; //>=5 NOR
-			            			if (date==today.getDate() && today.getMonth()==currentMonth) {
-			            				html+='<div style="background: url(<?php echo base_url() ?>assets/image/bg_datenow.png); background-repeat: no-repeat; background-position: center;  font-weight: 900; text-align: center; color: #FFF;">'+date+'</div>';
-			            			}else{
-			            				html+='<font style="color: #000;">'+date+'</font>';
-			            			}
-			            			html+='</td>';
-			            		}else if(asign==777){
-			            			html+='<td bgcolor="#ff0000" onclick="openDetailModal('+date+','+currentMonth+','+currentYear+')">'; //>=5 NOR
 			            			if (date==today.getDate() && today.getMonth()==currentMonth) {
 			            				html+='<div style="background: url(<?php echo base_url() ?>assets/image/bg_datenow.png); background-repeat: no-repeat; background-position: center;  font-weight: 900; text-align: center; color: #FFF;">'+date+'</div>';
 			            			}else{
@@ -348,7 +336,7 @@
 	                    	var tgl_awal5 = month[tgl_e.getMonth()]+", "+('0'+tgl_e.getDate()).slice(-2)+" "+tgl_e.getFullYear();
 
 	                    	tanggal="";
-	                    	if (data[i].ak_act_imp == null) {
+	                    	if (data[i].ak_act_imp == "0000-00-00 00:00:00") {
 	                    		tanggal="belum terimplementasi";
 	                    	}else{
 		                    	tanggal =  month[tgl_b.getMonth()]+", "+('0'+tgl_b.getDate()).slice(-2)+" "+tgl_b.getFullYear();
@@ -368,7 +356,7 @@
 	                        html +=	
 	                        '<td hidden>'+data[i].id+'</td>'+
 	                        '<td >'+data[i].nor+'-'+data[i].no+'</td>'+
-		                            '<td>'+tgl_awal5+'</td>'+
+		                            // '<td>'+tgl_awal5+'</td>'+
 		                            '<td>'+data[i].nama_dvs+'</td>'+
 		                            '<td style="text-align: left;">'+data[i].nama_act+'</td>'+
 		                            '<td>'+tgl_awal+'</td>'+

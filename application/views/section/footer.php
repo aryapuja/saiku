@@ -202,7 +202,7 @@
 	                    $('#tbl_agendakegiatan').html(html);
 	                    $("#agendaall").DataTable({
 	                    	destroy:true,
-	                    	"order": [[ 1, "asc" ]],
+	                    	"ordering": true,
 	                    	"lengthMenu": [[5], [5]]
 	                    });
 	                }
@@ -391,6 +391,54 @@
         		return false;
         	});
 //   ========================  END UPDATE RECORD ====================================
+		$('#formchangepass').submit(function(e){
+	        	e.preventDefault();
+        		// memasukkan data inputan ke variabel
+        		var passold 			= $('#passold').val();
+        		var passnew 			= $('#passnew').val();
+        		var passnew2			= $('#passnew2').val();
+        		
+        		$.ajax({
+        			type : "POST",
+        			url  : "<?php echo site_url(); ?>/Section/changePassword",
+        			dataType : "JSON",
+        			data : {
+        				passold:passold,
+        				passnew:passnew,
+        				passnew2:passnew2,
+        			},
+
+        			success: function(data){ 
+        				alert(data.code);
+        				if (data.code == 1) {
+        					Swal.fire({
+        						type: 'error',
+        						title: 'Ada Kesalahan',
+        						text: 'Password Lama Tidak Sesuai',
+        					})
+        				}else if (data.code == 2) {
+        					Swal.fire({
+        						type: 'error',
+        						title: 'Ada Kesalahan',
+        						text: 'Konfirmasi Password Baru Tidak Cocok',
+        					})
+        				}else{
+	        				Swal.fire({
+	        					type: 'success',
+	        					title: 'Berhasil mengubah password ',
+	        					showConfirmButton: false,
+	        					timer: 1500
+	        				})
+	        				$('#Modal_changepass').modal('hide'); 
+	                        // method clear form & calendar agenda
+	 						document.getElementById('formchangepass').reset();
+
+        				}
+                    }
+                });
+
+        		return false;
+        	});
 
 function refresh() {
 

@@ -11,7 +11,7 @@
 									<th>NOR-No</th>
 									<th>Item Changes</th>
 									<th>Line</th>
-									<th>Due Date Plan</th>
+									<th>Plan Implementation</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -36,8 +36,8 @@
 									<th>NOR-No</th>
 									<th>Section</th>
 									<th>Activity</th>
-									<th>Due Date Plan</th>
-									<th>Due Date Actual</th>
+									<th>Plan Implementation</th>
+									<th>Actual Implementation</th>
 								</tr>
 							</thead>
 							<tbody>

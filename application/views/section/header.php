@@ -43,16 +43,24 @@
                 <div class="collapse navbar-collapse" id="mainnavbar">
                     <ul class="navbar-nav mr-auto">             
                         <li class="nav-item active">
-                            <a class="nav-link" href="#" style="font-size: 20px;color: black">STATUS LOGIN: <?php echo strtoupper($this->session->section) ?> SECTION</a>
+                            <a class="nav-link" href="#" style="font-size: 15px;color: black">STATUS LOGIN: <?php echo strtoupper($this->session->section) ?> SECTION</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="<?php echo base_url().'index.php/Section'?>" style="font-size: 15px;color: black">Activity <sup><span class="badge" id="notifsection"></span></sup> </a>
                         </li>
-                        
                     </ul>
-                    <div class="btn-group" role="group" aria-label="Data baru">
-                        <a class="btn-group btn btn-danger" href="<?php echo base_url().'/index.php/Login/logout'?>" >LOGOUT</a>
+                    <div class="dropdown" style="padding-right: 0px">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 15px;color: black">
+                              <?php echo strtoupper($this->session->name) ?>
+                          </a>
+                          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                              <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#Modal_changepass">Change Password</a>
+                              <a class="dropdown-item" href="<?php echo base_url().'index.php/Login/logout'?>">Logout</a>
+                          </div>
                     </div>
+<!--                     <div class="btn-group" role="group" aria-label="Data baru">
+                        <a class="btn-group btn btn-danger" href="<?php echo base_url().'/index.php/Login/logout'?>" >LOGOUT</a>
+                    </div> -->
                 </div>
             </div>
         </nav>
@@ -82,4 +90,42 @@
             </div>
           </div>
         </div>  
+    </form>
+    <form id="formchangepass">
+        <div class="modal fade" id="Modal_changepass" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"  aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Change Password</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>                       
+                    </div>
+                    <div class="modal-body">               
+                        <div class="container-fluid">   
+                            <div class="row">        
+                                <!-- form inputan nama kegiatan -->
+                                <div class="form-group col-lg-12 ">
+                                    <div class="col-lg-12">
+                                        <label>Password Lama</label>
+                                        <input type="password" id="passold" class="form-control" minlength="6" placeholder="Masukkan Password Lama" style="width: 100%" required>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <label>Password Baru</label>
+                                        <input type="password" id="passnew" class="form-control" minlength="6" placeholder="Masukkan Password Baru" style="width: 100%" required>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <label>Konfirmasi Password Baru</label>
+                                        <input type="password" id="passnew2" class="form-control" minlength="6" placeholder="Masukkan Password Baru" style="width: 100%" required>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <!-- inputan button simpan dan Cancel -->
+                                    <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
+                                    <button type="submit" id="btn_push" class="btn btn-primary ">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </form>

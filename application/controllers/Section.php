@@ -76,6 +76,28 @@ class Section extends CI_Controller {
  		
 		$this->load->view('section/modal_detail',$data);
 	}
+
+	public function changePassword()
+	{
+		$result="";
+		$data = [];
+		$id = $this->session->id_user;
+		$passold = $this->input->post('passold');
+		$passnew = $this->input->post('passnew');
+		$passnew2 = $this->input->post('passnew2');
+		$getpass = $this->Dc_model->getPass($id);
+		$getpass2=$getpass[0]['password'];
+
+		if ($passold != $getpass2) {
+			$data =['code' => 1];
+		}else if ($passnew != $passnew2) {
+			$data =['code' => 2];
+		}else{
+			$data =['code' => 3, 'result' => $this->Dc_model->changePass($id,$passold,$passnew)];
+		}
+
+		echo json_encode($data);
+	}
 }
 
 /* End of file Section.php */

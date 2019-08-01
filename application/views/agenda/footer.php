@@ -229,7 +229,7 @@
 			            		var asign=null;
 			            		var anu=new Date();
 			            		var t=anu.setDate(anu.getDate() - 1);
-
+			            		// alert(agenda.length-1)
 			            		// pengecekan calendar jika ada agenda di tanggal ini(date)
 			            		for (var ia = (agenda.length-1); ia >=0 ; ia--) {
 			            			for (var ib = 0; ib < agenda.length; ib++) {

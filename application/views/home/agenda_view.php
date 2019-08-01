@@ -2,7 +2,7 @@
 
 <!-- Begin page content -->
 <main role="main" style="padding-bottom: 0px;">
-	<div class="container-fluid row"  style="zoom:50%">
+	<div class="container-fluid row"  style="zoom:20%">
 		<!-- view tabel Calendar -->
 		<div class="calendaragenda">
 			<div style="background-color: #FFF; padding: 5px; height: 100%">
@@ -41,7 +41,7 @@
 							<div class="row" align="left">
 
 								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-									<img src="#" width="10px">&nbsp Tidak Ada Activity<br>
+									<img src="<?=base_url()?>assets/image/8.png" width="10px">&nbsp Tidak Ada Activity<br>
 									<img src="<?=base_url()?>assets/image/1.png" width="10px">&nbsp Ada 1 Line<br>
 									<img src="<?=base_url()?>assets/image/2.png" width="10px">&nbsp Ada 2 Line<br>
 								</div>
@@ -73,7 +73,7 @@
 									<th style="text-align: center; width: 15% ">Nor-No</th>
 									<th style="text-align: center; width: 50%">Item Changes</th>
 									<th style="text-align: center; width: 10%">Line</th>
-									<th style="text-align: center; width: 10%">Due Date Plan</th>
+									<th style="text-align: center; width: 10%">Plan Implementation</th>
 									<!-- <th style="text-align: center; width: 15%">Action</th> -->
 								</tr>
 							</thead>
@@ -97,11 +97,11 @@
 								<!-- <th style="width: 5%;">No</th> -->
 								<th style="text-align: center;" hidden>Id</th>
 								<th style="text-align: center; width: 5%">Nor-No</th>
-								<th style="text-align: center; width: 5%">Due Date Plan Nor</th>
+								<!-- <th style="text-align: center; width: 5%">Plan Implementation Nor</th> -->
 								<th style="text-align: center; width: 5%">Section</th>
 								<th style="text-align: center; width: 75%">Activity</th>
-								<th style="text-align: center; width: 5%">Due Date Plan</th>
-								<th style="text-align: center; width: 5%">Due Date Actual</th>
+								<th style="text-align: center; width: 5%">Plan Implementation</th>
+								<th style="text-align: center; width: 5%">Actual Implementation</th>
 								<!-- <th style="text-align: center; width: 15%">Action</th> -->
 							</tr>
 						</thead>
@@ -149,7 +149,7 @@
 										<textarea type="text" id="item_changes" class="form-control" rows="4" placeholder="Masukkan item Changes"  required></textarea>
 									</div>
 									<div class="col-6">
-										<label for="#">Due Date Plan </label>
+										<label for="#">Plan Implementation </label>
 										<div class="input-daterange input-group" id="datepickers">
 											<input  class="form-control" name="date_plan" id="date_plan" placeholder="Date (Plan)" required/>
 										</div>
@@ -214,7 +214,7 @@
 									<textarea type="text" id="u_item_changes" name="u_item_changes" class="form-control" rows="4" placeholder="Masukkan item Changes"  required></textarea>
 								</div>
 								<div class="col-6">
-									<label for="#">Due Date Plan: </label>
+									<label for="#">Plan Implementation: </label>
 									<div class="input-daterange input-group">
 										<input  class="form-control datepicker" name="u_date_plan" id="u_date_plan" placeholder="Date (Plan)" required/>
 									</div>
@@ -393,10 +393,10 @@
 										<td> <label>Activity</label>
 											<input type="text" id="nama_act_up" name="nama_act_up" class="form-control" placeholder="Masukkan Activity" required />
 										</td>
-										<td> <label>Due Date Plan</label>
+										<td> <label>Plan Implementation</label>
 											<input class="form-control datepicker" name="date_plan_act_up" id="date_plan_act_up" placeholder="Date (Plan)" required/>
 										</td>
-										<td> <label>Due Date Actual</label>
+										<td> <label>Actual Implementation</label>
 											<input  class="form-control datepicker" name="date_actual_up" id="date_actual_up" placeholder="Date (Actual)" required/>
 										</td>
 										<td>

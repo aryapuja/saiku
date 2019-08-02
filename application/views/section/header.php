@@ -51,9 +51,10 @@
                     </ul>
                     <div class="dropdown" style="padding-right: 0px">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 15px;color: black">
-                              <?php echo strtoupper($this->session->name) ?>
+                              <font id="sessionku"></font>
                           </a>
                           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                              <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#Modal_profile">Change Profile</a>
                               <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#Modal_changepass">Change Password</a>
                               <a class="dropdown-item" href="<?php echo base_url().'index.php/Login/logout'?>">Logout</a>
                           </div>
@@ -91,6 +92,7 @@
           </div>
         </div>  
     </form>
+    
     <form id="formchangepass">
         <div class="modal fade" id="Modal_changepass" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"  aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -121,6 +123,64 @@
                                     <!-- inputan button simpan dan Cancel -->
                                     <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
                                     <button type="submit" id="btn_push" class="btn btn-primary ">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form id="formchangeprofile">
+        <div class="modal fade" id="Modal_profile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"  aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Change Profile</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>                       
+                    </div>
+                    <div class="modal-body">               
+                        <div class="container-fluid">   
+                            <div class="row">        
+                                <!-- form inputan nama kegiatan -->
+                                <div class="form-group col-lg-12 ">
+                                    <?php foreach ($profile as $key => $value) { ?>
+                                    <div class="col-lg-12">
+                                        <label>NIK</label>
+                                        <input type="text" id="nik" name="nik" value="<?php echo $value->nik ?>" class="form-control" placeholder="Masukkan Nama" style="width: 100%" disabled>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <label>Nama</label>
+                                        <input type="text" id="nama" name="nama" value="<?php echo $value->name ?>" class="form-control" placeholder="Masukkan Nama" style="width: 100%" required>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <label>Jabatan</label>
+                                        <input type="text" id="jabatan" name="jabatan" value="<?php echo $value->jabatan ?>" class="form-control" placeholder="Masukkan Jabatan" style="width: 100%" required>
+                                    </div>
+<!--                                     <div class="col-lg-12">
+                                        <label>Section</label>
+                                        <select class="form-control" name="section" id="section">
+                                                 <option selected hidden value="<?php echo $value->section ?>"><?php echo $value->section ?></option>
+                                                 <option value="de">DE</option>
+                                                 <option value="pp">PP</option>
+                                                 <option value="qp">QP</option>
+                                                 <option value="qmp">QMP</option>
+                                                 <option value="eng">ENGINEERING</option>
+                                                 <option value="nys">NYS</option>
+                                                 <option value="prod">PROD</option>
+                                                 <option value="ppc">PPC</option>
+                                                 <option value="ppc">IC</option>
+                                                 <option value="ppc">WHS</option>
+                                                 <option value="ppc">EXIM</option>
+                                                 <option value="ppc">FA</option>
+                                           </select>
+                                    </div>
+ -->                                    <?php } ?>
+                                </div>
+                                <div class="modal-footer">
+                                    <!-- inputan button simpan dan Cancel -->
+                                    <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
+                                    <button type="submit" id="btn_save" class="btn btn-primary ">Save</button>
                                 </div>
                             </div>
                         </div>

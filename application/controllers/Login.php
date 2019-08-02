@@ -44,7 +44,7 @@
 						if($value->section=='ppc'){
 							redirect('Dc_controller','refresh');
 						}else{
-							redirect('section','refresh');
+							redirect('Section','refresh');
 						}
 					}else if($value->status == "waiting"){
 							$this->session->set_flashdata('waitinglah', 'waiting');

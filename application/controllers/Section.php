@@ -19,8 +19,9 @@ class Section extends CI_Controller {
 	public function index()
 	{
 		$data['sec'] = $this->session->section;
-
-		$this->load->view("section/header"); 
+		$data['profile'] = $this->Dc_model->getProfile($this->session->id_user);
+		// var_dump($data['profile']);
+		$this->load->view("section/header",$data); 
 		$this->load->view('section/section_view');
 		$this->load->view("section/footer");
 	}
@@ -30,6 +31,15 @@ class Section extends CI_Controller {
 		$count=$this->Dc_model->countActivityNotUpdated($this->session->section);
 		$count2=$count[0]['count(status)'];
 		echo $count2;
+	}
+
+	public function get_session()
+	{
+		$id=$this->session->id_user;
+		$nama = $this->Dc_model->getSession($id);
+		$nama2=$nama[0]['name'];
+		// var_dump($nama2);
+		echo strtoupper($nama2);
 	}
 
 	public function getSectionSched()
@@ -56,6 +66,28 @@ class Section extends CI_Controller {
 		}
 
 		$result = $this->Dc_model->updateSection($id,$ak_act_imp);
+		echo json_encode($result);
+	}
+
+	public function updateProfile()
+	{
+		date_default_timezone_set("Asia/Jakarta");
+		$id = $this->session->id_user;
+		$nama = $this->input->post('nama');
+		$jabatan = $this->input->post('jabatan');
+		$result = $this->Dc_model->updateProfile($id,$nama,$jabatan);
+		$userdata = array(
+						'id_user' => $this->session->id_user,
+						'nik' => $this->session->nik,
+						'name' => $nama,
+						'password' => $this->session->password,
+						'section' => $this->session->section,
+						'jabatan' => $jabatan,
+						'status' => $this->session->status,
+						'signin' => TRUE
+					);
+		$this->session->set_userdata($userdata);
+		// var_dump($userdata);
 		echo json_encode($result);
 	}
 

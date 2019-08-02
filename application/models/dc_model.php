@@ -506,4 +506,30 @@ class Dc_Model extends CI_Model {
         return $query->result();
     }
 
+    public function getProfile($id)
+    {
+        $this->db->where('id_user', $id);
+        $query = $this->db->get('user');
+        return $query->result();
+    }
+
+    public function getSession($id)
+    {
+        $this->db->select('name');
+        $this->db->where('id_user', $id);
+        $query = $this->db->get('user');
+        return $query->result_array();
+    }
+
+    public function updateProfile($id,$nama,$jabatan)
+    {
+        $data = array(
+                'name'                   =>$nama,
+                'jabatan'                   =>$jabatan,
+            );
+        $this->db->where('id_user', $id);
+        $result = $this->db->update('user', $data);
+        return $result;
+    }
+
 }

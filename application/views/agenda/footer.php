@@ -904,7 +904,6 @@
 
             showAgendaandCalendar(currentMonth,currentYear);
             showAct(currentMonth,currentYear);
-
             refresh_notif();
         }
 
@@ -950,7 +949,7 @@
         window.setInterval(function(){
         	refresh_notif();
         	refresh_notif2();
-        	},4000);
+        	},2000);
 
         function refresh_notif() {
         	$.ajax({

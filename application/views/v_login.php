@@ -42,7 +42,7 @@
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Masukkan Nik">
-						<input class="input100" type="text" name="nik" placeholder="nik" maxlength="6" onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.keyCode==8 || event.keyCode==9 || event.keyCode==37 || event.keyCode==39'>
+						<input class="input100" type="text" name="nik" placeholder="nik" maxlength="6">
 						<span class="focus-input100-1"></span>
 						<span class="focus-input100-2"></span>
 					</div>

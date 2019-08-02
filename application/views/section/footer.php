@@ -49,6 +49,8 @@
 
 		$(document).ready(function(data){
 			refresh_notif();
+			refresh_session();
+
 			var section=data.section;
 
 			// fungsi date picker tanggal mulai
@@ -409,7 +411,7 @@
         			},
 
         			success: function(data){ 
-        				alert(data.code);
+        				// alert(data.code);
         				if (data.code == 1) {
         					Swal.fire({
         						type: 'error',
@@ -440,6 +442,38 @@
         		return false;
         	});
 
+		$('#formchangeprofile').submit(function(e){
+	        	e.preventDefault();
+        		// memasukkan data inputan ke variabel
+        		var nama 			= $('#nama').val();
+        		var jabatan 			= $('#jabatan').val();
+        		
+        		$.ajax({
+        			type : "POST",
+        			url  : "<?php echo site_url(); ?>/Section/updateProfile",
+        			dataType : "JSON",
+        			data : {
+        				nama:nama,
+        				jabatan:jabatan,
+        			},
+
+        			success: function(data){ 
+	        				Swal.fire({
+	        					type: 'success',
+	        					title: 'Berhasil update profile ',
+	        					showConfirmButton: false,
+	        					timer: 1500
+	        				})
+	        				$('#Modal_profile').modal('hide'); 
+	        				$('[name="nama"]').val(nama);
+	        				$('[name="jabatan"]').val(jabatan);
+	        				refresh_session();
+                    }
+                });
+
+        		return false;
+        	});
+
 function refresh() {
 
  			$("#agendaall").DataTable().destroy();
@@ -453,7 +487,8 @@ function refresh() {
 
 window.setInterval(function(){
         	refresh_notif();
-        	},5000);
+        	refresh_session();
+        	},2000);
 
         function refresh_notif() {
         	$.ajax({
@@ -465,6 +500,15 @@ window.setInterval(function(){
             			$("#notifsection").addClass('badge-danger');
             		}
             		$('#notifsection').html(data);
+            	}
+            })
+        }
+
+        function refresh_session() {
+        	$.ajax({ 
+            	url : "<?php echo site_url('Section/get_session') ?>",
+            	success : function(data){
+            		$('#sessionku').html(data);
             	}
             })
         }

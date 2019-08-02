@@ -121,8 +121,8 @@
 			<div class="card-body">
 				<div class="pull-right">
 					
-				
-				<div class="btn-group float-right">
+					
+					<div class="btn-group float-right">
 						<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							<span class="fa fa-plus"></span> Add Activity
 						</button>
@@ -193,24 +193,24 @@
 								</div>
 								<div class="col-8 row">
 									<div class="col-lg-2 pr-1 pl-1">
-									<label>Line1</label>
-									<input type="text" id="line1" class="form-control" placeholder="Line1" required>
+										<label>Line1</label>
+										<input type="text" id="line1" class="form-control" placeholder="Line1" required>
 									</div>
 									<div class="col-lg-2 pr-1 pl-1">
-									<label>Line2</label>
-									<input type="text" id="line2" class="form-control" placeholder="Line2">
+										<label>Line2</label>
+										<input type="text" id="line2" class="form-control" placeholder="Line2">
 									</div>
 									<div class="col-lg-2 pr-1 pl-1">
-									<label>Line3</label>
-									<input type="text" id="line3" class="form-control" placeholder="Line3">
+										<label>Line3</label>
+										<input type="text" id="line3" class="form-control" placeholder="Line3">
 									</div>
 									<div class="col-lg-2 pr-1 pl-1">
-									<label>Line4</label>
-									<input type="text" id="line4" class="form-control" placeholder="Line4">
+										<label>Line4</label>
+										<input type="text" id="line4" class="form-control" placeholder="Line4">
 									</div>
 									<div class="col-lg-2 pr-1 pl-1">
-									<label>Line5</label>
-									<input type="text" id="line5" class="form-control" placeholder="Line5">
+										<label>Line5</label>
+										<input type="text" id="line5" class="form-control" placeholder="Line5">
 									</div>
 								</div>
 
@@ -258,7 +258,7 @@
 									<input type="text" id="u_line1" name="u_line1" class="form-control" placeholder="Line 1" required>
 								</div>
 							</div>
-								<div class="form-group col-lg-12 row">
+							<div class="form-group col-lg-12 row">
 								<div class="col-3">
 									<label>Line 2: </label>
 									<input type="text" id="u_line2" name="u_line2" class="form-control" placeholder="Line 2">
@@ -389,17 +389,17 @@
 									<select class="form-control" name="nama_dvs[]" id="nama_dvs">
 										<option disabled selected hidden>Pilih Section</option>
 										<option value="de">DE</option>
-								                 <option value="pp">PP</option>
-								                 <option value="qp">QP</option>
-								                 <option value="qmp">QMP</option>
-								                 <option value="eng">ENGINEERING</option>
-								                 <option value="nys">NYS</option>
-								                 <option value="prod">PROD</option>
-								                 <option value="ppc">PPC</option>
-								                 <option value="ppc">IC</option>
-								                 <option value="ppc">WHS</option>
-								                 <option value="ppc">EXIM</option>
-								                 <option value="ppc">FA</option>
+										<option value="pp">PP</option>
+										<option value="qp">QP</option>
+										<option value="qmp">QMP</option>
+										<option value="eng">ENGINEERING</option>
+										<option value="nys">NYS</option>
+										<option value="prod">PROD</option>
+										<option value="ppc">PPC</option>
+										<option value="ppc">IC</option>
+										<option value="ppc">WHS</option>
+										<option value="ppc">EXIM</option>
+										<option value="ppc">FA</option>
 									</select>
 								</div>  
 								<div class="col-md-3">
@@ -407,37 +407,37 @@
 									<input type="text" id="nama_act" name="nama_act[]" class="form-control" placeholder="Masukkan Activity" list="data" required autocomplete="off" />
 									<datalist id="data">
 										<?php foreach ($this->db->get('mactivity')->result() as $key => $value) : ?>
-										 <option value="<?= $value->namaActivity ?>" data-json='<?php echo json_encode($value) ?>'><?= $value->namaActivity ?>	 	
-										 </option>
-									<?php endforeach; ?>
-									</datalist>
-								</div>  
-								<div class="col-md-2">
-									<label>Plan Implementation</label>
-									<input class="form-control datepicker" name="ak_plan_imp[]" id="ak_plan_imp" placeholder="Date (Plan)" required autocomplete="off"/>
-								</div>  
-								<div class="col-md-1">
-									<label for="hapus">Hapus Form</label><br/>
-									<button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove" disabled> X </button> </div>
-								</div>
-
-								<div class="input-field">
-									
-								</div>
-							</div>
+										<option value="<?= $value->namaActivity ?>" data-json='<?php echo json_encode($value) ?>'><?= $value->namaActivity ?>	 	
+									</option>
+								<?php endforeach; ?>
+							</datalist>
+						</div>  
+						<div class="col-md-2">
+							<label>Plan Implementation</label>
+							<input class="form-control datepicker" name="ak_plan_imp[]" id="ak_plan_imp" placeholder="Date (Plan)" required autocomplete="off"/>
+						</div>  
+						<div class="col-md-1">
+							<label for="hapus">Hapus Form</label><br/>
+							<button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove" disabled> X </button> </div>
 						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
-							<button type="button" class="btn btn-primary"  name="add" id="add">Tambah Data Form</button>
-							<button type="submit" id="submit" class="btn btn-success ">Input Data</button>
+
+						<div class="input-field">
+							
 						</div>
 					</div>
 				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
+					<button type="button" class="btn btn-primary"  name="add" id="add">Tambah Data Form</button>
+					<button type="submit" id="submit" class="btn btn-success ">Input Data</button>
+				</div>
 			</div>
-		</form>  
+		</div>
 	</div>
+</form>  
+</div>
 
-	<form id="formimportAct" enctype="multipart/form-data">
+<form id="formimportAct" enctype="multipart/form-data">
 	<div class="modal fade" id="Modal_Import" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"  aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -484,327 +484,327 @@
  				                 	<span id="status"></span>
                   				</div>
                   			</div> -->
-						</div>
-							<!--  -->
-							<div class="modal-footer">
-								<!-- inputan button simpan dan Cancel -->
-								<a href="<?php echo base_url().'index.php/Dc_controller/downloadformat' ?>" title="Download Format" class="btn btn-success float-left"><span class="fa fa-download"></span> Format</a>
-								<button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
-								<button type="submit" id="btn_push" class="btn btn-primary bd-toogle-animated-progress" onclick="move()">Tambah</button>
+                  		</div>
+                  		<!--  -->
+                  		<div class="modal-footer">
+                  			<!-- inputan button simpan dan Cancel -->
+                  			<a href="<?php echo base_url().'index.php/Dc_controller/downloadformat' ?>" title="Download Format" class="btn btn-success float-left"><span class="fa fa-download"></span> Format</a>
+                  			<button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
+                  			<button type="submit" id="btn_push" class="btn btn-primary bd-toogle-animated-progress" onclick="move()">Tambah</button>
+                  		</div>
+                  	</div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</form>
+<!--END MODAL Activity baru-->
+
+<!-- Update Modal Activity -->
+<div class="form-group">  
+	<form name="update_activity" id="update_activity">
+		<div class="modal fade" id="Modal_Update2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"  aria-hidden="true">
+			<div class="modal-dialog" role="document" style="max-width: 80%;overflow-y: initial !important">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Update Activity</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>			           
+					</div>
+
+					<div class="modal-body" id="mdl_bdy" style="max-height: calc(100vh - 200px);overflow-y: auto;">
+						<div class="container-fluid scroll">  
+							<div class="table-responsive">  
+								<table class="table table-bordered" id="dynamic_field">  
+									<tr>
+										<td>
+											<label>Nor</label>
+											<input type="text" id="slct_nor_up" name="nor_act_up" class="form-control" placeholder="Masukkan Activity" required readonly />
+										</td>
+										<td>
+											<label>No</label>
+											<input type="text" id="slct_no_up" name="no_act_up" class="form-control" placeholder="Masukkan Activity" required readonly />
+
+										</td>
+										<td> <label>Section</label>
+											<select class="form-control" name="nama_dvs_up" id="nama_dvs_up">
+												<option disabled selected hidden>Pilih Section</option>
+												<option value="de">DE</option>
+												<option value="pp">PP</option>
+												<option value="qp">QP</option>
+												<option value="qmp">QMP</option>
+												<option value="eng">ENGINEERING</option>
+												<option value="nys">NYS</option>
+												<option value="prod">PROD</option>
+												<option value="ppc">PPC</option>
+												<option value="ppc">IC</option>
+												<option value="ppc">WHS</option>
+												<option value="ppc">EXIM</option>
+												<option value="ppc">FA</option>
+											</select>
+										</td>
+										<td> <label>Activity</label>
+											<input type="text" id="nama_act_up" name="nama_act_up" class="form-control" placeholder="Masukkan Activity" required />
+										</td>
+										<td><label>Plan Implementation</label>
+											<input class="form-control datepicker" name="ak_plan_imp_up" id="ak_plan_imp_up" placeholder="Date (Plan)" required autocomplete="off"/>
+										</td>
+										<td> <label>Actual Implementation</label>
+											<input  class="form-control datepicker" name="ak_act_imp_up" id="ak_act_imp_up" placeholder="Date (Actual)" autocomplete="off"/>
+										</td>
+									</tr>  
+								</table>  
+								<!-- <input type="button" name="submit" id="submit" class="btn btn-info" value="Submit" />   -->
 							</div>
 						</div>
 					</div>
+					<div class="modal-footer">
+						<input type="hidden" id="u_id_act" name="u_id_act" value="">
+						<input type="hidden" id="status_up" name="status_up" value="">
+						<button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
+						<button type="submit" id="submit" class="btn btn-success ">Update Data Activity</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>  
+</div>
+
+<!-- Update Modal Activity confirm -->
+<div class="form-group">  
+	<form name="confirmation" id="confirmation">
+		<div class="modal fade" id="Modal_UpdateStatus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"  aria-hidden="true">
+			<div class="modal-dialog" role="document" style="max-width: 80%;overflow-y: initial !important">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Confirmation Activity</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>			           
+					</div>
+
+					<div class="modal-body" id="mdl_bdy" style="max-height: calc(100vh - 200px);overflow-y: auto;">
+						<div class="container-fluid scroll">  
+							<div class="table-responsive">  
+								<table class="table table-bordered" id="dynamic_field">  
+									<tr>
+										<td>
+											<label>Nor</label>
+											<input type="text" id="slct_nor_c" name="nor_act_c" class="form-control" placeholder="Masukkan Activity" required readonly />
+										</td>
+										<td>
+											<label>No</label>
+											<input type="text" id="slct_no_c" name="no_act_c" class="form-control" placeholder="Masukkan Activity" required readonly />
+
+										</td>
+										<td> <label>Section</label>
+											<select class="form-control" name="nama_dvs_c" id="nama_dvs_c" readonly>
+												<option disabled selected hidden>Pilih Section</option>
+												<option value="de">DE</option>
+												<option value="pp">PP</option>
+												<option value="qp">QP</option>
+												<option value="qmp">QMP</option>
+												<option value="eng">ENGINEERING</option>
+												<option value="nys">NYS</option>
+												<option value="prod">PROD</option>
+												<option value="ppc">PPC</option>
+												<option value="ppc">IC</option>
+												<option value="ppc">WHS</option>
+												<option value="ppc">EXIM</option>
+												<option value="ppc">FA</option>
+											</select>
+										</td>
+										<td> <label>Activity</label>
+											<input type="text" id="nama_act_c" name="nama_act_c" class="form-control" placeholder="Masukkan Activity" required readonly />
+										</td>
+										<td><label>Plan Implementation</label>
+											<input class="form-control datepicker" name="ak_plan_imp_c" id="ak_plan_imp_c" placeholder="Date (Plan)" required readonly/>
+										</td>
+										<td> <label>Actual Implementation</label>
+											<input  class="form-control datepicker" name="ak_act_imp_c" id="ak_act_imp_c" placeholder="Date (Actual)" autocomplete="off"/>
+										</td>
+									</tr>  
+								</table>  
+								<!-- <input type="button" name="submit" id="submit" class="btn btn-info" value="Submit" />   -->
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<input type="hidden" id="c_id_act" name="c_id_act" value="">
+						<button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
+						<button type="submit" id="submit" class="btn btn-success ">Confirm</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>  
+</div>
+
+<!--MODAL Activity Delete-->
+<form id="formdelete2">
+	<div class="modal fade" id="Modal_Delete2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Delete Activity</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>			           
+				</div>
+				<div class="modal-body">			              
+
+					<div class="form-group col-lg-12">
+						<label>Apa Anda Yakin Ingin MengHapus Activity : </label>
+						<center><H4 id="msg2"></H4></center>
+						<label><font size="6"> dari nor-no : <b id="msg3"></b> ? </font></label>
+						
+						<input type="hidden" name="deleteActku" id="deleteActku" class="form-control">
+						<input type="hidden" name="norku" id="norku" class="form-control">
+						<input type="hidden" name="noku" id="noku" class="form-control">
+						<input type="hidden" name="actku" id="actku" class="form-control">
+
+					</div>
+
+					<br />
+					<center>
+						<button type="button" class="btn btn-secondary col-md-3" data-dismiss="modal" style="margin-right: 20px">Cancel</button>
+						<button type="submit" id="btn_delete2" class="btn btn-danger col-md-3">Hapus</button>	
+					</center>
+				</div>
+				<div class="modal-footer">
+
 				</div>
 			</div>
 		</div>
 	</div>
 </form>
-	<!--END MODAL Activity baru-->
-	
-	<!-- Update Modal Activity -->
-	<div class="form-group">  
-		<form name="update_activity" id="update_activity">
-			<div class="modal fade" id="Modal_Update2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"  aria-hidden="true">
-				<div class="modal-dialog" role="document" style="max-width: 80%;overflow-y: initial !important">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h4 class="modal-title">Update Activity</h4>
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>			           
-						</div>
+<!--END MODAL NOR Delete-->
 
-						<div class="modal-body" id="mdl_bdy" style="max-height: calc(100vh - 200px);overflow-y: auto;">
-							<div class="container-fluid scroll">  
-								<div class="table-responsive">  
-									<table class="table table-bordered" id="dynamic_field">  
-										<tr>
-											<td>
-												<label>Nor</label>
-												<input type="text" id="slct_nor_up" name="nor_act_up" class="form-control" placeholder="Masukkan Activity" required readonly />
-											</td>
-											<td>
-												<label>No</label>
-												<input type="text" id="slct_no_up" name="no_act_up" class="form-control" placeholder="Masukkan Activity" required readonly />
-
-											</td>
-											<td> <label>Section</label>
-												<select class="form-control" name="nama_dvs_up" id="nama_dvs_up">
-													<option disabled selected hidden>Pilih Section</option>
-													<option value="de">DE</option>
-								                 <option value="pp">PP</option>
-								                 <option value="qp">QP</option>
-								                 <option value="qmp">QMP</option>
-								                 <option value="eng">ENGINEERING</option>
-								                 <option value="nys">NYS</option>
-								                 <option value="prod">PROD</option>
-								                 <option value="ppc">PPC</option>
-								                 <option value="ppc">IC</option>
-								                 <option value="ppc">WHS</option>
-								                 <option value="ppc">EXIM</option>
-								                 <option value="ppc">FA</option>
-												</select>
-											</td>
-											<td> <label>Activity</label>
-												<input type="text" id="nama_act_up" name="nama_act_up" class="form-control" placeholder="Masukkan Activity" required />
-											</td>
-											<td><label>Plan Implementation</label>
-												<input class="form-control datepicker" name="ak_plan_imp_up" id="ak_plan_imp_up" placeholder="Date (Plan)" required autocomplete="off"/>
-											</td>
-											<td> <label>Actual Implementation</label>
-												<input  class="form-control datepicker" name="ak_act_imp_up" id="ak_act_imp_up" placeholder="Date (Actual)" autocomplete="off"/>
-											</td>
-										</tr>  
-									</table>  
-									<!-- <input type="button" name="submit" id="submit" class="btn btn-info" value="Submit" />   -->
-								</div>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<input type="hidden" id="u_id_act" name="u_id_act" value="">
-							<input type="hidden" id="status_up" name="status_up" value="">
-							<button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
-							<button type="submit" id="submit" class="btn btn-success ">Update Data Activity</button>
-						</div>
-					</div>
-				</div>
+<div id="input-container" style="display: none;">
+	<div class="row input-header" id="rows" style="margin-top: 1rem">
+		<div class="col-md-2">
+			<select class="form-control slct_nor" id="slct_nor" name="nor_act[]" required="" onchange="change_second($(this).val(),$(this).parents('.row').attr('id'))">
+				<option disabled selected hidden> Pilih Nomor Nor</option>
+				<?php foreach($nor as $key) { ?><option value="<?php  echo $key->nor ?>">
+					<?php echo $key->nor ?> </option><?php }  ?>
+				</select>
 			</div>
-		</form>  
-	</div>
-
-	<!-- Update Modal Activity confirm -->
-	<div class="form-group">  
-		<form name="confirmation" id="confirmation">
-			<div class="modal fade" id="Modal_UpdateStatus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"  aria-hidden="true">
-				<div class="modal-dialog" role="document" style="max-width: 80%;overflow-y: initial !important">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h4 class="modal-title">Confirmation Activity</h4>
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>			           
-						</div>
-
-						<div class="modal-body" id="mdl_bdy" style="max-height: calc(100vh - 200px);overflow-y: auto;">
-							<div class="container-fluid scroll">  
-								<div class="table-responsive">  
-									<table class="table table-bordered" id="dynamic_field">  
-										<tr>
-											<td>
-												<label>Nor</label>
-												<input type="text" id="slct_nor_c" name="nor_act_c" class="form-control" placeholder="Masukkan Activity" required readonly />
-											</td>
-											<td>
-												<label>No</label>
-												<input type="text" id="slct_no_c" name="no_act_c" class="form-control" placeholder="Masukkan Activity" required readonly />
-
-											</td>
-											<td> <label>Section</label>
-												<select class="form-control" name="nama_dvs_c" id="nama_dvs_c" readonly>
-													<option disabled selected hidden>Pilih Section</option>
-													<option value="de">DE</option>
-								                 <option value="pp">PP</option>
-								                 <option value="qp">QP</option>
-								                 <option value="qmp">QMP</option>
-								                 <option value="eng">ENGINEERING</option>
-								                 <option value="nys">NYS</option>
-								                 <option value="prod">PROD</option>
-								                 <option value="ppc">PPC</option>
-								                 <option value="ppc">IC</option>
-								                 <option value="ppc">WHS</option>
-								                 <option value="ppc">EXIM</option>
-								                 <option value="ppc">FA</option>
-												</select>
-											</td>
-											<td> <label>Activity</label>
-												<input type="text" id="nama_act_c" name="nama_act_c" class="form-control" placeholder="Masukkan Activity" required readonly />
-											</td>
-											<td><label>Plan Implementation</label>
-												<input class="form-control datepicker" name="ak_plan_imp_c" id="ak_plan_imp_c" placeholder="Date (Plan)" required readonly/>
-											</td>
-											<td> <label>Actual Implementation</label>
-												<input  class="form-control datepicker" name="ak_act_imp_c" id="ak_act_imp_c" placeholder="Date (Actual)" autocomplete="off"/>
-											</td>
-										</tr>  
-									</table>  
-									<!-- <input type="button" name="submit" id="submit" class="btn btn-info" value="Submit" />   -->
-								</div>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<input type="hidden" id="c_id_act" name="c_id_act" value="">
-							<button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
-							<button type="submit" id="submit" class="btn btn-success ">Confirm</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</form>  
-	</div>
-
-	<!--MODAL Activity Delete-->
-	<form id="formdelete2">
-		<div class="modal fade" id="Modal_Delete2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h4 class="modal-title">Delete Activity</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>			           
-					</div>
-					<div class="modal-body">			              
-
-						<div class="form-group col-lg-12">
-							<label>Apa Anda Yakin Ingin MengHapus Activity : </label>
-							<center><H4 id="msg2"></H4></center>
-							<label><font size="6"> dari nor-no : <b id="msg3"></b> ? </font></label>
-							
-							<input type="hidden" name="deleteActku" id="deleteActku" class="form-control">
-							<input type="hidden" name="norku" id="norku" class="form-control">
-						<input type="hidden" name="noku" id="noku" class="form-control">
-						<input type="hidden" name="actku" id="actku" class="form-control">
-
-						</div>
-
-						<br />
-						<center>
-							<button type="button" class="btn btn-secondary col-md-3" data-dismiss="modal" style="margin-right: 20px">Cancel</button>
-							<button type="submit" id="btn_delete2" class="btn btn-danger col-md-3">Hapus</button>	
-						</center>
-					</div>
-					<div class="modal-footer">
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</form>
-	<!--END MODAL NOR Delete-->
-
-	<div id="input-container" style="display: none;">
-		<div class="row input-header" id="rows" style="margin-top: 1rem">
 			<div class="col-md-2">
-				<select class="form-control slct_nor" id="slct_nor" name="nor_act[]" required="" onchange="change_second($(this).val(),$(this).parents('.row').attr('id'))">
-					<option disabled selected hidden> Pilih Nomor Nor</option>
-					<?php foreach($nor as $key) { ?><option value="<?php  echo $key->nor ?>">
-						<?php echo $key->nor ?> </option><?php }  ?>
+				<select class="form-control slct_no" id="slct_no" name="no_act[]" required="">
+					<option disabled selected hidden class="nomor-not"> Pilih Nomor No</option>
+					<?php foreach($no as $key) { ?>
+						<option value="<?php  echo $key->no ?>" class="nomor-nor-<?php echo $key->nor ?>"><?php echo $key->no ?> </option><?php }  ?>
 					</select>
 				</div>
 				<div class="col-md-2">
-					<select class="form-control slct_no" id="slct_no" name="no_act[]" required="">
-						<option disabled selected hidden class="nomor-not"> Pilih Nomor No</option>
-						<?php foreach($no as $key) { ?>
-							<option value="<?php  echo $key->no ?>" class="nomor-nor-<?php echo $key->nor ?>"><?php echo $key->no ?> </option><?php }  ?>
-						</select>
-					</div>
-					<div class="col-md-2">
-						<select class="form-control" name="nama_dvs[]" id="nama_dvs">
-							<option disabled selected hidden>Pilih Section</option>
-							<option value="de">DE</option>
-								                 <option value="pp">PP</option>
-								                 <option value="qp">QP</option>
-								                 <option value="qmp">QMP</option>
-								                 <option value="eng">ENGINEERING</option>
-								                 <option value="nys">NYS</option>
-								                 <option value="prod">PROD</option>
-								                 <option value="ppc">PPC</option>
-								                 <option value="ppc">IC</option>
-								                 <option value="ppc">WHS</option>
-								                 <option value="ppc">EXIM</option>
-								                 <option value="ppc">FA</option>
-						</select>
-					</div>
-					<div class="col-md-3">
-						<input type="text" id="nama_act" name="nama_act[]" class="form-control" placeholder="Masukkan Activity" list="data" required />
-						<datalist id="data">
-										<?php foreach ($this->db->get('mactivity')->result() as $key => $value) : ?>
-										 <option value="<?= $value->namaActivity ?>" data-json='<?php echo json_encode($value) ?>'><?= $value->namaActivity ?>	 	
-										 </option>
-									<?php endforeach; ?>
-									</datalist>
-					</div>
-					<div class="col-md-2"><input type="date" class="form-control datepicker" name="ak_plan_imp[]" id="ak_plan_imp" placeholder="Date (Plan)" required autocomplete="off"/></div>
-					<div class="cols-md-1" style="align-items: center;"><center><button type="button" name="remove" id="" class="btn btn-danger btn_remove">X</button></center></div>
+					<select class="form-control" name="nama_dvs[]" id="nama_dvs">
+						<option disabled selected hidden>Pilih Section</option>
+						<option value="de">DE</option>
+						<option value="pp">PP</option>
+						<option value="qp">QP</option>
+						<option value="qmp">QMP</option>
+						<option value="eng">ENGINEERING</option>
+						<option value="nys">NYS</option>
+						<option value="prod">PROD</option>
+						<option value="ppc">PPC</option>
+						<option value="ppc">IC</option>
+						<option value="ppc">WHS</option>
+						<option value="ppc">EXIM</option>
+						<option value="ppc">FA</option>
+					</select>
 				</div>
-				<script>
+				<div class="col-md-3">
+					<input type="text" id="nama_act" name="nama_act[]" class="form-control" placeholder="Masukkan Activity" list="data" required />
+					<datalist id="data">
+						<?php foreach ($this->db->get('mactivity')->result() as $key => $value) : ?>
+						<option value="<?= $value->namaActivity ?>" data-json='<?php echo json_encode($value) ?>'><?= $value->namaActivity ?>	 	
+					</option>
+				<?php endforeach; ?>
+			</datalist>
+		</div>
+		<div class="col-md-2"><input type="date" class="form-control datepicker" name="ak_plan_imp[]" id="ak_plan_imp" placeholder="Date (Plan)" required autocomplete="off"/></div>
+		<div class="cols-md-1" style="align-items: center;"><center><button type="button" name="remove" id="" class="btn btn-danger btn_remove">X</button></center></div>
+	</div>
+	<script>
 
-				</script>
-			</div>
-			<script type="text/javascript">
-				$(function(){
-					$(".datepicker").datepicker({
+	</script>
+</div>
+<script type="text/javascript">
+	$(function(){
+		$(".datepicker").datepicker({
 	  	// var tgl_ahir = tgl_b.getDate()+"/"+(parseInt(tgl_b.getMonth(), 10)+1)+"/"+tgl_b.getFullYear();
 	   //    format: ,
 	   autoclose: true,
 	   todayHighlight: true,
 	});
-				});
+	});
 
-				$(document).ready(function(){
-					var i=1;  
-					$('#add').click(function(){  
-						i++;  
-						$('#input-container').find('.input-header').attr('id','row'+i);
-						$('#input-container').find('button[name="remove"]').attr('id',i);
-						var html = String($('#input-container').html()); 
-						$('.input-field').append(html);  
-					});
+	$(document).ready(function(){
+		var i=1;  
+		$('#add').click(function(){  
+			i++;  
+			$('#input-container').find('.input-header').attr('id','row'+i);
+			$('#input-container').find('button[name="remove"]').attr('id',i);
+			var html = String($('#input-container').html()); 
+			$('.input-field').append(html);  
+		});
 
 
-					$(document).on('click', '.btn_remove', function(){  
-						var button_id = $(this).attr("id");   
-						$('#row'+button_id+'').remove();  
-					});
-					$.ajax({
-						url: "<?php echo site_url(); ?>/Dc_controller/select_nor",
-						success : function(data){
-							$('#Modal_Add2').find('#slct_nor').html(data);
-							$('#Modal_Import').find('#slct_nor').html(data);
-						}
-					});
-					$.ajax({
-						url: "<?php echo site_url(); ?>/Dc_controller/select_no",
-						success : function(data){
-							$('#Modal_Add2').find('#slct_no').html(data);
-							$('#Modal_Import').find('#slct_no').html(data);
-						}
-					});
-						
-					$('.dropify').dropify({
-						messages: {
-							default: 'Drag atau drop untuk memilih File',
-							replace: 'Ganti',
-							remove:  'Hapus',
-							error:   'error',
-						}
-					});
-				});
-					
-					$('#Modal_Import').on('shown.bs.modal',function(){
+		$(document).on('click', '.btn_remove', function(){  
+			var button_id = $(this).attr("id");   
+			$('#row'+button_id+'').remove();  
+		});
+		$.ajax({
+			url: "<?php echo site_url(); ?>/Dc_controller/select_nor",
+			success : function(data){
+				$('#Modal_Add2').find('#slct_nor').html(data);
+				$('#Modal_Import').find('#slct_nor').html(data);
+			}
+		});
+		$.ajax({
+			url: "<?php echo site_url(); ?>/Dc_controller/select_no",
+			success : function(data){
+				$('#Modal_Add2').find('#slct_no').html(data);
+				$('#Modal_Import').find('#slct_no').html(data);
+			}
+		});
+		
+		$('.dropify').dropify({
+			messages: {
+				default: 'Drag atau drop untuk memilih File',
+				replace: 'Ganti',
+				remove:  'Hapus',
+				error:   'error',
+			}
+		});
+	});
+	
+	$('#Modal_Import').on('shown.bs.modal',function(){
 						// alert("ASD");
 						$.ajax({
-						url: "<?php echo site_url(); ?>/Dc_controller/select_nor",
-						success : function(data){
-							$('#Modal_Add2').find('#slct_nor').html(data);
-							$('#Modal_Import').find('#slct_nor').html(data);
-						}
+							url: "<?php echo site_url(); ?>/Dc_controller/select_nor",
+							success : function(data){
+								$('#Modal_Add2').find('#slct_nor').html(data);
+								$('#Modal_Import').find('#slct_nor').html(data);
+							}
 						});
 						$.ajax({
-						url: "<?php echo site_url(); ?>/Dc_controller/select_no",
-						success : function(data){
-							$('#Modal_Add2').find('#slct_no').html(data);
-							$('#Modal_Import').find('#slct_no').html(data);
-						}
+							url: "<?php echo site_url(); ?>/Dc_controller/select_no",
+							success : function(data){
+								$('#Modal_Add2').find('#slct_no').html(data);
+								$('#Modal_Import').find('#slct_no').html(data);
+							}
+						});
 					});
-					});
-						
+	
 
-		$('.slct_nor').change(function(){
-			let select = $(this).closest("tr");
+	$('.slct_nor').change(function(){
+		let select = $(this).closest("tr");
 			// alert(select.attr('id'))
 			let nor = $('.slct_nor :selected').val();
 			select.find('select[name="no_act[]"]').find('option').not('.nomor-not').hide();
 			select.find('select[name="no_act[]"]').val('0');
 			select.find('.nomor-nor-'+nor).show();
-		
-	});
+			
+		});
 
-		function change_second(value,target) {
+	function change_second(value,target) {
 		let nor = value;
 		// alert(target);
 		target = '#'+target;
@@ -834,7 +834,7 @@
 			}
 		}
 	}
-     
+	
 </script>
 
 </main>

@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="<?=base_url()?>assets/logoaja.png">
+    <link rel="icon" href="<?=base_url()?>assets/1.png">
     <title>PT. SAI</title>
 
     <!-- fontawesome icon -->
@@ -58,18 +58,36 @@
                         <li class="nav-item ">
                            <a class="nav-link" href="<?php echo base_url().'index.php/Dc_controller'?>" >Admin View <sup><span class="badge" id="notifaccount2"></span></sup></a>
                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="<?php echo base_url().'index.php/Dc_controller/indexx'?>" >User View</a>
+                       <li class="nav-item ">
+                            <a class="nav-link" href="<?php echo base_url().'index.php/Dc_controller/dataNor'?>" >Download Nor</a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="<?php echo base_url().'index.php/Dc_controller/listUser'?>" >List User <sup><span class="badge" id="notifaccount"></span></sup></a>
+                            <a class="nav-link" href="<?php echo base_url().'index.php/Dc_controller/listUser'?>" >Daftar Akun <sup><span class="badge" id="notifaccount"></span></sup></a>
                         </li>
+                        <!-- <li class="nav-item ">
+                            <a class="nav-link" href="<?php echo base_url().'index.php/Dc_controller/listActivity'?>" >Master Activity</a>
+                        </li> -->
                         <li class="nav-item ">
-                            <a class="nav-link" href="<?php echo base_url().'index.php/Dc_controller/ListActivity'?>" >List Activity</a>
+                            <a class="nav-link" href="<?php echo base_url().'index.php/Dc_controller/indexx'?>" >Preview</a>
                         </li>
                     </ul>
-                    <div class="btn-group" role="group" aria-label="Data baru">
-                        <a class="btn-group btn btn-danger" href="<?php echo base_url().'/index.php/Login/logout'?>" >LOGOUT</a>
+<!--                     <div class="btn-group" role="group" aria-label="Data baru">
+                        <a class="btn-group btn btn-danger" href="<?php echo base_url().'index.php/Login/logout'?>" >LOGOUT</a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                              <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#Modal_profile">Change Profile</a>
+                              <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#Modal_changepass">Change Password</a>
+                              <a class="dropdown-item" href="<?php echo base_url().'index.php/Login/logout'?>">Logout</a>
+                          </div>
+                    </div> -->
+                    <div class="dropdown" style="padding-right: 0px">
+                        <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 15px;color: black">
+                              <!-- <font id="sessionku"></font> --><span class="fa fa-bars"></span>
+                          </a>
+                          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                              <!-- <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#Modal_profile">Change Profile</a> -->
+                              <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#Modal_delall">Delete All Data</a>
+                              <a class="dropdown-item" href="<?php echo base_url().'index.php/Login/logout'?>">Logout</a>
+                          </div>
                     </div>
                 </div>
             </div>
@@ -100,6 +118,36 @@
 </div>
 </div>  
 </form>
+
+<form id="formdeleteall">
+        <div class="modal fade" id="Modal_delall" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"  aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Delete Data</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>                       
+                    </div>
+                    <div class="modal-body">               
+                        <div class="container-fluid">   
+                            <div class="row">        
+                                <!-- form inputan nama kegiatan -->
+                                <div class="form-group col-lg-12 ">
+                                    <b><font>Apa anda yakin ingin menghapus semua data?</font><br>
+                                    <font>(hanya data Nor dan Activity)</font></b>
+                                </div>
+                                <div class="modal-footer">
+                                    <!-- inputan button simpan dan Cancel -->
+                                    <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
+                                    <button type="submit" id="btn_push" class="btn btn-danger ">Delete All</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
 <script type="text/javascript">
     $(function() {
     $('#nav a[href~="' + location.href + '"]').parents('li').addClass('active');

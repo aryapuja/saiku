@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="<?=base_url()?>assets/logoaja2.png"/>
+	<link rel="icon" type="image/png" href="<?=base_url()?>assets/1.png"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/login/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -109,14 +109,14 @@
 								                 <option value="pp">PP</option>
 								                 <option value="qp">QP</option>
 								                 <option value="qmp">QMP</option>
-								                 <option value="eng">ENGINEERING</option>
+								                 <option value="engineering">ENGINEERING</option>
 								                 <option value="nys">NYS</option>
 								                 <option value="prod">PROD</option>
 								                 <option value="ppc">PPC</option>
-								                 <option value="ppc">IC</option>
-								                 <option value="ppc">WHS</option>
-								                 <option value="ppc">EXIM</option>
-								                 <option value="ppc">FA</option>
+								                 <option value="ic">IC</option>
+								                 <option value="whs">WHS</option>
+								                 <option value="exim">EXIM</option>
+								                 <option value="fa">FA</option>
 							               </select>
 									</div>
 								</div>

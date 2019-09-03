@@ -43,11 +43,13 @@
 									<img src="#" width="10px">&nbsp Tidak Ada Activity<br>
 									<img src="<?=base_url()?>assets/image/1.png" width="10px">&nbsp Ada 1 Activity<br>
 									<img src="<?=base_url()?>assets/image/2.png" width="10px">&nbsp Ada 2 Activity<br>
+									<img src="<?=base_url()?>assets/image/6.png" width="10px">&nbsp Activity Close<br>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 									<img src="<?=base_url()?>assets/image/3.png" width="10px">&nbsp Ada 3 Activity<br>
 									<img src="<?=base_url()?>assets/image/4.png" width="10px">&nbsp Ada 4 Activity<br>
 									<img src="<?=base_url()?>assets/image/5.png" width="10px">&nbsp Ada >=5 Activity<br>
+									<img src="<?=base_url()?>assets/image/7.png" width="10px">&nbsp Activity Open<br>
 								</div>
 							</div>
 						</center>
@@ -72,7 +74,7 @@
 									<th style="text-align: center; width: 15% ">Nor-No</th>
 									<th style="text-align: center; width: 35%">Activity</th>
 									<th style="text-align: center; width: 5%">Line</th>
-									<th style="text-align: center; width: 10%">Plan Implementation</th>
+									<th style="text-align: center; width: 10%">Due Date Activity</th>
 									<th style="text-align: center; width: 10%">Status</th>
 									<th style="text-align: center; width: 10%">Actual Implementation</th>
 									<th style="text-align: center; width: 5%">Action</th>
@@ -134,7 +136,7 @@
 										<td> <label>Line</label>
 											<input type="text" id="u_line" name="u_line" class="form-control" placeholder="Masukkan Line" required disabled />
 										</td>
-										<td> <label>Plan Implementation</label>
+										<td> <label>Due Date Activity</label>
 											<input class="form-control datepicker" name="u_ak_plan_imp" id="u_ak_plan_imp" placeholder="Date (Plan)" required disabled/>
 										</td>
 										<td> <label>Actual Implementation</label>

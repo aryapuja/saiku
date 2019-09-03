@@ -3,7 +3,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" href="<?=base_url()?>assets/logoaja.png">
+        <link rel="icon" href="<?=base_url()?>assets/1.png">
         <title>PT. SAI</title>
 
         <!-- fontawesome icon -->
@@ -50,8 +50,8 @@
                         </li>
                     </ul>
                     <div class="dropdown" style="padding-right: 0px">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 15px;color: black">
-                              <font id="sessionku"></font>
+                        <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 15px;color: black">
+                              <font id="sessionku"></font>&nbsp<span class="fa fa-bars"></span>
                           </a>
                           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                               <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#Modal_profile">Change Profile</a>

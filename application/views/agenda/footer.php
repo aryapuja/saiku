@@ -23,7 +23,7 @@
 		}
 
 		$(document).ready(function(){
-		
+			// alert(data.descNor);
             refresh_notif();
             refresh_notif2();
 			// fungsi date picker tanggal mulai
@@ -85,6 +85,7 @@
 	        			success : function(data){ 
 	        				var agend=[];
 	        				var html='';
+	        				// alert(JSON.stringify(data));
 	        				// var d = new Date();
 							var month = new Array();
 							month[0] = "January";
@@ -108,7 +109,9 @@
 	                    	var tgl_awal = (parseInt(tgl_a.getMonth(), 10)+1)+"/"+('0'+tgl_a.getDate()).slice(-2)+"/"+tgl_a.getFullYear();
 	                    	const tgl_b = new Date(data[i].nor_plan_imp);
 	                    	var tgl_awal2 = month[tgl_a.getMonth()]+", "+('0'+tgl_a.getDate()).slice(-2)+" "+tgl_a.getFullYear();
-	                    	
+	                    	const md = new Date(data[i].meeting_date);
+	                    	var md2 = month[md.getMonth()]+", "+('0'+md.getDate()).slice(-2)+" "+md.getFullYear();
+	                    	var md3 = (parseInt(md.getMonth(), 10)+1)+"/"+('0'+md.getDate()).slice(-2)+"/"+md.getFullYear();
 	                        const tgl_c = new Date(data[i].nor_act_imp);
 	                        var tgl_awal3 = (parseInt(tgl_c.getMonth(), 10)+1)+"/"+('0'+tgl_c.getDate()).slice(-2)+"/"+tgl_c.getFullYear(); 
 							const tgl_d = new Date(data[i].nor_act_imp);
@@ -164,8 +167,9 @@
 
 	                        html += '<tr>';
 	                        html +=	
-	                        '<td hidden>'+data[i].id+'</td>'+
+	                        // '<td hidden>'+data[i].id+'</td>'+
 	                        '<td >'+data[i].nor+'-'+data[i].no+'</td>'+
+	                        '<td >'+md2+'</td>'+
 		                            // '<td>'+data[i].rev+'</td>'+
 		                            '<td style="text-align: left;">'+data[i].item_changes+'</td>'+
 		                            '<td>'+a+'</td>'+
@@ -173,7 +177,7 @@
 		                            '<td>'+tanggal+'</td>'+
 		                            '<td><span class="badge badge-'+cls+'">'+data[i].status+'</span></td>'+
 		                            '<td>'+
-		                            '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit" data-id="'+data[i].id+'" data-nor="'+data[i].nor+'" data-no="'+data[i].no+'" data-item_changes="'+data[i].item_changes+'" data-line1="'+data[i].line+'" data-line2="'+data[i].line2+'" data-line3="'+data[i].line3+'" data-line4="'+data[i].line4+'" data-line5="'+data[i].line5+'" data-nor_plan_imp="'+tgl_awal+'" data-nor_act_imp="'+tgl_awal3+'" data-status="'+data[i].status+'">Edit</a>   '+
+		                            '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit" data-id="'+data[i].id+'" data-nor="'+data[i].nor+'" data-no="'+data[i].no+'" data-meeting_date="'+md3+'" data-item_changes="'+data[i].item_changes+'" data-line1="'+data[i].line+'" data-line2="'+data[i].line2+'" data-line3="'+data[i].line3+'" data-line4="'+data[i].line4+'" data-line5="'+data[i].line5+'" data-nor_plan_imp="'+tgl_awal+'" data-nor_act_imp="'+tgl_awal3+'" data-status="'+data[i].status+'">Edit</a>   '+
 		                            '<a href="javascript:void(0);" class="btn btn-danger btn-sm item_delete" data-id="'+data[i].id+'" data-nor="'+data[i].nor+'" data-no="'+data[i].no+'">Hapus</a>'+
 		                            '</td>'+
 		                            '</tr>';
@@ -229,7 +233,7 @@
 			            		var asign=null;
 			            		var anu=new Date();
 			            		var t=anu.setDate(anu.getDate() - 1);
-			            		// alert(agenda.length-1)
+			            		// alert(t);
 			            		// pengecekan calendar jika ada agenda di tanggal ini(date)
 			            		for (var ia = (agenda.length-1); ia >=0 ; ia--) {
 			            			for (var ib = 0; ib < agenda.length; ib++) {
@@ -407,7 +411,7 @@
 
 	                        html += '<tr>';
 	                        html +=	
-	                        '<td hidden>'+data[i].id+'</td>'+
+	                        // '<td hidden>'+data[i].id+'</td>'+
 	                        '<td >'+data[i].nor+'-'+data[i].no+'</td>'+
 		                            '<td>'+data[i].nama_dvs+'</td>'+
 		                            '<td style="text-align: left;">'+data[i].nama_act+'</td>'+
@@ -444,6 +448,7 @@
         		// memasukkan data inputan ke variabel
         		var nor 				= $('#nor').val();
         		var no 					= $('#no').val();
+        		var meeting_date		= $('#meeting_date').val();
         		var line1 				= $('#line1').val();
         		var line2 				= $('#line2').val();
         		var line3 				= $('#line3').val();
@@ -460,6 +465,7 @@
         			data : {
         				nor:nor,
         				no:no,
+        				meeting_date:meeting_date,
         				line1:line1,
         				line2:line2,
         				line3:line3,
@@ -495,6 +501,7 @@
             	var upid 			= $(this).data('id');
             	var upnor 			= $(this).data('nor'); 
             	var upno 			= $(this).data('no');
+            	var upmeeting_date	= $(this).data('meeting_date');
             	var upitem_changes	= $(this).data('item_changes'); 
             	var upline1 			= $(this).data('line1'); 
             	var upline2 			= $(this).data('line2'); 
@@ -504,11 +511,13 @@
             	var upnor_plan_imp 	= $(this).data('nor_plan_imp'); 
             	var upnor_act_imp 	= $(this).data('nor_act_imp'); 
         		var upstatus		= $(this).data('status');
+        		// alert(upmeeting_date);
 
                 // memasukkan data ke form updatean
                 $('[name="u_id"]').val(upid);
                 $('[name="u_nor"]').val(upnor);
                 $('[name="u_no"]').val(upno);
+                $('[name="u_meeting_date"]').val(upmeeting_date);
                 $('[name="u_item_changes"]').val(upitem_changes);
                 $('[name="u_line1"]').val(upline1);
                 $('[name="u_line2"]').val(upline2);
@@ -530,6 +539,7 @@
         		var up_id 			= $('#u_id').val();
         		var up_nor 			= $('#u_nor').val();
         		var up_no 			= $('#u_no').val();
+        		var up_meeting_date	= $('#u_meeting_date').val();
         		var up_line1 			= $('#u_line1').val();
         		var up_line2 			= $('#u_line2').val();
         		var up_line3 			= $('#u_line3').val();
@@ -551,6 +561,7 @@
         				u_id:up_id,
         				u_nor:up_nor,
         				u_no:up_no,
+        				u_meeting_date:up_meeting_date,
         				u_item_changes:up_item_changes,
         				u_line1:up_line1,
         				u_line2:up_line2,
@@ -878,6 +889,15 @@
         						$('#Modal_Import').modal('hide');
         						refresh(); 
 
+							},
+							error:function(){
+								Swal.fire({
+									type: 'error',
+									title: 'Ada Kesalahan',
+									text: 'Pastikan format activity sudah benar',
+									showConfirmButton: true,
+        					// timer: 1500
+        						})
 							}
 						})
 					});
@@ -905,6 +925,7 @@
             showAgendaandCalendar(currentMonth,currentYear);
             showAct(currentMonth,currentYear);
             refresh_notif();
+            refresh_notif2();
         }
 
         function refresh2() {
@@ -925,6 +946,25 @@
             showAct(currentMonth,currentYear);
         }
 
+            //delete record to database
+            $('#formdeleteall').submit(function(e){
+            	e.preventDefault(); 
+            	$.ajax({
+            		type : "POST",
+            		url  : "<?php echo site_url(); ?>/Dc_controller/deleteAll",
+            		dataType : "JSON",
+             		success: function(){
+            			Swal.fire({
+        					type: 'success',
+        					title: 'Berhasil menghapus data ',
+        					showConfirmButton: true,
+        				})
+            			$('#Modal_delall').modal('hide'); 
+            			refresh();
+            		}
+            	});
+            	return false;
+            });
         
     });
 

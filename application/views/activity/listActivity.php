@@ -16,11 +16,11 @@
 									<!-- <th style="width: 5%;">No</th> -->
 									<th style="text-align: center;" hidden>Id</th>
 									<th style="text-align: center; width: 5%" >No</th>
-									<th style="text-align: center; width: 15% ">Nama</th>
+									<th style="text-align: center; width: 15% ">Nama Activity</th>
 									<th style="text-align: center; width: 15%">Action</th>
 								</tr>
 							</thead>
-							<tbody id="tbl_act" style="text-align: center;">
+							<tbody id="tbl_act">
 
 							</tbody> 
 						</table>

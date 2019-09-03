@@ -18,7 +18,7 @@ class Dc_Model extends CI_Model {
     /*============================ END LOGIN ============================*/
 
     /*============================ DESIGN CHANGE ============================*/
-    public function newDc($nor,$no,$item_changes,$line1,$line2,$line3,$line4,$line5,$nor_plan_imp)
+    public function newDc($nor,$no,$meeting_date,$item_changes,$line1,$line2,$line3,$line4,$line5,$nor_plan_imp)
     {
         if ($line2 == "") {
             $line2=null;
@@ -35,6 +35,7 @@ class Dc_Model extends CI_Model {
         $data = array(
             'nor'               =>$nor,
             'no'                =>$no,
+            'meeting_date'      =>$meeting_date,
             'line'              =>$line1,
             'line2'              =>$line2,
             'line3'              =>$line3,
@@ -49,7 +50,7 @@ class Dc_Model extends CI_Model {
     }
 
 
-    public function updateDc($id,$nor,$no,$item_changes,$line1,$line2,$line3,$line4,$line5,$nor_plan_imp,$nor_act_imp)
+    public function updateDc($id,$nor,$no,$meeting_date,$item_changes,$line1,$line2,$line3,$line4,$line5,$nor_plan_imp,$nor_act_imp)
     {
         if ($line2 == "") {
             $line2=null;
@@ -67,6 +68,7 @@ class Dc_Model extends CI_Model {
         $data = array(
             'nor'               =>$nor,
             'no'                =>$no,
+            'meeting_date'      =>$meeting_date,
             'line'              =>$line1,
             'line2'              =>$line2,
             'line3'              =>$line3,
@@ -101,7 +103,7 @@ class Dc_Model extends CI_Model {
     public function get_dc_sched($month,$years)
     {
         $query = $this->db->query("SELECT *,(select count(nor) from activity where activity.nor=nor.nor AND activity.no=nor.no AND ak_act_imp='0000-00-00 00:00:00
-') as count_nan FROM nor WHERE month(nor_plan_imp)=".$month." AND year(nor_plan_imp)=".$years." order by nor_plan_imp ASC");
+') as count_nan FROM nor WHERE month(nor_plan_imp)=".$month." AND year(nor_plan_imp)=".$years." order by nor_plan_imp ASC, status DESC");
         return $query->result();
     }
 
@@ -197,9 +199,27 @@ class Dc_Model extends CI_Model {
         return $query->result();
     }
 
+    public function get_nor2()
+    {
+        $query = $this->db->query("SELECT DISTINCT nor FROM nor");
+        return $query->result();
+    }
+
+    public function get_no2()
+    {
+        $query = $this->db->query("SELECT DISTINCT no,nor FROM nor");
+        return $query->result();
+    }
+
+    public function get_id()
+    {
+        $query = $this->db->query("SELECT DISTINCT no,nor FROM nor");
+        return $query->result();
+    }
+
     public function get_dc_sched_user($day,$month,$years)
     {
-        $query = $this->db->query("SELECT *,(select count(nor) from activity where activity.nor=nor.nor AND activity.no=nor.no AND ak_act_imp='0000-00-00 00:00:00
+        $query = $this->db->query("SELECT *, nor_plan_imp as tgla,(select count(nor) from activity where activity.nor=nor.nor AND activity.no=nor.no AND ak_act_imp='0000-00-00 00:00:00
 ') as count_nan FROM nor WHERE day(nor_plan_imp)=".$day." AND month(nor_plan_imp)=".$month." AND year(nor_plan_imp)=".$years." order by nor_plan_imp ASC");
         return $query->result();
     }
@@ -239,14 +259,13 @@ class Dc_Model extends CI_Model {
 
     public function get_act_line_month($month,$years,$section)
     {
-        $this->db->select('day(ak_plan_imp) as tgl, count(id) as jml');
+        $this->db->select('day(ak_plan_imp) as tgl, count(id) as jml, (select count(*) from activity act where month(act.ak_plan_imp)="'.$month.'" AND day(act.ak_plan_imp)=day(activity.ak_plan_imp) AND year(act.ak_plan_imp)="'.$years.'" AND act.nama_dvs="'.$section.'" AND act.ak_act_imp="0000-00-00 00:00:00") as jml_sudah');
         $this->db->from('activity');
         $this->db->where('month(ak_plan_imp)',$month);
         $this->db->where('year(ak_plan_imp)',$years);
         $this->db->where('nama_dvs',$section);
         $this->db->group_by('day(ak_plan_imp)');
         $query = $this->db->get();
-    
         return $query->result();
     }
 
@@ -496,7 +515,7 @@ class Dc_Model extends CI_Model {
 
     public function getCountNor($month,$year)
     {
-        $this->db->select('count(nor) as na');
+        $this->db->select('*, count(nor) as na');
         $this->db->from('nor');
         $this->db->where('month(nor_plan_imp)',$month);
         $this->db->where('year(nor_plan_imp)',$year);
@@ -529,6 +548,53 @@ class Dc_Model extends CI_Model {
             );
         $this->db->where('id_user', $id);
         $result = $this->db->update('user', $data);
+        return $result;
+    }
+    public function countAct()
+    {
+        $query= $this->db->query("SELECT count(ak_act_imp) FROM `activity` WHERE ak_act_imp='0000-00-00 00:00:00'");
+        return $query->result_array();
+    }
+
+    public function getPreview($nor,$no)
+    {
+       $query=$this->db->query("SELECT * from activity where nor='".$nor."' AND no='".$no."' ");
+       return $query->result();
+    }
+
+    public function getTopNor()
+    {
+        $query=$this->db->query("SELECT TOP 1 nor, no from nor");
+        return $query->result();
+    }
+
+    public function getDataNor($nor,$no)
+    {
+        $query=$this->db->query("SELECT *, n.nor as norku from activity as a inner join nor as n on n.nor=a.nor and n.no=a.no where n.nor='".$nor."' AND n.no='".$no."'");
+       return $query->result_array();
+    }
+
+    public function getStatus($nor,$no)
+    {
+        $query=$this->db->query("SELECT status from nor where nor='".$nor."' and no='".$no."'");
+       return $query->result_array();
+    }
+
+    public function deleteAll()
+    {
+        $result=$this->db->query("DELETE from nor");
+        return $result;
+    }
+
+    public function deleteAll2()
+    {
+        $result=$this->db->query("DELETE from activity");
+        return $result;
+    }
+
+    public function descNor()
+    {
+        $result=$this->db->query("SELECT * from nor ORDER by status desc");
         return $result;
     }
 

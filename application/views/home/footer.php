@@ -5,7 +5,7 @@
 <script src="<?php echo base_url() ?>assets/js/bootstrap-datepicker.js"></script>
 <script src="<?php echo base_url() ?>assets/js/sweetalert2@8.js"></script>
 <script type="text/javascript">
-		var lineku = null;
+	var lineku = null;
 		// timer jam refresh in detik
 		function display_c(){
 			var refresh=1000; // Refresh rate in milli seconds
@@ -21,7 +21,7 @@
 		$(document).ready(function(){
 
 			refresh_notif();
-            refresh_notif2();
+			refresh_notif2();
 
 			// fungsi date picker tanggal mulai
 			var datepickerss= $("#datepickerss");
@@ -43,7 +43,7 @@
 
 			//call function show all agenda berdasarkan bulan dan tahun 
 			showAgendaandCalendar(currentDate,currentMonth,currentYear);
-            showAct(currentDate,currentMonth,currentYear); 
+			showAct(currentDate,currentMonth,currentYear); 
 
 			function next() {
 				currentYear = (currentMonth === 11) ? currentYear + 1 : currentYear;
@@ -62,6 +62,7 @@
 	        function showAgendaandCalendar(day,month,year){
 	        	var agenda=null;
 	        	var mm =(month+1);
+	        	var na = "";
 	        	// var dd =
 
 
@@ -77,33 +78,34 @@
 
 	        			success : function(data){
 	        				var dataList = data.sch;
+	        				// alert(na.n);
 	        				// alert(data.cline2[0].jml);
 	        				// lineku = data.cline;
 	        				cline2 = data.cline2;
 	        				na=data.na;
-	        				// alert(JSON.stringify(data.na));
-	        				// alert(cline2);
+	        				// alert(JSON.stringify(data.cna));
+	        				// alert(na[0].nor_plan_imp);
 	        				 // alert(lineku2);
-	        				var agend=[];
-	        				var html='';
-	        				var month = new Array();
-							month[0] = "January";
-							month[1] = "February";
-							month[2] = "March";
-							month[3] = "April";
-							month[4] = "May";
-							month[5] = "June";
-							month[6] = "July";
-							month[7] = "August";
-							month[8] = "September";
-							month[9] = "October";
-							month[10] = "November";
-							month[11] = "December";
+	        				 var agend=[];
+	        				 var html='';
+	        				 var month = new Array();
+	        				 month[0] = "January";
+	        				 month[1] = "February";
+	        				 month[2] = "March";
+	        				 month[3] = "April";
+	        				 month[4] = "May";
+	        				 month[5] = "June";
+	        				 month[6] = "July";
+	        				 month[7] = "August";
+	        				 month[8] = "September";
+	        				 month[9] = "October";
+	        				 month[10] = "November";
+	        				 month[11] = "December";
 
-							
 
-	        				for(i=0; i<dataList.length; i++){ 
-	        					a=i+1;   
+
+	        				 for(i=0; i<dataList.length; i++){ 
+	        				 	a=i+1;   
 	                    	// mengkonversi tanggal yang akan ditampilkan
 	                    	const tgl_a = new Date(dataList[i].nor_plan_imp);
 	                    	var tgl_awal = (parseInt(tgl_a.getMonth(), 10)+1)+"/"+('0'+tgl_a.getDate()).slice(-2)+"/"+tgl_a.getFullYear();
@@ -115,42 +117,41 @@
 	                    	const tgl_d = new Date(dataList[i].nor_act_imp);
 	                    	var tgl_awal4 = month[tgl_d.getMonth()]+", "+('0'+tgl_d.getDate()).slice(-2)+" "+tgl_d.getFullYear();
 
+	                    	status = "";
+	                    	if(dataList[i].count_nan == '0'){
+	                    		status = "close";
+	                    		cls="success";
+	                    	}else{
+	                    		status = "open";
+	                    		cls="danger";
 
-	                        status = "";
-	                        if(dataList[i].count_nan == '0'){
-	                        	status = "close";
-	                        	cls="success";
-	                        }else{
-	                        	status = "open";
-	                        	cls="danger";
-	                        
-	                        }
-	                        var line = new Array();
-	                        line[0]=dataList[i].line;
-	                        line[1]=dataList[i].line2;
-	                        line[2]=dataList[i].line3;
-	                        line[3]=dataList[i].line4;
-	                        line[4]=dataList[i].line5;
-	                        a="";
-	                        
-	                        for (var b = 0; b < 5; b++) {
-	                        	if (line[b] != null) {
-		                        	if (b>0) {
-										a+=","+line[b];	                        		
-		                        	}else{
-		                        		a+=line[b];
-		                        	}
-	                        	}
+	                    	}
+	                    	var line = new Array();
+	                    	line[0]=dataList[i].line;
+	                    	line[1]=dataList[i].line2;
+	                    	line[2]=dataList[i].line3;
+	                    	line[3]=dataList[i].line4;
+	                    	line[4]=dataList[i].line5;
+	                    	a="";
 
-	                        }
-	                        
-	                        var ag = {
+	                    	for (var b = 0; b < 5; b++) {
+	                    		if (line[b] != null) {
+	                    			if (b>0) {
+	                    				a+=","+line[b];	                        		
+	                    			}else{
+	                    				a+=line[b];
+	                    			}
+	                    		}
+
+	                    	}
+
+	                    	var ag = {
 	                    		tanggal_a:tgl_a,
 	                    		tanggal_b:tgl_b,
 	                    		tanggal_c:tgl_c,
 	                    		tanggal_d:tgl_d,
-	                        	// line:line
-	                        		}
+	                    		// statusku:statusku
+	                    	}
 	                        // memasukkan dataList agenda kedalam array yang nantinya akan diolah untuk coloring calendar
 	                        agend.push(ag);
 
@@ -160,7 +161,7 @@
 	                        '<td >'+dataList[i].nor+'-'+dataList[i].no+'</td>'+
 		                            // '<td>'+dataList[i].rev+'</td>'+
 		                            '<td style="text-align: left;">'+dataList[i].item_changes+'</td>'+
-	                        		'<td >'+a+'</td>'+
+		                            '<td >'+a+'</td>'+
 		                            '<td>'+tgl_awal2+'</td>'+
 		                            // '<td><span class="badge badge-'+cls+'">'+status+'</span></td>'+
 		                            
@@ -177,7 +178,10 @@
 	                    $("#agendaall").DataTable({
 	                    	destroy:true,
 	                    	"order": [[ 1, "asc" ]],
-	                    	"lengthMenu": [[5], [5]]
+	                    	"lengthMenu": false,
+	                    	"searching" : false,
+	                    	"paging" : false,
+	                    	"info"	: false
 	                    });
 	                }
 	            });
@@ -217,21 +221,42 @@
 			            		var asign=null;
 			            		var anu=new Date();
 			            		var t=anu.setDate(anu.getDate() - 1);
-			            		// alert(agenda.length) nilaine 0;
-			            		// alert(cline2.length) jumlah e 31;
+			            		// alert(na.length);
 			            		// pengecekan calendar jika ada agenda di tanggal ini(date)
-			            		for (var ia = (na.length); ia >=0 ; ia--) {
-			            			for (var ib = 0; ib < na.length; ib++) {
-				            				for (var iz = 0; iz < cline2.length; iz++) {
-				            							// alert(cline2[iz].tgl);
-						            					if (cline2[iz].tgl == date ) {
-						            						asign=parseInt(cline2[iz].jml)+parseInt(cline2[iz].jml2)+parseInt(cline2[iz].jml3)+parseInt(cline2[iz].jml4)+parseInt(cline2[iz].jml5);
-						            					}
-				            				}
-			            				
-			            				 
-			            			} 
-			            		}
+			            			// alert(JSON.stringify(dataList));
+			            			for (var ia = (na.length-1); ia >= 0 ; ia--) {
+			            				for (var ib = 0; ib < na.length; ib++) {
+			            					for (var iz = 0; iz < cline2.length; iz++) {
+				            						// alert(new Date(na[ia].nor_plan_imp));
+				            						if (new Date(currentYear,currentMonth,date) >= new Date(na[ia].nor_plan_imp) && new Date(currentYear,currentMonth,date)<= new Date(na[ia].nor_plan_imp)) {
+				            							if (cline2[iz].tgl == date ) {
+				            								if (new Date(na[ia].nor_plan_imp) < anu && na[ia].status == "On Progress") {
+				            									asign="on";
+				            								}else{
+				            									asign=parseInt(cline2[iz].jml)+parseInt(cline2[iz].jml2)+parseInt(cline2[iz].jml3)+parseInt(cline2[iz].jml4)+parseInt(cline2[iz].jml5);
+				            								}
+				            							}
+				            						}
+
+						            					// if (new Date(currentYear,currentMonth,date) >=agenda[ia].tanggal_d && new Date(currentYear,currentMonth,date)<=agenda[ia].tanggal_d) {
+						            					// 	if (actt[iz].tgl == date) {
+						            					// 		if (agenda[ia].tanggal_d < anu && actt[iz].jml_sudah != 0 ) {
+						            					// 			asign="on";
+						            					// 		}else if(agenda[ia].tanggal_d < anu && actt[iz].jml_sudah != 0 && agenda[ia].st == "not updated" || agenda[ia].st == "waiting"){
+						            					// 			asign="on";
+						            					// 		}
+						            					// 		else if(agenda[ia].tanggal_d < anu && actt[iz].jml_sudah == 0 && agenda[ia].st == "verified"){
+						            					// 			asign="off";
+						            					// 		}else{
+						            					// 			asign=actt[iz].jml;
+						            					// 		}
+						            					// 	}
+						            					// }
+						            				}
+
+
+						            			} 
+						            		}
 			            		// penentuan warna warna
 			            		if (asign==null) {
 			            			html+='<td style="border: 1px solid #dddddd;" onclick="openDetailModal('+date+','+currentMonth+','+currentYear+')">'; 
@@ -273,7 +298,25 @@
 			            				html+='<font style="color: #000;">'+date+'</font>';
 			            			}
 			            			html+='</td>';
-			            		}else{
+			            		}else if(asign == "on" ){
+			            			html+='<td bgcolor="#ff0000" onclick="openDetailModal('+date+','+currentMonth+','+currentYear+')">'; //>=5 NOR
+			            			if (date==today.getDate() && today.getMonth()==currentMonth) {
+			            				html+='<div style="background: url(<?php echo base_url() ?>assets/image/bg_datenow.png); background-repeat: no-repeat; background-position: center;  font-weight: 900; text-align: center; color: #FFF;">'+date+'</div>';
+			            			}else{
+			            				html+='<font style="color: #000;">'+date+'</font>';
+			            			}
+			            			html+='</td>';
+			            		}
+			            		else if(asign == "off"){
+			            			html+='<td bgcolor="#5aff1f" onclick="openDetailModal('+date+','+currentMonth+','+currentYear+')">'; //>=5 NOR
+			            			if (date==today.getDate() && today.getMonth()==currentMonth) {
+			            				html+='<div style="background: url(<?php echo base_url() ?>assets/image/bg_datenow.png); background-repeat: no-repeat; background-position: center;  font-weight: 900; text-align: center; color: #FFF;">'+date+'</div>';
+			            			}else{
+			            				html+='<font style="color: #000;">'+date+'</font>';
+			            			}
+			            			html+='</td>';
+			            		}
+			            		else{
 			            			html+='<td bgcolor="#ff7b24" onclick="openDetailModal('+date+','+currentMonth+','+currentYear+')">'; //>=5 NOR
 			            			if (date==today.getDate() && today.getMonth()==currentMonth) {
 			            				html+='<div style="background: url(<?php echo base_url() ?>assets/image/bg_datenow.png); background-repeat: no-repeat; background-position: center;  font-weight: 900; text-align: center; color: #FFF;">'+date+'</div>';
@@ -292,46 +335,46 @@
    			}
 
    			//function show Activity berdasarkan bulan dan tahun
-	        function showAct(day,month,year){
-	        	var agenda=null;
-	        	var mm =(month+1);
+   			function showAct(day,month,year){
+   				var agenda=null;
+   				var mm =(month+1);
 
-	        	$.ajax({
-	        		async: false,
-	        		type : "POST",
-	        		url   : '<?php echo base_url();?>index.php/User/getDcActUser',
-	        		dataType : 'json',
-	        		data : { 
-	        			date_p:day,
-	        			month_p:mm,
-	        			year_p:year},
+   				$.ajax({
+   					async: false,
+   					type : "POST",
+   					url   : '<?php echo base_url();?>index.php/User/getDcActUser',
+   					dataType : 'json',
+   					data : { 
+   						date_p:day,
+   						month_p:mm,
+   						year_p:year},
 
-	        			success : function(data){ 
-	        				var agend=[];
-	        				var html='';
-	        				var month = new Array();
-							month[0] = "January";
-							month[1] = "February";
-							month[2] = "March";
-							month[3] = "April";
-							month[4] = "May";
-							month[5] = "June";
-							month[6] = "July";
-							month[7] = "August";
-							month[8] = "September";
-							month[9] = "October";
-							month[10] = "November";
-							month[11] = "December";
+   						success : function(data){ 
+   							var agend=[];
+   							var html='';
+   							var month = new Array();
+   							month[0] = "January";
+   							month[1] = "February";
+   							month[2] = "March";
+   							month[3] = "April";
+   							month[4] = "May";
+   							month[5] = "June";
+   							month[6] = "July";
+   							month[7] = "August";
+   							month[8] = "September";
+   							month[9] = "October";
+   							month[10] = "November";
+   							month[11] = "December";
 
-	        				for(i=0; i<data.length; i++){ 
-	        					a=i+1;   
+   							for(i=0; i<data.length; i++){ 
+   								a=i+1;   
 	                    	// mengkonversi tanggal yang akan ditampilkan
 	                    	const tgl_a = new Date(data[i].ak_plan_imp);
 	                    	var tgl_awal = month[tgl_a.getMonth()]+", "+('0'+tgl_a.getDate()).slice(-2)+" "+tgl_a.getFullYear();
 	                    	const tgl_b = new Date(data[i].ak_act_imp);
 	                    	var tgl_awal2 = month[tgl_b.getMonth()]+", "+('0'+tgl_b.getDate()).slice(-2)+" "+tgl_b.getFullYear();
 
-	                    
+
 	                    	const tgl_e = new Date(data[i].nor_plan_imp);
 	                    	var tgl_awal5 = month[tgl_e.getMonth()]+", "+('0'+tgl_e.getDate()).slice(-2)+" "+tgl_e.getFullYear();
 
@@ -339,7 +382,7 @@
 	                    	if (data[i].ak_act_imp == "0000-00-00 00:00:00") {
 	                    		tanggal="belum terimplementasi";
 	                    	}else{
-		                    	tanggal =  month[tgl_b.getMonth()]+", "+('0'+tgl_b.getDate()).slice(-2)+" "+tgl_b.getFullYear();
+	                    		tanggal =  month[tgl_b.getMonth()]+", "+('0'+tgl_b.getDate()).slice(-2)+" "+tgl_b.getFullYear();
 	                    	}
 
 	                    	var ag = {
@@ -354,8 +397,8 @@
 
 	                        html += '<tr>';
 	                        html +=	
-	                        '<td hidden>'+data[i].id+'</td>'+
-	                        '<td >'+data[i].nor+'-'+data[i].no+'</td>'+
+	                        // '<td hidden>'+data[i].id+'</td>'+
+	                        '<td style="text-align: left;">'+data[i].nor+'-'+data[i].no+'</td>'+
 		                            // '<td>'+tgl_awal5+'</td>'+
 		                            '<td>'+data[i].nama_dvs+'</td>'+
 		                            '<td style="text-align: left;">'+data[i].nama_act+'</td>'+
@@ -373,66 +416,109 @@
 	                    $("#agendaall2").DataTable({
 	                    	destroy:true,
 	                    	"order": [[ 1, "asc" ]],
-	                    	"lengthMenu": [[5], [5]]
+	                    	"lengthMenu": false,
+	                    	"searching" : false,
+	                    	"paging" : false,
+	                    	"info"	: false
 	                    }); 
 	                }
 	            });
    			}
 
+
+   			// $("html, body").animate({ scrollTop: $(document).height() }, 40000);
+   			// $("html, body").animate({ scrollBottom: $(document).height() }, 40000);
+   			// setTimeout(function() {
+   			// 	$('html, body').animate({scrollTop:0}, 40000); 
+   			// },40000);
+   			// setTimeout(function() {
+   			// 	$('html, body').animate({scrollBottom:0}, 40000); 
+   			// },40000);
+   			// setInterval(function(){
+   			// 	$("html, body").animate({ scrollTop: $(document).height() }, 40000);
+   			// 	$("html, body").animate({ scrollBottom: $(document).height() }, 40000);
+   			// 	setTimeout(function() {
+   			// 		$('html, body').animate({scrollTop:0}, 40000);
+   			// 		$('html, body').animate({scrollBottom:0}, 40000); 
+   			// 	},40000);    
+   			// },40000);
+
+   			$("html, body").animate({ scrollTop: $(document).height() }, 20000);
+        setTimeout(function() {
+            $('html, body').animate({scrollTop:0}, 10000); 
+        },10000);
+
+        $("html, body").animate({ scrollBottom: $(document).height() }, 20000);
+        setTimeout(function() {
+            $('html, body').animate({scrollBottom:0}, 10000); 
+        },10000);
+
+        setInterval(function(){
+            $("html, body").animate({ scrollTop: $(document).height() }, 20000);
+            setTimeout(function() {
+                $('html, body').animate({scrollTop:0}, 20000); 
+            },10000);
+            $("html, body").animate({ scrollBottom: $(document).height() }, 20000);
+            setTimeout(function() {
+                $('html, body').animate({scrollBottom:0}, 20000); 
+            },10000);   
+        },20000);
+
+
 //   ===============================  NOR ==========================================
 
-    });
+});
 
 function openDetailModal(date,month,year) {
-        	$.ajax({
-        		url : "<?php echo site_url('User/getModalDetail') ?>",
-        		type : "POST",
-        		data : {
-        			'date' : date,
-        			'month' : month,
-        			'year' : year,
-        		},
-        		success : function(data){
-        			$('#Modal_Detail').find('.modal-content').html(data)
-        			$('#Modal_Detail').modal('show');
+	$.ajax({
+		url : "<?php echo site_url('User/getModalDetail') ?>",
+		type : "POST",
+		data : {
+			'date' : date,
+			'month' : month,
+			'year' : year,
+		},
+		success : function(data){
+			$('#Modal_Detail').find('.modal-content').html(data)
+			$('#Modal_Detail').modal('show');
 
-        		}
-        	})
-        }
+		}
+	})
+}
 
-        window.setInterval(function(){
-        	refresh_notif();
-        	refresh_notif2();
-        	},5000);
+window.setInterval(function(){
+	refresh_notif();
+	refresh_notif2();
+},2000);
 
-        function refresh_notif() {
-        	$.ajax({
-            	url : "<?php echo site_url('Dc_controller/get_notif') ?>",
-            	success : function(data){
-            		if(data == "0"){
-            			$('#notifaccount').addClass('badge-light');
-            		}else{
-            			$("#notifaccount").addClass('badge-danger');
-            		}
-            		$('#notifaccount').html(data);
+function refresh_notif() {
+	$.ajax({
+		url : "<?php echo site_url('Dc_controller/get_notif') ?>",
+		success : function(data){
+			if(data == "0"){
+				$('#notifaccount').addClass('badge-light');
+			}else{
+				$("#notifaccount").addClass('badge-danger');
+			}
+			$('#notifaccount').html(data);
 
-            	}
-            })
-        }
-        function refresh_notif2() {
-        	$.ajax({
-            	url : "<?php echo site_url('Dc_controller/get_notif2') ?>",
-            	success : function(data){
-            		if(data == "0"){
-            			$('#notifaccount2').addClass('badge-light');
-            		}else{
-            			$("#notifaccount2").addClass('badge-danger');
-            		}
-            		$('#notifaccount2').html(data);
-            	}
-            })
-        }
-	
+		}
+	})
+}
+function refresh_notif2() {
+	$.ajax({
+		url : "<?php echo site_url('Dc_controller/get_notif2') ?>",
+		success : function(data){
+			if(data == "0"){
+				$('#notifaccount2').addClass('badge-light');
+			}else{
+				$("#notifaccount2").addClass('badge-danger');
+			}
+			$('#notifaccount2').html(data);
+		}
+	})
+}
+
 </script>
 </body>
 </html>

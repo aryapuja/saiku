@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" href="<?=base_url()?>assets/logoaja.png">
+        <link rel="icon" href="<?=base_url()?>assets/1.png">
         <title>PT. SAI</title>
 
         <!-- fontawesome icon -->
@@ -33,10 +33,10 @@
     <body class="admin-body mb-3" onload=display_ct()>
 
         <!-- navigasi bar -->
-        <nav class=" navbar navbar-expand-md navbar-dark bg-uno box-shadowf" role="" style="background:#EEE8AA; zoom:50%">
+        <nav class=" navbar navbar-expand-md navbar-dark bg-uno box-shadowf" role="" style="background:#249e85; zoom:50%">
             <div class="container-fluid">
                 <div class="navbar-header" style="color: #ffffff" href="#"> 
-                    <img class ="navbar-brand" src="<?=base_url()?>assets/logoaja.png" width="75px" >
+                    <img class ="navbar-brand" src="<?=base_url()?>assets/yazaki_w.png" width="250" >
                 </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainnavbar" aria-controls="mainnavbar" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -44,20 +44,20 @@
                 <div class="collapse navbar-collapse" id="mainnavbar">
                     <ul class="navbar-nav mr-auto">             
                         <li class="nav-item active">
-                            <a class="nav-link" href="#" style="font-size: 20px;color: black"><b>PT. SAI: Design Change Scheduling</b></a>
+                            <a class="nav-link" href="#" style="font-size: 20px;color: white"><b>PT. SAI: Design Change Scheduling</b></a>
                         </li>
                     </ul>
                     <ul class="navbar-nav mr-auto ml-auto">
                         <li class="nav-item active">
                             <!-- <button type="button" class="btn btn-warning btn-lg disabled" id="time"></button> -->
-                                <font>
+                                <b><font style="font-size: 20px ;color: white">
                                     
                 <?php
                 date_default_timezone_set("Asia/Jakarta");
                 echo " " . date("d:M:Y");
                 ?>
                                 </font>
-                            <font id="time"></font>
+                            <font id="time" style="font-size: 20px; color: white"></font></b>
                         </li>
                     </ul>
                     <ul class="navbar-nav mr-auto ml-auto">
@@ -67,7 +67,7 @@
                         </li>
                     </ul>
                     <div class="btn-group" role="group" aria-label="Data baru">
-                         <a class="btn-group btn btn-success" href="<?php echo base_url().'/index.php/Login'?>" >LOGIN</a>
+                         <a class="btn-group btn btn-light" href="<?php echo base_url().'/index.php/Login'?>">LOGIN</a>
                      </div> 
                 </div>
             </div>

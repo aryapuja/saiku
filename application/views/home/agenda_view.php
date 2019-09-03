@@ -2,7 +2,7 @@
 
 <!-- Begin page content -->
 <main role="main" style="padding-bottom: 0px;">
-	<div class="container-fluid row"  style="zoom:20%">
+	<div class="container-fluid row"  style="zoom:60%">
 		<!-- view tabel Calendar -->
 		<div class="calendaragenda">
 			<div style="background-color: #FFF; padding: 5px; height: 100%">
@@ -44,11 +44,15 @@
 									<img src="<?=base_url()?>assets/image/8.png" width="10px">&nbsp Tidak Ada Activity<br>
 									<img src="<?=base_url()?>assets/image/1.png" width="10px">&nbsp Ada 1 Line<br>
 									<img src="<?=base_url()?>assets/image/2.png" width="10px">&nbsp Ada 2 Line<br>
+									<img src="<?=base_url()?>assets/image/6.png" width="10px">&nbsp NOR Close<br>
+
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 									<img src="<?=base_url()?>assets/image/3.png" width="10px">&nbsp Ada 3 Line<br>
 									<img src="<?=base_url()?>assets/image/4.png" width="10px">&nbsp Ada 4 Line<br>
 									<img src="<?=base_url()?>assets/image/5.png" width="10px">&nbsp Ada >=5 Line<br>
+									<img src="<?=base_url()?>assets/image/7.png" width="10px">&nbsp NOR Open<br>
+									
 								</div>
 							</div>
 						</center>
@@ -60,7 +64,7 @@
 
 		<!-- view tabel agenda -->
 		<div class="agendaview">
-			<div style="background-color: #FFF; padding: 5px;">
+			<div style="background-color: #FFF; padding: 0px;">
 				<div class="boddy card">
 					<center><h4 class="namatitel card-header">NOR SCHEDULE</h4></center>
 					<div class="card-body">
@@ -73,7 +77,7 @@
 									<th style="text-align: center; width: 15% ">Nor-No</th>
 									<th style="text-align: center; width: 50%">Item Changes</th>
 									<th style="text-align: center; width: 10%">Line</th>
-									<th style="text-align: center; width: 10%">Plan Implementation</th>
+									<th style="text-align: center; width: 10%">Due Date Activity</th>
 									<!-- <th style="text-align: center; width: 15%">Action</th> -->
 								</tr>
 							</thead>
@@ -95,12 +99,12 @@
 						<thead>
 							<tr style="background-color: #E8E8E8;">
 								<!-- <th style="width: 5%;">No</th> -->
-								<th style="text-align: center;" hidden>Id</th>
-								<th style="text-align: center; width: 5%">Nor-No</th>
-								<!-- <th style="text-align: center; width: 5%">Plan Implementation Nor</th> -->
+								<!-- <th style="text-align: center;" hidden>Id</th> -->
+								<th style="text-align: center; width: 20%">Nor-No</th>
+								<!-- <th style="text-align: center; width: 5%">Due Date Activity Nor</th> -->
 								<th style="text-align: center; width: 5%">Section</th>
-								<th style="text-align: center; width: 75%">Activity</th>
-								<th style="text-align: center; width: 5%">Plan Implementation</th>
+								<th style="text-align: center; width: 65%">Activity</th>
+								<th style="text-align: center; width: 5%">Due Date Activity</th>
 								<th style="text-align: center; width: 5%">Actual Implementation</th>
 								<!-- <th style="text-align: center; width: 15%">Action</th> -->
 							</tr>
@@ -149,7 +153,7 @@
 										<textarea type="text" id="item_changes" class="form-control" rows="4" placeholder="Masukkan item Changes"  required></textarea>
 									</div>
 									<div class="col-6">
-										<label for="#">Plan Implementation </label>
+										<label for="#">Due Date Activity </label>
 										<div class="input-daterange input-group" id="datepickers">
 											<input  class="form-control" name="date_plan" id="date_plan" placeholder="Date (Plan)" required/>
 										</div>
@@ -214,7 +218,7 @@
 									<textarea type="text" id="u_item_changes" name="u_item_changes" class="form-control" rows="4" placeholder="Masukkan item Changes"  required></textarea>
 								</div>
 								<div class="col-6">
-									<label for="#">Plan Implementation: </label>
+									<label for="#">Due Date Activity: </label>
 									<div class="input-daterange input-group">
 										<input  class="form-control datepicker" name="u_date_plan" id="u_date_plan" placeholder="Date (Plan)" required/>
 									</div>
@@ -393,7 +397,7 @@
 										<td> <label>Activity</label>
 											<input type="text" id="nama_act_up" name="nama_act_up" class="form-control" placeholder="Masukkan Activity" required />
 										</td>
-										<td> <label>Plan Implementation</label>
+										<td> <label>Due Date Activity</label>
 											<input class="form-control datepicker" name="date_plan_act_up" id="date_plan_act_up" placeholder="Date (Plan)" required/>
 										</td>
 										<td> <label>Actual Implementation</label>

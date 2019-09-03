@@ -2,7 +2,7 @@
 
 <!-- Begin page content -->
 
-<div class="container-fluid row">
+<div class="container-fluid row" style="zoom:80%">
 	<!-- view tabel Calendar -->
 	<nav class="navbar navbar-default navbar-fixed-bottom footer" style="background-color: transparent;" role="navigation">
 		<div class="container-fluid">
@@ -96,14 +96,15 @@
 						<thead>
 							<tr style="background-color: #E8E8E8;">
 								<!-- <th style="width: 5%;">No</th> -->
-								<th style="text-align: center;" hidden>Id</th>
+								<!-- <th style="text-align: center;" hidden>Id</th> -->
 								<th style="text-align: center; width: 20% ">Nor-No</th>
-								<th style="text-align: center; width: 30%">Item Changes</th>
+								<th style="text-align: center; width: 25% ">Meeting Date</th>
+								<th style="text-align: center; width: 20%">Item Changes</th>
 								<th style="text-align: center; width: 10%">Line</th>
-								<th style="text-align: center; width: 5%">Plan Implementation</th>
+								<th style="text-align: center; width: 5%">Due Date Activity</th>
 								<th style="text-align: center; width: 5%">Act. Implementation</th>
-								<th style="text-align: center; width: 10%">Status</th>
-								<th style="text-align: center; width: 20%">Action</th>
+								<th style="text-align: center; width: 5%">Status</th>
+								<th style="text-align: center; width: 10%">Action</th>
 							</tr>
 						</thead>
 						<tbody id="tbl_agendakegiatan" style="text-align: center;">
@@ -136,11 +137,11 @@
 					<thead>
 						<tr style="background-color: #E8E8E8;">
 							<!-- <th style="width: 5%;">No</th> -->
-							<th style="text-align: center;" hidden>Id</th>
+							<!-- <th style="text-align: center;" hidden>Id</th> -->
 							<th style="text-align: center; width: 10%">Nor-No</th>
 							<th style="text-align: center; width: 5%">Section</th>
 							<th style="text-align: center; width: 35%">Activity</th>
-							<th style="text-align: center; width: 15%">Plan Implementation</th>
+							<th style="text-align: center; width: 15%">Due Date Activity</th>
 							<th style="text-align: center; width: 5%">Status</th>
 							<th style="text-align: center; width: 15%">Actual Implementation</th>
 							<th style="text-align: center; width: 15%">Action</th>
@@ -180,7 +181,7 @@
 									<input type="text" id="no" class="form-control" placeholder="Masukkan No" style="width: 100%" required>
 								</div>
 								<div class="col-4">
-									<label for="#">Plan Implementation </label>
+									<label for="#">Due Date Activity </label>
 									<div class="input-daterange input-group" id="datepickers">
 										<input  class="form-control" name="nor_plan_imp" id="nor_plan_imp" placeholder="DD. (Plan)" required autocomplete="off" />
 									</div>
@@ -211,6 +212,12 @@
 									<div class="col-lg-2 pr-1 pl-1">
 										<label>Line5</label>
 										<input type="text" id="line5" class="form-control" placeholder="Line5">
+									</div>
+									<div class="col-lg-6 pr-1 pl-1">
+										<label for="#">Meeting Date </label>
+										<div class="input-daterange input-group datepicker">
+											<input  class="form-control" name="meeting_date" id="meeting_date" placeholder="Meeting Date" required autocomplete="off" />
+										</div>
 									</div>
 								</div>
 
@@ -253,25 +260,31 @@
 									<label>No: </label>
 									<input type="text" id="u_no" name="u_no" class="form-control" placeholder="Masukkan No" style="width: 100%" required>
 								</div>
-								<div class="col-4">
-									<label>Line 1: </label>
-									<input type="text" id="u_line1" name="u_line1" class="form-control" placeholder="Line 1" required>
+								<div class="col-lg-4">
+									<label for="#">Meeting Date </label>
+									<div class="input-daterange input-group datepicker">
+										<input  class="form-control" name="u_meeting_date" id="u_meeting_date" placeholder="Meeting Date" required autocomplete="off" />
+									</div>
 								</div>
 							</div>
 							<div class="form-group col-lg-12 row">
-								<div class="col-3">
+								<div class="col-2">
+									<label>Line 1: </label>
+									<input type="text" id="u_line1" name="u_line1" class="form-control" placeholder="Line 1" required>
+								</div>
+								<div class="col-2">
 									<label>Line 2: </label>
 									<input type="text" id="u_line2" name="u_line2" class="form-control" placeholder="Line 2">
 								</div>
-								<div class="col-3">
+								<div class="col-2">
 									<label>Line 3: </label>
 									<input type="text" id="u_line3" name="u_line3" class="form-control" placeholder="Line 3">
 								</div>
-								<div class="col-3">
+								<div class="col-2">
 									<label>Line 4: </label>
 									<input type="text" id="u_line4" name="u_line4" class="form-control" placeholder="Line 4">
 								</div>
-								<div class="col-3">
+								<div class="col-2">
 									<label>Line 5: </label>
 									<input type="text" id="u_line5" name="u_line5" class="form-control" placeholder="Line 5">
 								</div>
@@ -282,7 +295,7 @@
 									<textarea type="text" id="u_item_changes" name="u_item_changes" class="form-control" rows="4" placeholder="Masukkan item Changes"  required></textarea>
 								</div>
 								<div class="col-6">
-									<label for="#">Plan Implementation: </label>
+									<label for="#">Due Date Activity: </label>
 									<div class="input-daterange input-group">
 										<input  class="form-control datepicker" name="u_nor_plan_imp" id="u_nor_plan_imp" placeholder="DD. (Plan)" required autocomplete="off" />
 									</div>
@@ -386,20 +399,20 @@
 								</div>  
 								<div class="col-md-2">
 									<label>Section</label>
-									<select class="form-control" name="nama_dvs[]" id="nama_dvs">
+									<select class="form-control" name="nama_dvs[]" id="nama_dvs" required>
 										<option disabled selected hidden>Pilih Section</option>
 										<option value="de">DE</option>
 										<option value="pp">PP</option>
 										<option value="qp">QP</option>
 										<option value="qmp">QMP</option>
-										<option value="eng">ENGINEERING</option>
+										<option value="engineering">ENGINEERING</option>
 										<option value="nys">NYS</option>
 										<option value="prod">PROD</option>
 										<option value="ppc">PPC</option>
-										<option value="ppc">IC</option>
-										<option value="ppc">WHS</option>
-										<option value="ppc">EXIM</option>
-										<option value="ppc">FA</option>
+										<option value="ic">IC</option>
+								                 <option value="whs">WHS</option>
+								                 <option value="exim">EXIM</option>
+								                 <option value="fa">FA</option>
 									</select>
 								</div>  
 								<div class="col-md-3">
@@ -413,7 +426,7 @@
 							</datalist>
 						</div>  
 						<div class="col-md-2">
-							<label>Plan Implementation</label>
+							<label>Due Date Activity</label>
 							<input class="form-control datepicker" name="ak_plan_imp[]" id="ak_plan_imp" placeholder="Date (Plan)" required autocomplete="off"/>
 						</div>  
 						<div class="col-md-1">
@@ -527,30 +540,30 @@
 
 										</td>
 										<td> <label>Section</label>
-											<select class="form-control" name="nama_dvs_up" id="nama_dvs_up">
+											<select class="form-control" name="nama_dvs_up" id="nama_dvs_up" required>
 												<option disabled selected hidden>Pilih Section</option>
 												<option value="de">DE</option>
 												<option value="pp">PP</option>
 												<option value="qp">QP</option>
 												<option value="qmp">QMP</option>
-												<option value="eng">ENGINEERING</option>
+												<option value="engineering">ENGINEERING</option>
 												<option value="nys">NYS</option>
 												<option value="prod">PROD</option>
 												<option value="ppc">PPC</option>
-												<option value="ppc">IC</option>
-												<option value="ppc">WHS</option>
-												<option value="ppc">EXIM</option>
-												<option value="ppc">FA</option>
+												<option value="ic">IC</option>
+								                 <option value="whs">WHS</option>
+								                 <option value="exim">EXIM</option>
+								                 <option value="fa">FA</option>
 											</select>
 										</td>
 										<td> <label>Activity</label>
 											<input type="text" id="nama_act_up" name="nama_act_up" class="form-control" placeholder="Masukkan Activity" required />
 										</td>
-										<td><label>Plan Implementation</label>
+										<td><label>Due Date Activity</label>
 											<input class="form-control datepicker" name="ak_plan_imp_up" id="ak_plan_imp_up" placeholder="Date (Plan)" required autocomplete="off"/>
 										</td>
 										<td> <label>Actual Implementation</label>
-											<input  class="form-control datepicker" name="ak_act_imp_up" id="ak_act_imp_up" placeholder="Date (Actual)" autocomplete="off"/>
+											<input  class="form-control datepicker" name="ak_act_imp_up" id="ak_act_imp_up" placeholder="Date (Actual)" autocomplete="off" required />
 										</td>
 									</tr>  
 								</table>  
@@ -602,24 +615,24 @@
 												<option value="pp">PP</option>
 												<option value="qp">QP</option>
 												<option value="qmp">QMP</option>
-												<option value="eng">ENGINEERING</option>
+												<option value="engineering">ENGINEERING</option>
 												<option value="nys">NYS</option>
 												<option value="prod">PROD</option>
 												<option value="ppc">PPC</option>
-												<option value="ppc">IC</option>
-												<option value="ppc">WHS</option>
-												<option value="ppc">EXIM</option>
-												<option value="ppc">FA</option>
+												<option value="ic">IC</option>
+								                 <option value="whs">WHS</option>
+								                 <option value="exim">EXIM</option>
+								                 <option value="fa">FA</option>
 											</select>
 										</td>
 										<td> <label>Activity</label>
 											<input type="text" id="nama_act_c" name="nama_act_c" class="form-control" placeholder="Masukkan Activity" required readonly />
 										</td>
-										<td><label>Plan Implementation</label>
+										<td><label>Due Date Activity</label>
 											<input class="form-control datepicker" name="ak_plan_imp_c" id="ak_plan_imp_c" placeholder="Date (Plan)" required readonly/>
 										</td>
 										<td> <label>Actual Implementation</label>
-											<input  class="form-control datepicker" name="ak_act_imp_c" id="ak_act_imp_c" placeholder="Date (Actual)" autocomplete="off"/>
+											<input  class="form-control datepicker" name="ak_act_imp_c" id="ak_act_imp_c" placeholder="Date (Actual)" autocomplete="off" required />
 										</td>
 									</tr>  
 								</table>  
@@ -699,14 +712,14 @@
 						<option value="pp">PP</option>
 						<option value="qp">QP</option>
 						<option value="qmp">QMP</option>
-						<option value="eng">ENGINEERING</option>
+						<option value="engineering">ENGINEERING</option>
 						<option value="nys">NYS</option>
 						<option value="prod">PROD</option>
 						<option value="ppc">PPC</option>
-						<option value="ppc">IC</option>
-						<option value="ppc">WHS</option>
-						<option value="ppc">EXIM</option>
-						<option value="ppc">FA</option>
+						<option value="ic">IC</option>
+								                 <option value="whs">WHS</option>
+								                 <option value="exim">EXIM</option>
+								                 <option value="fa">FA</option>
 					</select>
 				</div>
 				<div class="col-md-3">
@@ -744,7 +757,6 @@
 			var html = String($('#input-container').html()); 
 			$('.input-field').append(html);  
 		});
-
 
 		$(document).on('click', '.btn_remove', function(){  
 			var button_id = $(this).attr("id");   
@@ -819,20 +831,6 @@
 		$(target).parents('.row').find('.slct_no').find('option').not('.nomor-not').hide();
 		$(target).parents('.row').find('.slct_no').val('0');
 		$(target).parents('.row').find('.slct_no').find('.nomor-nor-'+nor).show();
-	}
-
-	function move() {
-		var elem = document.getElementById("myBar");   
-		var width = 1;
-		var id = setInterval(frame, 10);
-		function frame() {
-			if (width >= 100) {
-				clearInterval(id);
-			} else {
-				width++; 
-				elem.style.width = width + '%'; 
-			}
-		}
 	}
 	
 </script>

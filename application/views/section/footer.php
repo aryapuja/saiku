@@ -115,7 +115,7 @@
 	        				var dataList = data.act;
 	        				actt = data.cact;
 	        				// cline2 = data.cline2;
-	        				// alert(actt);
+	        				// alert(JSON.stringify(actt));
 	        				var agend=[];
 	        				var html='';
 	        				var month = new Array();
@@ -146,6 +146,8 @@
 
 	                    	const tgl_d = new Date(dataList[i].ak_plan_imp);
 	                    	var tgl_awal4 = (parseInt(tgl_d.getMonth(), 10)+1)+"/"+('0'+tgl_d.getDate()).slice(-2)+"/"+tgl_d.getFullYear();
+	                    	var actne=dataList[i].ak_act_imp; 
+	                    	var st= dataList[i].astatus;
 
 	                    	tanggal="";
 	                    	if (dataList[i].ak_act_imp == "0000-00-00 00:00:00") {
@@ -173,7 +175,8 @@
 	                    		tanggal_b:tgl_b,
 	                    		tanggal_c:tgl_c,
 	                    		tanggal_d:tgl_d,
-	                    		// status:status
+	                    		actne:actne,
+	                    		st:st
 	                        	}
 	                        // memasukkan dataList agenda kedalam array yang nantinya akan diolah untuk coloring calendar
 	                        agend.push(ag);
@@ -243,20 +246,29 @@
 	        			} else {	
 			            		// variabel info agar tidak terjadi doubel
 			            		var asign=null;
-
+			            		var anu=new Date();
+			            		var t=anu.setDate(anu.getDate() - 1);
 			            		// pengecekan calendar jika ada agenda di tanggal ini(date)
 			            		for (var ia = (agenda.length-1); ia >=0 ; ia--) {
 			            			for (var ib = 0; ib < agenda.length; ib++) {
-
 			            				for (var iz = 0; iz < actt.length; iz++) {
+			            		// alert(agenda[ia].st);
+
+			            					if (new Date(currentYear,currentMonth,date) >=agenda[ia].tanggal_d && new Date(currentYear,currentMonth,date)<=agenda[ia].tanggal_d) {
 			            					if (actt[iz].tgl == date) {
-			            						asign=actt[iz].jml;
+			            						if (agenda[ia].tanggal_d < anu && actt[iz].jml_sudah != 0 ) {
+			            							asign="on";
+			            						}else if(agenda[ia].tanggal_d < anu && actt[iz].jml_sudah != 0 && agenda[ia].st == "not updated" || agenda[ia].st == "waiting"){
+			            							asign="on";
+			            						}
+			            						else if(agenda[ia].tanggal_d < anu && actt[iz].jml_sudah == 0 && agenda[ia].st == "verified"){
+			            							asign="off";
+			            						}else{
+			            							asign=actt[iz].jml;
+			            						}
 			            					}
 			            				}
-
-			            				if (new Date(currentYear,currentMonth,date) >= agenda[ia].tanggal_d && new Date(currentYear,currentMonth,date)<=agenda[ia].tanggal_d) { 
-			            					
-			            				} 
+			            			}
 			            			} 
 			            		}
 			            		// penentuan warna warna
@@ -308,7 +320,25 @@
 			            				html+='<font style="color: #000;">'+date+'</font>';
 			            			}
 			            			html+='</td>';
-			            		}else{
+			            		}else if(asign == "on" ){
+			            			html+='<td bgcolor="#ff0000" onclick="openDetailModal('+date+','+currentMonth+','+currentYear+','+section+')">'; //>=5 NOR
+			            			if (date==today.getDate() && today.getMonth()==currentMonth) {
+			            				html+='<div style="background: url(<?php echo base_url() ?>assets/image/bg_datenow.png); background-repeat: no-repeat; background-position: center;  font-weight: 900; text-align: center; color: #FFF;">'+date+'</div>';
+			            			}else{
+			            				html+='<font style="color: #000;">'+date+'</font>';
+			            			}
+			            			html+='</td>';
+			            		}
+			            		else if(asign == "off"){
+			            			html+='<td bgcolor="#5aff1f" onclick="openDetailModal('+date+','+currentMonth+','+currentYear+','+section+')">'; //>=5 NOR
+			            			if (date==today.getDate() && today.getMonth()==currentMonth) {
+			            				html+='<div style="background: url(<?php echo base_url() ?>assets/image/bg_datenow.png); background-repeat: no-repeat; background-position: center;  font-weight: 900; text-align: center; color: #FFF;">'+date+'</div>';
+			            			}else{
+			            				html+='<font style="color: #000;">'+date+'</font>';
+			            			}
+			            			html+='</td>';
+			            		}
+			            		else{
 			            			html+='<td style="border: 1px solid #dddddd;" onclick="openDetailModal('+date+','+currentMonth+','+currentYear+','+section+')">'; 
 			            			if (date==today.getDate() && today.getMonth()==currentMonth) {
 			            				html+='<div style="background: url(<?php echo base_url() ?>assets/image/bg_datenow.png); background-repeat: no-repeat; background-position: center;  font-weight: 900; text-align: center; color: #FFF;">'+date+'</div>';

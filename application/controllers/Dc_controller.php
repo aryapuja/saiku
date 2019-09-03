@@ -73,6 +73,7 @@ class Dc_Controller extends CI_Controller {
 
 		$nor = $this->input->post('nor');
 		$no = $this->input->post('no');
+		$meeting_date = $this->input->post('meeting_date');
 		$line1 = $this->input->post('line1');
 		$line2 = $this->input->post('line2');
 		$line3 = $this->input->post('line3');
@@ -83,7 +84,7 @@ class Dc_Controller extends CI_Controller {
 		$nor_plan_imp = date( 'Y-m-d H:i:s', strtotime( $this->input->post('nor_plan_imp') ) );
 		// $nor_act_imp = date( 'Y-m-d H:i:s', strtotime( $this->input->post('nor_act_imp') ) );
 		
-		$result = $this->Dc_model->newDc($nor,$no,$item_changes,$line1,$line2,$line3,$line4,$line5,$nor_plan_imp);
+		$result = $this->Dc_model->newDc($nor,$no,$meeting_date,$item_changes,$line1,$line2,$line3,$line4,$line5,$nor_plan_imp);
 
 		echo json_encode($result);
 	}
@@ -96,6 +97,7 @@ class Dc_Controller extends CI_Controller {
 		$id = $this->input->post('u_id');
         $nor = $this->input->post('u_nor');
         $no = $this->input->post('u_no');
+        $meeting_date = date( 'Y-m-d H:i:s', strtotime( $this->input->post('u_meeting_date') ) );
         $line1 = $this->input->post('u_line1');
 		$line2 = $this->input->post('u_line2');
 		$line3 = $this->input->post('u_line3');
@@ -115,7 +117,7 @@ class Dc_Controller extends CI_Controller {
         // var_dump($nor_act_imp);
         // die();
 
-		$result = $this->Dc_model->updateDc($id,$nor,$no,$item_changes,$line1,$line2,$line3,$line4,$line5,$nor_plan_imp,$nor_act_imp);
+		$result = $this->Dc_model->updateDc($id,$nor,$no,$meeting_date,$item_changes,$line1,$line2,$line3,$line4,$line5,$nor_plan_imp,$nor_act_imp);
 
 		echo json_encode($result);
 	}
@@ -247,6 +249,18 @@ class Dc_Controller extends CI_Controller {
 	{
 		$data['nor'] = $this->Dc_model->get_nor();
 		$this->load->view('agenda/select_nor',$data);
+	}
+
+	public function select_no2()
+	{
+		$data['no'] = $this->Dc_model->get_no2();
+		$this->load->view('downloadNor/select_no',$data);
+	}
+
+	public function select_nor2()
+	{
+		$data['nor'] = $this->Dc_model->get_nor2();
+		$this->load->view('downloadNor/select_nor',$data);
 	}
 
 	public function getModalDetail()
@@ -405,5 +419,139 @@ class Dc_Controller extends CI_Controller {
 
 	}
 
-}
+	public function dataNor()
+	{
+		$count=$this->Dc_model->countUserWaiting();
+		$count2=$count[0]['count(status)'];
+		$data['countuserwaiting'] = $count2;
+		$data['nor'] = $this->Dc_model->get_nor();
+		$data['no'] = $this->Dc_model->get_no();
+		$data['id'] = $this->Dc_model->get_id();
+
+		$this->load->view("agenda/header",$data); 
+		$this->load->view("downloadNor/dataNor",$data);
+		$this->load->view("downloadNor/footer");
+	}
+
+	public function previewNor()
+	{
+		$nor = $this->input->post('nor');
+		$no = $this->input->post('no');
+		$data=$this->Dc_model->getPreview($nor,$no);
+		// $data['norku']=$this->Dc_model->getTopNor();
+		echo json_encode($data);
+	}
+
+	public function exportNor($nor,$no)
+	{
+		$fileName = "Format_download_nor";
+		// include APPPATH . 'third_party/PHPExcel/PHPExcel.php';
+		// include APPPATH . 'third_party/PHPExcel/PHPExcel/IOFactory.php';
+
+		// Read the file
+		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
+		$objPHPExcel = $objReader->load($fileName.'.xlsx'); 
+
+		// Change the file
+		$nor2=str_replace("_", " ", $nor);
+		$no2=str_replace("_", " ", $no);
+		$no3=str_replace("-", ",", $no2);
+
+		$getnor=$this->Dc_model->getDataNor($nor2,$no3);
+    	// var_dump($result);
+        $row = 11;
+        // $sum = 0;
+        $a="";
+        $line[]= "";
+
+       	$line[0]=$getnor[0]['line'];
+       	$line[1]=$getnor[0]['line2'];
+       	$line[2]=$getnor[0]['line3'];
+       	$line[3]=$getnor[0]['line4'];
+       	$line[4]=$getnor[0]['line5'];
+       	for ($b = 0; $b < count($line); $b++) {
+       		if ($line[$b] != null) {
+       			if ($b>0) {
+       				$a+=",".$line[$b];	                        		
+       				// print_r($line[$b]);
+       				// die();
+       			}else{
+       				$a=$line[$b];
+       			}
+       		}
+
+       	}
+       	// die();
+
+       	$plan=date('d-m-Y', strtotime($getnor[0]['nor_plan_imp']));
+       	$act=date('d-m-Y', strtotime($getnor[0]['nor_act_imp']));
+       	$md=date('d-m-Y', strtotime($getnor[0]['meeting_date']));
+
+
+         $objPHPExcel->getActiveSheet()->setCellValue('C3',$getnor[0]['nor'].'-'.$getnor[0]['no']);
+         $objPHPExcel->getActiveSheet()->setCellValue('C4',$md);
+         $objPHPExcel->getActiveSheet()->setCellValue('C5',strval($a));
+         $objPHPExcel->getActiveSheet()->setCellValue('C6',$getnor[0]['item_changes']);
+         $objPHPExcel->getActiveSheet()->setCellValue('C7',$plan);
+         $objPHPExcel->getActiveSheet()->setCellValue('C8',$act);
+
+         $styleArray = array(
+		  'borders' => array(
+		    'allborders' => array(
+		      'style' => PHPExcel_Style_Border::BORDER_THIN
+		    )
+		  )
+		);
+
+        $styleFontArray = array(
+		    'font'  => array(
+		        'bold'  => true,
+		        'size'  => 18,
+		        'name'  => 'Tahoma'
+		    ));
+
+        foreach($getnor as $n){
+            $objPHPExcel->getActiveSheet()->setCellValue('A'.$row,strtoupper($n['nama_dvs']));
+            $objPHPExcel->getActiveSheet()->setCellValue('B'.$row,$n['nama_act']);
+            $objPHPExcel->getActiveSheet()->setCellValue('D'.$row,date('d-m-Y', strtotime($n['ak_plan_imp'])));
+            if ($n['ak_act_imp'] == "0000-00-00 00:00:00") {
+            	$objPHPExcel->getActiveSheet()->setCellValue('E'.$row," ");
+            }else{
+            	$objPHPExcel->getActiveSheet()->setCellValue('E'.$row,date('d-m-Y', strtotime($n['ak_act_imp'])));
+            }
+            $objPHPExcel->getActiveSheet()->getStyle('A'.$row.':E'.$row)->applyFromArray($styleArray); 
+            $objPHPExcel->getActiveSheet()->mergeCells('B'.$row.':C'.$row); 
+
+            // $sum += doubleval($n->amountprice);
+            $row++;
+            // $no++;
+        }
+
+		unset($styleArray);
+
+		$row+=1;
+		// $objPHPExcel->getActiveSheet()->setCellValue('E'.$row,'TOTAL');
+		// $objPHPExcel->getActiveSheet()->setCellValue('F'.$row,$sum);
+        $objPHPExcel->getActiveSheet()->getStyle('A'.$row.':E'.$row)->applyFromArray($styleFontArray);
+
+
+
+		// // Write the 
+
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    	header('Content-Disposition: attachment; filename="'.str_replace('_','-',$getnor[0]['nor'].'-'.$getnor[0]['no']).'.xlsx"'); // Set nama file excel nya
+    	header('Cache-Control: max-age=0');
+    	ob_end_clean();
+
+		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel,'Excel2007');
+		$objWriter->save('php://output');
+		}
+
+	public function deleteAll()
+	{	  
+		$result['nor'] = $this->Dc_model->deleteAll();
+		$result['activity'] = $this->Dc_model->deleteAll2();
+		echo json_encode($result);
+	}
+	}
 

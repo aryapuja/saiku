@@ -70,9 +70,9 @@
     				var ii = i+1;
     				html += '<tr>'+
     				'<td hidden>'+data[i].id+'</td>'+
-    				'<td>'+ii+'</td>'+
+    				'<td style="text-align: center;">'+ii+'</td>'+
     				'<td>'+data[i].namaActivity+'</td>'+
-    				'<td>'+ '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit" data-id="'+data[i].id+'" data-nama="'+data[i].namaActivity+'" > <span class="fa fa-edit"></span> </a>'+ 
+    				'<td style="text-align: center;">'+ '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit" data-id="'+data[i].id+'" data-nama="'+data[i].namaActivity+'" > <span class="fa fa-edit"></span> </a>'+ 
     				'     '+
     				'<a href="javascript:void(0);" class="btn btn-danger btn-sm item_delete" data-id="'+data[i].id+'" data-nama="'+data[i].namaActivity+'"> <span class="fa fa-trash"></span> </a>'+
     				'</td>'+
